@@ -1,4 +1,4 @@
-#IWGU
+# IWGU
 
-###How to install
+### How to install
 * yarn install
