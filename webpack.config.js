@@ -60,7 +60,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            template: 'src/index.html',
+            template: 'public/index.html',
         }),
     ],
     devServer: {
