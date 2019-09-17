@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 import logger from 'redux-logger'
 import reducer from './reducers'
 import './asset/css/index.css'
-import Routes from './Routes'
+import Routes from './router'
 
 // create redux store 
 const store = createStore(reducer, applyMiddleware(logger))
