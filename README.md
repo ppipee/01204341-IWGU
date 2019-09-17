@@ -10,3 +10,5 @@
 * yarn install (first time)
 * yarn start (run demo)
 * yarn build (build product)
+* yarn test (run unit test)
+* yarn test-coverage (run test with coverage)
