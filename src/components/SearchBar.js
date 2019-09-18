@@ -28,12 +28,7 @@ class SearchBar extends Component {
         }
     }
 
-    showSearch = () => {
-        let show = false
-        if (this.state.search_word.length !== 0)
-            show = true
-        this.setState({ show: show })
-    }
+    showSearch = () => this.setState({ show: true })
 
     handleChange = event => {
         let word = event.target.value
@@ -46,6 +41,25 @@ class SearchBar extends Component {
         })
     }
 
+    searchArea() {
+        if (this.state.show) {
+            return (
+                <div className='search-box open' ref={this.setWrapperRef}>
+                    <div className='search-area'>
+                        <div className='search-category'>
+                            <span>Popular category</span>
+                            <div className='search-tag'>{this.genTag()}</div>
+                        </div>
+                        <div className='search-history'>Search History</div>
+                    </div>
+                </div>
+            )
+        }
+        return (
+            <div className='search-box' ref={this.setWrapperRef}></div>
+        )
+    }
+
     genTag = () => tags.map((tag, i) => <div className="tag" key={`tag ${i}`}>{tag}</div>)
 
     render() {
@@ -55,17 +69,7 @@ class SearchBar extends Component {
                     <img src={SearchIcon} />
                     <input placeholder='Search' onChange={this.handleChange} onClick={this.showSearch} value={this.state.search_word} />
                 </div>
-                {this.state.show &&
-                    <div className='search-box' ref={this.setWrapperRef}>
-                        <div className='search-area'>
-                            <div className='search-category'>
-                                <span>Popular category</span>
-                                <div className='search-tag'>{this.genTag()}</div>
-                            </div>
-                            <div className='search-history'>Search History</div>
-                        </div>
-                    </div>
-                }
+                {this.searchArea()}
             </div>
         )
     }
