@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './../assets/scss/serchbar.scss'
+import './../assets/scss/searchbar.scss'
 import SearchIcon from '../assets/icon/search-icon.svg'
 
 const tags = ['coffee shop', 'street food', 'folk villages', 'landmark', 'souvenir shop', 'park']
@@ -13,17 +13,14 @@ class SearchBar extends Component {
     }
 
     componentDidMount() {
-        document.addEventListener('mousedown', this.handleClickOutside);
+        document.addEventListener('mousedown', this.handleClickOutside)
     }
 
     componentWillUnmount() {
-        document.removeEventListener('mousedown', this.handleClickOutside);
+        document.removeEventListener('mousedown', this.handleClickOutside)
     }
 
-    setWrapperRef = node => {
-        console.log(node)
-        this.wrapperRef = node
-    }
+    setWrapperRef = node => this.wrapperRef = node
 
     handleClickOutside = event => {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {

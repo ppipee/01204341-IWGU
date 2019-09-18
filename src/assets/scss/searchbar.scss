@@ -1,6 +1,7 @@
 .search {
   margin: 13px 37px 14px;
   position: relative;
+  // transition: 0.5s all ease;
   .input {
     height: 31px;
     border-radius: 5px;
@@ -72,8 +73,8 @@
           flex-direction: row;
           flex-wrap: wrap;
           margin-top: 10px;
-          .tag{
-            color:#fff;
+          .tag {
+            color: #fff;
             background-color: #fcbba4;
             border-radius: 5px;
             padding: 2px 7px;
@@ -83,8 +84,8 @@
       }
       .search-history {
         display: block;
-        margin:auto;
-        font-size:20px;
+        margin: auto;
+        font-size: 20px;
         color: #dbdbdb;
       }
     }
