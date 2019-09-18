@@ -1,5 +1,5 @@
 import React from 'react'
-import './../asset/scss/nearby.scss'
+import './../assets/scss/nearby.scss'
 const NearBy = () =>{
     return (
         <div className='nearby'>

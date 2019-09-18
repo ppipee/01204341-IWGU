@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import './../asset/scss/serchbar.scss'
-import SearchIcon from '../asset/icon/search-icon.svg'
+import './../assets/scss/serchbar.scss'
+import SearchIcon from '../assets/icon/search-icon.svg'
 
 const tags = ['coffee shop', 'street food', 'folk villages', 'landmark', 'souvenir shop', 'park']
 class SearchBar extends Component {
