@@ -1,5 +1,5 @@
 import React from 'react'
-import './../asset/scss/explore.scss'
+import './../assets/scss/explore.scss'
 
 const Explore = () => {
     return (
