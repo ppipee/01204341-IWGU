@@ -1,4 +1,4 @@
-.serch {
+.search {
   margin: 13px 37px 14px;
   position: relative;
   .input {
@@ -27,7 +27,7 @@
     }
   }
 
-  .serch-box {
+  .search-box {
     margin: 17.1px auto;
     width: 267px;
     height: 219.9px;
@@ -59,15 +59,15 @@
       background: #ffffff;
     }
 
-    .serch-area {
+    .search-area {
       height: 100%;
       display: flex;
       flex-direction: column;
-      .serch-category {
+      .search-category {
         font-size: 11px;
         color: #4f4f4f;
         border-bottom: 1px solid #e7e7e7;
-        .serch-tag {
+        .search-tag {
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
@@ -81,7 +81,7 @@
           }
         }
       }
-      .serch-history {
+      .search-history {
         display: block;
         margin:auto;
         font-size:20px;

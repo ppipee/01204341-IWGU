@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import './../asset/scss/serchbar.scss'
-import SerchIcon from '../asset/icon/search-icon.svg'
+import SearchIcon from '../asset/icon/search-icon.svg'
 
 const tags = ['coffee shop', 'street food', 'folk villages', 'landmark', 'souvenir shop', 'park']
-class SerchBar extends Component {
+class SearchBar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            serch_word: "",
+            search_word: "",
             show: false,
         }
     }
@@ -21,7 +21,8 @@ class SerchBar extends Component {
     }
 
     setWrapperRef = node => {
-        this.wrapperRef = node;
+        console.log(node)
+        this.wrapperRef = node
     }
 
     handleClickOutside = event => {
@@ -30,9 +31,9 @@ class SerchBar extends Component {
         }
     }
 
-    showSerch = () => {
+    showSearch = () => {
         let show = false
-        if (this.state.serch_word.length !== 0)
+        if (this.state.search_word.length !== 0)
             show = true
         this.setState({ show: show })
     }
@@ -43,7 +44,7 @@ class SerchBar extends Component {
         let show = word.length !== 0 ? true : false
         // console.log(show)
         this.setState({
-            serch_word: word
+            search_word: word
             , show
         })
     }
@@ -52,19 +53,19 @@ class SerchBar extends Component {
 
     render() {
         return (
-            <div className='serch'>
+            <div className='search'>
                 <div className='input'>
-                    <img src={SerchIcon} />
-                    <input placeholder='Search' onChange={this.handleChange} onClick={this.showSerch} value={this.state.serch_word} />
+                    <img src={SearchIcon} />
+                    <input placeholder='Search' onChange={this.handleChange} onClick={this.showSearch} value={this.state.search_word} />
                 </div>
                 {this.state.show &&
-                    <div className='serch-box' ref={this.setWrapperRef}>
-                        <div className='serch-area'>
-                            <div className='serch-category'>
+                    <div className='search-box' ref={this.setWrapperRef}>
+                        <div className='search-area'>
+                            <div className='search-category'>
                                 <span>Popular category</span>
-                                <div className='serch-tag'>{this.genTag()}</div>
+                                <div className='search-tag'>{this.genTag()}</div>
                             </div>
-                            <div className='serch-history'>Serch History</div>
+                            <div className='search-history'>Search History</div>
                         </div>
                     </div>
                 }
@@ -72,4 +73,4 @@ class SerchBar extends Component {
         )
     }
 }
-export default SerchBar
+export default SearchBar
