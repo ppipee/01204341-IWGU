@@ -4,17 +4,14 @@ import Menu from '../assets/icon/featured-menu.svg'
 import Airplane from '../assets/icon/airplane.svg'
 const NavBar = () => {
     return (
-        <div className='nav-bar'>
-            
+        <div className='nav-bar'>          
             <button className='button-mytrip'>
-            <div className='airplane-icon'>
-                <img className='airplane' src={Airplane}/>
-            </div>
+                <div className='airplane-icon'>
+                    <img className='airplane' src={Airplane}/>
+                </div>
                 <a className='string-mytrip'>My trips</a> 
-            </button>
-            
-            <img className='menu' src={Menu}/>
-            
+            </button>           
+            <img className='menu' src={Menu}/>            
         </div>
     )
 }
