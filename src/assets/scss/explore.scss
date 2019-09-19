@@ -1,4 +1,12 @@
-.explore{
-    height: 292px;
-    border: 1px solid rgb(196, 196, 196); // mark component ,you can remove this line when finish or any time 
+.explore {
+    .explore-title {
+        img {
+            margin-left: 37px;
+        }
+        p {
+            display: inline;
+            margin-left: 15px;
+        }
+    }
 }
+

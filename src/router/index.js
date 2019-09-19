@@ -9,4 +9,4 @@ const Routes = () => (
     </div>
 )
 
-export default hot(module)(Routes)
+export default (Routes)
