@@ -6,10 +6,8 @@ const NavBar = () => {
     return (
         <div className='nav-bar'>          
             <button className='button-mytrip'>
-                <div className='airplane-icon'>
-                    <img className='airplane' src={Airplane}/>
-                </div>
-                <a className='string-mytrip'>My trips</a> 
+                <img src={Airplane}/>
+                My trips
             </button>           
             <img className='menu' src={Menu}/>            
         </div>
