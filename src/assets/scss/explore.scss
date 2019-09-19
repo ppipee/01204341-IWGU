@@ -1,4 +1,5 @@
 .explore {
+    border: 1px solid black;
     .explore-title {
         img {
             margin-left: 37px;
@@ -8,5 +9,24 @@
             margin-left: 15px;
         }
     }
+    .explore-card {
+        width: 300px;
+        height: 224px;
+        margin-left: 37px;
+        margin-top: 13px;
+        border: double 4px transparent;
+        border-radius: 25px;
+        background-image: linear-gradient(white, white), radial-gradient(circle at top left ,#f3bca6, #ffe9cf 83%);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        img {
+            border-radius: 25px 25px 0px 0px;
+            margin: auto;
+            max-width: 300px;
+            max-height: 166px;
+            
+        }
+    }   
 }
+
 
