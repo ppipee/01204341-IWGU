@@ -46,16 +46,12 @@
         }
     }
     .slick-dots li {
-        // margin-top: 14px;
         width: 6px !important;
         line-height: 14px !important;
 
-        // padding: 5px !important;
     }
     .slick-dots li.slick-active button:before {
         opacity: 10;
         color: #f3bca6;
     }
 }
-
-
