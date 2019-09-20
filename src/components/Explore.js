@@ -7,6 +7,7 @@ export default class Explore extends React.Component {
   render() {
     let settings = {
       dots: true,
+      focusOnSelect: true,
       infinite: false,
       arrows: false,
       speed: 500,
@@ -14,11 +15,6 @@ export default class Explore extends React.Component {
       swipeToSlide: true,
       centerMode: true,
       centerPadding: '30px',
-      afterChange: function(index) {
-        console.log(
-          `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
-        );
-      } 
     };
     return (
       <div className='explore'>
@@ -34,28 +30,28 @@ export default class Explore extends React.Component {
                 <div className='explore-card'> 
                   <div className='image'></div>
                   <div className='box-title'>
-                    <p className='title'> 1 Bangkok, Thailand </p>
+                    <p className='title'> Bangkok, Thailand </p>
                     <p className='subtitle'> The Beautiful temple near Chao Phraya River </p>
                   </div>
                 </div>
                 <div className='explore-card'> 
                   <div className='image'></div>
                   <div className='box-title'>
-                    <p className='title'> 2 Bangkok, Thailand </p>
+                    <p className='title'> Bangkok, Thailand </p>
                     <p className='subtitle'> The Beautiful temple near Chao Phraya River </p>
                   </div>
                 </div>
                 <div className='explore-card'> 
                   <div className='image'></div>
                   <div className='box-title'>
-                    <p className='title'> 3 Bangkok, Thailand </p>
+                    <p className='title'> Bangkok, Thailand </p>
                     <p className='subtitle'> The Beautiful temple near Chao Phraya River </p>
                   </div>
                 </div>
                 <div className='explore-card'> 
                   <div className='image'></div>
                   <div className='box-title'>
-                    <p className='title'> 4 Bangkok, Thailand </p>
+                    <p className='title'> Bangkok, Thailand </p>
                     <p className='subtitle'> The Beautiful temple near Chao Phraya River </p>
                   </div>
                 </div>

@@ -1,15 +1,17 @@
 .explore {
+    height: 292px;
     .explore-title {
+        margin-bottom: 13px;  
         img {
-            margin-left: 37px;
+            margin-left: 39px;
         }
         p {
             display: inline;
-            margin-left: 15px;
+            margin-left: 11px;
         }
     }
 
-    .explore-card {        
+    .explore-card {   
         width: 300px !important;
         display: flex !important;
         flex-direction: column;
@@ -36,11 +38,23 @@
                 font-size: 14px;
             } 
             .subtitle {
+                margin-top: -12px;
                 margin-left: 18px;
                 font-size: 11px;
                 color: #c5c5c5;
             }  
         }
+    }
+    .slick-dots li {
+        // margin-top: 14px;
+        width: 6px !important;
+        line-height: 14px !important;
+
+        // padding: 5px !important;
+    }
+    .slick-dots li.slick-active button:before {
+        opacity: 10;
+        color: #f3bca6;
     }
 }
 
