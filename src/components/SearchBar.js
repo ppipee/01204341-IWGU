@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import './../assets/scss/searchbar.scss'
 import SearchIcon from '../assets/icon/search-icon.svg'
 
-const tags = ['coffee shop', 'street food', 'folk villages', 'landmark', 'souvenir shop', 'park']
+const tags = ['coffee shop', 'street food', 'folk villages', 'landmark', 'souvenir shop', 'park',]
+// const tags =[]
 class SearchBar extends Component {
     constructor(props) {
         super(props)
@@ -55,9 +56,6 @@ class SearchBar extends Component {
                 </div>
             )
         }
-        return (
-            <div className='search-box' ref={this.setWrapperRef}></div>
-        )
     }
 
     genTag = () => tags.map((tag, i) => <div className="tag" key={`tag ${i}`}>{tag}</div>)

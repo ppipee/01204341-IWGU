@@ -7,8 +7,24 @@
 * yarn v1.17.3
 
 ### How to use
-* yarn install (first time)
-* yarn start (run demo)
-* yarn build (build product)
-* yarn test (run unit test)
-* yarn test-coverage (run test with coverage)
+
+* for first time
+```
+yarn
+```
+
+* run demo
+```
+yarn start
+```
+
+* build product
+```
+yarn build 
+```
+
+* run unit test / test with coverage
+```
+yarn test
+yarn test-coverage 
+```
