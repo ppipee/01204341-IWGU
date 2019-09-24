@@ -56,6 +56,7 @@ class SearchBar extends Component {
                 </div>
             )
         }
+        return(<div className='search-box'/>)
     }
 
     genTag = () => tags.map((tag, i) => <div className="tag" key={`tag ${i}`}>{tag}</div>)
