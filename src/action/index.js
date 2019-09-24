@@ -1,1 +1,3 @@
-export default class Action { }
+import SearchAction from './Search'
+
+export {SearchAction}
