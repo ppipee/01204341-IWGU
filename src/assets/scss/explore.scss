@@ -48,10 +48,9 @@
     .slick-dots li {
         width: 6px !important;
         line-height: 14px !important;
-
-    }
-    .slick-dots li.slick-active button:before {
-        opacity: 10;
-        color: #f3bca6;
+        &.slick-active button:before {
+            opacity: 10;
+            color: #f3bca6;
+        }
     }
 }
