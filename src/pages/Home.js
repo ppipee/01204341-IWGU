@@ -6,7 +6,7 @@ import NearBy from '../components/NearBy'
 
 const Home = () => (
     <div className='home-page'>
-        <NavBar />        
+        <NavBar />
         <SearchBar />
         <Explore />
         <NearBy />
