@@ -1,5 +1,5 @@
 import React from 'react'
-import { hot } from 'react-hot-loader'
+// import { hot } from 'react-hot-loader'
 import { Route } from 'react-router-dom'
 import { Home } from './../pages'
 
@@ -9,4 +9,5 @@ const Routes = () => (
     </div>
 )
 
-export default (Routes)
+export default Routes
+// export default hot(module)(Routes)

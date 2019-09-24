@@ -17,7 +17,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /(node_modules)/,
                 use: {
                     loader: 'babel-loader',
@@ -26,7 +26,10 @@ module.exports = {
                             '@babel/preset-env',
                             '@babel/preset-react'
                         ],
-                        plugins: ['react-hot-loader/babel'],
+                        plugins: [
+                            'react-hot-loader/babel',
+                            '@babel/plugin-proposal-class-properties'
+                        ],
                     },
                 },
             },
@@ -60,9 +63,10 @@ module.exports = {
         new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            template: 'public/index.html',
+            template: './public/index.html'
         }),
     ],
+    stats: { children: false },
     devServer: {
         hot: true,
     },

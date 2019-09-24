@@ -1,4 +1,25 @@
-.nav-bar{
+.nav-bar {
     height: 51px;
-    border: 1px solid rgb(196, 196, 196); // mark component ,you can remove this line when finish or any time 
+    background-image: linear-gradient(to right, #ffecd2, #fcb69f);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
+
+.menu {
+    margin-right: 22.8px;
+    margin-left: 24px;
+}
+
+.button-mytrip {
+    width: 77px;
+    height: 24px;
+    border-radius: 7px;
+    background-color: #ffffff;
+    border: none;
+    font-size: 12px;
+    color: #fcb8a0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+} 
