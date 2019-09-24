@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { SearchAction } from '../action'
 import './../assets/scss/searchbar.scss'
 import SearchIcon from '../assets/icon/search-icon.svg'
-import { withRouter } from 'react-router-dom'
 
+const Action = SearchAction
 const tags = ['coffee shop', 'street food', 'folk villages', 'landmark', 'souvenir shop', 'park',]
 // const tags =[]
 class SearchBar extends Component {
     constructor(props) {
         super(props)
+        console.log(this.props.val)
         this.state = {
-            search_word: "",
+            search_word: this.props.val === undefined ? "" : this.props.val,
             show: false,
         }
     }
@@ -34,9 +38,7 @@ class SearchBar extends Component {
 
     handleChange = event => {
         let word = event.target.value
-        // console.log(word)
         let show = word.length !== 0 ? true : false
-        // console.log(show)
         this.setState({
             search_word: word
             , show
@@ -64,6 +66,7 @@ class SearchBar extends Component {
 
     swapPage = e => {
         if (e.target.value !== "" && e.charCode == 13) {
+            this.props.setWord(e.target.value)
             this.props.history.push(`/search`)
         }
     }
@@ -80,4 +83,11 @@ class SearchBar extends Component {
         )
     }
 }
-export default withRouter(SearchBar)
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setWord: (word) => dispatch({ type: Action.WORDSEARCH, setWord: word })
+    }
+}
+
+export default connect(null, mapDispatchToProps)(withRouter(SearchBar))
