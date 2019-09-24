@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './../assets/scss/searchbar.scss'
 import SearchIcon from '../assets/icon/search-icon.svg'
+import { withRouter } from 'react-router-dom'
 
 const tags = ['coffee shop', 'street food', 'folk villages', 'landmark', 'souvenir shop', 'park',]
 // const tags =[]
@@ -56,21 +57,27 @@ class SearchBar extends Component {
                 </div>
             )
         }
-        return(<div className='search-box'/>)
+        return (<div className='search-box' />)
     }
 
     genTag = () => tags.map((tag, i) => <div className="tag" key={`tag ${i}`}>{tag}</div>)
+
+    swapPage = e => {
+        if (e.target.value !== "" && e.charCode == 13) {
+            this.props.history.push(`/search`)
+        }
+    }
 
     render() {
         return (
             <div className='search'>
                 <div className='input'>
                     <img src={SearchIcon} />
-                    <input placeholder='Search' onChange={this.handleChange} onClick={this.showSearch} value={this.state.search_word} />
+                    <input placeholder='Search' onChange={this.handleChange} onClick={this.showSearch} value={this.state.search_word} onKeyPress={this.swapPage} />
                 </div>
                 {this.searchArea()}
             </div>
         )
     }
 }
-export default SearchBar
+export default withRouter(SearchBar)
