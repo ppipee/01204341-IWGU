@@ -1,11 +1,12 @@
 import React from 'react'
 // import { hot } from 'react-hot-loader'
 import { Route } from 'react-router-dom'
-import { Home } from './../pages'
+import { Home, Search } from './../pages'
 
 const Routes = () => (
     <div className="route-container">
-        <Route path="/" component={Home} />
+        <Route exact path="/" component={Home} />
+        <Route path="/search" component={Search} />
     </div>
 )
 

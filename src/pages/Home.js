@@ -1,5 +1,4 @@
 import React from 'react'
-import '../assets/scss/home.scss'
 import NavBar from '../components/Navbar'
 import SearchBar from '../components/SearchBar'
 import Explore from '../components/Explore'
@@ -7,7 +6,7 @@ import NearBy from '../components/NearBy'
 
 const Home = () => (
     <div className='home-page'>
-        <NavBar />
+        <NavBar />        
         <SearchBar />
         <Explore />
         <NearBy />
