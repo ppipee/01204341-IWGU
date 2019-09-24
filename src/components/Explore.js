@@ -14,7 +14,15 @@ export default class Explore extends React.Component {
       slidesToShow: 1,
       swipeToSlide: true,
       centerMode: true,
-      centerPadding: '30px',
+      centerPadding: '45px',
+      responsive: [
+        {
+          breakpoint: 400,
+          settings: {
+            centerPadding: '30px',
+          }
+        },
+      ]
     };
     return (
       <div className='explore'>
