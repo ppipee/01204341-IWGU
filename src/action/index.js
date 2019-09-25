@@ -1,3 +1,3 @@
 import SearchAction from './Search'
 
-export {SearchAction}
+export { SearchAction }
