@@ -1,5 +1,66 @@
-.search-filter{
-    .search-bar{
-        width:100%;
+$transition-box: all 0.2s linear;
+
+.search-filter {
+  position: relative;
+  padding: 14px 37px;
+  .search-bar {
+    position: relative;
+    display: flex;
+    .search {
+      position: static;
+      width: 100%;
+      margin: 0 11px 0 0;
+      padding: 0;
     }
+  }
+  .filter-box {
+    width: calc(100% - 74px);
+    height: 219.9px;
+    padding: 17px;
+    border-radius: 6px;
+    background: transparent;
+    box-sizing: border-box;
+    position: absolute;
+    z-index: -1;
+    cursor: pointer;
+    transition: $transition-box;
+    &.open {
+      z-index: 1;
+      margin: 17.1px auto;
+      box-shadow: 1px 1px 7px rgb(151, 151, 151);
+      transition: $transition-box;
+      background: #ffffff;
+      &::after {
+        background: #ffffff;
+        transition: $transition-box;
+      }
+      &::before {
+        background-color: #ffffff;
+        box-shadow: 1px 1px 7px rgb(151, 151, 151);
+        transition: $transition-box;
+      }
+    }
+    &::before {
+      width: 15px;
+      height: 15px;
+      content: "";
+      position: absolute;
+      top: -6.5px;
+      right: 7px;
+      background-color: transparent;
+      transform: rotate(45deg);
+      transition: 0.5s background ease-out;
+    }
+    &::after {
+      width: 30px;
+      height: 20px;
+      content: "";
+      position: absolute;
+      top: 0px;
+      right: 1px;
+      border-radius:6px;
+      background-color: transparent;
+      transition: 0.5s background ease-out;
+    }
+  }
 }
