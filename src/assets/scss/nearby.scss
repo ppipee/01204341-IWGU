@@ -1,4 +1,69 @@
-.nearby {
-    height: 215px;
-    border: 1px solid rgb(196, 196, 196); // mark component ,you can remove this line when finish or any time 
+.nearby{
+    .head{
+        .location_icon{
+            width: 9.5px;
+            height: 14.9px;
+            margin-top: 4.2%;
+            margin-left: 11.2%;
+            object-fit: contain;
+        }
+        .nearby_you{
+            width: 114px;
+            height: 25px;
+            font-family: LexendDeca;
+            font-size: 20px;
+            margin-top: 1.9%;
+            margin-left: 2.4%;
+            color: #4f4f4f;
+        }
+    }
+    .wave{
+        .wave_background{
+            position: relative;
+            .icon .icon1{
+                position: absolute;
+                left: 10.1%;
+                top: 52.1%;
+            }
+            .icon .icon2{
+                position: absolute;
+                left: 34.1%;
+                top: 52.1%;
+            }
+            .icon .icon3{
+                position: absolute;
+                left: 59.5%;
+                top: 48.7%;
+            }
+            .icon .icon4{
+                position: absolute;
+                left: 84%;
+                top: 53.8%;
+            }
+        }
+    }
+    .pictures{
+        .container{
+            .tabcontent{
+                overflow: auto;
+                white-space: nowrap;
+                .picture{
+                    overflow: auto;
+                    margin-left: 5.6%;
+                    width: 83px;
+                    height: 71px;
+                    border-radius: 15px;
+                    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.2);
+                }
+            }
+        }
+    }
+    ::-webkit-scrollbar { 
+        display: none; 
+    }
+    .icon{
+        width: 93.8px;
+        height: 38px;
+    }
+ 
 }
