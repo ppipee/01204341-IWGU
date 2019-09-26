@@ -15,9 +15,10 @@ import Lhong_Tou from '../assets/img/lhong_tou.jpg'
 import Museum from '../assets/img/museum.jpg'
 
 
+
+
 function open_content(evt, pic_name) {
     var i, tabcontent, tablinks
-
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -33,16 +34,16 @@ function open_content(evt, pic_name) {
     evt.currentTarget.className += " active";
 }
 
-const NearBy = () =>{
+const NearBy = () => {
     return (
-        <div className='nearby'>
+        <div className='nearby' onLoad={()=>(open_content(event,'pic_res'))} >
             <div className='head'>
                 <img  className='location_icon' src={LocationIcon}/>
                 <span className='nearby_you'>Nearby-you</span>
             </div>
             <div className='wave'>
                 <div className='wave_background'>
-                    <img className='wave_pic' src={Wave}/>
+                    {/* <img className='wave_pic' src={Wave}/> */}
                     <div className='icon'>                     
                         <img onClick={()=>(open_content(event,'pic_res'))} className='tablinks' className='icon1'src={Restaurant}/>
                     </div>
