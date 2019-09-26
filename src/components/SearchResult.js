@@ -8,6 +8,7 @@ class SearchResult extends Component {
     render() {
         return (
             <div className="search-result">
+                Result
             </div>
         )
     }

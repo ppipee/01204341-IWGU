@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { SearchAction } from '../action'
 import './../assets/scss/searchbar.scss'
-import SearchIcon from '../assets/icon/search-icon.svg'
+import { SearchIcon } from './Icon'
 
 const Action = SearchAction
 const tags = ['coffee shop', 'street food', 'folk villages', 'landmark', 'souvenir shop', 'park',]
@@ -76,7 +76,7 @@ class SearchBar extends Component {
             <div className='search'>
                 <div className='input'>
                     <img src={SearchIcon} />
-                    <input placeholder='Search' onChange={this.handleChange} onClick={this.showSearch} value={this.state.search_word} onKeyPress={this.swapPage} />
+                    <input placeholder='Search' onChange={this.handleChange} onClick={this.showSearch} value={this.state.search_word} onKeyPress={this.swapPage}/>
                 </div>
                 {this.searchArea()}
             </div>
