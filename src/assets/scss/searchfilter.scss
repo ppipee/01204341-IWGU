@@ -44,6 +44,7 @@ $transition-box: all 0.2s linear;
           justify-content: space-between;
           span span {
             color: #b0b0b0;
+            margin-right:6px;
           }
         }
         .sortby {
@@ -63,8 +64,6 @@ $transition-box: all 0.2s linear;
         }
       }
       .category {
-        .head {
-        }
         .tags {
           display: flex;
           flex-direction: row;
@@ -88,10 +87,13 @@ $transition-box: all 0.2s linear;
           }
         }
       }
-      hr{
+      .line{
+        height: 1px;
+        background-color:#e7e7e7;
         margin:0;
       }
       .hour {
+        margin: 12px 0;
       }
       .rating {
         display: flex;
