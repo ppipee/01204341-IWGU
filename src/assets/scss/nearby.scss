@@ -19,26 +19,21 @@
     }
     .wave{
         .wave_background{
-            position: relative;
-            .icon .icon1{
-                position: absolute;
-                left: 10.1%;
-                top: 52.1%;
+            height: 70px;
+            background: url('../img/wave.svg') no-repeat;
+            display: flex;  
+            align-items: flex-end;
+            .icon {
+                display: flex;
+                align-items:center;
+                justify-content: center;                
+                height:46.9px;
+                width: 93.8px;
+                border-radius: 76px 76px 0 0;
+                background: white;
             }
-            .icon .icon2{
-                position: absolute;
-                left: 34.1%;
-                top: 52.1%;
-            }
-            .icon .icon3{
-                position: absolute;
-                left: 59.5%;
-                top: 48.7%;
-            }
-            .icon .icon4{
-                position: absolute;
-                left: 84%;
-                top: 53.8%;
+            .icon img{
+                margin-bottom: 10%;
             }
         }
     }
@@ -47,6 +42,7 @@
             .tabcontent{
                 overflow: auto;
                 white-space: nowrap;
+                margin-top: 10.7%;
                 .picture{
                     overflow: auto;
                     margin-left: 5.6%;
