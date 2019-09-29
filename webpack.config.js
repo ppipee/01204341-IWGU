@@ -28,7 +28,8 @@ module.exports = {
                         ],
                         plugins: [
                             'react-hot-loader/babel',
-                            '@babel/plugin-proposal-class-properties'
+                            '@babel/plugin-proposal-class-properties',
+                            ["import", { "libraryName": "antd", "style": "true" }],
                         ],
                     },
                 },
@@ -56,6 +57,10 @@ module.exports = {
                 use: [
                     { loader: 'file-loader' },
                 ],
+            },
+            {
+                test: /\.less$/,
+                use: ["style-loader", { loader: 'css-loader', options: { sourceMap: 1 } }, "postcss-loader", "less-loader"]
             },
         ],
     },
