@@ -1,21 +1,36 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import SearchBar from './SearchBar'
+import { FilterAction } from '../action'
 import '../assets/scss/searchfilter.scss'
 import { SearchIcon, Filter, FilterActive, Clear, Star, BlankStar, Close } from './Icon'
-import { Slider } from 'antd'
+import TimeFilter from './TimeFilter'
 
-// const tags = ['coffee shop', 'street food', 'landmark']
-const tags = []
-
+const Action = FilterAction
+const default_filters = {
+    tags: [],
+    sortby: {
+        "near": false,
+        "rating": false,
+        "price": false,
+    },
+    time: [6, 29],
+    rating: {
+        "star1": false,
+        "star2": false,
+        "star3": false,
+        "star4": false,
+        "star5": false,
+    },
+}
 class SearchFilter extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            filter: false,
+            show: false,
+            ...JSON.parse(JSON.stringify(this.props.load_filters)),
         }
     }
-
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside)
     }
@@ -23,82 +38,109 @@ class SearchFilter extends Component {
     componentWillUnmount() {
         document.removeEventListener('mousedown', this.handleClickOutside)
     }
-
-    setWrapperRef = node => this.wrapperRef = node
-
+    setWrapperRefFilter = node => this.wrapperRefFilter = node
     handleClickOutside = event => {
-        if (this.wrapperRef && !this.wrapperRef.contains(event.target) && !this.state.filter) {
-            this.setState({ filter: false })
+        let alt_name = event.target.getAttribute("alt")
+        if (this.wrapperRefFilter && !this.wrapperRefFilter.contains(event.target) && alt_name !== "filter") {
+            this.setState({ show: false })
         }
     }
-
-    clickFilter = () => this.setState(prevState => ({ filter: !prevState.filter }))
-
-    actionFilter() {
-        let [source, name] = this.state.filter ? [FilterActive, "-active"] : [Filter, ""]
-        return (<img className={`img-filter${name}`} src={source} onClick={this.clickFilter} />)
+    clickFilter = () => {
+        this.setState(prevState => ({ show: !prevState.show }))
     }
-
+    actionFilter() {
+        let [source, name] = this.state.show ? [FilterActive, "-active"] : [Filter, ""]
+        return (<img className={`img-filter${name}`} src={source} alt="filter" onClick={this.clickFilter} />)
+    }
     showFilter() {
-        if (this.state.filter) {
+        if (this.state.show) {
             return (
-                <div className="filter-box open" ref={this.setWrapperRef}>
-                    <div className="sort">
-                        <div className="head">
-                            <span>Sort by :</span>
-                            <span>
-                                <span>clear</span>
-                                <img src={Clear} />
-                            </span>
+                <div className="filter-box open" ref={this.setWrapperRefFilter}>
+                    <div className="filters">
+                        <div className="sort">
+                            <div className="head">
+                                <span>Sort by :</span>
+                                <span onClick={() => this.clearFilters(event, true)}>
+                                    <span>clear</span>
+                                    <img src={Clear} />
+                                </span>
+                            </div>
+                            <div className="sortby">
+                                {this.genSort()}
+                            </div>
                         </div>
-                        <div className="sortby">
-                            <div>nearby</div>
-                            <div>rating</div>
-                            <div>price</div>
+                        <div className="category">
+                            <div className="head">Category:</div>
+                            <div className="tags">{this.genTag()}
+                                <div className="search">
+                                    <img src={SearchIcon} />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className="category">
-                        <div className="head">Category:</div>
-                        <div className="tags">{this.genTag()}
-                            <div className="search">
-                                <img src={SearchIcon} />
+                        <div className="line" />
+                        <TimeFilter time={this.state.time} handleTime={this.handleTime} />
+                        <div className="rating">
+                            <div className="head">Rating:</div>
+                            <div className="all-fav">
+                                {this.genFav()}
                             </div>
                         </div>
                     </div>
-                    <div className="line" />
-                    <div className="hour">
-                        <div className="head">Opening hours</div>
-                        <div className="options">
-                            <Slider range defaultValue={[20, 50]} />
-                        </div>
+                    <div className="handle-filters">
+                        <div className="cancel" onClick={this.clearFilters}>Cancel</div>
+                        <div className="apply" onClick={this.applyFilters}>Apply</div>
                     </div>
-                    <div className="rating">
-                        <div className="head">Rating:</div>
-                        <div className="favs">
-                            {this.genFav()}
-                        </div>
-                    </div>
-                </div>
+                </div >
             )
         }
-        return (<div className="filter-box" ref={this.setWrapperRef} />)
+        return (<div className="filter-box" ref={this.setWrapperRefFilter} />)
     }
-
+    genSort = () => {
+        let sort = ["nearby", "rating", "price"]
+        let block = []
+        sort.map(sortby => {
+            let name = this.state.sortby[sortby] ? "active" : ""
+            block = [...block,
+            <div className={`head-sort ${name}`} sortby={sortby} onClick={() => this.toggleButton(event, "sortby", this.state.sortby)}>
+                {sortby}
+            </div>]
+        })
+        return block
+    }
     genFav = () => {
         let fav = []
         for (let i = 1; i <= 5; i++) {
+            let [name, src] = this.state.rating[`star${i}`] ? ["active", BlankStar] : ["", Star]
             fav = [...fav,
-            <div className="fav" key={`fav-${i}`}>
+            <div className={`fav ${name}`} key={`star-${i}`} star={`star${i}`} onClick={() => this.toggleButton(event, "star", this.state.rating)}>
                 <span>{i}</span>
-                <img src={Star} />
+                <img src={src} />
             </div>
             ]
         }
         return fav
     }
-
-    genTag = () => tags.map((tag, i) => <div className="tag" key={`tag-${i}`}><div>{tag}</div><img src={Close} /></div>)
-
+    genTag = () => this.state.tags.map((tag, i) => <div className="tag" key={`tag-${i}`}><div>{tag}</div><img src={Close} /></div>)
+    handleTime = (time) => this.setState({ time })
+    toggleButton = (event, attibute, state) => {
+        let pointer = event.target.getAttribute(attibute)
+        state[pointer] = !state[pointer]
+        this.setState({ state })
+    }
+    clearFilters = (event, show = false) => {
+        console.log(this.state)
+        this.setState({
+            show,
+            ...JSON.parse(JSON.stringify(default_filters)),
+        })
+    }
+    applyFilters = () => {
+        let filter = JSON.parse(JSON.stringify(this.state))
+        delete filter.show
+        console.log(filter)
+        this.props.setFilter(filter)
+        this.setState({show:false})
+    }
     render() {
         return (
             <div className="search-filter">
@@ -113,12 +155,13 @@ class SearchFilter extends Component {
 }
 const mapStateToProps = state => {
     return {
-        word: state.searching.word
+        word: state.searching.word,
+        load_filters: state.filters
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-
+        setFilter: (filters) => dispatch({ type: Action.SAVEFILTERS, newState: filters })
     }
 }
 

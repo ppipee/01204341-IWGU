@@ -11,7 +11,6 @@ const tags = ['coffee shop', 'street food', 'folk villages', 'landmark', 'souven
 class SearchBar extends Component {
     constructor(props) {
         super(props)
-        console.log(this.props.val)
         this.state = {
             search_word: this.props.val === undefined ? "" : this.props.val,
             show: false,
