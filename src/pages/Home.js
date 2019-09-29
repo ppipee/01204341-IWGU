@@ -1,5 +1,4 @@
 import React from 'react'
-import '../assets/scss/home.scss'
 import NavBar from '../components/Navbar'
 import SearchBar from '../components/SearchBar'
 import Explore from '../components/Explore'
