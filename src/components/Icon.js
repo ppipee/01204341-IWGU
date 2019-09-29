@@ -5,6 +5,9 @@ import Clear from '../assets/icon/refresh.svg'
 import Star from '../assets/icon/full-star.svg'
 import BlankStar from '../assets/icon/empty-star.svg'
 import Close from '../assets/icon/close.svg'
+import Menu from '../assets/icon/featured-menu.svg'
+import Airplane from '../assets/icon/airplane.svg'
+import Back from '../assets/icon/back.svg'
 
 export {
     SearchIcon,
@@ -13,5 +16,8 @@ export {
     Clear,
     Star,
     BlankStar,
-    Close
+    Close,
+    Menu,
+    Airplane,
+    Back,
 }
