@@ -14,7 +14,10 @@ const rePresentTime = (time) => {
 
 const TimeFilter = (props) => {
     const time = props.time
-    const handleTime = (time) => props.handleTime(time) 
+    const handleTime = (time) => {
+        if (time[0] - time[1] !== 0)
+            props.handleTime(time)
+    }
     return (
         <div className="open-hour">
             <div className="head">Opening hours</div>
