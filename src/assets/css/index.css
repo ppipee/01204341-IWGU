@@ -7,6 +7,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-code, button, input {
+code, button, input,a {
     font-family: 'Lexend Deca', sans-serif;
 }

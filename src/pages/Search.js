@@ -8,7 +8,7 @@ import '../assets/scss/searchpage.scss'
 const Search = () => {
     return (
         <div className="search-page">
-            <NavBar />
+            <NavBar back={true}/>
             <div className="search-background" style={{ backgroundImage: `url(${Background})` }}>
                 <SearchFilter />
                 <SearchResult/>
