@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
+import { compose } from 'redux'
 import { SearchAction } from '../action'
 import './../assets/scss/searchbar.scss'
 import { SearchIcon } from './Icon'
@@ -75,7 +76,7 @@ class SearchBar extends Component {
             <div className='search'>
                 <div className='input'>
                     <img src={SearchIcon} />
-                    <input placeholder='Search' onChange={this.handleChange} onClick={this.showSearch} value={this.state.search_word} onKeyPress={this.swapPage}/>
+                    <input placeholder='Search' onChange={this.handleChange} onClick={this.showSearch} value={this.state.search_word} onKeyPress={this.swapPage} />
                 </div>
                 {this.searchArea()}
             </div>
@@ -89,4 +90,7 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(SearchBar))
+export default compose(
+    withRouter,
+    connect(null, mapDispatchToProps)
+)(SearchBar)
