@@ -41,9 +41,9 @@ class NavBar extends Component {
             )
         }
         return(                
-            <>            
+            <>
                 <div id="backDrop" className="containerSideNav" ref={node => this.node = node} onClick={()=>this.handleClickOutside()}/>           
-                <div id="mySidenav" className="sidenav" ref={node => this.node = node}   />
+            <div id="mySidenav" className="sidenav" ref={node => this.node = node}   />
             </>
         )
     }
@@ -64,5 +64,4 @@ class NavBar extends Component {
     )
 }
 }
-
 export default NavBar
