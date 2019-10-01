@@ -101,7 +101,7 @@ class SearchFilter extends Component {
         sort.map((sortby, i) => {
             let name = this.state.sortby[sortby] ? "active" : ""
             block = [...block,
-            <div className={`head-sort ${name}`} key={`sort${i}`} sortby={sortby} onClick={() => this.toggleButton(event, "sortby", this.state.sortby)}>
+            <div className={`head-sort ${name}`} key={`sort${i}`} sortby={sortby} onClick={() => this.toggleButton(event, "sortby", "sortby", {}, false)}>
                 {sortby}
             </div>]
         })
@@ -112,7 +112,7 @@ class SearchFilter extends Component {
         for (let i = 1; i <= 5; i++) {
             let [name, src] = this.state.rating[`star${i}`] ? ["active", BlankStar] : ["", Star]
             fav = [...fav,
-            <div className={`fav ${name}`} key={`star${i}`} star={`star${i}`} onClick={() => this.toggleButton(event, "star", this.state.rating, false)}>
+            <div className={`fav ${name}`} key={`star${i}`} star={`star${i}`} onClick={() => this.toggleButton(event, "star", "rating", false)}>
                 <span>{i}</span>
                 <img src={src} />
             </div>
@@ -122,26 +122,22 @@ class SearchFilter extends Component {
     }
     genTag = () => this.state.tags.map((tag, i) => <div className="tag" key={`tag-${i}`}><div>{tag}</div><img src={Close} /></div>)
     handleTime = (time) => this.setState({ time })
-    toggleButton = (event, attibute, state, allactive = true, multiactive = true) => {
+    toggleButton = (event, attibute, key, allactive = true, multiactive = true) => {
         let pointer = event.target.getAttribute(attibute)
+        let state = this.state[key]
+        let new_state = { ...state }
         let check = true
         if (multiactive) {
-            state[pointer] = !state[pointer]
+            new_state[pointer] = !new_state[pointer]
+            if (!allactive) {
+                check = Object.values(new_state).reduce((prev, cur) => prev + cur) < Object.keys(new_state).length ? true : false
+            }
+        } else {
+            Object.keys(new_state).map(key => new_state[key] = false)
+            new_state[pointer] = true
         }
-        else {
-            Object.keys(state).map(key => state[key] = false)
-            state[pointer] = true
-        }
-        if (!allactive) {
-            let count = 0
-            Object.keys(state).forEach(key => {
-                count += state[key]
-            })
-            check = count < Object.keys(state).length ? true : false
-        }
-        if (check)
-            this.setState({ state })
-
+        let set_state = check ? new_state : state
+        this.setState({ [key]: set_state })
     }
     clearFilters = (event, show = false) => {
         // console.log(this.state)
