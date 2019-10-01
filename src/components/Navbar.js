@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { Menu, Airplane, Back } from './Icon'
+import { Link } from 'react-router-dom'
 import './../assets/scss/navbar.scss'
-import Menu from '../assets/icon/featured-menu.svg'
-import Airplane from '../assets/icon/airplane.svg'
+
 class NavBar extends Component {
     constructor(props){
         super(props)
@@ -9,8 +10,20 @@ class NavBar extends Component {
             side_nav:false,
         }
     }
+  
+    goBack = (back) => {
+      if (back) {
+          return (
+              <div className="back-home">
+                  <Link to="/">
+                      <img src={Back} />
+                  </Link>
+              </div>
+          )
+    }
+      
     openNav = () => {
-        document.getElementById("mySidenav").style.width = "298px"        
+        document.getElementB("mySidenav").style.width = "298px"        
         document.getElementById("backDrop").style.display = "block"
         this.setState({side_nav:true})
       }
@@ -35,21 +48,25 @@ class NavBar extends Component {
         if(this.state.side_nav){
             return(
                 <>
-                    <div id="backDrop" className="containerSideNav" ref={node => this.node = node}  onClick={()=>this.handleClickOutside()}/>           
+                    <div id="backDrop" className="container-sidenav" ref={node => this.node = node}  onClick={()=>this.handleClickOutside()}/>           
                     <div id="mySidenav" className="sidenav" ref={node => this.node = node}  />
                 </>
             )
         }
         return(                
             <>
-                <div id="backDrop" className="containerSideNav" ref={node => this.node = node} onClick={()=>this.handleClickOutside()}/>           
-            <div id="mySidenav" className="sidenav" ref={node => this.node = node}   />
+              <div id="backDrop" className="container-sidenav" ref={node => this.node = node} onClick={()=>this.handleClickOutside()}/>           
+              <div id="mySidenav" className="sidenav" ref={node => this.node = node}   />
             </>
         )
+        
+        
+     
     }
     render() {
         return (
             <div>
+                {this.goBack(this.props.back)}
                 {this.genSideBar()}
                 <div className='nav-bar'>
                     <button className='button-mytrip'>
@@ -61,7 +78,6 @@ class NavBar extends Component {
                 </div>
 
             </div>
-    )
-}
 }
 export default NavBar
+          

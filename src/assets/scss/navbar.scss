@@ -1,17 +1,13 @@
 .nav-bar {
-    height: 51px;
-    background-image: linear-gradient(to right, #ffecd2, #fcb69f);
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.menu {
-    margin-right: 22.8px;
-    margin-left: 24px;
-}
-
-.button-mytrip {
+  height: 51px;
+  background-image: linear-gradient(to right, #ffecd2, #fcb69f);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 22.8px;
+  
+  .button-mytrip {
+    margin: 0 24px;
     width: 77px;
     height: 24px;
     border-radius: 7px;
@@ -22,34 +18,41 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-} 
+  } 
 
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  right: 0;
-  background-color: white;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
- 
-#main {
-  transition: margin-left .5s;
-  padding: 16px;
-}
-
-.containerSideNav {
-    display: none;
-    position: absolute;
-    background: #000;
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
     top: 0;
-    left: 0;
     right: 0;
-    bottom: 0;
-    z-index: 0;
-    opacity: .73;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .container-sidenav {
+      display: none;
+      position: absolute;
+      background: #000;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+      opacity: .73;
+  }
+  
+  .back-home {
+    margin-right: auto;
+    img {
+      display: table;
+      height: 18px;
+      margin: auto;
+      filter: drop-shadow(2px 2px 2.5px rgba(114, 114, 114, 0.37));
+    }
+  }
 }
+
