@@ -68,6 +68,7 @@ module.exports = {
     ],
     stats: { children: false },
     devServer: {
+        historyApiFallback: true,
         hot: true,
     },
 }

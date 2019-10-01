@@ -1,11 +1,12 @@
 body {
     margin: 0;
     padding: 0;
+    min-width: 375px;
     font-family: 'Lexend Deca', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+code, button, input,a {
     font-family: 'Lexend Deca', sans-serif;
 }

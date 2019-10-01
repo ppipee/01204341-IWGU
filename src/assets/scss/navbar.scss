@@ -1,4 +1,30 @@
-.nav-bar{
-    height: 51px;
-    border: 1px solid rgb(196, 196, 196); // mark component ,you can remove this line when finish or any time 
+.nav-bar {
+  height: 51px;
+  background-image: linear-gradient(to right, #ffecd2, #fcb69f);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 22.8px;
+  .button-mytrip {
+    margin: 0 24px;
+    width: 77px;
+    height: 24px;
+    border-radius: 7px;
+    background-color: #ffffff;
+    border: none;
+    font-size: 12px;
+    color: #fcb8a0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .back-home {
+    margin-right: auto;
+    img {
+      display: table;
+      height: 18px;
+      margin: auto;
+      filter: drop-shadow(2px 2px 2.5px rgba(114, 114, 114, 0.37));
+    }
+  }
 }
