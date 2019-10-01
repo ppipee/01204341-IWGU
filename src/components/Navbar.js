@@ -11,35 +11,29 @@ class NavBar extends Component {
         }
     }
   
-    goBack = (back) => {
-      if (back) {
-          return (
-              <div className="back-home">
-                  <Link to="/">
-                      <img src={Back} />
-                  </Link>
-              </div>
-          )
+    componentWillMount(){
+        document.addEventListener('mousedown',this.handleClickOutSide,false)
     }
-      
+    componentWillUnMount(){
+        document.removeEventListener('mousedown',this.handleClickOutSide,false)
+    }
+    goBack(back){
+        if (back) {
+            return (
+                <div className="back-home">
+                    <Link to="/">
+                        <img src={Back} />
+                    </Link>
+                </div>
+            )
+        }
+    }      
     openNav = () => {
         document.getElementB("mySidenav").style.width = "298px"        
         document.getElementById("backDrop").style.display = "block"
         this.setState({side_nav:true})
-      }
-      componentWillMount(){
-          document.addEventListener('mousedown',this.handleClick,false)
-      }
-      componentWillUnMount(){
-        document.removeEventListener('mousedown',this.handleClick,false)
     }
-    handleClick = (e) =>{
-        if(this.node.contains(e.target)){
-            return;
-        }
-        this.handleClickOutside();
-    }
-    handleClickOutside(){
+    handleClickOutside = () => {
         document.getElementById("mySidenav").style.width = "0px" 
         document.getElementById("backDrop").style.display = "none"        
         this.setState({side_nav:false})
@@ -58,10 +52,7 @@ class NavBar extends Component {
               <div id="backDrop" className="container-sidenav" ref={node => this.node = node} onClick={()=>this.handleClickOutside()}/>           
               <div id="mySidenav" className="sidenav" ref={node => this.node = node}   />
             </>
-        )
-        
-        
-     
+        )    
     }
     render() {
         return (
@@ -73,10 +64,10 @@ class NavBar extends Component {
                         <img src={Airplane}/>
                         My trips
                     </button>
-                <span onClick={this.openNav}>
-                <img className='menu' src={Menu}/></span>
+                    <span onClick={this.openNav}>
+                        <img className='menu' src={Menu}/>
+                    </span>
                 </div>
-
             </div>
 }
 export default NavBar
