@@ -98,10 +98,10 @@ class SearchFilter extends Component {
     genSort = () => {
         let sort = ["nearby", "rating", "price"]
         let block = []
-        sort.map(sortby => {
+        sort.map((sortby, i) => {
             let name = this.state.sortby[sortby] ? "active" : ""
             block = [...block,
-            <div className={`head-sort ${name}`} sortby={sortby} onClick={() => this.toggleButton(event, "sortby", this.state.sortby)}>
+            <div className={`head-sort ${name}`} key={`sort${i}`} sortby={sortby} onClick={() => this.toggleButton(event, "sortby", this.state.sortby)}>
                 {sortby}
             </div>]
         })
@@ -112,7 +112,7 @@ class SearchFilter extends Component {
         for (let i = 1; i <= 5; i++) {
             let [name, src] = this.state.rating[`star${i}`] ? ["active", BlankStar] : ["", Star]
             fav = [...fav,
-            <div className={`fav ${name}`} key={`star-${i}`} star={`star${i}`} onClick={() => this.toggleButton(event, "star", this.state.rating)}>
+            <div className={`fav ${name}`} key={`star${i}`} star={`star${i}`} onClick={() => this.toggleButton(event, "star", this.state.rating, false)}>
                 <span>{i}</span>
                 <img src={src} />
             </div>
@@ -122,13 +122,29 @@ class SearchFilter extends Component {
     }
     genTag = () => this.state.tags.map((tag, i) => <div className="tag" key={`tag-${i}`}><div>{tag}</div><img src={Close} /></div>)
     handleTime = (time) => this.setState({ time })
-    toggleButton = (event, attibute, state) => {
+    toggleButton = (event, attibute, state, allactive = true, multiactive = true) => {
         let pointer = event.target.getAttribute(attibute)
-        state[pointer] = !state[pointer]
-        this.setState({ state })
+        let check = true
+        if (multiactive) {
+            state[pointer] = !state[pointer]
+        }
+        else {
+            Object.keys(state).map(key => state[key] = false)
+            state[pointer] = true
+        }
+        if (!allactive) {
+            let count = 0
+            Object.keys(state).forEach(key => {
+                count += state[key]
+            })
+            check = count < Object.keys(state).length ? true : false
+        }
+        if (check)
+            this.setState({ state })
+
     }
     clearFilters = (event, show = false) => {
-        console.log(this.state)
+        // console.log(this.state)
         this.setState({
             show,
             ...JSON.parse(JSON.stringify(default_filters)),
@@ -137,9 +153,9 @@ class SearchFilter extends Component {
     applyFilters = () => {
         let filter = JSON.parse(JSON.stringify(this.state))
         delete filter.show
-        console.log(filter)
+        // console.log(filter)
         this.props.setFilter(filter)
-        this.setState({show:false})
+        this.setState({ show: false })
     }
     render() {
         return (
