@@ -24,8 +24,6 @@
     align-items: center;
 } 
 
-
-////////////
 .sidenav {
   height: 100%;
   width: 0;
@@ -38,19 +36,20 @@
   transition: 0.5s;
   padding-top: 60px;
 }
-
-
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
+ 
 #main {
   transition: margin-left .5s;
   padding: 16px;
 }
 
+.containerSideNav {
+    display: none;
+    position: absolute;
+    background: #000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    opacity: .73;
+}
