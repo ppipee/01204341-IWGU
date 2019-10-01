@@ -69,6 +69,8 @@ class NavBar extends Component {
                     </span>
                 </div>
             </div>
+        )
+    }
 }
 export default NavBar
           
