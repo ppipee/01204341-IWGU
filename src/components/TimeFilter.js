@@ -9,7 +9,7 @@ const rePresentTime = (time) => {
         new_time = time <= 12 ? time : time - 12
     else
         new_time = time - 24
-    return [new_time, unit]
+    return `${new_time} ${unit}`
 }
 
 const TimeFilter = (props) => {
@@ -21,7 +21,7 @@ const TimeFilter = (props) => {
     return (
         <div className="open-hour">
             <div className="head">Opening hours</div>
-            <div className="options">
+            <div className="feature">
                 <Slider
                     min={6}
                     max={29}
