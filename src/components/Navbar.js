@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Menu, Airplane, Back } from './Icon'
 import { Link } from 'react-router-dom'
 import './../assets/scss/navbar.scss'
