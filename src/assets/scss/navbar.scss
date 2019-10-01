@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: flex-end;
   padding: 0 22.8px;
-  
+
   .button-mytrip {
     margin: 0 24px;
     width: 77px;
@@ -18,13 +18,13 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-  } 
+  }
 
   .sidenav {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     right: 0;
     background-color: white;
@@ -34,17 +34,18 @@
   }
 
   .container-sidenav {
-      display: none;
-      position: absolute;
-      background: #000;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 0;
-      opacity: .73;
+    transition: 1s background;
+    display: none;
+    position: fixed;
+    background: #000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    opacity: 0.73;
   }
-  
+
   .back-home {
     margin-right: auto;
     img {
@@ -55,4 +56,3 @@
     }
   }
 }
-

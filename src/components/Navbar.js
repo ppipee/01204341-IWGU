@@ -4,20 +4,20 @@ import { Link } from 'react-router-dom'
 import './../assets/scss/navbar.scss'
 
 class NavBar extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
-            side_nav:false,
+            side_nav: false,
         }
     }
-  
-    componentWillMount(){
-        document.addEventListener('mousedown',this.handleClickOutSide,false)
+
+    componentWillMount() {
+        document.addEventListener('mousedown', this.handleClickOutSide, false)
     }
-    componentWillUnMount(){
-        document.removeEventListener('mousedown',this.handleClickOutSide,false)
+    componentWillUnMount() {
+        document.removeEventListener('mousedown', this.handleClickOutSide, false)
     }
-    goBack(back){
+    goBack(back) {
         if (back) {
             return (
                 <div className="back-home">
@@ -27,45 +27,45 @@ class NavBar extends Component {
                 </div>
             )
         }
-    }      
+    }
     openNav = () => {
-        document.getElementById("mySidenav").style.width = "298px"        
+        document.getElementById("mySidenav").style.width = "298px"
         document.getElementById("backDrop").style.display = "block"
-        this.setState({side_nav:true})
+        this.setState({ side_nav: true })
     }
     handleClickOutside = () => {
-        document.getElementById("mySidenav").style.width = "0px" 
-        document.getElementById("backDrop").style.display = "none"        
-        this.setState({side_nav:false})
+        document.getElementById("mySidenav").style.width = "0px"
+        document.getElementById("backDrop").style.display = "none"
+        this.setState({ side_nav: false })
     }
-    genSideBar(){
-        if(this.state.side_nav){
-            return(
+    genSideBar() {
+        if (this.state.side_nav) {
+            return (
                 <>
-                    <div id="backDrop" className="container-sidenav" ref={node => this.node = node}  onClick={()=>this.handleClickOutside()}/>           
-                    <div id="mySidenav" className="sidenav" ref={node => this.node = node}  />
+                    <div id="backDrop" className="container-sidenav" ref={node => this.node = node} onClick={() => this.handleClickOutside()} />
+                    <div id="mySidenav" className="sidenav" ref={node => this.node = node} />
                 </>
             )
         }
-        return(                
+        return (
             <>
-              <div id="backDrop" className="container-sidenav" ref={node => this.node = node} onClick={()=>this.handleClickOutside()}/>           
-              <div id="mySidenav" className="sidenav" ref={node => this.node = node}   />
+                <div id="backDrop" className="container-sidenav" ref={node => this.node = node} onClick={() => this.handleClickOutside()} />
+                <div id="mySidenav" className="sidenav" ref={node => this.node = node} />
             </>
-        )    
+        )
     }
     render() {
         return (
             <div>
-                {this.goBack(this.props.back)}
-                {this.genSideBar()}
                 <div className='nav-bar'>
+                    {this.genSideBar()}
+                    {this.goBack(this.props.back)}
                     <button className='button-mytrip'>
-                        <img src={Airplane}/>
+                        <img src={Airplane} />
                         My trips
                     </button>
                     <span onClick={this.openNav}>
-                        <img className='menu' src={Menu}/>
+                        <img className='menu' src={Menu} />
                     </span>
                 </div>
             </div>
@@ -73,4 +73,4 @@ class NavBar extends Component {
     }
 }
 export default NavBar
-          
+
