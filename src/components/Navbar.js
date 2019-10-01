@@ -29,7 +29,7 @@ class NavBar extends Component {
         }
     }      
     openNav = () => {
-        document.getElementB("mySidenav").style.width = "298px"        
+        document.getElementById("mySidenav").style.width = "298px"        
         document.getElementById("backDrop").style.display = "block"
         this.setState({side_nav:true})
     }
