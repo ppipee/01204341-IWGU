@@ -65,9 +65,11 @@ class SearchBar extends Component {
     genTag = () => tags.map((tag, i) => <div className="tag" key={`tag ${i}`}>{tag}</div>)
 
     swapPage = e => {
-        if (e.target.value !== "" && e.charCode == 13) {
-            this.props.setWord(e.target.value)
-            this.props.history.push(`/search`)
+        let value = e.target.value
+        if (value !== "" && e.charCode == 13) {
+            this.setState({ show: false })
+            this.props.setWord(value)
+            this.props.history.push(`/search?q=${value}`)
         }
     }
 
