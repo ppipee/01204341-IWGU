@@ -133,8 +133,12 @@ class SearchFilter extends Component {
                 check = Object.values(new_state).reduce((prev, cur) => prev + cur) < Object.keys(new_state).length ? true : false
             }
         } else {
-            Object.keys(new_state).map(key => new_state[key] = false)
-            new_state[pointer] = true
+            if (new_state[pointer])
+                new_state[pointer] = false
+            else {
+                Object.keys(new_state).map(key => new_state[key] = false)
+                new_state[pointer] = true
+            }
         }
         let set_state = check ? new_state : state
         this.setState({ [key]: set_state })
