@@ -8,7 +8,7 @@ import Close from '../assets/icon/close.svg'
 import Menu from '../assets/icon/featured-menu.svg'
 import Airplane from '../assets/icon/airplane.svg'
 import Back from '../assets/icon/back.svg'
-import paper_airplane from '../assets/icon/paper-airplane.svg'
+import PaperAirplane from '../assets/icon/paper-airplane.svg'
 
 export {
     SearchIcon,
@@ -21,5 +21,5 @@ export {
     Menu,
     Airplane,
     Back,
-    paper_airplane,
+    PaperAirplane,
 }
