@@ -8,6 +8,17 @@ import Close from '../assets/icon/close.svg'
 import Menu from '../assets/icon/featured-menu.svg'
 import Airplane from '../assets/icon/airplane.svg'
 import Back from '../assets/icon/back.svg'
+import LocationIcon from '../assets/icon/location-icon.svg'
+import Restaurant from '../assets/icon/restaurant.svg'
+import Restaurant2 from '../assets/icon/restaurant2.svg'
+import Landmark from '../assets/icon/landmark.svg'
+import Landmark2 from '../assets/icon/landmark2.svg'
+import Tree from '../assets/icon/tree.svg'
+import Tree2 from '../assets/icon/tree2.svg'
+import Sleep from '../assets/icon/sleep.svg'
+import Sleep2 from '../assets/icon/sleep2.svg'
+
+
 
 export {
     SearchIcon,
@@ -20,4 +31,13 @@ export {
     Menu,
     Airplane,
     Back,
+    LocationIcon,
+    Restaurant,
+    Restaurant2,
+    Landmark,
+    Landmark2,
+    Tree,
+    Tree2,
+    Sleep,
+    Sleep2,
 }
