@@ -1,24 +1,15 @@
-.nearby {
+.NearBy {
   .head {
-    .location_icon {
-      width: 9.5px;
-      height: 14.9px;
-      margin-top: 4.2%;
-      margin-left: 11.2%;
-      object-fit: contain;
-    }
-    .nearby_you {
-      width: 114px;
-      height: 25px;
-      font-family: LexendDeca;
+    margin-top: 2%;
+    margin-left: 42px;
+    .nearby-you {
+      margin-left: 10.5px;
       font-size: 20px;
-      margin-top: 1.9%;
-      margin-left: 2.4%;
       color: #4f4f4f;
     }
   }
   .wave {
-    .wave_background {
+    .wave-background {
       height: 70px;
       background: url("../img/wave.svg") no-repeat;
       display: flex;
@@ -39,12 +30,12 @@
       }
     }
   }
-  .pictures {
+  .picture-container {
     .container {
       margin-top: 3.5%;
       margin-bottom: 6%;
-      .tabcontent {
-        overflow: auto;
+      .tab-content {
+        overflow: auto; 
         white-space: nowrap;
         display: flex;
         div {
@@ -58,15 +49,21 @@
           .name {
             color: #4f4f4f;
             text-align: center;
-            font-family: LexendDeca;
             font-size: 10px;
           }
         }
       }
     }
   }
-  ::-webkit-scrollbar {
+  // Hide scroll: Chrome, Safari, newer versions of Opera
+  .tab-content::-webkit-scrollbar {
     display: none;
+  
+  }
+  // Hide scroll: Firefox, IE
+  .tab-content { 
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
   .icon {
     width: 93.8px;

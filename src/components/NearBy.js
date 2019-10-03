@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import './../assets/scss/nearby.scss'
-import { LocationIcon, Restaurant, Restaurant2, Landmark, Landmark2, Tree, Tree2, Sleep, Sleep2 } from './Icon'
+import { LocationIcon, RestaurantActive, RestaurantInActive, LandmarkActive, LandmarkInActive, TreeActive, TreeInActive, SleepActive, SleepInActive } from './Icon'
 import { places } from './Demo'
 
-const tabs = [[Restaurant, "res", Restaurant2], [Landmark, "land", Landmark2], [Tree, "tree", Tree2], [Sleep, "sleep", Sleep2]]
+const tabs = [[RestaurantInActive, "res", RestaurantActive], [LandmarkInActive, "land", LandmarkActive], [TreeInActive, "tree", TreeActive], [SleepInActive, "sleep", SleepActive]]
 class NearBy extends Component {
     constructor(props) {
         super(props)
@@ -26,12 +26,12 @@ class NearBy extends Component {
             </div>
         ))
         return (
-            <div id={id} className='tabcontent'>
+            <div id={id} className='tab-content'>
                 {box}
             </div>
         )
     }
-    
+
     openContents = (event) => {
         let target_state = event.target.getAttribute("tabName")
         let new_state = this.state.tab_state
@@ -47,22 +47,22 @@ class NearBy extends Component {
     genTabs() {
         let tabbar = []
         tabs.map(tab => {
-            let [src, name, src2] = tab
+            let [tabInActive, name, tabActive] = tab
             let active = ""
             if (this.state.tab_state[name]) {
                 active = " active"
-                src = src2
+                tabInActive = tabActive
             }
             tabbar.push(
                 <div className={`icon${active}`} key={`tab-${name}`}>
-                    <img className='tablinks' tabname={name} onClick={this.openContents} src={src} />
+                    <img className='tab-links' tabname={name} onClick={this.openContents} src={tabInActive} />
                 </div>
             )
         }
         )
         return (
             <div className='wave'>
-                <div className='wave_background'>
+                <div className='wave-background'>
                     {tabbar}
                 </div>
             </div>
@@ -71,16 +71,18 @@ class NearBy extends Component {
 
     render() {
         return (
-            <div className='nearby'  >
+            <div className='NearBy'  >
                 <div className='head'>
-                    <img className='location_icon' src={LocationIcon} />
-                    <span className='nearby_you'>Nearby-you</span>
+                    <img className='location-icon' src={LocationIcon} />
+                    <span className='nearby-you'>Nearby-you</span>
                 </div>
-                {this.genTabs()}
-                <div className='pictures'>
-                    <div className='container'>
-                        {(this.state.tab_state['res']) && this.genPlace(places.res, "pic_res")}
-                        {(this.state.tab_state['land']) && this.genPlace(places.land, "pic_land")}
+                <div className='body'>
+                    {this.genTabs()}
+                    <div className='picture-container'>
+                        <div className='container'>
+                            {(this.state.tab_state['res']) && this.genPlace(places.res, "pic_res")}
+                            {(this.state.tab_state['land']) && this.genPlace(places.land, "pic_land")}
+                        </div>
                     </div>
                 </div>
             </div>

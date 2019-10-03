@@ -9,16 +9,14 @@ import Menu from '../assets/icon/featured-menu.svg'
 import Airplane from '../assets/icon/airplane.svg'
 import Back from '../assets/icon/back.svg'
 import LocationIcon from '../assets/icon/location-icon.svg'
-import Restaurant from '../assets/icon/restaurant.svg'
-import Restaurant2 from '../assets/icon/restaurant2.svg'
-import Landmark from '../assets/icon/landmark.svg'
-import Landmark2 from '../assets/icon/landmark2.svg'
-import Tree from '../assets/icon/tree.svg'
-import Tree2 from '../assets/icon/tree2.svg'
-import Sleep from '../assets/icon/sleep.svg'
-import Sleep2 from '../assets/icon/sleep2.svg'
-
-
+import RestaurantInActive from '../assets/icon/restaurant.svg'
+import RestaurantActive from '../assets/icon/restaurant2.svg'
+import LandmarkInActive from '../assets/icon/landmark.svg'
+import LandmarkActive from '../assets/icon/landmark2.svg'
+import TreeInActive from '../assets/icon/tree.svg'
+import TreeActive from '../assets/icon/tree2.svg'
+import SleepInActive from '../assets/icon/sleep.svg'
+import SleepActive from '../assets/icon/sleep2.svg'
 
 export {
     SearchIcon,
@@ -32,12 +30,12 @@ export {
     Airplane,
     Back,
     LocationIcon,
-    Restaurant,
-    Restaurant2,
-    Landmark,
-    Landmark2,
-    Tree,
-    Tree2,
-    Sleep,
-    Sleep2,
+    RestaurantActive,
+    RestaurantInActive,
+    LandmarkActive,
+    LandmarkInActive,
+    TreeActive,
+    TreeInActive,
+    SleepActive,
+    SleepInActive,
 }

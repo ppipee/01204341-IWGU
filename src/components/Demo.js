@@ -8,38 +8,38 @@ import Museum from '../assets/demo/museum.jpg'
 
 const places = {
     res:[{
-            src:Burger,
-            name:"Burger"
+            src: Burger,
+            name: "Burger"
         },
         {
             src:Coffee,
-            name:"Thai Salad"
+            name: "Thai Salad"
         },
         {
             src:Salad,
-            name:"Coffee"
+            name: "Coffee"
         },
         {
             src:Sashimi,
-            name:"Sashimi"
+            name: "Sashimi"
         }
     ],
     land:[
         {
-            src:Read,
-            name:"Chut"
+            src: Read,
+            name: "Chut"
         },
         {
-            src:Lhong_Tou,
-            name:"Earn"
+            src: Lhong_Tou,
+            name: "Earn"
         },
         {
-            src:Museum,
-            name:"Eye"
+            src: Museum,
+            name: "Eye"
         },
         {
-            src:Salad,
-            name:"Pipe"
+            src: Salad,
+            name: "Pipe"
         }    
     ]
 }
