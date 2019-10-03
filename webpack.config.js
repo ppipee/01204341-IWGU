@@ -26,10 +26,7 @@ module.exports = {
                         plugins: [
                             'react-hot-loader/babel',
                             '@babel/plugin-proposal-class-properties',
-<<<<<<< HEAD
-=======
                             ["import", { "libraryName": "antd", "style": "true" }],
->>>>>>> f929bebab43c8f8b3aaf170c5031bdf07571af58
                         ],
                     },
                 },
