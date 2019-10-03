@@ -2,6 +2,7 @@ $font-color: #4f4f4f;
 $transition-box: all 0.2s linear;
 
 .search {
+<<<<<<< HEAD
     margin: 13.5px 37px;
     position: relative;
     .input {
@@ -26,6 +27,31 @@ $transition-box: all 0.2s linear;
                 color: #b0b0b0;
             }
         }
+=======
+  margin: 13.5px 37px;
+  position: relative;
+  .input {
+    height: 31px;
+    border-radius: 5px;
+    background: rgba(196, 196, 196, 0.22);
+    display: flex;
+    align-items: center;
+    img {
+      margin-left: 12px;
+    }
+    input {
+      width: 100%;
+      border: none;
+      margin: auto 10px;
+      color: $font-color;
+      font-size: 16px;
+      background: transparent;
+      cursor: pointer;
+      outline: none;
+      &::placeholder {
+        color: #b0b0b0;
+      }
+>>>>>>> f929bebab43c8f8b3aaf170c5031bdf07571af58
     }
     .search-box {
         width: 100%;
