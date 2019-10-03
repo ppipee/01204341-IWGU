@@ -11,8 +11,8 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'react-dom': '@hot-loader/react-dom'
-        }
+            'react-dom': '@hot-loader/react-dom',
+        },
     },
     module: {
         rules: [
@@ -22,13 +22,10 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: [
-                            '@babel/preset-env',
-                            '@babel/preset-react'
-                        ],
+                        presets: ['@babel/preset-env', '@babel/preset-react'],
                         plugins: [
                             'react-hot-loader/babel',
-                            '@babel/plugin-proposal-class-properties'
+                            '@babel/plugin-proposal-class-properties',
                         ],
                     },
                 },
@@ -36,10 +33,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 exclude: /(node_modules)/,
-                use: [
-                    { loader: 'style-loader' },
-                    { loader: 'css-loader' },
-                ],
+                use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
             },
             {
                 test: /\.scss$/,
@@ -53,9 +47,7 @@ module.exports = {
             {
                 test: /\.(png|jpg|jpeg|svg)$/,
                 exclude: /(node_modules)/,
-                use: [
-                    { loader: 'file-loader' },
-                ],
+                use: [{ loader: 'file-loader' }],
             },
         ],
     },
@@ -63,7 +55,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            template: './public/index.html'
+            template: './public/index.html',
         }),
     ],
     stats: { children: false },

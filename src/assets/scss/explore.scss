@@ -1,7 +1,7 @@
 .explore {
     height: 292px;
     .explore-title {
-        margin-bottom: 13px;  
+        margin-bottom: 13px;
         img {
             margin-left: 39px;
         }
@@ -11,7 +11,7 @@
         }
     }
 
-    .explore-card {   
+    .explore-card {
         width: 300px !important;
         display: flex !important;
         flex-direction: column;
@@ -34,12 +34,12 @@
                 margin-top: 7px;
                 margin-left: 18px;
                 font-size: 14px;
-            } 
+            }
             .subtitle {
                 margin: -12px 0px 5px 18px;
                 font-size: 11px;
                 color: #c5c5c5;
-            }  
+            }
         }
     }
     .slick-dots li {

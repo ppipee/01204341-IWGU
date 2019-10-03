@@ -7,11 +7,14 @@ import '../assets/scss/searchpage.scss'
 
 const Search = () => {
     return (
-        <div className="search-page">
-            <NavBar back={true}/>
-            <div className="search-background" style={{ backgroundImage: `url(${Background})` }}>
+        <div className='search-page'>
+            <NavBar back />
+            <div
+                className='search-background'
+                style={{ backgroundImage: `url(${Background})` }}
+            >
                 <SearchFilter />
-                <SearchResult/>
+                <SearchResult />
             </div>
         </div>
     )

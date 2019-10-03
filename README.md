@@ -1,30 +1,35 @@
 # IWGU
 
 ### Requirement
-* node v10.16.3
-* npm v6.9.0
-* git v2.17.1
-* yarn v1.17.3
+
+-   node v10.16.3
+-   npm v6.9.0
+-   git v2.17.1
+-   yarn v1.17.3
 
 ### How to use
 
-* for first time
+-   for first time
+
 ```
 yarn
 ```
 
-* run demo
+-   run demo
+
 ```
 yarn start
 ```
 
-* build product
+-   build product
+
 ```
-yarn build 
+yarn build
 ```
 
-* run unit test / test with coverage
+-   run unit test / test with coverage
+
 ```
 yarn test
-yarn test-coverage 
+yarn test-coverage
 ```
