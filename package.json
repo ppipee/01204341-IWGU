@@ -13,7 +13,7 @@
         "build": "webpack --mode production",
         "test": "jest",
         "test-coverage": "jest --coverage",
-        "format": "prettier --write \"**/*.+(js|jsx|json|css|scss|md)\"",
+        "format": "prettier --write \"**/*.+(js|jsx|json|css|scss)\"",
         "lint": "eslint src/",
         "lint-fix": "eslint src/ --fix",
         "precommit": "NODE_ENV=production lint-staged"

@@ -33,3 +33,16 @@ yarn build
 yarn test
 yarn test-coverage
 ```
+
+-   format code (prettier)
+
+```
+yarn format
+```
+
+-   lint code
+
+```
+yarn lint
+yarn lint-fix
+```
