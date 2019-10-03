@@ -1,7 +1,7 @@
 import { SearchAction } from '../action'
 
-let initialState = {
-    word: "",
+const initialState = {
+    word: '',
 }
 const Action = SearchAction
 
@@ -10,11 +10,11 @@ const searching = (state = initialState, action) => {
         case Action.WORDSEARCH:
             return {
                 ...state,
-                word: action.setWord
+                word: action.setWord,
             }
         case Action.CLEAR:
             return {
-                word: "",
+                word: '',
             }
         default:
             return state

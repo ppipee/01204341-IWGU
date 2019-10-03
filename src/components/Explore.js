@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Slider from 'react-slick'
 import './../assets/scss/explore.scss'
 import {paper_airplane} from './Icon'
@@ -6,26 +6,45 @@ import {img0, img1, img2, img3} from './Demo'
 
 const TopAttractions = [
     {
-      'image': img0,
-      'title': 'Bangkok, Thailand',
-      'subtitle': 'The Beautiful temple near Chao Phraya River',
+        image: img0,
+        title: 'Bangkok, Thailand',
+        subtitle: 'The Beautiful temple near Chao Phraya River',
     },
     {
-      'image': img1,
-      'title': 'Bangkok, Thailand',
-      'subtitle': 'The Beautiful temple near Chao Phraya River',
+        image: img1,
+        title: 'Bangkok, Thailand',
+        subtitle: 'The Beautiful temple near Chao Phraya River',
     },
     {
-      'image': img2,
-      'title': 'Bangkok, Thailand',
-      'subtitle': 'The Beautiful temple near Chao Phraya River',
+        image: img2,
+        title: 'Bangkok, Thailand',
+        subtitle: 'The Beautiful temple near Chao Phraya River',
     },
     {
-      'image': img3,
-      'title': 'Bangkok, Thailand',
-      'subtitle': 'The Beautiful temple near Chao Phraya River',
+        image: img3,
+        title: 'Bangkok, Thailand',
+        subtitle: 'The Beautiful temple near Chao Phraya River',
+    },
+]
+
+export default class Explore extends Component {
+    genPlace() {
+        const card = []
+        TopAttractions.forEach(place => {
+            card.push(
+                <div className='explore-card'>
+                    <div>
+                        <img src={place.image} alt="place-img" />
+                    </div>
+                    <div className='box-title'>
+                        <p className='title'>{place.title}</p>
+                        <p className='subtitle'>{place.subtitle}</p>
+                    </div>
+                </div>
+            )
+        })
+        return card
     }
-  ]
 
 export default class Explore extends React.Component {
   genPlace () {
@@ -85,3 +104,4 @@ export default class Explore extends React.Component {
     )
   }
 }
+

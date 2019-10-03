@@ -1,3 +1,3 @@
 module.exports = {
-    setupTestFrameworkScriptFile: './configs/enzyme'
-};
+    setupTestFrameworkScriptFile: './configs/enzyme',
+}
