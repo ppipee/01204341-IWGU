@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import Slider from 'react-slick'
 import '../assets/scss/explore.scss'
-import PaperAirplane from '../assets/icon/paper-airplane.svg'
-import img0 from '../assets/img/bangkok2.png'
-import img1 from '../assets/img/bangkok3.jpg'
-import img2 from '../assets/img/bangkok4.jpg'
-import img3 from '../assets/img/yaowarach.jpg'
+import { PaperAirplane } from './Icon'
+import { img0, img1, img2, img3 } from './Demo'
 
 const TopAttractions = [
     {
