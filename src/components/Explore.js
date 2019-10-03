@@ -36,7 +36,9 @@ export default class Explore extends React.Component {
     TopAttractions.forEach(place => {
       card.push(
       <div className='explore-card'> 
-        <img src={place.image} />
+        <div>
+          <img src={place.image} />
+        </div>
         <div className='box-title'>
           <p className='title'>{place.title}</p>
           <p className='subtitle'>{place.subtitle}</p>
@@ -51,13 +53,12 @@ export default class Explore extends React.Component {
       dots: true,
       infinite: false,
       arrows: false,
-      slideToShow: 1,
+      slidesToShow: 1,
       swipeToSlide: true,
-      // focusOnSelect: true, 
+      focusOnSelect: true, 
       speed: 500,
       centerMode: true,
-      centerPadding: '30px',
-      
+      centerPadding: '45px',
       responsive: [
         {
           breakpoint: 400,
