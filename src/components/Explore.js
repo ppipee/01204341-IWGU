@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick'
 import './../assets/scss/explore.scss'
-import paper_airplane from '../assets/icon/paper-airplane.svg'
-import img0 from '../assets/img/bangkok2.png'
-import img1 from '../assets/img/bangkok3.jpg'
-import img2 from '../assets/img/bangkok4.jpg'
-import img3 from '../assets/img/yaowarach.jpg'
+import {paper_airplane} from './Icon'
+import {img0, img1, img2, img3} from './Demo'
 
 const TopAttractions = [
     {
@@ -59,6 +56,7 @@ export default class Explore extends React.Component {
       speed: 500,
       centerMode: true,
       centerPadding: '45px',
+      
       responsive: [
         {
           breakpoint: 400,
@@ -73,7 +71,9 @@ export default class Explore extends React.Component {
         <link rel='stylesheet' type='text/css' charSet='UTF-8' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css' />
         <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css' />
           <div className='explore-title'>
-            <img src={paper_airplane} />
+            <div>
+              <img src={paper_airplane} />
+            </div>           
             <p > Explore </p>
           </div>
           <div>
