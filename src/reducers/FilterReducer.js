@@ -1,6 +1,6 @@
 import { FilterAction } from '../action'
 
-let default_filters = {
+const default_filters = {
     tags: [],
     sortby: {
         "near": false,

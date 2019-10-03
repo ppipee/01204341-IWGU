@@ -1,11 +1,11 @@
 .search-page {
-  .search-background {
-    height: calc(100vh - 51px);
-    background-attachment: scroll;
-    background-repeat: no-repeat;
-    background-size: auto;
-    object-fit: contain;
-    background-position: bottom left;
-    min-height: 502px;
-  }
+    .search-background {
+        height: calc(100vh - 51px);
+        background-attachment: scroll;
+        background-repeat: no-repeat;
+        background-size: auto;
+        object-fit: contain;
+        background-position: bottom left;
+        min-height: 502px;
+    }
 }

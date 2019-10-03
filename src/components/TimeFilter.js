@@ -3,7 +3,7 @@ import { Slider } from 'antd'
 import '../assets/scss/timefilter.scss'
 
 const rePresentTime = (time) => {
-    let unit = time <= 12 || time > 24 ? "AM" : "PM"
+    const unit = time <= 12 || time > 24 ? "AM" : "PM"
     let new_time
     if (time <= 24)
         new_time = time <= 12 ? time : time - 12
@@ -13,10 +13,10 @@ const rePresentTime = (time) => {
 }
 
 const TimeFilter = (props) => {
-    const time = props.time
-    const handleTime = (time) => {
-        if (time[0] - time[1] !== 0)
-            props.handleTime(time)
+    const { time } = props
+    const handleTime = (hour) => {
+        if (hour[0] - hour[1] !== 0)
+            props.handleTime(hour)
     }
     return (
         <div className="open-hour">
