@@ -16,7 +16,7 @@
         "format": "prettier --write \"**/*.+(js|jsx|json|css|scss)\"",
         "lint": "eslint src/",
         "lint-fix": "eslint src/ --fix",
-        "precommit": "NODE_ENV=production lint-staged"
+        "precommit": "lint-staged"
     },
     "devDependencies": {
         "@babel/cli": "^7.6.0",
