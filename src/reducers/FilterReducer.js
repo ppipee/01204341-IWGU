@@ -3,7 +3,7 @@ import { FilterAction } from '../action'
 const DefaultFilter = {
     tags: [],
     sortby: {
-        near: true,
+        nearby: true,
         rating: false,
         price: false,
     },

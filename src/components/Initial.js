@@ -1,7 +1,7 @@
 const DefaultFilter = {
     tags: [],
     sortby: {
-        near: true,
+        nearby: true,
         rating: false,
         price: false,
     },

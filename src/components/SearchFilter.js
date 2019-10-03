@@ -37,7 +37,7 @@ class SearchFilter extends Component {
     }
 
     genSort = () => {
-        const sort = ['near', 'rating', 'price']
+        const sort = ['nearby', 'rating', 'price']
         let block = []
         sort.forEach(sortby => {
             const name = this.state.sortby[sortby] ? 'active' : ''
