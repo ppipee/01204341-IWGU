@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { SearchAction } from '../action'
-import "../assets/scss/searchbar.scss"
+import '../assets/scss/searchbar.scss'
 import { SearchIcon } from './Icon'
 
 const Action = SearchAction
@@ -34,7 +34,9 @@ class SearchBar extends Component {
         document.removeEventListener('mousedown', this.handleClickOutside)
     }
 
-    setWrapperRef = node => { this.wrapperRef = node }
+    setWrapperRef = node => {
+        this.wrapperRef = node
+    }
 
     handleClickOutside = event => {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
@@ -62,11 +64,20 @@ class SearchBar extends Component {
     }
 
     genTag = () =>
-        tags.map((tag) => (
-            <div className='tag' key={tag.id}>
+        tags.map(tag => (
+            <div className='tag' key={tag}>
                 {tag}
-            </ div>
+            </div>
         ))
+
+    swapPage = e => {
+        const { value } = e.target
+        if (value !== '' && e.charCode === 13) {
+            this.setState({ show: false })
+            this.props.setWord(value)
+            this.props.history.push(`/search?q=${value}`)
+        }
+    }
 
     searchArea() {
         if (this.state.show) {
@@ -84,7 +95,6 @@ class SearchBar extends Component {
         }
         return <div className='search-box' />
     }
-
 
     render() {
         return (

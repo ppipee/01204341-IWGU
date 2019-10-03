@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, Airplane, Back } from './Icon'
-import "../assets/scss/navbar.scss"
+import '../assets/scss/navbar.scss'
 
 class NavBar extends Component {
     constructor(props) {
@@ -21,7 +21,6 @@ class NavBar extends Component {
     }
 
     openNav = () => {
-
         this.setState({ side_nav: true })
     }
 
@@ -38,31 +37,32 @@ class NavBar extends Component {
             return (
                 <div className='back-home'>
                     <Link to='/'>
-                        <img src={Back} alt="icon-back" />
+                        <img src={Back} alt='icon-back' />
                     </Link>
                 </div>
             )
         }
     }
 
-
-
     genSideBar() {
-        const active = this.state.side_nav ? "active" : ""
+        const active = this.state.side_nav ? 'active' : ''
         return (
             <>
                 <div
                     className={`container-sidenav ${active}`}
-                    ref={node => { this.node = node }}
+                    ref={node => {
+                        this.node = node
+                    }}
                     onClick={this.handleClickOutside}
                 />
                 <div
                     className={`sidenav ${active}`}
-                    ref={node => { this.node = node }}
+                    ref={node => {
+                        this.node = node
+                    }}
                 />
             </>
         )
-
     }
 
     render() {
@@ -72,11 +72,11 @@ class NavBar extends Component {
                     {this.genSideBar()}
                     {this.goBack(this.props.back)}
                     <button className='button-mytrip'>
-                        <img src={Airplane} alt="icon-airplane" />
+                        <img src={Airplane} alt='icon-airplane' />
                         My trips
                     </button>
                     <span onClick={this.openNav}>
-                        <img className='menu' src={Menu} alt="menu" />
+                        <img className='menu' src={Menu} alt='menu' />
                     </span>
                 </div>
             </div>

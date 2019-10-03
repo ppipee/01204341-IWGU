@@ -3,5 +3,6 @@ import searching from './SearchReducer'
 import filters from './FilterReducer'
 
 export default combineReducers({
-    searching, filters
+    searching,
+    filters,
 })

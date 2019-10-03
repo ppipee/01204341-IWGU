@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Slider from 'react-slick'
-import './../assets/scss/explore.scss'
-import {PaperAirplane} from './Icon'
-import {img0, img1, img2, img3} from './Demo'
+import '../assets/scss/explore.scss'
+import { PaperAirplane } from './Icon'
+import { img0, img1, img2, img3 } from './Demo'
 
 const TopAttractions = [
     {
@@ -34,7 +34,7 @@ export default class Explore extends Component {
             card.push(
                 <div className='explore-card'>
                     <div>
-                        <img src={place.image} alt="place-img" />
+                        <img src={place.image} alt='place-img' />
                     </div>
                     <div className='box-title'>
                         <p className='title'>{place.title}</p>
@@ -80,7 +80,7 @@ export default class Explore extends Component {
                     href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css'
                 />
                 <div className='explore-title'>
-                    <img src={PaperAirplane} alt="paper-airplane" />
+                    <img src={PaperAirplane} alt='paper-airplane' />
                     <p> Explore </p>
                 </div>
                 <div>

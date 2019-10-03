@@ -1,24 +1,24 @@
 import { FilterAction } from '../action'
 
-const default_filters = {
+const DefaultFilter = {
     tags: [],
     sortby: {
-        "near": false,
-        "rating": false,
-        "price": false,
+        nearby: true,
+        rating: false,
+        price: false,
     },
     time: [6, 29],
     rating: {
-        "star1": false,
-        "star2": false,
-        "star3": false,
-        "star4": false,
-        "star5": false,
-    }
+        star1: false,
+        star2: false,
+        star3: false,
+        star4: false,
+        star5: false,
+    },
 }
 const Action = FilterAction
 
-const filters = (state = default_filters, action) => {
+const filters = (state = DefaultFilter, action) => {
     switch (action.type) {
         case Action.SAVEFILTERS:
             return {

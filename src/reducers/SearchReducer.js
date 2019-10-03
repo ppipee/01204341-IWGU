@@ -1,11 +1,11 @@
 import { SearchAction } from '../action'
 
-const initialState = {
+const InitialState = {
     word: '',
 }
 const Action = SearchAction
 
-const searching = (state = initialState, action) => {
+const searching = (state = InitialState, action) => {
     switch (action.type) {
         case Action.WORDSEARCH:
             return {

@@ -1,7 +1,7 @@
 import React from 'react'
 // import { hot } from 'react-hot-loader'
 import { Route } from 'react-router-dom'
-import { Home, Search } from "../pages"
+import { Home, Search } from '../pages'
 
 const Routes = () => (
     <div className='route-container'>
