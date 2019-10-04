@@ -1,58 +1,69 @@
 .nav-bar {
-  height: 51px;
-  background-image: linear-gradient(to right, #ffecd2, #fcb69f);
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 22.8px;
-
-  .button-mytrip {
-    margin: 0 24px;
-    width: 77px;
-    height: 24px;
-    border-radius: 7px;
-    background-color: #ffffff;
-    border: none;
-    font-size: 12px;
-    color: #fcb8a0;
+    height: 51px;
+    background-image: linear-gradient(to right, #ffecd2, #fcb69f);
     display: flex;
-    justify-content: space-around;
     align-items: center;
-  }
+    justify-content: flex-end;
+    padding: 0 22.8px;
 
-  .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 2;
-    top: 0;
-    right: 0;
-    background-color: white;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
+    .button-mytrip {
+        padding: 0px 8px;
+        margin: 0 24px;
+        width: 77px;
+        height: 24px;
+        border-radius: 7px;
+        background-color: #ffffff;
+        border: none;
+        font-size: 12px;
+        color: #fcb8a0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
 
-  .container-sidenav {
-    transition: 1s background;
-    display: none;
-    position: fixed;
-    background: #000;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    opacity: 0.73;
-  }
-
-  .back-home {
-    margin-right: auto;
-    img {
-      display: table;
-      height: 18px;
-      margin: auto;
-      filter: drop-shadow(2px 2px 2.5px rgba(114, 114, 114, 0.37));
+        img {
+            margin-right: 4px;
+        }
     }
-  }
+
+    .sidenav {
+        height: 100%;
+        width: 0px;
+        position: fixed;
+        z-index: 2;
+        top: 0;
+        right: 0;
+        background-color: white;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+        &.active {
+            width: 298px;
+        }
+    }
+
+    .container-sidenav {
+        transition: 1s background;
+        display: none;
+        position: fixed;
+        background: #000;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        opacity: 0.73;
+        &.active {
+            display: block;
+        }
+    }
+
+    .back-home {
+        margin-right: auto;
+        img {
+            display: table;
+            height: 18px;
+            margin: auto;
+            filter: drop-shadow(2px 2px 2.5px rgba(114, 114, 114, 0.37));
+        }
+    }
 }

@@ -17,6 +17,7 @@ import TreeInActive from '../assets/icon/tree.svg'
 import TreeActive from '../assets/icon/tree2.svg'
 import SleepInActive from '../assets/icon/sleep.svg'
 import SleepActive from '../assets/icon/sleep2.svg'
+import PaperAirplane from '../assets/icon/paper-airplane.svg'
 
 export {
     SearchIcon,
@@ -38,4 +39,5 @@ export {
     TreeInActive,
     SleepActive,
     SleepInActive,
+    PaperAirplane,
 }
