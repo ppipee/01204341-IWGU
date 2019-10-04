@@ -79,10 +79,8 @@ class NearBy extends Component {
                 <div className='body'>
                     {this.genTabs()}
                     <div className='picture-container'>
-                        <div className='container'>
                             {(this.state.tab_state['res']) && this.genPlace(places.res, "pic_res")}
                             {(this.state.tab_state['land']) && this.genPlace(places.land, "pic_land")}
-                        </div>
                     </div>
                 </div>
             </div>

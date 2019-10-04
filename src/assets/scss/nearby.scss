@@ -8,49 +8,54 @@
       color: #4f4f4f;
     }
   }
-  .wave {
-    .wave-background {
-      height: 70px;
-      background: url("../img/wave.svg") no-repeat;
-      display: flex;
-      align-items: flex-end;
-      .icon {
+  .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .wave {
+      .wave-background {
+        height: 70px;
+        background: url("../img/wave.svg") no-repeat;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 46.9px;
-        width: 93.8px;
-        border-radius: 76px 76px 0 0;
-        &.active {
-          background: white;
+        align-items: flex-end;
+        .icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 46.9px;
+          width: 93.8px;
+          border-radius: 76px 76px 0 0;
+          &.active {
+            background: white;
+          }
         }
-      }
-      .icon img {
-        margin-bottom: 10%;
+        .icon img {
+          margin-bottom: 10%;
+        }
       }
     }
   }
   .picture-container {
-    .container {
-      margin-top: 3.5%;
-      margin-bottom: 6%;
-      .tab-content {
-        overflow: auto; 
-        white-space: nowrap;
-        display: flex;
-        div {
-          margin-left: 5.6%;
-          .picture {
-            width: 83px;
-            height: 71px;
-            border-radius: 15px;
-            box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.2);
-          }
-          .name {
-            color: #4f4f4f;
-            text-align: center;
-            font-size: 10px;
-          }
+    margin-top: 15px;
+    margin-bottom: 6%;
+    .tab-content {
+      width:375px;
+      overflow: auto;
+      white-space: nowrap;
+      display: flex;
+      div {
+        margin-left: 21px;
+        .picture {
+          width: 83px;
+          height: 71px;
+          border-radius: 15px;
+          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.2);
+        }
+        .name {
+          margin: 0;
+          color: #4f4f4f;
+          text-align: center;
+          font-size: 10px;
         }
       }
     }
@@ -58,10 +63,9 @@
   // Hide scroll: Chrome, Safari, newer versions of Opera
   .tab-content::-webkit-scrollbar {
     display: none;
-  
   }
   // Hide scroll: Firefox, IE
-  .tab-content { 
+  .tab-content {
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
