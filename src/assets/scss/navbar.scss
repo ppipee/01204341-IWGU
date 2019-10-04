@@ -7,6 +7,7 @@
     padding: 0 22.8px;
 
     .button-mytrip {
+        padding: 0px 8px;
         margin: 0 24px;
         width: 77px;
         height: 24px;
@@ -18,6 +19,10 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
+        
+        img {
+            margin-right: 4px;
+        }
     }
 
     .sidenav {
