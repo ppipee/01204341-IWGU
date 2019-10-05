@@ -85,23 +85,19 @@ class NearBy extends Component {
                 </div>
             )
         })
-        return (
-            <div className='wave'>
-                <div className='wave-background'>{tabbar}</div>
-            </div>
-        )
+        return <div className='wave'>{tabbar}</div>
     }
 
     render() {
         return (
-            <div className='NearBy'>
+            <div className='nearby'>
                 <div className='head'>
                     <img
                         className='location-icon'
                         alt='location-icon'
                         src={LocationIcon}
                     />
-                    <span className='nearby-you'>Nearby-you</span>
+                    <span className='nearby-you'>Nearby you</span>
                 </div>
                 <div className='body'>
                     {this.genTabs()}
