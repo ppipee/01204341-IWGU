@@ -54,7 +54,8 @@
         "camelcase": 0,
         "jsx-a11y/no-noninteractive-element-interactions": 0,
         "no-plusplus": 0,
-        "react/no-did-update-set-state": 0
+        "react/no-did-update-set-state": 0,
+        "react/no-access-state-in-setstate": 1,
     },
     "settings": {
         "react": {

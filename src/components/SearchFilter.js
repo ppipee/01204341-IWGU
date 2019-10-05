@@ -28,7 +28,10 @@ class SearchFilter extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevState.show !== this.state.show) {
             const { state } = this
-            this.setState({ ...state, ...JSON.parse(JSON.stringify(this.props.load_filters)) })
+            this.setState({
+                ...state,
+                ...JSON.parse(JSON.stringify(this.props.load_filters)),
+            })
         }
     }
 
