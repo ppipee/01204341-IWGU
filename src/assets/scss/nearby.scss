@@ -28,14 +28,18 @@
                 margin-top: 20.5px;
                 height: 46.9px;
                 width: 25%;
-                border-radius: 76px 76px 0 0;
-                &.active {
-                    background: white;
+                &.active::before {
+                    content: '';
+                    position: absolute;
                     width: 93.8px;
+                    height: 46.9px;
+                    border-radius: 76px 76px 0 0;
+                    background-color: white;
                 }
             }
             .icon img {
-                margin-bottom: 10%;
+                position: relative;
+                margin-bottom: 10px;
             }
         }
         .picture-container {

@@ -47,6 +47,52 @@ const Places = {
             name: 'Pipe',
         },
     ],
+
+    tree: [
+        {
+            src: Read,
+            name: 'Chut',
+        },
+        {
+            src: Lhong_Tou,
+            name: 'Earn',
+        },
+        {
+            src: Museum,
+            name: 'Eye',
+        },
+        {
+            src: Salad,
+            name: 'Pipe',
+        },
+        {
+            src: Museum,
+            name: 'Pon',
+        },
+    ],
+
+    sleep: [
+        {
+            src: Read,
+            name: 'Chut',
+        },
+        {
+            src: Lhong_Tou,
+            name: 'Earn',
+        },
+        {
+            src: Museum,
+            name: 'Eye',
+        },
+        {
+            src: Salad,
+            name: 'Pipe',
+        },
+        {
+            src: Read,
+            name: 'Pon',
+        },
+    ],
 }
 
 export { Places, img0, img1, img2, img3 }
