@@ -5,7 +5,9 @@
   align-items: center;
   justify-content: flex-end;
   padding: 0 22.8px;
-
+  a{
+    text-decoration: none;
+  }
   .button-mytrip {
     margin: 0 24px;
     width: 77px;
@@ -17,9 +19,8 @@
     color: #fcb8a0;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: center;    
   }
-
   .sidenav {
     height: 100%;
     width: 0;

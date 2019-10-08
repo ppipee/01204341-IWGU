@@ -54,16 +54,19 @@ class NavBar extends Component {
             </>
         )
     }
+
     render() {
         return (
             <div>
                 <div className='nav-bar'>
                     {this.genSideBar()}
                     {this.goBack(this.props.back)}
+                    <Link to='/mytrip'>
                     <button className='button-mytrip'>
-                        <img src={Airplane} />
-                        My trips
+                            <img src={Airplane} />
+                                My trips
                     </button>
+                    </Link>
                     <span onClick={this.openNav}>
                         <img className='menu' src={Menu} />
                     </span>
