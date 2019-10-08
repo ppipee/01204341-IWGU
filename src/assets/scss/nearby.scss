@@ -1,4 +1,83 @@
 .nearby {
-    height: 215px;
-    border: 1px solid rgb(196, 196, 196); // mark component ,you can remove this line when finish or any time 
+    .head {
+        margin-top: 2%;
+        margin-left: 42px;
+        img {
+            margin-top: -8px;
+        }
+        .nearby-you {
+            margin-left: 10.5px;
+            font-size: 20px;
+            color: #4f4f4f;
+        }
+    }
+    .body {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        .wave {
+            height: 58.5px;
+            background: url('../img/wave.svg') no-repeat;
+            background-position-x: center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            .icon {
+                display: flex;
+                justify-content: center;
+                margin-top: 20.5px;
+                height: 46.9px;
+                width: 25%;
+                &.active::before {
+                    content: '';
+                    position: absolute;
+                    width: 93.8px;
+                    height: 46.9px;
+                    border-radius: 76px 76px 0 0;
+                    background-color: white;
+                }
+            }
+            .icon img {
+                position: relative;
+                margin-bottom: 10px;
+            }
+        }
+        .picture-container {
+            margin-top: 15px;
+            margin-bottom: 6%;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+
+            ::-webkit-scrollbar {
+                display: none;
+            }
+
+            .tab-content {
+                width: 100%;
+                overflow: auto;
+                white-space: nowrap;
+                display: flex;
+
+                div {
+                    margin-left: 21px;
+                    .picture {
+                        width: 83px;
+                        height: 71px;
+                        border-radius: 15px;
+                        box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.2);
+                    }
+                    .name {
+                        margin: 0;
+                        color: #4f4f4f;
+                        text-align: center;
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
+    }
+    .icon {
+        width: 93.8px;
+        height: 38px;
+    }
 }

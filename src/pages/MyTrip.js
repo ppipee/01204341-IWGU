@@ -5,12 +5,9 @@ class MyTrip extends Component {
         super()
         this.state = {}
     }
+
     render() {
-        return (
-            <div className="">
-                My Trip
-            </div>
-        )
+        return <div className=''>My Trip</div>
     }
 }
 export default MyTrip

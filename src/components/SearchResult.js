@@ -5,12 +5,9 @@ class SearchResult extends Component {
         super()
         this.state = {}
     }
+
     render() {
-        return (
-            <div className="search-result">
-                Result
-            </div>
-        )
+        return <div className='search-result'>Result</div>
     }
 }
 export default SearchResult

@@ -1,17 +1,19 @@
 .explore {
     height: 292px;
     .explore-title {
-        margin-bottom: 13px;  
+        margin-bottom: 13px;
+        margin-left: 39px;
         img {
-            margin-left: 39px;
+            margin-top: -8px;
         }
         p {
+            font-size: 20px;
             display: inline;
             margin-left: 11px;
         }
     }
 
-    .explore-card {   
+    .explore-card {
         width: 300px !important;
         display: flex !important;
         flex-direction: column;
@@ -22,24 +24,24 @@
         border-radius: 15px;
         box-sizing: border-box;
         img {
-            border-radius: 15px 15px 0px 0px;
+            border-radius: 12px 12px 0px 0px;
             height: 170px;
+            width: 292px;
             object-fit: cover;
-            // object-position: bottom;
         }
         .box-title {
             background-color: white;
-            border-radius: 0px 0px 15px 15px;
+            border-radius: 0px 0px 12px 12px;
             .title {
                 margin-top: 7px;
                 margin-left: 18px;
                 font-size: 14px;
-            } 
+            }
             .subtitle {
-                margin: -12px 0px 5px 18px;
+                margin: -17px 0px 5px 18px;
                 font-size: 11px;
                 color: #c5c5c5;
-            }  
+            }
         }
     }
     .slick-dots li {
