@@ -4,16 +4,9 @@ import SearchBar from './SearchBar'
 import { FilterAction } from '../action'
 import { DefaultFilter } from './Initial'
 import TimeFilter from './TimeFilter'
+import Category from './Category'
 import '../assets/scss/searchfilter.scss'
-import {
-    SearchIcon,
-    Filter,
-    FilterActive,
-    Clear,
-    Star,
-    BlankStar,
-    Close,
-} from './Icon'
+import { Filter, FilterActive, Clear, Star, BlankStar, Close } from './Icon'
 
 const Action = FilterAction
 class SearchFilter extends Component {
@@ -174,9 +167,7 @@ class SearchFilter extends Component {
                             <div className='head'>Category :</div>
                             <div className='tags'>
                                 {this.genTag()}
-                                <div className='search'>
-                                    <img src={SearchIcon} alt='icon-search' />
-                                </div>
+                                <Category />
                             </div>
                         </div>
                         <div className='line' />
