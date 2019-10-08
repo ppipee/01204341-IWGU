@@ -71,10 +71,12 @@ class NavBar extends Component {
                 <div className='nav-bar'>
                     {this.genSideBar()}
                     {this.goBack(this.props.back)}
-                    <button className='button-mytrip'>
-                        <img src={Airplane} alt='icon-airplane' />
-                        My trips
-                    </button>
+                    <Link to='/mytrips'>
+                        <button className='button-mytrips'>
+                            <img src={Airplane} alt='icon-mytrips' />
+                            My trips
+                        </button>
+                    </Link>
                     <span onClick={this.openNav}>
                         <img className='menu' src={Menu} alt='menu' />
                     </span>

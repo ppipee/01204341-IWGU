@@ -5,8 +5,10 @@
     align-items: center;
     justify-content: flex-end;
     padding: 0 22.8px;
-
-    .button-mytrip {
+    a {
+        text-decoration: none;
+    }
+    .button-mytrips {
         padding: 0px 8px;
         margin: 0 24px;
         width: 77px;
