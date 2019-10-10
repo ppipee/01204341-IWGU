@@ -2,37 +2,14 @@ import React, { Component } from 'react'
 import Slider from 'react-slick'
 import '../assets/scss/explore.scss'
 import { PaperAirplane } from './Icon'
-import { img0, img1, img2, img3 } from './Demo'
-
-const TopAttractions = [
-    {
-        image: img0,
-        title: 'Bangkok, Thailand',
-        subtitle: 'The Beautiful temple near Chao Phraya River',
-    },
-    {
-        image: img1,
-        title: 'Bangkok, Thailand',
-        subtitle: 'The Beautiful temple near Chao Phraya River',
-    },
-    {
-        image: img2,
-        title: 'Bangkok, Thailand',
-        subtitle: 'The Beautiful temple near Chao Phraya River',
-    },
-    {
-        image: img3,
-        title: 'Bangkok, Thailand',
-        subtitle: 'The Beautiful temple near Chao Phraya River',
-    },
-]
+import { TopAttractions } from './Demo'
 
 export default class Explore extends Component {
     genPlace() {
         const card = []
         TopAttractions.forEach(place => {
             card.push(
-                <div className='explore-card'>
+                <div className='explore-card' key={place.id}>
                     <div>
                         <img src={place.image} alt='place-img' />
                     </div>

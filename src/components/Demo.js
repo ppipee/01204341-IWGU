@@ -95,4 +95,31 @@ const Places = {
     ],
 }
 
-export { Places, img0, img1, img2, img3 }
+const TopAttractions = [
+    {
+        id: 0,
+        image: img0,
+        title: 'Bangkok, Thailand',
+        subtitle: 'The Beautiful temple near Chao Phraya River',
+    },
+    {
+        id: 1,
+        image: img1,
+        title: 'Bangkok, Thailand',
+        subtitle: 'The Beautiful temple near Chao Phraya River',
+    },
+    {
+        id: 2,
+        image: img2,
+        title: 'Bangkok, Thailand',
+        subtitle: 'The Beautiful temple near Chao Phraya River',
+    },
+    {
+        id: 3,
+        image: img3,
+        title: 'Bangkok, Thailand',
+        subtitle: 'The Beautiful temple near Chao Phraya River',
+    },
+]
+
+export { Places, TopAttractions }
