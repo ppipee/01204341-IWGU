@@ -15,8 +15,8 @@ import Routes from './router'
 // create redux store
 const store = createStore(reducer, applyMiddleware(logger))
 // const store = createStore(reducer)
+
 const client = new ApolloClient({
-    // uri: `http://localhost:5000/graphql`
     uri: 'https://iwgu.herokuapp.com/graphql',
 })
 
