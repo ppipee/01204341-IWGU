@@ -32,4 +32,4 @@ ReactDOM.render(
 )
 
 // working offline if you want to close serviceWorker you can change to "unregister()"
-serviceWorker.register()
+// serviceWorker.register()
