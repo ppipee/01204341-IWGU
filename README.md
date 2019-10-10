@@ -7,7 +7,23 @@
 -   git v2.17.1
 -   yarn v1.17.3
 
-### How to use
+### Backend
+
+#### Server
+
+-   NodeJS & ExpressJS
+-   GraphQL
+
+#### Database
+
+-   MongoDB (Mongoose)
+-   mLab (on Heroku)
+
+#### Link
+
+-   https://github.com/ppipee/IWGU-Backend
+
+### How to
 
 -   for first time
 

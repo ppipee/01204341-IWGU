@@ -56,6 +56,8 @@
         "no-plusplus": 0,
         "react/no-did-update-set-state": 0,
         "react/no-access-state-in-setstate": 1,
+        "no-restricted-syntax": 0,
+        "eslint(no-labels)": 0
     },
     "settings": {
         "react": {
