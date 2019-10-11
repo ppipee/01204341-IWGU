@@ -18,6 +18,10 @@ import TreeActive from '../assets/icon/tree2.svg'
 import SleepInActive from '../assets/icon/sleep.svg'
 import SleepActive from '../assets/icon/sleep2.svg'
 import PaperAirplane from '../assets/icon/paper-airplane.svg'
+import BlackAirplane from '../assets/icon/black-airplane.svg'
+import Calendar from '../assets/icon/calendar.svg'
+import RightArrow from '../assets/icon/right-arrow.svg'
+import CurveArrow from '../assets/icon/curve-arrow.svg'
 
 export {
     SearchIcon,
@@ -40,4 +44,8 @@ export {
     SleepActive,
     SleepInActive,
     PaperAirplane,
+    BlackAirplane,
+    Calendar,
+    RightArrow,
+    CurveArrow,
 }
