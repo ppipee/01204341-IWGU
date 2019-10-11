@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavBar, CountDown, PlannerBoard } from '../components'
+import '../assets/scss/mytripspage.scss'
 
 class MyTrips extends Component {
     constructor() {
