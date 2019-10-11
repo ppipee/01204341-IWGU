@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AddTrip from './AddTrip'
+import CreateTrip from './CreateTrip'
 import { BlackAirplane, Calendar, CurveArrow, RightArrow } from './Icon'
 import '../assets/scss/plannersboard.scss'
 import { Planners } from './Demo'
@@ -57,10 +57,11 @@ class PlannersBoard extends Component {
             <div className='planners-board'>
                 <div className='title'>
                     <img src={BlackAirplane} alt='black-airplane-icon' />
-                    <span className='planners'>Manage your trip</span>
+                    <span>Manage your trip</span>
                 </div>
-                {this.plannersBoard()}
-                {/* <AddTrip /> */}
+                <div className='planners'>{this.plannersBoard()}</div>
+                <div className='blank' />
+                <CreateTrip />
             </div>
         )
     }
