@@ -1,6 +1,8 @@
 .planners-board {
+    position: relative;
     padding: 20px 30px 0 27px;
-    min-height: 443px;
+    box-sizing: border-box;
+    flex-grow: 1;
     .title {
         display: flex;
         margin-bottom: 23px;
@@ -73,19 +75,18 @@
         }
     }
     .blank-board {
-        position: relative;
         .text {
             width: 143px;
             font-size: 20px;
             color: #b0b0b0;
             text-align: center;
-            position: fixed;
+            position: absolute;
             bottom: 136.5px;
             left: 50%;
             transform: translateX(-50%);
         }
         img {
-            position: fixed;
+            position: absolute;
             bottom: 67.17px;
             left: 50%;
             transform: translateX(-200%);
