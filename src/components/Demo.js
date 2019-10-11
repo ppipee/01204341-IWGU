@@ -122,35 +122,34 @@ const TopAttractions = [
     },
 ]
 
-// const Planners = [
-//     {
-//         id: "1",
-//         name: "plan1",
-//         days: [
-//             {
-//                 date: "2019-10-10"
-//             },
-//             {
-//                 date: "2019-10-11"
-//             },
-//             {
-//                 date: "2019-10-12"
-//             }
-//         ]
-//     },
-//     {
-//         id: "2",
-//         name: "plan2",
-//         days: [
-//             {
-//                 date: "2019-10-10"
-//             },
-//             {
-//                 date: "2019-10-11"
-//             },
-//         ]
-//     }
-// ]
-const Planners = []
+const Planners = [
+    // {
+    //     id: "1",
+    //     name: "plan1",
+    //     days: [
+    //         {
+    //             date: "2019-10-10"
+    //         },
+    //         {
+    //             date: "2019-10-11"
+    //         },
+    //         {
+    //             date: "2019-10-12"
+    //         }
+    //     ]
+    // },
+    // {
+    //     id: "2",
+    //     name: "plan2",
+    //     days: [
+    //         {
+    //             date: "2019-10-10"
+    //         },
+    //         {
+    //             date: "2019-10-11"
+    //         },
+    //     ]
+    // }
+]
 
 export { Places, TopAttractions, Planners }
