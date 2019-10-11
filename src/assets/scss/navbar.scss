@@ -5,12 +5,18 @@
     align-items: center;
     justify-content: flex-end;
     padding: 0 22.8px;
+
     a {
         text-decoration: none;
+        color: #fcb8a0;
     }
+
+    span {
+        margin-left: 24px;
+    }
+    
     .button-mytrips {
         padding: 0px 8px;
-        margin: 0 24px;
         width: 77px;
         height: 24px;
         border-radius: 7px;
