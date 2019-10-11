@@ -10,6 +10,20 @@ class PlannersBoard extends Component {
         this.state = {}
     }
 
+    formatDate = date => {
+        const new_date = date.split(' ')
+        return `${new_date[2]} ${new_date[1]}`
+    }
+
+    genDate = days => {
+        const d_start = days[0].date
+        const d_end = days[days.length - 1].date
+        if (days.length === 1) return this.formatDate(d_start.toString())
+        return `${this.formatDate(d_start.toString())} - ${this.formatDate(
+            d_end.toString()
+        )}`
+    }
+
     genPlanner = () =>
         Planners.map(planner => (
             <div className='planner' key={planner.id}>
@@ -17,10 +31,7 @@ class PlannersBoard extends Component {
                     <div className='name'>{planner.name}</div>
                     <div className='date'>
                         <img src={Calendar} alt='calendar-icon' />
-                        <span>
-                            {planner.days[0].date} -{' '}
-                            {planner.days[planner.days.length - 1].date}
-                        </span>
+                        <span>{this.genDate(planner.days)}</span>
                     </div>
                 </div>
                 <div className='btn-detail'>
