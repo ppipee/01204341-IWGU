@@ -1,6 +1,7 @@
 .search-page {
     .search-background {
         height: calc(100vh - 51px);
+        background-image: url('../img/fixed-background.svg');
         background-attachment: scroll;
         background-repeat: no-repeat;
         background-size: auto;

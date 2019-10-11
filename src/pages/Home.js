@@ -1,8 +1,5 @@
 import React from 'react'
-import NavBar from '../components/Navbar'
-import SearchBar from '../components/SearchBar'
-import Explore from '../components/Explore'
-import NearBy from '../components/NearBy'
+import { NavBar, SearchBar, Explore, NearBy } from '../components'
 
 const Home = () => (
     <div className='home-page'>
