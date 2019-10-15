@@ -9,11 +9,7 @@ class CreateTrip extends Component {
     }
 
     render() {
-        return (
-            <div className='add-trip'>
-                <img src={Plus} alt='plus-btn' />
-            </div>
-        )
+        return <img src={Plus} alt='plus-btn' className='add-trip' />
     }
 }
 export default CreateTrip
