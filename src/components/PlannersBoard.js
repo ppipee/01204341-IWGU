@@ -7,7 +7,13 @@ import { Planners } from './Demo'
 class PlannersBoard extends Component {
     constructor() {
         super()
-        this.state = {}
+        this.state = {
+            planners: [],
+        }
+    }
+
+    componentDidMount() {
+        this.setState({ planners: Planners })
     }
 
     formatDate = date => {
@@ -25,7 +31,7 @@ class PlannersBoard extends Component {
     }
 
     genPlanner = () =>
-        Planners.map(planner => (
+        this.state.planners.map(planner => (
             <div className='planner' key={planner.id}>
                 <div className='content'>
                     <div className='name'>{planner.name}</div>
@@ -48,8 +54,14 @@ class PlannersBoard extends Component {
     )
 
     plannersBoard = () => {
-        if (Planners[0]) return this.genPlanner()
+        if (this.state.planners[0]) return this.genPlanner()
         return this.blankBoard()
+    }
+
+    newPlanner = new_planner => {
+        this.setState({
+            planners: [...this.state.planners, new_planner],
+        })
     }
 
     render() {
@@ -60,8 +72,7 @@ class PlannersBoard extends Component {
                     <span>Manage your trip</span>
                 </div>
                 <div className='planners'>{this.plannersBoard()}</div>
-                <div className='blank' />
-                <CreateTrip />
+                <CreateTrip planner={this.newPlanner} />
             </div>
         )
     }
