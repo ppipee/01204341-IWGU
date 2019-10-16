@@ -5,30 +5,47 @@ import '../assets/scss/createtrip.scss'
 class CreateTrip extends Component {
     constructor() {
         super()
-        this.state = {}
+        this.state = {
+            plan_maker: false,
+        }
     }
 
-    createPlanner = () => {
-        const new_planner = {
-            id: '2',
-            name: 'plan2',
-            days: [
-                {
-                    date: new Date('2019-6-14'),
-                },
-            ],
+    handleClick = () => {
+        this.setState({ plan_maker: !this.state.plan_maker })
+    }
+
+    showMaker = () => {
+        if (this.state.plan_maker) {
+            return (
+                <div className='plan-maker popup'>
+                    <div className='create-trip popup'>
+                        <div className='head'>
+                            title
+                            <button onClick={this.handleClick}>X</button>
+                        </div>
+                        <div className='calendar'>calendar</div>
+                    </div>
+                </div>
+            )
         }
-        this.props.planner(new_planner)
+        return (
+            <div className='plan-maker'>
+                <div className='create-trip' />
+            </div>
+        )
     }
 
     render() {
         return (
-            <img
-                src={Plus}
-                alt='plus-btn'
-                className='create-trip'
-                onClick={this.createPlanner}
-            />
+            <>
+                <img
+                    src={Plus}
+                    alt='plus-btn'
+                    className='add-btn'
+                    onClick={this.handleClick}
+                />
+                {this.showMaker()}
+            </>
         )
     }
 }
