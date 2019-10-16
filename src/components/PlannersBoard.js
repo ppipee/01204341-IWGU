@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AddTrip from './AddTrip'
+import CreateTrip from './CreateTrip'
 import { BlackAirplane, Calendar, CurveArrow, RightArrow } from './Icon'
 import '../assets/scss/plannersboard.scss'
 import { Planners } from './Demo'
@@ -7,7 +7,13 @@ import { Planners } from './Demo'
 class PlannersBoard extends Component {
     constructor() {
         super()
-        this.state = {}
+        this.state = {
+            planners: [],
+        }
+    }
+
+    componentDidMount() {
+        this.setState({ planners: Planners })
     }
 
     formatDate = date => {
@@ -25,7 +31,7 @@ class PlannersBoard extends Component {
     }
 
     genPlanner = () =>
-        Planners.map(planner => (
+        this.state.planners.map(planner => (
             <div className='planner' key={planner.id}>
                 <div className='content'>
                     <div className='name'>{planner.name}</div>
@@ -48,8 +54,14 @@ class PlannersBoard extends Component {
     )
 
     plannersBoard = () => {
-        if (Planners[0]) return this.genPlanner()
+        if (this.state.planners[0]) return this.genPlanner()
         return this.blankBoard()
+    }
+
+    newPlanner = new_planner => {
+        this.setState({
+            planners: [...this.state.planners, new_planner],
+        })
     }
 
     render() {
@@ -57,10 +69,10 @@ class PlannersBoard extends Component {
             <div className='planners-board'>
                 <div className='title'>
                     <img src={BlackAirplane} alt='black-airplane-icon' />
-                    <span className='planners'>Manage your trip</span>
+                    <span>Manage your trip</span>
                 </div>
-                {this.plannersBoard()}
-                {/* <AddTrip /> */}
+                <div className='planners'>{this.plannersBoard()}</div>
+                <CreateTrip planner={this.newPlanner} />
             </div>
         )
     }

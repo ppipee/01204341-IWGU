@@ -22,6 +22,7 @@ import BlackAirplane from '../assets/icon/black-airplane.svg'
 import Calendar from '../assets/icon/calendar.svg'
 import RightArrow from '../assets/icon/right-arrow.svg'
 import CurveArrow from '../assets/icon/curve-arrow.svg'
+import Plus from '../assets/icon/plus.svg'
 
 export {
     SearchIcon,
@@ -39,6 +40,7 @@ export {
     RestaurantInActive,
     LandmarkActive,
     LandmarkInActive,
+    Plus,
     TreeActive,
     TreeInActive,
     SleepActive,
