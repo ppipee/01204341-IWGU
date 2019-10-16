@@ -23,9 +23,12 @@ class CreateTrip extends Component {
 
     render() {
         return (
-            <div className='create-trip' onClick={this.createPlanner}>
-                <img src={Plus} alt='plus-btn' />
-            </div>
+            <img
+                src={Plus}
+                alt='plus-btn'
+                className='create-trip'
+                onClick={this.createPlanner}
+            />
         )
     }
 }
