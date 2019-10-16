@@ -1,0 +1,33 @@
+.SearchResult {
+    div {
+        .card {
+            width: 315px;
+            height: 106px;
+            border-radius: 3px;
+            box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.2);
+            border: solid 0.5px #e8e8e8;
+            background-color: white;
+            margin-left: 36px;
+            margin-bottom: 20px;
+            display: flex;
+            .picture {
+                width: 71px;
+                height: 71px;
+                border-radius: 7px;
+                margin-top: 15px;
+                margin-left: 11px;
+            }
+            .content {
+                width: 178px;
+                margin-top: 15px;
+                margin-left: 8px;
+            }
+            .add-fav {
+                div {
+                    width: 36px;
+                    height: 47px;
+                }
+            }
+        }
+    }
+}

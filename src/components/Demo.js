@@ -15,6 +15,7 @@ const Places = {
         {
             src: Burger,
             name: 'Burger',
+            rating: '',
         },
         {
             src: Coffee,
@@ -23,6 +24,14 @@ const Places = {
         {
             src: Salad,
             name: 'Coffee',
+        },
+        {
+            src: Sashimi,
+            name: 'Sashimi',
+        },
+        {
+            src: Sashimi,
+            name: 'Sashimi',
         },
         {
             src: Sashimi,
