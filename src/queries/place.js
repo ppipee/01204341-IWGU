@@ -20,6 +20,7 @@ const nearBy = gql`
     query($radius: Int!, $geolocation: String!) {
         places(searchradius: $radius, geolocation: $geolocation) {
             placeID
+            categoryCode
             name
             thumbnail
             map
