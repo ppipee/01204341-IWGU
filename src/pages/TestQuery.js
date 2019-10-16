@@ -49,12 +49,26 @@ class Test extends Component {
                 if (this.props.userData.loading) {
                     return <div>Loading Data...</div>
                 }
-                return Object.keys(data).map(k => (
-                    <div>
-                        {k}
-                        {data[k]}
-                    </div>
-                ))
+                return Object.keys(data).map(k => {
+                    if (typeof data[k] !== typeof '') {
+                        return (
+                            <div>
+                                {data[k].map(items =>
+                                    Object.keys(items).map(i => (
+                                        <li>
+                                            {i}:{items[i]}
+                                        </li>
+                                    ))
+                                )}
+                            </div>
+                        )
+                    }
+                    return (
+                        <div>
+                            {k}:{data[k]}
+                        </div>
+                    )
+                })
             }
         }
     }
