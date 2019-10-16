@@ -1,47 +1,66 @@
 import { gql } from 'apollo-boost'
 
-const placeData = gql`
-    query($id: ID!) {
-        place(id: $id) {
+const searchPlace = gql`
+    query($keyword: String, $category: String) {
+        places(keyword: $keyword,$category: String) {
+            placeID
+            categoryCode
             name
             category
-            description
-            img
             rate
-            days
-            time
-            address
-            tel
-        }
-    }
-`
-const getPlaces = gql`
-    {
-        places {
-            name
-            category
-            description
-            img
-            rate
-            days
-            time
-            address
-            tel
-        }
-    }
-`
-
-const serchPlace = gql`
-    query($word: String!) {
-        places(word: $word) {
-            id
-            name
-            rate
-            img
+            thumbnail
             time
             location
+            map
         }
     }
 `
 
-export default { serchPlace, getPlaces, placeData }
+const nearBy = gql`
+    query($radius: Int!, $geolocation: String!) {
+        places(searchradius: $radius, geolocation: $geolocation) {
+            placeID
+            name
+            thumbnail
+            map
+        }
+    }
+`
+
+const placeDetail = gql`
+    query($id: String, $code: String) {
+        placeDetail(placeID: $id, categoryCode: $code) {
+            placeID
+            name
+            category
+            description
+            img
+            rate
+            days
+            time
+            howToTravel
+            service
+            location
+            map
+            tel
+        }
+    }
+`
+
+const randomPlaces = gql`
+    {
+        places {
+            placeID
+            categoryCode
+            name
+            category
+            rate
+            thumbnail
+            time
+            location
+            map
+        }
+    }
+`
+
+export default { searchPlace, placeDetail, randomPlaces, nearBy }
