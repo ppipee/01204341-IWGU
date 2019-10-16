@@ -1,0 +1,51 @@
+.head-create-trip {
+    font-size: 16px;
+    padding: 12px 17px 0px;
+    color: #4f4f4f;
+    .title {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0px;
+        span {
+            font-size: 16px;
+            margin: 0;
+        }
+    }
+    .input {
+        margin: 12px 0px 4px;
+        div {
+            display: flex;
+            flex-direction: row;
+            input {
+                &::placeholder {
+                    color: #d8d8d8;
+                }
+                flex-grow: 1;
+                outline: none;
+                border: none;
+                margin-right: 5px;
+            }
+            .size-input {
+                color: #d8d8d8;
+                &.active {
+                    color: #4f4f4f;
+                }
+                &.alert {
+                    color: #ff6c38;
+                }
+            }
+        }
+        .line {
+            height: 1.5px;
+            width: 100%;
+            background: #d8d8d8;
+            transition: all 0.5s;
+            &.active {
+                background: linear-gradient(to right, #f2b29b, #fee7ce);
+            }
+            &.alert {
+                background: #ff6c38;
+            }
+        }
+    }
+}

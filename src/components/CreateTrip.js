@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Plus } from './Icon'
+import HeadCreateTrip from './HeadCreateTrip'
+import Calendar from './CalendarTrip'
 import '../assets/scss/createtrip.scss'
 
 class CreateTrip extends Component {
@@ -19,11 +21,8 @@ class CreateTrip extends Component {
             return (
                 <div className='plan-maker popup'>
                     <div className='create-trip popup'>
-                        <div className='head'>
-                            title
-                            <button onClick={this.handleClick}>X</button>
-                        </div>
-                        <div className='calendar'>calendar</div>
+                        <HeadCreateTrip click={this.handleClick} />
+                        <Calendar />
                     </div>
                 </div>
             )
