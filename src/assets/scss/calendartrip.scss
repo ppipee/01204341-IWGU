@@ -1,8 +1,17 @@
+@import '~react-datepicker/dist/react-datepicker.css';
 .calendar-trip {
     color: #4f4f4f;
+    height: 100%;
+    .calendar {
+        display: flex;
+        justify-content: center;
+        margin-top: 12px;
+    }
     .state {
         display: flex;
+        position: relative;
         justify-content: space-around;
+        // z-index: 1;
         .day {
             font-size: 14px;
             transition: 1s;
@@ -28,4 +37,83 @@
             background-color: #f2b099;
         }
     }
+}
+.DateInput_input {
+    text-align: center;
+    font-size: 12px;
+    height: 21px;
+    // color: #4f4f4f !important;
+}
+.DateInput_fang.DateInput_fang_1 {
+    display: none;
+}
+.DateRangePickerInput_arrow.DateRangePickerInput_arrow_1 {
+    display: none;
+}
+.DayPickerNavigation_button__horizontalDefault {
+    border: none;
+    &:hover {
+        border: none;
+    }
+    top: -5px;
+}
+.DateRangePicker_picker {
+    z-index: 0;
+    top: 34px !important;
+    left: -37px !important;
+    // height: 200px;
+}
+.DayPicker_transitionContainer {
+    height: 200px !important;
+}
+.DateInput_input__focused {
+    background-color: #fcbba4;
+    color: #fff !important;
+    text-align: center;
+    border: none;
+}
+.CalendarDay {
+    border: none;
+    font-size: 12px;
+    width: 19px !important;
+    height: 19px !important;
+}
+.CalendarMonth {
+    position: relative;
+    top: -22px;
+}
+.CalendarMonth_caption {
+    font-size: 14px;
+    font-weight: normal;
+    padding: 22px 0 28px 0;
+}
+.DayPicker_weekHeader {
+    position: absolute;
+    top: 24px;
+}
+.DayPicker__withBorder {
+    box-shadow: none;
+}
+.CalendarDay__selected {
+    outline: none;
+    background-color: #f2b099;
+    &:hover {
+        border: none;
+        background-color: #f2b099;
+    }
+    &.CalendarDay__selected_start {
+        outline: none;
+        &:hover {
+            border: none;
+            width: 30px;
+            background-color: #f2b099;
+            border-radius: 50%;
+        }
+    }
+}
+.CalendarDay__selected_span {
+    background-color: #f2b099;
+}
+.CalendarDay.CalendarDay_1 {
+    margin: 10px !important;
 }
