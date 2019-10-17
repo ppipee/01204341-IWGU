@@ -3,35 +3,40 @@ import { CloseColor } from './Icon'
 import '../assets/scss/headcreatetrip.scss'
 
 class HeadCreateTrip extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             value_inp: '',
+            line: '',
         }
+    }
+
+    componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside)
     }
 
     handleChange = e => {
         this.setState({ value_inp: e.target.value })
     }
 
+    handleClickOutside = event => {
+        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+            this.setState({ line: '' })
+        }
+    }
+
     lengthCheck = () => {
         let name = ''
         const len = this.state.value_inp.length
-        if (len !== 0) {
-            name = len > 20 ? 'alert' : 'active'
-        }
-        return [
-            <span className={`size-input ${name}`}>{len}/20</span>,
-            <div className={`line ${name}`} />,
-        ]
+        if (len !== 0) name = len > 20 ? 'alert' : 'active'
+        return <span className={`size-input ${name}`}>{len}/20</span>
     }
 
     render() {
         return (
             <div className='head-create-trip'>
-                <div className='title'>
+                <div className='create-trip-title'>
                     <span>Create your new trip</span>
-
                     <img
                         src={CloseColor}
                         onClick={this.props.click}
@@ -44,10 +49,14 @@ class HeadCreateTrip extends Component {
                             placeholder='Name your trip'
                             value={this.state.value_inp}
                             onChange={this.handleChange}
+                            ref={node => {
+                                this.wrapperRef = node
+                            }}
+                            onClick={() => this.setState({ line: 'active' })}
                         />
-                        {this.lengthCheck()[0]}
+                        {this.lengthCheck()}
                     </div>
-                    {this.lengthCheck()[1]}
+                    <div className={`line ${this.state.line}`} />
                 </div>
             </div>
         )
