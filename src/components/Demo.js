@@ -121,6 +121,36 @@ const TopAttractions = [
         subtitle: 'The Beautiful temple near Chao Phraya River',
     },
 ]
+// const TimePlanner = [
+//     new Date(2019,11,18),
+//     new Date(2019,10,19),
+//     new Date(2019,9,28),
+//     new Date(2019,10,7),
+//     new Date(2019,11,5),
+//     new Date(2019,10,20),
+//     new Date(2019,9,22),
+// ]
+
+const Trip = [
+    {
+        days: [
+            {
+                date: new Date(2019, 9, 20),
+                places: [
+                    {
+                        time: {
+                            start: new Date(2019, 9, 21, 2, 0, 0),
+                            end: new Date(2019, 9, 22, 17, 0, 0),
+                        },
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        days: [],
+    },
+]
 
 const Planners = [
     // {
@@ -146,7 +176,7 @@ const Planners = [
     //             date: new Date('2019-6-14'),
     //         },
     //     ],
-    // },
+    // }
 ]
 
-export { Places, TopAttractions, Planners }
+export { Places, TopAttractions, Planners, Trip }

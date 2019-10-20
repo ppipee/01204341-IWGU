@@ -1,4 +1,50 @@
 .count-down {
-    height: 173px;
-    border: 1px solid black;
+    height: 178px;
+    background: url('../icon/header-bg.svg') no-repeat;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+    .head{
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+        -webkit-text-stroke: 0.2px #ffffff;
+        font-size: 18px;
+        padding: 52px 0 0 0;
+        justify-content: center;
+        display: flex;
+        color: white;
+        margin-bottom: 0%
+    }
+
+    .defaultText{
+        margin-top: -3%;
+        display: flex;
+        justify-content: center;
+        color: white;
+        .colon{
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            margin-left: 6.8px;
+            margin-right: 6.8px;
+        }
+        .time{
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+            font-size: 48px;
+        }
+        .column{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .text{
+            font-size: 12px;
+            margin-top: -21%;
+        }
+        
+    }
 }
