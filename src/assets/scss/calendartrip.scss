@@ -83,13 +83,20 @@
             border-radius: 5px;
             width: 106px;
             height: 28px;
-            color: #fff;
             text-align: center;
             line-height: 26px;
-            background-color: #f2b099;
             -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.26);
             -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.26);
             box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.26);
+            color: #fff;
+            transition: 0.5s background;
+            &.active {
+                background: #f2b099;
+            }
+            &.inactive {
+                background: #d0d0d0;
+                pointer-events: none;
+            }
         }
     }
 }

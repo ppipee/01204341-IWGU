@@ -10,26 +10,41 @@ import '../assets/scss/calendartrip.scss'
 
 const Action = NewTripAction
 class CalendarTrip extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             start_date: null,
             end_date: null,
             focused_input: 'startDate',
+            auth: false,
         }
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (
+            this.state.start_date !== prevState.start_date ||
+            this.state.end_date !== prevState.end_date ||
+            this.props.getName !== prevProps.getName
+        )
+            this.setAuth()
+    }
+
     setTrip = () => {
-        const name = this.props.getName
         const { start_date: start, end_date: end } = this.state
-        if (name !== '' && (start !== null && end !== null)) {
-            const date = {
-                start: start.toDate(),
-                end: end.toDate(),
-            }
-            this.props.setDate(date)
-            this.props.setAuth(true)
+        const date = {
+            start: start.toDate(),
+            end: end.toDate(),
         }
+        this.props.setDate(date)
+        this.props.setAuth(true)
+    }
+
+    setAuth = () => {
+        const { start_date: start, end_date: end } = this.state
+        // const name = this.props.getName
+        const name = 'iwgu'
+        const auth = name !== '' && (start !== null && end !== null)
+        this.setState({ auth })
     }
 
     onFocusChange = focused_input => {
@@ -94,7 +109,12 @@ class CalendarTrip extends Component {
                         <div className='days-count'>{this.calDay()}</div>
                         <div>{`Day${day}`}</div>
                     </div>
-                    <div className='start-trip-btn' onClick={this.setTrip}>
+                    <div
+                        className={`start-trip-btn ${
+                            this.state.auth ? 'active' : 'inactive'
+                        }`}
+                        onClick={this.setTrip}
+                    >
                         Start your trip
                     </div>
                 </div>
@@ -105,7 +125,7 @@ class CalendarTrip extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         setDate: date => dispatch({ type: Action.SETDATE, setDate: date }),
-        setAuth: auth => dispatch({ type: Action.SETAUTH, setDate: auth }),
+        setAuth: auth => dispatch({ type: Action.SETAUTH, setAuth: auth }),
     }
 }
 const mapStateToProps = state => {
