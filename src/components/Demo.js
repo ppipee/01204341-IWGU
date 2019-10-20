@@ -58,4 +58,91 @@ const Places = {
     ],
 }
 
-export { Places, img0, img1, img2, img3 }
+// SearchPlaces.map(place=>{
+// Object.keys(place).map(key=>place[key])}
+// )
+
+const SearchPlaces = [
+    {
+        placeID: '1',
+        name: 'Kasetsart University',
+        categoryCode: 'shop',
+        thumbnail: Burger,
+        map: {
+            latitude: '',
+            longitude: '',
+        },
+        rate: 5,
+        time: '7.00 AM - 7.00 PM',
+        location: {
+            district: 'Laksi',
+            province: 'Bangkok',
+        },
+    },
+    {
+        placeID: '2',
+        name: 'Read Cafe',
+        categoryCode: 'shop',
+        thumbnail: Salad,
+        map: {
+            latitude: '',
+            longitude: '',
+        },
+        rate: 4,
+        time: '7.00 AM - 9.00 PM',
+        location: {
+            district: 'Laksi',
+            province: 'Bangkok',
+        },
+    },
+    {
+        placeID: '3',
+        name: 'Lhong Tou',
+        categoryCode: 'shop',
+        thumbnail: Burger,
+        map: {
+            latitude: '',
+            longitude: '',
+        },
+        rate: 2,
+        time: '7.00 AM - 7.00 PM',
+        location: {
+            district: 'Laksi',
+            province: 'Bangkok',
+        },
+    },
+    {
+        placeID: '4',
+        name: 'B',
+        categoryCode: 'shop',
+        thumbnail: Salad,
+        map: {
+            latitude: '',
+            longitude: '',
+        },
+        rate: 1,
+        time: '7.00 AM - 9.00 PM',
+        location: {
+            district: 'Laksi',
+            province: 'Bangkok',
+        },
+    },
+    {
+        placeID: '5',
+        name: 'Kasetsart University',
+        categoryCode: 'shop',
+        thumbnail: Burger,
+        map: {
+            latitude: '',
+            longitude: '',
+        },
+        rate: 5,
+        time: '7.00 AM - 7.00 PM',
+        location: {
+            district: 'Laksi',
+            province: 'Bangkok',
+        },
+    },
+]
+
+export { Places, img0, img1, img2, img3, SearchPlaces }

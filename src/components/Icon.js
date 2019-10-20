@@ -22,6 +22,8 @@ import AddActive from '../assets/icon/add-white.svg'
 import AddInActive from '../assets/icon/add-grey.svg'
 import FavActive from '../assets/icon/heart-white.svg'
 import FavInActive from '../assets/icon/heart-grey.svg'
+import Time from '../assets/icon/time.svg'
+import PinkLocationIcon from '../assets/icon/location.svg'
 
 export {
     SearchIcon,
@@ -48,4 +50,6 @@ export {
     AddInActive,
     FavActive,
     FavInActive,
+    Time,
+    PinkLocationIcon,
 }
