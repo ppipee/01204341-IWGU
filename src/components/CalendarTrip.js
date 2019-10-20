@@ -41,8 +41,8 @@ class CalendarTrip extends Component {
 
     setAuth = () => {
         const { start_date: start, end_date: end } = this.state
-        // const name = this.props.getName
-        const name = 'iwgu'
+        const name = this.props.getName
+        // const name = 'iwgu'
         const auth = name !== '' && (start !== null && end !== null)
         this.setState({ auth })
     }

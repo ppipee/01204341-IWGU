@@ -25,7 +25,6 @@ class CreateTrip extends Component {
 
     createTrip = () => {
         if (this.props.getCreateAuth) {
-            console.log('test')
             const userid = this.props.getUserID
             const { name, date } = this.props.getNewTrip
             const day = this.calDay(date.start, date.end)
