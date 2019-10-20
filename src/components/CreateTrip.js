@@ -7,15 +7,15 @@ import CalendarTrip from './CalendarTrip'
 import '../assets/scss/createtrip.scss'
 
 class CreateTrip extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             plan_maker: false,
         }
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.nextProps.getAuth) {
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps !== this.props) {
             this.createTrip()
         }
     }
@@ -24,9 +24,10 @@ class CreateTrip extends Component {
         start ? (end - start) / (1000 * 60 * 60 * 24) + 1 : 0
 
     createTrip = () => {
-        if (this.props.getAuth) {
+        if (this.props.getCreateAuth) {
+            console.log('test')
             const userid = this.props.getUserID
-            const { name, date } = this.props
+            const { name, date } = this.props.getNewTrip
             const day = this.calDay(date.start, date.end)
             let days = []
             for (let i = 0; i < day; i++) {
@@ -49,6 +50,9 @@ class CreateTrip extends Component {
                 name,
                 days,
             }
+            this.setState({
+                plan_maker: false,
+            })
         }
     }
 
@@ -75,7 +79,6 @@ class CreateTrip extends Component {
     }
 
     render() {
-        this.createTrip()
         return (
             <>
                 <img
@@ -91,8 +94,7 @@ class CreateTrip extends Component {
 }
 const mapStateToProps = state => {
     return {
-        getName: state.newtrip.name,
-        getDate: state.newtrip.date,
+        getNewTrip: state.newtrip,
         getCreateAuth: state.newtrip.auth,
         getUserID: state.userauth.userid,
     }
