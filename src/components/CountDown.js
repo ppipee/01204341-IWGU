@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '../assets/scss/countdown.scss'
-import { Trip } from "./Demo"
+import { Trip } from './Demo'
 
 class CountDown extends Component {
     constructor() {
