@@ -10,7 +10,7 @@
             position: absolute;
             pointer-events: none;
             z-index: 1;
-            top: 32px;
+            top: 28px;
             width: 25px;
             height: 25px;
             .calendar-arrow-left {
@@ -148,7 +148,7 @@ button.DayPickerKeyboardShortcuts_buttonReset {
         border: none;
         background: none;
     }
-    top: -5px;
+    top: -9px;
 }
 .DateRangePicker_picker {
     z-index: 0;
@@ -181,7 +181,7 @@ button.DayPickerKeyboardShortcuts_buttonReset {
 }
 .CalendarMonth {
     position: relative;
-    top: -22px;
+    top: -26px;
 }
 .CalendarMonth_caption {
     position: relative;
@@ -195,7 +195,7 @@ button.DayPickerKeyboardShortcuts_buttonReset {
 }
 
 .DayPicker_weekHeader {
-    top: 22px;
+    top: 19px;
     // left: 18px !important;
     ul {
         font-size: 12px;
