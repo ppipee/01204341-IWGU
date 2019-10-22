@@ -16,12 +16,12 @@
         div {
             display: flex;
             flex-direction: row;
-            margin-bottom: 5px;
+            margin-bottom: 3.5px;
             input {
-                height: 17px;
                 &::placeholder {
                     color: #d8d8d8;
                 }
+                height: 100%;
                 width: 100%;
                 outline: none;
                 border: none;
