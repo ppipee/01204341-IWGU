@@ -123,5 +123,49 @@ const TopAttractions = [
 ]
 
 const Planners = []
+const Detail = {
+    loading: false,
+    placeDetail: {
+        placeID: 'P03000014',
+        name: 'Chino-Portugal Architecture Building',
+        location: {
+            address: '',
+            district: 'Sathon',
+            province: 'Bangkok',
+            sub_district: 'Yan Nawa',
+            postcode: '10120',
+        },
+        description:
+            'Phuket is one of the oldestcities with a long history in Thailand. This old town used to be the important port of the west of Malay Peninsula where Chinese people from oversea came for settling business and where cassiterite can be found. Phuket used to be ruled by the western both Portugal and Holland. This is why Phuket becomes major growing community and becomes the meeting location for those two major cultures from two different countries.',
+        map: {
+            longitude: 100.528338,
+            latitude: 13.72042,
+        },
+        category: [
+            'Corporate Functions',
+            'Fine Dining',
+            'Pubs & Bar ',
+            'Romance/First Dates',
+        ],
+        service: {
+            payment: ['credit', 'cash'],
+            facilities: null,
+        },
+        rate: 5,
+        time: '09:00 - 18:00',
+        contact: {
+            mobiles: '02222222',
+            urls: [
+                'http://thai.tourismthailand.org/สถานที่ท่องเที่ยว/ตึกโบราณสถาปัตยกรรมแบบชิโน-โปรตุกีส--5456',
+                'http://www.tourismthailand.org/Attraction/CHINO-PORTUGAL ARCHITECTURE BUILDING--5456',
+            ],
+            emails: 'pon@ponponponnn',
+            phone: '09222222',
+        },
+    },
+}
 
-export { Places, TopAttractions, Planners }
+const id = 'P08000001'
+const code = 'restaurant'
+
+export { Places, TopAttractions, Planners, Detail }
