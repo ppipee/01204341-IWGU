@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { graphql } from 'react-apollo'
 import {
     NavBar,
     ImageSlider,
@@ -7,11 +8,22 @@ import {
     Facilities,
     NearBy,
 } from '../components'
+import { placeDetail } from '../queries/place'
 
 class DetailPage extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {}
+    }
+
+    componentDidMount() {
+        const search = new URLSearchParams(this.props.location.search)
+        // const id = search.get('place')
+        // const code = search.get('code')
+        const id = 'P08000001'
+        const code = 'restaurant'
+        console.log(this.props.placeDetail)
+        this.props.placeDetail.refetch({ id, code })
     }
 
     render() {
@@ -27,4 +39,5 @@ class DetailPage extends Component {
         )
     }
 }
-export default DetailPage
+
+export default graphql(placeDetail, { name: 'placeDetail' })(DetailPage)
