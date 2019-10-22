@@ -7,6 +7,7 @@ import {
     RoutePlace,
     Facilities,
     NearBy,
+    Contact,
 } from '../components'
 import { placeDetail } from '../queries/place'
 
@@ -34,6 +35,7 @@ class DetailPage extends Component {
                 <InfoPlace />
                 <RoutePlace />
                 <Facilities />
+                <Contact />
                 <NearBy />
             </div>
         )
