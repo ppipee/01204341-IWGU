@@ -61,6 +61,7 @@
         left: 50%;
         transform: translateX(-50%);
         .day {
+            pointer-events: none;
             display: flex;
             font-size: 14px;
             line-height: 23px;
@@ -79,6 +80,7 @@
             }
         }
         .start-trip-btn {
+            cursor: pointer;
             font-size: 12px;
             border-radius: 5px;
             width: 106px;
@@ -106,6 +108,8 @@ button.DayPickerKeyboardShortcuts_buttonReset {
 .DateInput {
     width: 69.5px;
     .DateInput_input {
+        cursor: pointer;
+        padding: 0;
         text-align: center;
         font-size: 12px;
         height: 21px;
