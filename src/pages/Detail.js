@@ -1,0 +1,61 @@
+import React, { Component } from 'react'
+import { graphql } from 'react-apollo'
+import {
+    NavBar,
+    ImageSlider,
+    InfoPlace,
+    RoutePlace,
+    Facilities,
+    NearBy,
+    Contact,
+} from '../components'
+import { Detail } from '../components/Demo'
+import { placeDetail } from '../queries/place'
+
+class DetailPage extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {}
+    }
+
+    componentDidMount() {
+        const search = new URLSearchParams(this.props.location.search)
+        const id = search.get('place')
+        const code = search.get('code')
+        // this.props.data.refetch({ id, code })
+    }
+
+    render() {
+        const { placeDetail: data, loading } = Detail
+        // const { placeDetail: data, loading } = this.props.data
+        if (loading)
+            return (
+                <div className='detail-page'>
+                    <NavBar back />
+                    <div>Loading...</div>
+                    <NearBy this />
+                </div>
+            )
+        return (
+            <div className='detail-page'>
+                <NavBar back />
+                <ImageSlider img={data.img} />
+                <InfoPlace
+                    info={{
+                        name: data.name,
+                        category: data.category,
+                        time: data.time,
+                        days: data.days,
+                        rate: data.rate,
+                    }}
+                />
+                <RoutePlace map={data.map} location={data.location} />
+                <Facilities service={data.service} />
+                <Contact contact={data.contact} />
+                <NearBy this map={data.map} />
+            </div>
+        )
+    }
+}
+
+export default graphql(placeDetail)(DetailPage)
