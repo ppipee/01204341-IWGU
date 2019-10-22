@@ -122,6 +122,8 @@ const TopAttractions = [
     },
 ]
 
+const Images = [Burger, Coffee, Salad, Sashimi, Burger, Coffee, Salad, Sashimi]
+
 const Planners = []
 
-export { Places, TopAttractions, Planners }
+export { Places, TopAttractions, Planners, Images }
