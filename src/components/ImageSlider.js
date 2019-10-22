@@ -16,20 +16,30 @@ class ImageSlider extends Component {
     }
 
     focusImage = () =>
-        Images.map((img, i) => (
-            <img
-                className={`img${
-                    i === +this.state.image_show ? ' active' : ''
-                }`}
-                src={Images[this.state.image_show]}
-                alt='img-focus'
-            />
-        ))
+        Images.map((img, i) => {
+            const check = i === +this.state.image_show
+            return (
+                <img
+                    className={`img${check ? ' active' : ''}`}
+                    src={check ? Images[this.state.image_show] : ''}
+                    key={`img-foucus-${i + 1}`}
+                    alt='img-focus'
+                    style={
+                        check ? { transform: translateX(`-${20 * i} px`) } : {}
+                    }
+                />
+            )
+        })
 
     genImages = () => (
         <div className='images-container'>
             {Images.map((img, index) => (
-                <div>
+                <div
+                    className={`image-contain ${
+                        index === +this.state.image_show ? 'focus' : ''
+                    }`}
+                    key={`img-contain-${index + 1}`}
+                >
                     <img
                         src={img}
                         index={index}

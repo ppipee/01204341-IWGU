@@ -10,6 +10,7 @@ import ImageSlider from './ImageSlider'
 import InfoPlace from './InfoPlace'
 import RoutePlace from './RoutePlace'
 import Facilities from './Facilities'
+import Contact from './Contact'
 
 export {
     CountDown,
@@ -24,4 +25,5 @@ export {
     InfoPlace,
     RoutePlace,
     Facilities,
+    Contact,
 }
