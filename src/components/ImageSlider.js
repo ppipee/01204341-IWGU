@@ -14,6 +14,7 @@ class ImageSlider extends Component {
     handleImage = async e => {
         const index = e.target.getAttribute('index')
         this.sliceAnimation(index)
+        console.log(this.focusRef.offsetLeft)
         this.setState({ image_show: index })
     }
 
@@ -30,37 +31,43 @@ class ImageSlider extends Component {
             )
         })
 
-    genImages = () => (
-        <div
-            className='images-container'
-            ref={node => {
-                this.node = node
-            }}
-        >
-            {Images.map((img, index) => (
-                <div
-                    className={`image-contain ${
-                        index === +this.state.image_show ? 'focus' : ''
-                    }`}
-                    key={`img-contain-${index + 1}`}
-                >
-                    <img
-                        src={img}
-                        index={index}
-                        alt={`img-storage-${index}`}
-                        onClick={this.handleImage}
-                    />
-                </div>
-            ))}
-        </div>
-    )
+    genImages = () => {
+        // let padding = 58
+        // if (this.focusRef)
+        //     padding = this.focusRef.offsetLeft
+        return (
+            <div
+                className='images-container'
+                ref={node => {
+                    this.scrollRef = node
+                }}
+                // style={{ paddingLeft: `${padding}px` }}
+            >
+                {Images.map((img, index) => (
+                    <div
+                        className={`image-border ${
+                            index === +this.state.image_show ? 'focus' : ''
+                        }`}
+                        key={`img-contain-${index + 1}`}
+                    >
+                        <img
+                            src={img}
+                            index={index}
+                            alt={`img-storage-${index}`}
+                            onClick={this.handleImage}
+                        />
+                    </div>
+                ))}
+            </div>
+        )
+    }
 
     sliceAnimation = index => {
-        const position = 91 * index - this.node.scrollLeft
+        const position = 91 * index - this.scrollRef.scrollLeft
         for (let i = 0; i < Math.abs(position); i++) {
             setTimeout(() => {
-                if (position >= 0) this.node.scrollBy(1, 0)
-                else this.node.scrollBy(-1, 0)
+                if (position >= 0) this.scrollRef.scrollBy(1, 0)
+                else this.scrollRef.scrollBy(-1, 0)
             }, 1)
         }
     }
@@ -73,8 +80,17 @@ class ImageSlider extends Component {
                     src={Background}
                     alt='img-slider-bg'
                 />
-                <div className='image-focus'>{this.focusImage()}</div>
-                {this.genImages()}
+                <div>
+                    <div
+                        className='image-focus'
+                        ref={node => {
+                            this.focusRef = node
+                        }}
+                    >
+                        {this.focusImage()}
+                    </div>
+                    {this.genImages()}
+                </div>
             </div>
         )
     }
