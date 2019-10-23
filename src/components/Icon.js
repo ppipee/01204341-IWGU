@@ -23,6 +23,8 @@ import Calendar from '../assets/icon/calendar.svg'
 import RightArrow from '../assets/icon/right-arrow.svg'
 import CurveArrow from '../assets/icon/curve-arrow.svg'
 import Plus from '../assets/icon/plus.svg'
+import LeftArrowColor from '../assets/icon/left-arrow-color.svg'
+import RightArrowColor from '../assets/icon/right-arrow-color.svg'
 import CloseColor from '../assets/icon/close-color.svg'
 
 export {
@@ -51,5 +53,7 @@ export {
     Calendar,
     RightArrow,
     CurveArrow,
+    LeftArrowColor,
+    RightArrowColor,
     CloseColor,
 }
