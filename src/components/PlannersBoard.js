@@ -1,19 +1,31 @@
 import React, { Component } from 'react'
+import { graphql } from 'react-apollo'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
 import CreateTrip from './CreateTrip'
 import { BlackAirplane, Calendar, CurveArrow, RightArrow } from './Icon'
 import '../assets/scss/plannersboard.scss'
 import { Planners } from './Demo'
+import { getUserPlanners } from '../queries/planner'
 
 class PlannersBoard extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             planners: [],
         }
     }
 
     componentDidMount() {
-        this.setState({ planners: Planners })
+        const id = this.props.getUserID
+        this.props.data.refetch({ id })
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.data !== prevProps.data) {
+            console.log(this.props.data.userPlanner)
+            this.setState({ planners: this.props.data.userPlanner })
+        }
     }
 
     formatDate = date => {
@@ -22,11 +34,11 @@ class PlannersBoard extends Component {
     }
 
     genDate = days => {
-        const d_start = days[0].date
-        const d_end = days[days.length - 1].date
+        const d_start = new Date(days[0].date)
+        const d_end = new Date(days[days.length - 1].date)
         if (days.length === 1) return this.formatDate(d_start.toString())
         return `${this.formatDate(d_start.toString())} - ${this.formatDate(
-            d_end.toString()
+            d_start.toString()
         )}`
     }
 
@@ -40,7 +52,7 @@ class PlannersBoard extends Component {
                         <span>{this.genDate(planner.days)}</span>
                     </div>
                 </div>
-                <div className='btn-detail'>
+                <div className='btn-detail' id={planner.id}>
                     <img src={RightArrow} alt='arrow-icon' />
                 </div>
             </div>
@@ -77,4 +89,15 @@ class PlannersBoard extends Component {
         )
     }
 }
-export default PlannersBoard
+const mapStateToProps = state => {
+    return {
+        getUserID: state.userauth.userid,
+    }
+}
+export default compose(
+    connect(
+        mapStateToProps,
+        null
+    ),
+    graphql(getUserPlanners)
+)(PlannersBoard)
