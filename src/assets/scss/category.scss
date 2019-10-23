@@ -72,44 +72,36 @@
             grid-template-rows: 87px 87px 87px; 
             grid-column-gap: 15px;
             grid-row-gap: 9px;
-            // .clickFalse {
-                .card-loop {
-                    display: flex;
-                    flex-direction: column;
+            .card-loop {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;  
+                border: 1px solid transparent;
+                border-radius: 3px;
+                border-color: #b0b0b0;     
+                div {
+                    pointer-events: none;
+                }
+                &.active{
+                    background: #f3bca6;
+                    border-color: #f3bca6;  
+                }
+                img {
+                    justify-items: center;
+                }
+                .category-title {
                     justify-content: center;
-                    align-items: center;  
-                    border: 1px solid transparent;
-                    border-radius: 3px;
-                    border-color: #b0b0b0;      
-                    img {
-                        justify-items: center;
+                    margin-top: 8px;
+                    margin-bottom: 0px; 
+                    &.active {
+                        color: #ffffff;
                     }
-                    .category-title {
-                        justify-content: center;
-                        margin-top: 8px;
-                        margin-bottom: 0px; 
+                    &.inactive {
+                        color: #565656;
                     }
                 }
-            // }
-            // .clickTrue {
-            //     .card-loop {
-            //         display: flex;
-            //         flex-direction: column;
-            //         justify-content: center;
-            //         align-items: center;  
-            //         border: 1px solid transparent;
-            //         border-radius: 3px;
-            //         border-color: #f2b099;      
-            //         img {
-            //             justify-items: center;
-            //         }
-            //         .category-title {
-            //             justify-content: center;
-            //             margin-top: 8px;
-            //             margin-bottom: 0px; 
-            //         }
-            //     }
-            // }
+            } 
         }
     }
     .slick-dots li {

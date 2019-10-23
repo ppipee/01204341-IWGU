@@ -64,18 +64,25 @@ class Category extends Component {
         this.state = {
             popup: false,
             card_click: false,
+            card_state: [],
         }
     }
 
     handleClick = (state) => {
         this.setState({popup: state})
     }
-
-    // categoryClick = () => {
-    //     this.setState ({
-    //         card_click: !this.state.card_click}) 
-    // }
  
+    toggleCard = (e) => {
+        const index = +e.target.getAttribute("index")
+        let current_state = this.state.card_state
+        const check = current_state.includes(index)
+        if(check)
+            current_state.splice(current_state.indexOf(index),1)
+        else
+            current_state=[...current_state,index] 
+        this.setState({card_state:current_state})
+    }
+    
     categoryCard = () => {
         let box =[]
         let card = []
@@ -84,25 +91,19 @@ class Category extends Component {
                 box.push(<div className='category-card' key={`category-box-${box.length}`}>{card}</div>)
                 card = []
             }
-            card.push(
-                <div className='card-loop' key={`category-inactive-${category.title}`} >
-                    {/* <button className= {this.state.card_click ? "clickTrue": "clickFalse"} onClick={this.categoryClick}></button> */}
+            const check = this.state.card_state.includes(i)
+            card.push (
+                <div className={`card-loop ${check ? "active" : ""}`} key={`category-inactive-${category.title}`} index={i} onClick={this.toggleCard}>
                     <div>
-                        <img src={category.icon_inactive} alt='category-icon-inactive' />
+                        <img src={check ? category.icon_active: category.icon_inactive } alt='category-icon-inactive'/>
                     </div>
                     <div>
-                        <p className='category-title'> 
+                        <p className={`category-title ${check ? "active" : "inactive"}`}> 
                             {category.title}
                         </p>
                     </div>
                 </div>
             )
-            // if (this.state.card_click === "clickTrue")
-            //     return (
-            //         <>
-                    
-            //         </>
-            //     )
         })
         box.push(<div className='category-card' key={`category-box-${box.length}`}>{card}</div>)
         return box
@@ -136,7 +137,6 @@ class Category extends Component {
                 </>
             )
         return (<div className='category-container'/>)
-            
     }
 
     render() {
