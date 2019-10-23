@@ -127,3 +127,12 @@
         top: 125px;
     }
 }
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
