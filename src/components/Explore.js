@@ -84,7 +84,9 @@ export default class Explore extends Component {
                     <p> Explore </p>
                 </div>
                 <div>
-                    <Slider {...settings}>{this.genPlace()}</Slider>
+                    <Slider {...settings}>
+                        {this.genPlace()}
+                    </Slider>
                 </div>
             </div>
         )
