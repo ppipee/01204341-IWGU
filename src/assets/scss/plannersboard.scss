@@ -80,21 +80,19 @@
             }
         }
         .blank-board {
+            position: absolute;
+            bottom: 67.17px;
+            left: 50%;
             .text {
                 width: 143px;
                 font-size: 20px;
                 color: #b0b0b0;
                 text-align: center;
                 line-height: normal;
-                position: absolute;
-                bottom: 136.5px;
-                left: 50%;
+                margin-bottom: 9px;
                 transform: translateX(-50%);
             }
             img {
-                position: absolute;
-                bottom: 67.17px;
-                left: 50%;
                 transform: translateX(-200%);
             }
         }
