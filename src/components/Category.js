@@ -93,6 +93,7 @@ class Category extends Component {
     toggleCard = e => {
         const index = +e.target.getAttribute('index')
         let current_state = this.state.card_state
+        console.log(current_state)
         const check = current_state.includes(index)
         if (check) current_state.splice(current_state.indexOf(index), 1)
         else current_state = [...current_state, index]
