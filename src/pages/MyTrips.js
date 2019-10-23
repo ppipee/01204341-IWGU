@@ -11,7 +11,7 @@ class MyTrips extends Component {
     render() {
         return (
             <div className='my-trips'>
-                <NavBar design='planners' />
+                <NavBar back design='planners' />
                 <CountDown />
                 <PlannerBoard />
             </div>
