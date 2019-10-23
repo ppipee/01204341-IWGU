@@ -6,6 +6,7 @@ import HeadCreateTrip from './HeadCreateTrip'
 import Calendar from './CalendarTrip'
 import '../assets/scss/createtrip.scss'
 
+const Action = NewTripAction
 class CreateTrip extends Component {
     constructor(props) {
         super(props)
@@ -43,12 +44,12 @@ class CreateTrip extends Component {
                     },
                 ]
             }
-            console.log(days)
             const trip = {
                 userID: userid,
                 name,
                 days,
             }
+            this.props.setAuth(false)
             this.setState({
                 plan_maker: false,
             })
@@ -91,6 +92,11 @@ class CreateTrip extends Component {
         )
     }
 }
+const mapDispatchToProps = dispatch => {
+    return {
+        setAuth: auth => dispatch({ type: Action.SETAUTH, setAuth: auth }),
+    }
+}
 const mapStateToProps = state => {
     return {
         getNewTrip: state.newtrip,
@@ -100,5 +106,5 @@ const mapStateToProps = state => {
 }
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(CreateTrip)
