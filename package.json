@@ -10,7 +10,7 @@
     "license": "MIT",
     "scripts": {
         "start": "webpack-dev-server --mode development --open",
-        "build": "webpack --mode production",
+        "build": "webpack --mode production && cp public/* dist/",
         "test": "jest",
         "test-coverage": "jest --coverage",
         "format": "prettier --write \"**/*.+(js|jsx|json|css|scss)\"",
