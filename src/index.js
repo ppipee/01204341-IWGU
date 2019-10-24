@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import logger from 'redux-logger'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
-// import * as serviceWorker from './serviceWorker'
+import * as serviceWorker from './serviceWorker'
 import reducer from './reducers'
 import './assets/css/index.css'
 import Routes from './router'
@@ -32,4 +32,4 @@ ReactDOM.render(
 )
 
 // working offline if you want to close serviceWorker you can change to "unregister()"
-// serviceWorker.register()
+serviceWorker.register()
