@@ -12,11 +12,46 @@ import {
     BlankStar,
 } from './Icon'
 
-const tabs = [['add', AddActive, AddInActive], ['fav', FavActive, FavInActive]]
+const tabs = [
+    {
+        name: 'add',
+        icon_active: AddActive,
+        icon_inactive: AddInActive,
+    },
+    {
+        name: 'fav',
+        icon_active: FavActive,
+        icon_inactive: FavInActive,
+    },
+]
 class SearchResult extends Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            add: [],
+            fav: [],
+        }
+    }
+
+    toggle = event => {
+        const id = event.target.getAttribute('place_id')
+        const code = event.target.getAttribute('code')
+        const name = event.target.getAttribute('name')
+        let target = this.state[name]
+        const object = { placeID: id, chut: name }
+        let check = false
+        let index
+        this.state[name].forEach((item, i) => {
+            if (object.placeID === item.placeID) {
+                check = true
+                index = i
+            }
+        })
+        if (check) target.splice(index, 1)
+        else target = [...target, object]
+        this.setState({
+            [name]: target,
+        })
     }
 
     genStar(ratting) {
@@ -29,6 +64,31 @@ class SearchResult extends Component {
             container.push(<img alt='blank-star' src={BlankStar} />)
         }
         return <span>{container}</span>
+    }
+
+    genTabs(id, code) {
+        const tabbar = []
+        tabs.forEach(tab => {
+            const { name, icon_active, icon_inactive } = tab
+            const object = { placeID: id, chut: name }
+            let check
+            this.state[name].forEach(item => {
+                if (object.placeID === item.placeID) check = true
+            })
+            tabbar.push(
+                <div
+                    id={`${name}`}
+                    className={`${check ? 'active' : ''}`}
+                    onClick={this.toggle}
+                    name={name}
+                    place_id={id}
+                    code={code}
+                >
+                    <img alt='' src={check ? icon_active : icon_inactive} />
+                </div>
+            )
+        })
+        return <div className='add-fav'>{tabbar}</div>
     }
 
     genCards(places) {
@@ -68,10 +128,7 @@ class SearchResult extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className='add-fav'>
-                        <div className='add'>ew</div>
-                        <div className='fav'>we</div>
-                    </div>
+                    {this.genTabs(place.placeID, place.categoryCode)}
                 </div>
             )
         )

@@ -75,17 +75,31 @@
                 }
             }
             .add-fav {
-                .add {
+                #add {
                     width: 46px;
                     height: 53px;
                     border-radius: 3px;
                     border: solid 0.5px #e8e8e8;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    &.active {
+                        background: #f2b099;
+                        border: solid 0.5px #f2b099;
+                    }
                 }
-                .fav {
+                #fav {
                     width: 46px;
                     height: 53px;
                     border-radius: 3px;
-                    border: solid 0.5px #e8e8e8;
+                    border-left: solid 0.5px #e8e8e8;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    &.active {
+                        background: #fedec4;
+                        border: solid 0.5px #fedec4;
+                    }
                 }
             }
         }
