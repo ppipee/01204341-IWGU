@@ -218,4 +218,4 @@ const Detail = {
 const id = 'P08000001'
 const code = 'restaurant'
 
-export { Places, TopAttractions, Planners, Detail, Images }
+export { Places, TopAttractions, Planners, Detail, Images, Trip }
