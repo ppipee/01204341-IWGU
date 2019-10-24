@@ -6,6 +6,7 @@ import HeadCreateTrip from './HeadCreateTrip'
 import Calendar from './CalendarTrip'
 import '../assets/scss/createtrip.scss'
 
+const Action = NewTripAction
 class CreateTrip extends Component {
     constructor(props) {
         super(props)
@@ -43,12 +44,12 @@ class CreateTrip extends Component {
                     },
                 ]
             }
-            console.log(days)
             const trip = {
                 userID: userid,
                 name,
                 days,
             }
+            this.props.setAuth(false)
             this.setState({
                 plan_maker: false,
             })
@@ -60,6 +61,7 @@ class CreateTrip extends Component {
     }
 
     showMaker = () => {
+        document.body.style.overflow = 'hidden'
         if (this.state.plan_maker) {
             return (
                 <div className='plan-maker popup'>
@@ -70,6 +72,7 @@ class CreateTrip extends Component {
                 </div>
             )
         }
+        document.body.style.overflow = 'unset'
         return (
             <div className='plan-maker'>
                 <div className='create-trip' />
@@ -91,6 +94,11 @@ class CreateTrip extends Component {
         )
     }
 }
+const mapDispatchToProps = dispatch => {
+    return {
+        setAuth: auth => dispatch({ type: Action.SETAUTH, setAuth: auth }),
+    }
+}
 const mapStateToProps = state => {
     return {
         getNewTrip: state.newtrip,
@@ -100,5 +108,5 @@ const mapStateToProps = state => {
 }
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(CreateTrip)
