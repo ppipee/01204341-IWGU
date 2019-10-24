@@ -1,14 +1,58 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Plus } from './Icon'
+import { NewTripAction } from '../action'
 import HeadCreateTrip from './HeadCreateTrip'
-import CalendarTrip from './CalendarTrip'
+import Calendar from './CalendarTrip'
 import '../assets/scss/createtrip.scss'
 
+const Action = NewTripAction
 class CreateTrip extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             plan_maker: false,
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps !== this.props) {
+            this.createTrip()
+        }
+    }
+
+    calDay = (start, end) =>
+        start ? (end - start) / (1000 * 60 * 60 * 24) + 1 : 0
+
+    createTrip = () => {
+        if (this.props.getCreateAuth) {
+            const userid = this.props.getUserID
+            const { name, date } = this.props.getNewTrip
+            const day = this.calDay(date.start, date.end)
+            let days = []
+            for (let i = 0; i < day; i++) {
+                const current_date = date.start
+                days = [
+                    ...days,
+                    {
+                        day: i,
+                        date: new Date(
+                            current_date.setDate(current_date.getDate() + i)
+                        ),
+                        places: [],
+                        note: '',
+                    },
+                ]
+            }
+            const trip = {
+                userID: userid,
+                name,
+                days,
+            }
+            this.props.setAuth(false)
+            this.setState({
+                plan_maker: false,
+            })
         }
     }
 
@@ -17,16 +61,18 @@ class CreateTrip extends Component {
     }
 
     showMaker = () => {
+        document.body.style.overflow = 'hidden'
         if (this.state.plan_maker) {
             return (
                 <div className='plan-maker popup'>
                     <div className='create-trip popup'>
                         <HeadCreateTrip click={this.handleClick} />
-                        <CalendarTrip />
+                        <Calendar />
                     </div>
                 </div>
             )
         }
+        document.body.style.overflow = 'unset'
         return (
             <div className='plan-maker'>
                 <div className='create-trip' />
@@ -48,4 +94,19 @@ class CreateTrip extends Component {
         )
     }
 }
-export default CreateTrip
+const mapDispatchToProps = dispatch => {
+    return {
+        setAuth: auth => dispatch({ type: Action.SETAUTH, setAuth: auth }),
+    }
+}
+const mapStateToProps = state => {
+    return {
+        getNewTrip: state.newtrip,
+        getCreateAuth: state.newtrip.auth,
+        getUserID: state.userauth.userid,
+    }
+}
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CreateTrip)

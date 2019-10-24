@@ -1,13 +1,10 @@
 .count-down {
-    height: 178px;
-    background: url('../icon/header-bg.svg') no-repeat;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-
+    height: 175px;
+    p {
+        margin-bottom: 0px;
+    }
     .head {
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
-        -webkit-text-stroke: 0.2px #ffffff;
         font-size: 18px;
         padding: 52px 0 0 0;
         justify-content: center;
@@ -17,12 +14,12 @@
     }
 
     .defaultText {
-        margin-top: -3%;
+        margin-top: -10px;
         display: flex;
         justify-content: center;
         color: white;
         .colon {
-            margin-bottom: 25px;
+            margin-bottom: 10px;
             display: flex;
             flex-direction: column;
             justify-content: center;

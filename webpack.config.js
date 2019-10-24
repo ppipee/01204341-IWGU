@@ -2,9 +2,10 @@ const { resolve } = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const path = require('path')
 
 module.exports = {
-    entry: './src/index.js',
+    entry: ['@babel/polyfill', './src/index.js'],
     output: {
         filename: 'bundle.js',
         path: resolve(__dirname, 'dist'),
@@ -34,17 +35,24 @@ module.exports = {
             {
                 test: /\.css$/,
                 exclude: /(node_modules)/,
-                use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.css$/,
+                include: path.join(__dirname, 'node_modules'),
+                use: ['style-loader', 'css-loader'],
             },
             {
                 test: /\.scss$/,
                 exclude: /(node_modules)/,
-                use: [
-                    { loader: 'style-loader' },
-                    { loader: 'css-loader' },
-                    { loader: 'sass-loader' },
-                ],
+                use: ['style-loader', 'css-loader', 'sass-loader'],
             },
+            {
+                test: /\.scss$/,
+                include: path.join(__dirname, 'node_modules'),
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
+
             {
                 test: /\.(png|jpg|jpeg|svg)$/,
                 exclude: /(node_modules)/,
@@ -52,6 +60,7 @@ module.exports = {
             },
             {
                 test: /\.less$/,
+                exclude: /(node_modules)/,
                 use: [
                     'style-loader',
                     { loader: 'css-loader', options: { sourceMap: 1 } },

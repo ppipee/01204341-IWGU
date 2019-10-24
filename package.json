@@ -10,7 +10,7 @@
     "license": "MIT",
     "scripts": {
         "start": "webpack-dev-server --mode development --open",
-        "build": "webpack --mode production",
+        "build": "webpack --mode production && cp public/_redirects src/ServiceWorker.js dist/",
         "test": "jest",
         "test-coverage": "jest --coverage",
         "format": "prettier --write \"**/*.+(js|jsx|json|css|scss)\"",
@@ -45,7 +45,6 @@
         "jest": "^24.9.0",
         "lint-staged": "^9.4.1",
         "node-sass": "^4.12.0",
-        "path": "^0.12.7",
         "prettier": "^1.18.2",
         "react-hot-loader": "^4.12.13",
         "sass-loader": "^8.0.0",
@@ -56,6 +55,7 @@
         "webpack-dev-server": "^3.8.1"
     },
     "dependencies": {
+        "@babel/polyfill": "^7.6.0",
         "antd": "^3.23.3",
         "apollo-boost": "^0.4.4",
         "enzyme": "^3.10.0",
@@ -64,6 +64,7 @@
         "moment": "^2.24.0",
         "react": "^16.9.0",
         "react-apollo": "^3.1.2",
+        "react-dates": "^21.2.1",
         "react-dom": "^16.9.0",
         "react-redux": "^7.1.1",
         "react-router-dom": "^5.0.1",

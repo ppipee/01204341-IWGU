@@ -83,7 +83,9 @@ class NavBar extends Component {
                         <img className='menu' src={Menu} alt='menu' />
                     </span>
                 </div>
-                {/* <div className="blank-navbar"/> */}
+                {this.props.design !== 'planners' && (
+                    <div className='blank-navbar' />
+                )}
             </>
         )
     }

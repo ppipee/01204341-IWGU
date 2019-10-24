@@ -1,0 +1,118 @@
+.category {
+    margin: 0 8px 0 auto;
+
+    .category-container {
+        background: transparent;
+        transition: 1s linear;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        display: none;
+        &.true {
+            display: block;
+            background: rgba(45, 32, 20, 0.73);
+        }
+    }
+
+    .category-modal {
+        align-items: baseline;
+        width: 296px;
+        height: 358px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff;
+        border-radius: 10px 10px 10px 10px;
+        z-index: 2;
+        &.active {
+            display: block;
+        }
+        .search-bar {
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            .search-icon {
+                margin-top: 19px;
+                margin-left: 19px;
+                height: 13px;
+                width: 13px;
+            }
+            input {
+                margin-top: 13px;
+                margin-left: 13px;
+                width: 112px;
+                font-size: 16px;
+                outline: 0;
+                border: 0;
+                &::placeholder {
+                    color: #b0b0b0;
+                }
+            }
+            .close-icon {
+                position: unset;
+                margin-top: 17px;
+                margin-left: 106px;
+            }
+        }
+        hr {
+            position: absolute;
+            border: 1px solid #e7e7e7;
+            width: 139px;
+            left: 18px;
+            top: 37px;
+        }
+        .category-card {
+            margin-top: 15px;
+            margin-left: 17px;
+            display: grid !important;
+            grid-template-columns: 77px 77px 77px;
+            grid-template-rows: 87px 87px 87px;
+            grid-column-gap: 15px;
+            grid-row-gap: 9px;
+            .card-loop {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid transparent;
+                border-radius: 3px;
+                border-color: #b0b0b0;
+                div {
+                    pointer-events: none;
+                }
+                &.active {
+                    background: #f3bca6;
+                    border-color: #f3bca6;
+                }
+                img {
+                    justify-items: center;
+                }
+                .category-title {
+                    justify-content: center;
+                    margin-top: 8px;
+                    margin-bottom: 0px;
+                    &.active {
+                        color: #ffffff;
+                    }
+                    &.inactive {
+                        color: #565656;
+                    }
+                }
+            }
+        }
+    }
+    .slick-dots {
+        bottom: inherit;
+        li {
+            margin: 0px;
+            &.slick-active button:before {
+                opacity: 10;
+                color: #f3bca6;
+            }
+        }
+    }
+}
