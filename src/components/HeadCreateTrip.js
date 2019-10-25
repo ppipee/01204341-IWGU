@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { CloseColor } from './Icon'
+import { NewTripAction } from '../action'
 import '../assets/scss/headcreatetrip.scss'
+
+const Action = NewTripAction
 
 class HeadCreateTrip extends Component {
     constructor(props) {
@@ -13,6 +17,16 @@ class HeadCreateTrip extends Component {
 
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside)
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        let input = nextState.value_inp
+        console.log('state: ', this.state.value_inp, 'next: ', input)
+        if (this.state.value_inp !== input) {
+            input = input.length <= 20 ? input : ''
+            console.log('inp:', input)
+            this.props.setName(input)
+        }
     }
 
     handleChange = e => {
@@ -62,4 +76,14 @@ class HeadCreateTrip extends Component {
         )
     }
 }
-export default HeadCreateTrip
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setName: name => dispatch({ type: Action.SETNAMETRIP, setName: name }),
+    }
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(HeadCreateTrip)

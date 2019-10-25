@@ -1,4 +1,5 @@
 .add-btn {
+    cursor: pointer;
     position: fixed;
     bottom: 20.9px;
     left: 50%;
@@ -18,7 +19,7 @@
         .create-trip.popup {
             border-radius: 10px;
             width: 275px;
-            height: 330px;
+            height: 375px;
             background-color: #fff;
         }
     }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import DatePicker from 'react-datepicker'
 import { DateRangePicker } from 'react-dates'
 import { connect } from 'react-redux'
 import 'react-dates/initialize'
@@ -102,6 +101,7 @@ class CalendarTrip extends Component {
                         enableOutsideDays
                         startDatePlaceholderText='start'
                         endDatePlaceholderText='end'
+                        readOnly
                     />
                 </div>
                 <div className='state'>

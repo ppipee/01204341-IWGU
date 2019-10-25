@@ -152,6 +152,8 @@ const Trip = [
     },
 ]
 
+const Images = [Burger, Coffee, Salad, Sashimi, Burger, Coffee, Salad, Sashimi]
+
 const Planners = []
 const Detail = {
     loading: false,
@@ -198,4 +200,4 @@ const Detail = {
 const id = 'P08000001'
 const code = 'restaurant'
 
-export { Places, TopAttractions, Planners, Detail }
+export { Places, TopAttractions, Planners, Detail, Images }

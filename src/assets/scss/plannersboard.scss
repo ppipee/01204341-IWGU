@@ -95,6 +95,44 @@
             img {
                 transform: translateX(-200%);
             }
+            &::after {
+                position: absolute;
+                z-index: 1;
+                transform: translateX(-300%);
+                content: '';
+                width: 30px;
+                height: 70px;
+                top: 55px;
+                background-color: white;
+                animation: loop 0, 9s infinite;
+                -webkit-animation: loop 0.9s infinite;
+            }
         }
+    }
+}
+
+@keyframes loop {
+    from {
+        top: 55px;
+    }
+    to {
+        top: 125px;
+    }
+}
+@-webkit-keyframes loop {
+    from {
+        top: 55px;
+    }
+    to {
+        top: 125px;
+    }
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
