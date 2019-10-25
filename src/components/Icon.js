@@ -26,6 +26,9 @@ import Plus from '../assets/icon/plus.svg'
 import LeftArrowColor from '../assets/icon/left-arrow-color.svg'
 import RightArrowColor from '../assets/icon/right-arrow-color.svg'
 import CloseColor from '../assets/icon/close-color.svg'
+import Dollar from '../assets/icon/dollar.svg'
+import DownArrow from '../assets/icon/down-arrow.svg'
+import UpArrow from '../assets/icon/up-arrow.svg'
 import PinkClose from '../assets/icon/pink-close.svg'
 import LandmarkCategoryInActive from '../assets/icon/landmark-inactive.svg'
 import LandmarkCategoryActive from '../assets/icon/landmark-active.svg'
@@ -75,6 +78,9 @@ export {
     LeftArrowColor,
     RightArrowColor,
     CloseColor,
+    Dollar,
+    DownArrow,
+    UpArrow,
     PinkClose,
     LandmarkCategoryInActive,
     LandmarkCategoryActive,
