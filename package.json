@@ -21,6 +21,7 @@
         "@babel/cli": "^7.6.0",
         "@babel/core": "^7.6.0",
         "@babel/plugin-proposal-class-properties": "^7.5.5",
+        "@babel/polyfill": "^7.6.0",
         "@babel/preset-env": "^7.6.0",
         "@babel/preset-react": "^7.0.0",
         "@hot-loader/react-dom": "^16.9.0",
@@ -55,7 +56,6 @@
         "webpack-dev-server": "^3.8.1"
     },
     "dependencies": {
-        "@babel/polyfill": "^7.6.0",
         "antd": "^3.23.3",
         "apollo-boost": "^0.4.4",
         "enzyme": "^3.10.0",

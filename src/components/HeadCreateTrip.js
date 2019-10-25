@@ -19,12 +19,10 @@ class HeadCreateTrip extends Component {
         document.addEventListener('mousedown', this.handleClickOutside)
     }
 
-    componentWillUpdate(nextProps, nextState) {
+    UNSAFE_componentWillUpdate(nextProps, nextState) {
         let input = nextState.value_inp
-        console.log('state: ', this.state.value_inp, 'next: ', input)
         if (this.state.value_inp !== input) {
             input = input.length <= 20 ? input : ''
-            console.log('inp:', input)
             this.props.setName(input)
         }
     }
