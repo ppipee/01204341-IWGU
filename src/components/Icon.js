@@ -28,6 +28,7 @@ import RightArrowColor from '../assets/icon/right-arrow-color.svg'
 import CloseColor from '../assets/icon/close-color.svg'
 import Dollar from '../assets/icon/dollar.svg'
 import DownArrow from '../assets/icon/down-arrow.svg'
+import UpArrow from '../assets/icon/up-arrow.svg'
 
 export {
     SearchIcon,
@@ -60,4 +61,5 @@ export {
     CloseColor,
     Dollar,
     DownArrow,
+    UpArrow,
 }

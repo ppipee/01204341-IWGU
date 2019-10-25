@@ -1,32 +1,24 @@
 import React, { Component } from 'react'
 import '../assets/scss/infoplace.scss'
-import { Dollar, DownArrow } from './Icon'
+import { Dollar, DownArrow, UpArrow } from './Icon'
 import OpeningHour from './OpeningHour'
 import Review from './Review'
 
-const Desc = {
-    description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc scelerisque volutpat morbi interdum maurisssssssssssssdasds Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-}
-
 const ShowMore = {
-    text: 'Show more',
+    text: 'more',
     icon: DownArrow,
-    style: 'show-more',
 }
 
 const ShowLess = {
-    text: 'Show less',
-    icon: DownArrow,
-    style: 'show-less',
+    text: 'less',
+    icon: UpArrow,
 }
 
 class InfoPlace extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             showMore: false,
-            fullDesc: Desc.description,
         }
     }
 
@@ -36,42 +28,34 @@ class InfoPlace extends Component {
         })
     }
 
-    showSomeText = () => {
+    showSomeText = fullDesc => {
+        const someDescArray = fullDesc.split('')
         const remainingDescArray = []
-        const someDescArray = this.state.fullDesc.split('')
-        while (someDescArray.length > 120) {
+        let isShow = ''
+        const maxLength = (window.innerWidth * 120) / 375
+        while (someDescArray.length > maxLength) {
             remainingDescArray.unshift(someDescArray.pop())
         }
         const someDesc = someDescArray.join('')
         const remainingDesc = remainingDescArray.join('')
 
         if (!this.state.showMore) {
-            return (
-                <>
-                    {someDesc}
-                    <span className='show-remaining--hide'>
-                        {remainingDesc}
-                    </span>
-                </>
-            )
+            isShow = 'hide'
         }
         return (
-            <>
+            <span>
                 {someDesc}
-                <span className='show-remaining'>{remainingDesc}</span>
-            </>
+                <div className={`remaining ${isShow}`}>{remainingDesc}</div>
+            </span>
         )
     }
 
-    genButton() {
-        const buttonText = this.state.showMore ? ShowLess : ShowMore
-        return (
-            <div onClick={this.toggleShowMore} className={buttonText.style}>
-                {buttonText.text}
-                <img src={buttonText.icon} alt={buttonText.style} />
+    genTag = tags =>
+        tags.map(tag => (
+            <div className='tag' key={tag}>
+                {tag}
             </div>
-        )
-    }
+        ))
 
     genPrice() {
         const priceLevel = 4
@@ -82,23 +66,39 @@ class InfoPlace extends Component {
         return price
     }
 
+    genButton() {
+        const buttonText = this.state.showMore ? ShowLess : ShowMore
+        return (
+            <div
+                onClick={this.toggleShowMore}
+                className={`show-${buttonText.text}`}
+            >
+                Show {buttonText.text}
+                <img src={buttonText.icon} alt={buttonText.text} />
+            </div>
+        )
+    }
+
     render() {
-        const { someDesc, fullDesc } = this.state
+        const { name, category, description } = this.props.info
         return (
             <div className='info-place'>
                 <div className='info-border'>
-                    <p className='title'>Place Title</p>
+                    <p className='title'>{name}</p>
                     <div className='description'>
                         <div className='subtitle'>
-                            <p>Café</p>
+                            <p>{category[0]}</p>
                             <div className='dot' />
                             <div className='price'>{this.genPrice()}</div>
                         </div>
                         <div className='details'>
-                            {this.showSomeText()}
+                            {this.showSomeText(description)}
                             {this.genButton()}
                         </div>
                         <div className='category-tags' />
+                        <div className='search-tag'>
+                            {this.genTag(category)}
+                        </div>
                     </div>
                     <hr />
                     <OpeningHour />
@@ -108,4 +108,5 @@ class InfoPlace extends Component {
         )
     }
 }
+
 export default InfoPlace
