@@ -55,14 +55,6 @@ class SearchBar extends Component {
         })
     }
 
-    swapPage = e => {
-        if (e.target.value !== '' && e.charCode === 13) {
-            const { setWord, history } = this.props
-            setWord(e.target.value)
-            history.push(`/search`)
-        }
-    }
-
     genTag = () =>
         tags.map(tag => (
             <div className='tag' key={tag}>

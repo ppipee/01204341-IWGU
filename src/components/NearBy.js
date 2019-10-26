@@ -39,8 +39,6 @@ class NearBy extends Component {
             new_state[key] = false
         })
         new_state[target_state] = true
-        console.log(this.state.tab_state)
-        console.log(new_state)
         this.setState({
             tab_state: new_state,
         })
@@ -85,23 +83,19 @@ class NearBy extends Component {
                 </div>
             )
         })
-        return (
-            <div className='wave'>
-                <div className='wave-background'>{tabbar}</div>
-            </div>
-        )
+        return <div className='wave'>{tabbar}</div>
     }
 
     render() {
         return (
-            <div className='NearBy'>
+            <div className='nearby'>
                 <div className='head'>
                     <img
                         className='location-icon'
                         alt='location-icon'
                         src={LocationIcon}
                     />
-                    <span className='nearby-you'>Nearby-you</span>
+                    <span className='nearby-you'>Nearby you</span>
                 </div>
                 <div className='body'>
                     {this.genTabs()}
@@ -110,6 +104,10 @@ class NearBy extends Component {
                             this.genPlace(Places.res, 'pic_res')}
                         {this.state.tab_state.land &&
                             this.genPlace(Places.land, 'pic_land')}
+                        {this.state.tab_state.tree &&
+                            this.genPlace(Places.tree, 'pic_tree')}
+                        {this.state.tab_state.sleep &&
+                            this.genPlace(Places.sleep, 'pic_sleep')}
                     </div>
                 </div>
             </div>

@@ -56,11 +56,53 @@ const Places = {
             name: 'Pipe',
         },
     ],
-}
 
-// SearchPlaces.map(place=>{
-// Object.keys(place).map(key=>place[key])}
-// )
+    tree: [
+        {
+            src: Read,
+            name: 'Chut',
+        },
+        {
+            src: Lhong_Tou,
+            name: 'Earn',
+        },
+        {
+            src: Museum,
+            name: 'Eye',
+        },
+        {
+            src: Salad,
+            name: 'Pipe',
+        },
+        {
+            src: Museum,
+            name: 'Pon',
+        },
+    ],
+
+    sleep: [
+        {
+            src: Read,
+            name: 'Chut',
+        },
+        {
+            src: Lhong_Tou,
+            name: 'Earn',
+        },
+        {
+            src: Museum,
+            name: 'Eye',
+        },
+        {
+            src: Salad,
+            name: 'Pipe',
+        },
+        {
+            src: Read,
+            name: 'Pon',
+        },
+    ],
+}
 
 const SearchPlaces = [
     {
@@ -145,4 +187,109 @@ const SearchPlaces = [
     },
 ]
 
-export { Places, img0, img1, img2, img3, SearchPlaces }
+const TopAttractions = [
+    {
+        id: 0,
+        image: img0,
+        title: 'Bangkok, Thailand',
+        subtitle: 'The Beautiful temple near Chao Phraya River',
+    },
+    {
+        id: 1,
+        image: img1,
+        title: 'Bangkok, Thailand',
+        subtitle: 'The Beautiful temple near Chao Phraya River',
+    },
+    {
+        id: 2,
+        image: img2,
+        title: 'Bangkok, Thailand',
+        subtitle: 'The Beautiful temple near Chao Phraya River',
+    },
+    {
+        id: 3,
+        image: img3,
+        title: 'Bangkok, Thailand',
+        subtitle: 'The Beautiful temple near Chao Phraya River',
+    },
+]
+// const TimePlanner = [
+//     new Date(2019,11,18),
+//     new Date(2019,10,19),
+//     new Date(2019,9,28),
+//     new Date(2019,10,7),
+//     new Date(2019,11,5),
+//     new Date(2019,10,20),
+//     new Date(2019,9,22),
+// ]
+
+const Trip = [
+    {
+        days: [
+            {
+                date: new Date(2019, 9, 20),
+                places: [
+                    {
+                        time: {
+                            start: new Date(2019, 9, 21, 2, 0, 0),
+                            end: new Date(2019, 9, 22, 17, 0, 0),
+                        },
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        days: [],
+    },
+]
+
+const Images = [Burger, Coffee, Salad, Sashimi, Burger, Coffee, Salad, Sashimi]
+
+const Planners = []
+const Detail = {
+    loading: false,
+    placeDetail: {
+        placeID: 'P03000014',
+        name: 'Chino-Portugal Architecture Building',
+        location: {
+            address: '',
+            district: 'Sathon',
+            province: 'Bangkok',
+            sub_district: 'Yan Nawa',
+            postcode: '10120',
+        },
+        description:
+            'Phuket is one of the oldestcities with a long history in Thailand. This old town used to be the important port of the west of Malay Peninsula where Chinese people from oversea came for settling business and where cassiterite can be found. Phuket used to be ruled by the western both Portugal and Holland. This is why Phuket becomes major growing community and becomes the meeting location for those two major cultures from two different countries.',
+        map: {
+            longitude: 100.528338,
+            latitude: 13.72042,
+        },
+        category: [
+            'Corporate Functions',
+            'Fine Dining',
+            'Pubs & Bar ',
+            'Romance/First Dates',
+        ],
+        service: {
+            payment: ['credit', 'cash'],
+            facilities: null,
+        },
+        rate: 5,
+        time: '09:00 - 18:00',
+        contact: {
+            mobiles: '02222222',
+            urls: [
+                'http://thai.tourismthailand.org/สถานที่ท่องเที่ยว/ตึกโบราณสถาปัตยกรรมแบบชิโน-โปรตุกีส--5456',
+                'http://www.tourismthailand.org/Attraction/CHINO-PORTUGAL ARCHITECTURE BUILDING--5456',
+            ],
+            emails: 'pon@ponponponnn',
+            phone: '09222222',
+        },
+    },
+}
+
+const id = 'P08000001'
+const code = 'restaurant'
+
+export { Places, TopAttractions, Planners, Detail, Images, Trip, SearchPlaces }

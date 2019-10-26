@@ -5,7 +5,9 @@ import { createStore, applyMiddleware } from 'redux'
 // import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import logger from 'redux-logger'
-import * as serviceWorker from './serviceWorker'
+import ApolloClient from 'apollo-boost'
+import { ApolloProvider } from 'react-apollo'
+import * as serviceWorker from './ServiceWorker'
 import reducer from './reducers'
 import './assets/css/index.css'
 import Routes from './router'
@@ -14,14 +16,20 @@ import Routes from './router'
 const store = createStore(reducer, applyMiddleware(logger))
 // const store = createStore(reducer)
 
+const client = new ApolloClient({
+    uri: 'https://iwgu.herokuapp.com/graphql',
+})
+
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
-            <Routes />
-        </BrowserRouter>
+        <ApolloProvider client={client}>
+            <BrowserRouter>
+                <Routes />
+            </BrowserRouter>
+        </ApolloProvider>
     </Provider>,
     document.getElementById('root')
 )
 
-// working offling if you want to close serviceWorker you can change to "unregister()"
+// working offline if you want to close serviceWorker you can change to "unregister()"
 serviceWorker.register()

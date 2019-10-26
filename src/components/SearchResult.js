@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import '../assets/scss/searchresult.scss'
 import { SearchPlaces } from './Demo'
 import {
@@ -52,6 +53,7 @@ class SearchResult extends Component {
         this.setState({
             [name]: target,
         })
+        console.log(this.state)
     }
 
     genStar(ratting) {
@@ -96,43 +98,53 @@ class SearchResult extends Component {
         places.map(place =>
             box.push(
                 <div className='card'>
-                    <img
-                        className='picture'
-                        alt={place.name}
-                        src={place.thumbnail}
-                    />
-                    <div className='content'>
-                        <div className='line1'>{place.name}</div>
-                        <div className='line-group'>
-                            <div className='line2'>
-                                <span className='rating'>
-                                    {this.genStar(place.rate)}
-                                </span>
-                                <span className='dot' />
-                                <span className='category'>
-                                    {place.categoryCode}
-                                </span>
-                            </div>
-                            <div className='line3'>
-                                <img alt='time' src={Time} />
-                                <span className='time'>{place.time}</span>
-                            </div>
-                            <div className='line4'>
-                                <img alt='location' src={PinkLocationIcon} />
-                                <span className='map'>e</span>
-                                <span className='dot' />
-                                <span className='location'>
-                                    {place.location.district},
-                                    {place.location.province}
-                                </span>
+                    <Link to='/detail?sort={place.placeID, place.categoryCode}'>
+                        <img
+                            className='picture'
+                            alt={place.name}
+                            src={place.thumbnail}
+                        />
+                    </Link>
+                    <Link
+                        className='go-to-detail'
+                        to='/detail?sort={place.placeID, place.categoryCode}'
+                    >
+                        <div className='content'>
+                            <div className='line1'>{place.name}</div>
+                            <div className='line-group'>
+                                <div className='line2'>
+                                    <span className='rating'>
+                                        {this.genStar(place.rate)}
+                                    </span>
+                                    <span className='dot' />
+                                    <span className='category'>
+                                        {place.categoryCode}
+                                    </span>
+                                </div>
+                                <div className='line3'>
+                                    <img alt='time' src={Time} />
+                                    <span className='time'>{place.time}</span>
+                                </div>
+                                <div className='line4'>
+                                    <img
+                                        alt='location'
+                                        src={PinkLocationIcon}
+                                    />
+                                    <span className='map'>e</span>
+                                    <span className='dot' />
+                                    <span className='location'>
+                                        {place.location.district},
+                                        {place.location.province}
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                     {this.genTabs(place.placeID, place.categoryCode)}
                 </div>
             )
         )
-        return <div>{box}</div>
+        return <div className='card-container'>{box}</div>
     }
 
     render() {
