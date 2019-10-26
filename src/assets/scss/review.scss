@@ -5,9 +5,10 @@
     -webkit-padding-after: $bottom;
     -webkit-padding-start: $left;
 }
+
 .review-section {
     color: #707070;
-    @include padding(6px, 0, 13px, 14px);
+    @include padding(6px, 0, 0, 14px);
 
     div {
         display: flex;
@@ -24,9 +25,6 @@
                 width: 50px;
                 border-radius: 50%;
                 font-size: 16px;
-                .sub-circle {
-                    -webkit-clip-path: inset(0 40px 50px 40px);
-                }
                 img {
                     transform: rotate(-45deg);
                     position: absolute;
@@ -48,24 +46,25 @@
             }
         }
         .best-review {
-            @include padding(2px, 21px, 0, 21px);
+            @include padding(2px, 23px, 0, 23px);
             width: 100%;
+            min-height: 50px;
             margin: 0 14px 0 15px;
             display: flex;
             justify-content: center;
+            align-items: center;
             text-align: center;
-            align-self: center;
             font-size: 12px;
             position: relative;
             .double-quotes {
                 position: absolute;
                 &.left {
-                    top: 0;
+                    top: 5px;
                     left: 0px;
                 }
                 &.right {
-                    bottom: 0;
-                    right: 0;
+                    bottom: 5px;
+                    right: 0px;
                     transform: rotate(180deg);
                 }
             }
@@ -74,7 +73,7 @@
     .sub-section-reviews {
         display: flex;
         flex-direction: column;
-        margin: 5px 4px 0 0;
+        margin: 5px 4px 14px 0;
         .show-control {
             cursor: pointer;
             margin: 0 13px 0 auto;
@@ -100,7 +99,6 @@
             transition: 1s all;
             -webkit-transition: 1s all;
             &.show {
-                @include padding(14px, 0, 0, 0);
                 height: 139px;
                 overflow-y: scroll;
                 &::-webkit-scrollbar {
@@ -108,7 +106,7 @@
                 }
                 &::-webkit-scrollbar-thumb {
                     background: #f5cab4;
-                    border-radius: 15%;
+                    border-radius: 5px;
                 }
             }
             .review {
@@ -131,7 +129,11 @@
                     .sub-rate {
                         display: flex;
                         justify-content: space-around;
+                        margin-bottom: 3px;
                     }
+                }
+                &:last-child {
+                    margin-bottom: 0;
                 }
             }
         }
