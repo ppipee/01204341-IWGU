@@ -48,7 +48,7 @@ class PlannersBoard extends Component {
                 </div>
                 <Link
                     className='btn-detail'
-                    to={`/planners?id=${planner.id}&share=${planner.share}`}
+                    to={`/planner?id=${planner.id}&share=${planner.share}`}
                 >
                     <img src={RightArrow} alt='arrow-icon' />
                 </Link>
