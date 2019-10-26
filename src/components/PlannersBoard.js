@@ -5,7 +5,6 @@ import { compose } from 'redux'
 import CreateTrip from './CreateTrip'
 import { BlackAirplane, Calendar, CurveArrow, RightArrow } from './Icon'
 import '../assets/scss/plannersboard.scss'
-import { Planners } from './Demo'
 import { getUserPlanners } from '../queries/planner'
 
 class PlannersBoard extends Component {

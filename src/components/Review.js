@@ -1,39 +1,8 @@
 import React, { Component } from 'react'
-import faker from 'faker'
 import { RateStar, CircleArrow, Star, BlankStar, DoubleQuotes } from './Icon'
+import { Reviews } from './Demo'
 import '../assets/scss/review.scss'
 
-const reviews = [
-    {
-        id: 1,
-        author: 'asmb',
-        rate: 4,
-        timestamp: '2019-10-20',
-        review: faker.lorem.sentence(),
-    },
-    {
-        id: 2,
-        author: 'pipe',
-        rate: 5,
-        timestamp: '2019-05-10',
-        review: faker.lorem.sentence(),
-    },
-    {
-        id: 3,
-        author: 'chut',
-        rate: 3,
-        timestamp: '2019-05-10',
-        review: faker.lorem.sentence(),
-    },
-    {
-        id: 4,
-        author: 'earn',
-        rate: 2,
-        timestamp: '2019-05-10',
-        review: faker.lorem.sentence(),
-    },
-]
-const text = faker.lorem.sentence()
 class Review extends Component {
     constructor() {
         super()
@@ -50,8 +19,8 @@ class Review extends Component {
 
     genRate = () => (
         <div className='rate'>
-            <div className={`rate-${(this.props.rate * 100) / 5}`}>
-                <span>{this.props.rate}</span>
+            <div className={`rate-${(Reviews[0].rate * 100) / 5}`}>
+                <span>{Reviews[0].rate}</span>
                 <img src={RateStar} alt='rate-icon' />
             </div>
         </div>
@@ -68,26 +37,29 @@ class Review extends Component {
 
     genReview = () => {
         if (this.state.show) {
-            const box_review = reviews.map(item => {
-                const date = new Date(item.timestamp)
-                    .toString()
-                    .split(' ')
-                    .splice(1, 3)
-                return (
-                    <div className='review' key={item.id}>
-                        <div className='sub-review'>{item.review}</div>
-                        <div className='sub-detail'>
-                            <div className='sub-rate'>
-                                {this.genStar(item.rate)}
+            let box_review = []
+            Reviews.forEach((item, i) => {
+                if (i !== 0) {
+                    const date = new Date(item.timestamp)
+                        .toString()
+                        .split(' ')
+                        .splice(1, 3)
+                    box_review = [
+                        ...box_review,
+                        <div className='review' key={item.id}>
+                            <div className='sub-review'>{item.review}</div>
+                            <div className='sub-detail'>
+                                <div className='sub-rate'>
+                                    {this.genStar(item.rate)}
+                                </div>
+                                <span>{item.author}</span>
+                                <span>{`${date[1]} ${
+                                    date[0]
+                                } ${date[2].substring(0, 2)}`}</span>
                             </div>
-                            <span>{item.author}</span>
-                            <span>{`${date[1]} ${date[0]} ${date[2].substring(
-                                0,
-                                2
-                            )}`}</span>
-                        </div>
-                    </div>
-                )
+                        </div>,
+                    ]
+                }
             })
             return (
                 <div className='sub-section-reviews'>
@@ -121,7 +93,7 @@ class Review extends Component {
                             src={DoubleQuotes}
                             alt='double-quotes'
                         />
-                        {text}
+                        {Reviews[0].review}
                         <img
                             className='double-quotes right'
                             src={DoubleQuotes}
