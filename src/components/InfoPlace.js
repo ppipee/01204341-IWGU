@@ -15,7 +15,7 @@ class InfoPlace extends Component {
                 <div className='info-border'>
                     InfoPlace
                     <OpeningHour />
-                    <Review />
+                    <Review rate={this.props.info.rate} />
                 </div>
             </div>
         )
