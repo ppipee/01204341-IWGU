@@ -66,8 +66,6 @@ class PlannersBoard extends Component {
     }
 
     render() {
-        console.log('planner loading', this.props.loading)
-        console.log(this.props)
         return (
             <div className='planners-board'>
                 <div className='title'>
