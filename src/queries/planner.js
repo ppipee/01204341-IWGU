@@ -67,6 +67,7 @@ const getUserPlanners = gql`
                     }
                 }
             }
+            share
         }
     }
 `
