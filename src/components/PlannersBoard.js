@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
-import { graphql } from 'react-apollo'
-import { connect } from 'react-redux'
-import { compose } from 'redux'
 import CreateTrip from './CreateTrip'
 import { BlackAirplane, Calendar, CurveArrow, RightArrow } from './Icon'
 import '../assets/scss/plannersboard.scss'
-import { getUserPlanners } from '../queries/planner'
 
 class PlannersBoard extends Component {
     constructor(props) {
@@ -15,16 +11,14 @@ class PlannersBoard extends Component {
         }
     }
 
-    componentDidMount() {
-        const id = this.props.getUserID
-        this.props.data.refetch({ id })
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (this.props.planners !== nextProps.planners) {
+            this.setState({ planners: nextProps.planners })
+        }
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (this.props.data !== prevProps.data) {
-            console.log(this.props.data.userPlanner)
-            this.setState({ planners: this.props.data.userPlanner })
-        }
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.planners !== this.props.planners
     }
 
     formatDate = date => {
@@ -37,7 +31,7 @@ class PlannersBoard extends Component {
         const d_end = new Date(days[days.length - 1].date)
         if (days.length === 1) return this.formatDate(d_start.toString())
         return `${this.formatDate(d_start.toString())} - ${this.formatDate(
-            d_start.toString()
+            d_end.toString()
         )}`
     }
 
@@ -69,13 +63,8 @@ class PlannersBoard extends Component {
         return this.blankBoard()
     }
 
-    newPlanner = new_planner => {
-        this.setState({
-            planners: [...this.state.planners, new_planner],
-        })
-    }
-
     render() {
+        console.log('planner loading', this.props.loading)
         return (
             <div className='planners-board'>
                 <div className='title'>
@@ -83,20 +72,9 @@ class PlannersBoard extends Component {
                     <span>Manage your trip</span>
                 </div>
                 <div className='planners'>{this.plannersBoard()}</div>
-                <CreateTrip planner={this.newPlanner} />
+                <CreateTrip />
             </div>
         )
     }
 }
-const mapStateToProps = state => {
-    return {
-        getUserID: state.userauth.userid,
-    }
-}
-export default compose(
-    connect(
-        mapStateToProps,
-        null
-    ),
-    graphql(getUserPlanners)
-)(PlannersBoard)
+export default PlannersBoard

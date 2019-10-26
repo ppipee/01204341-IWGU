@@ -58,7 +58,8 @@
         "react/no-access-state-in-setstate": 1,
         "no-restricted-syntax": 0,
         "eslint(no-labels)": 0,
-        "eslint(radix)":0,
+        "no-shadow": 1,
+        "eslint(radix)": 0
     },
     "settings": {
         "react": {

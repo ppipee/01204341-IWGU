@@ -16,7 +16,10 @@ class CreateTrip extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps !== this.props) {
+        if (
+            prevProps.getCreateAuth !== this.props.getCreateAuth &&
+            this.props.getCreateAuth
+        ) {
             this.createTrip()
         }
     }
@@ -24,36 +27,44 @@ class CreateTrip extends Component {
     calDay = (start, end) =>
         start ? (end - start) / (1000 * 60 * 60 * 24) + 1 : 0
 
+    formatDate = date => {
+        const year = date.getFullYear()
+        const month =
+            date.getMonth() + 1 > 9
+                ? date.getMonth() + 1
+                : `0${date.getMonth() + 1}`
+        const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`
+        return `${year}-${month}-${day}`
+    }
+
     createTrip = () => {
-        if (this.props.getCreateAuth) {
-            const userid = this.props.getUserID
-            const { name, date } = this.props.getNewTrip
-            const day = this.calDay(date.start, date.end)
-            let days = []
-            for (let i = 0; i < day; i++) {
-                const current_date = date.start
-                days = [
-                    ...days,
-                    {
-                        day: i,
-                        date: new Date(
-                            current_date.setDate(current_date.getDate() + i)
-                        ),
-                        places: [],
-                        note: '',
-                    },
-                ]
+        const userid = this.props.getUserID
+        const { name, date } = this.props.getNewTrip
+        const day = this.calDay(date.start, date.end)
+        const current_date = date.start
+        let new_date = new Date(
+            current_date.setDate(current_date.getDate() - 1)
+        )
+        const days = Array.from(Array(day).keys()).map(i => {
+            new_date = new Date(
+                current_date.setDate(current_date.getDate() + 1)
+            )
+            return {
+                day: i + 1,
+                date: this.formatDate(new_date),
+                places: [],
+                note: '',
             }
-            const trip = {
-                userID: userid,
-                name,
-                days,
-            }
-            this.props.setAuth(false)
-            this.setState({
-                plan_maker: false,
-            })
+        })
+        const trip = {
+            userID: userid,
+            name,
+            days,
         }
+        this.props.setNewTrip(trip)
+        this.setState({
+            plan_maker: false,
+        })
     }
 
     handleClick = () => {
@@ -96,7 +107,8 @@ class CreateTrip extends Component {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        setAuth: auth => dispatch({ type: Action.SETAUTH, setAuth: auth }),
+        setNewTrip: trip =>
+            dispatch({ type: Action.SETNEWTRIP, setTrip: trip }),
     }
 }
 const mapStateToProps = state => {

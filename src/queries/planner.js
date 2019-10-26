@@ -1,28 +1,31 @@
 import { gql } from 'apollo-boost'
+import { GraphQLInputObjectType } from 'graphql'
 
-// const createPlanner = gql`
-//     mutation(
-//         $userID:ID!,
-//         $name:String,
-//         $days:[{
-//             $day:Int,
-//             $date:Date,
-//             $places:[{
-//                 $placeID:ID!,
-//                 $time:{
-//                     $start:Date,
-//                     $end:Date
-//                 }
-//             }],
-//             $note:String
-//         }],
-//         $share:Boolean
-//     ){
-//         createPlanner(userID:$userID, name:$name, days:$days, share:$share){
-//             name
-//         }
-//     }
-// `
+const createPlanner = gql`
+    mutation($userID: ID!, $name: String!, $days: [InputDayDetail]) {
+        createPlanner(userID: $userID, name: $name, days: $days) {
+            name
+        }
+    }
+`
+
+const updatePlanner = gql`
+    mutation(
+        $userID: ID!
+        $name: String
+        $days: InputDayDetail
+        $share: Boolean
+    ) {
+        updatePlanner(
+            userID: $userID
+            name: $name
+            days: $days
+            share: $share
+        ) {
+            name
+        }
+    }
+`
 
 const getDetailPlanners = gql`
     query($id: ID!) {
@@ -68,19 +71,6 @@ const getUserPlanners = gql`
     }
 `
 
-// const updatePlanner = gql`
-//     mutation(
-//         $id:ID!,
-//         $name:String,
-//         $days:[Object],
-//         $share:Boolean
-//     ){
-//         updatePlanner(id:$id, name:$name, days:$days, share:$share){
-//             name
-//         }
-//     }
-// `
-
 const removePlanner = gql`
     mutation($id: ID!) {
         removePlanner(id: $id) {
@@ -89,4 +79,10 @@ const removePlanner = gql`
     }
 `
 
-export { getUserPlanners, getDetailPlanners, removePlanner } // ,createPlanner, updatePlanner }
+export {
+    getUserPlanners,
+    getDetailPlanners,
+    removePlanner,
+    createPlanner,
+    updatePlanner,
+}
