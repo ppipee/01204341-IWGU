@@ -9,7 +9,7 @@ $fade-color: linear-gradient(
 );
 
 .info-place {
-    padding: 0 30px;
+    padding: 0 30px 14px;
 
     .info-border {
         border-radius: 15px;
@@ -101,6 +101,7 @@ $fade-color: linear-gradient(
             .search-tag {
                 display: flex;
                 flex-wrap: wrap;
+                padding-right: 30px;
 
                 .tag {
                     margin-top: 9px;
