@@ -48,6 +48,11 @@ import HotelInActive from '../assets/icon/hotel-inactive.svg'
 import HotelActive from '../assets/icon/hotel-active.svg'
 import SpaInActive from '../assets/icon/spa-inactive.svg'
 import SpaActive from '../assets/icon/spa-active.svg'
+import Bus from '../assets/icon/bus.svg'
+import Train from '../assets/icon/train.svg'
+import Ferry from '../assets/icon/ferry.svg'
+import Bts from '../assets/icon/bts.svg'
+import Mrt from '../assets/icon/mrt.svg'
 
 export {
     SearchIcon,
@@ -100,4 +105,9 @@ export {
     HotelActive,
     SpaInActive,
     SpaActive,
+    Bus,
+    Train,
+    Ferry,
+    Bts,
+    Mrt,
 }

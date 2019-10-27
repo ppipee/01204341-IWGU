@@ -215,7 +215,22 @@ const Detail = {
     },
 }
 
+const Routes = {
+    bus: ['25', '77', '204', '505', '511'],
+    train: [
+        {
+            name: 'bts',
+            station: 'Chitlom',
+        },
+        {
+            name: 'mrt',
+            station: 'Samyan',
+        },
+    ],
+    ferry: ['Pratu Nam'],
+}
+
 const id = 'P08000001'
 const code = 'restaurant'
 
-export { Places, TopAttractions, Planners, Detail, Images, Trip }
+export { Places, TopAttractions, Planners, Detail, Images, Trip, Routes }
