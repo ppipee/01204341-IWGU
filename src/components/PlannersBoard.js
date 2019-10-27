@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import CreateTrip from './CreateTrip'
 import { BlackAirplane, Calendar, CurveArrow, RightArrow } from './Icon'
 import '../assets/scss/plannersboard.scss'
@@ -45,26 +46,26 @@ class PlannersBoard extends Component {
                         <span>{this.genDate(planner.days)}</span>
                     </div>
                 </div>
-                <div className='btn-detail' id={planner.id}>
+                <Link
+                    className='btn-detail'
+                    to={`/planner?id=${planner.id}&share=${planner.share}`}
+                >
                     <img src={RightArrow} alt='arrow-icon' />
-                </div>
+                </Link>
             </div>
         ))
 
-    blankBoard = () => (
-        <div className='blank-board'>
-            <div className='text'>Let’s start your new trips!</div>
-            <img src={CurveArrow} alt='curve-arrow' />
-        </div>
-    )
-
     plannersBoard = () => {
         if (this.state.planners[0]) return this.genPlanner()
-        return this.blankBoard()
+        return (
+            <div className='blank-board'>
+                <div className='text'>Let’s start your new trips!</div>
+                <img src={CurveArrow} alt='curve-arrow' />
+            </div>
+        )
     }
 
     render() {
-        console.log('planner loading', this.props.loading)
         return (
             <div className='planners-board'>
                 <div className='title'>
