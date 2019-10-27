@@ -73,10 +73,10 @@
     .sub-section-reviews {
         display: flex;
         flex-direction: column;
-        margin: 5px 4px 14px 0;
+        margin: 5px 4px 0 0;
         .show-control {
             cursor: pointer;
-            margin: 0 13px 0 auto;
+            margin: 0 13px 14px auto;
             font-size: 9px;
             color: #c0c0c0;
             img {
@@ -101,6 +101,7 @@
             &.show {
                 height: 139px;
                 overflow-y: scroll;
+                margin-bottom: 21px;
                 &::-webkit-scrollbar {
                     width: 5px;
                 }
