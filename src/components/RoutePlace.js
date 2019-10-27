@@ -9,6 +9,16 @@ class RoutePlace extends Component {
         this.state = {}
     }
 
+    genAddress(location) {
+        const Addr = ['address', 'sub_district', 'district', 'province']
+        const address = []
+        Addr.forEach(addr => {
+            if (location[addr] !== '') address.push(location[addr])
+        })
+        const located = address.join(', ')
+        return <span>{located}</span>
+    }
+
     genBus() {
         return Routes.bus.map((no, i) => (
             <div key={`bus-no-${i + 1}`} className='bus-no'>
@@ -44,10 +54,7 @@ class RoutePlace extends Component {
             <div className='route-place'>
                 <div className='left-content'>
                     <div className='map' />
-                    <p className='address'>
-                        {location.address} {location.sub_district}{' '}
-                        {location.district} {location.province}
-                    </p>
+                    <p className='address'>{this.genAddress(location)}</p>
                 </div>
                 <div className='right-content'>
                     <div className='transportation'>

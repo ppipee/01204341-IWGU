@@ -3,8 +3,7 @@ $map-size: 146px;
 .route-place {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 0px 35px 14px;
-    margin-top: 16px;
+    padding: 16px 35px 14px;
 
     .left-content {
         grid-column: 1;
@@ -47,11 +46,13 @@ $map-size: 146px;
                 margin-left: 14px;
 
                 &.bus {
+                    margin-left: 5px;
                     display: flex;
                 }
 
                 .bus-no {
-                    margin: 0px 9px 9px 0px;
+                    font-size: 12px;
+                    margin: 0px 0px 9px 9px;
                     padding: 0px 5px;
                     border-radius: 4px;
                     border: solid 1px #dadada;
