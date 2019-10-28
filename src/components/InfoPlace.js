@@ -102,7 +102,7 @@ class InfoPlace extends Component {
                     </div>
                     <hr />
                     <OpeningHour />
-                    <Review />
+                    <Review rate={this.props.info.rate} />
                 </div>
             </div>
         )
