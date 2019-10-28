@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path')
+require('dotenv').config()
 
 module.exports = {
     entry: ['@babel/polyfill', './src/index.js'],
@@ -76,10 +77,16 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './public/index.html',
         }),
+        new webpack.DefinePlugin({
+            'process.env.MAP_KEY': JSON.stringify(process.env.MAP_KEY),
+        }),
     ],
     stats: { children: false },
     devServer: {
         historyApiFallback: true,
         hot: true,
+    },
+    node: {
+        fs: 'empty',
     },
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
 import '../assets/scss/routeplace.scss'
 import { Bus, Train, Ferry, Bts, Mrt } from './Icon'
 import { Routes } from './Demo'
@@ -49,11 +50,29 @@ class RoutePlace extends Component {
     }
 
     render() {
-        const { map, location } = this.props
+        const { map, location, google } = this.props
+        const key = process.env.MAP_KEY
+        console.log(key)
         return (
             <div className='route-place'>
                 <div className='left-content'>
-                    <div className='map' />
+                    <div className='map'>
+                        <Map
+                            google={google}
+                            zoom={15}
+                            initialCenter={{
+                                lat: map.latitude,
+                                lng: map.longitude,
+                            }}
+                        >
+                            <Marker
+                                position={{
+                                    lat: map.latitude,
+                                    lng: map.longitude,
+                                }}
+                            />
+                        </Map>
+                    </div>
                     <p className='address'>{this.genAddress(location)}</p>
                 </div>
                 <div className='right-content'>
@@ -74,4 +93,6 @@ class RoutePlace extends Component {
         )
     }
 }
-export default RoutePlace
+export default GoogleApiWrapper({
+    apiKey: process.env.MAP_KEY,
+})(RoutePlace)
