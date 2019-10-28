@@ -51,8 +51,6 @@ class RoutePlace extends Component {
 
     render() {
         const { map, location, google } = this.props
-        const key = process.env.MAP_KEY
-        console.log(key)
         return (
             <div className='route-place'>
                 <div className='left-content'>
