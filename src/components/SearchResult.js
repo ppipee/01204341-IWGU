@@ -39,7 +39,7 @@ class SearchResult extends Component {
         const code = event.target.getAttribute('code')
         const name = event.target.getAttribute('name')
         let target = this.state[name]
-        const object = { placeID: id, chut: name }
+        const object = { placeID: id, category: name }
         let check = false
         let index
         this.state[name].forEach((item, i) => {
@@ -53,26 +53,27 @@ class SearchResult extends Component {
         this.setState({
             [name]: target,
         })
-        console.log(this.state)
     }
 
     genStar(ratting) {
         const container = []
         let i
         for (i = 0; i < ratting; i++) {
-            container.push(<img alt='star' src={Star} />)
+            container.push(<img alt='star' className='star' src={Star} />)
         }
         for (i = 0; i < 5 - ratting; i++) {
-            container.push(<img alt='blank-star' src={BlankStar} />)
+            container.push(
+                <img alt='blank-star' className='star' src={BlankStar} />
+            )
         }
-        return <span>{container}</span>
+        return <span className='rating'>{container}</span>
     }
 
     genTabs(id, code) {
         const tabbar = []
         tabs.forEach(tab => {
             const { name, icon_active, icon_inactive } = tab
-            const object = { placeID: id, chut: name }
+            const object = { placeID: id, category: name }
             let check
             this.state[name].forEach(item => {
                 if (object.placeID === item.placeID) check = true
@@ -86,7 +87,11 @@ class SearchResult extends Component {
                     place_id={id}
                     code={code}
                 >
-                    <img alt='' src={check ? icon_active : icon_inactive} />
+                    <img
+                        alt='icon'
+                        className='icon'
+                        src={check ? icon_active : icon_inactive}
+                    />
                 </div>
             )
         })
@@ -98,7 +103,9 @@ class SearchResult extends Component {
         places.map(place =>
             box.push(
                 <div className='card'>
-                    <Link to='/detail?sort={place.placeID, place.categoryCode}'>
+                    <Link
+                        to={`/detail?place=${place.placeID}, ?code=${place.categoryCode}`}
+                    >
                         <img
                             className='picture'
                             alt={place.name}
@@ -107,15 +114,13 @@ class SearchResult extends Component {
                     </Link>
                     <Link
                         className='go-to-detail'
-                        to='/detail?sort={place.placeID, place.categoryCode}'
+                        to={`/detail?place=${place.placeID}, ?code=${place.categoryCode}`}
                     >
                         <div className='content'>
                             <div className='line1'>{place.name}</div>
                             <div className='line-group'>
                                 <div className='line2'>
-                                    <span className='rating'>
-                                        {this.genStar(place.rate)}
-                                    </span>
+                                    {this.genStar(place.rate)}
                                     <span className='dot' />
                                     <span className='category'>
                                         {place.categoryCode}
@@ -130,12 +135,14 @@ class SearchResult extends Component {
                                         alt='location'
                                         src={PinkLocationIcon}
                                     />
-                                    <span className='map'>e</span>
-                                    <span className='dot' />
-                                    <span className='location'>
-                                        {place.location.district},
-                                        {place.location.province}
-                                    </span>
+                                    <div className='information'>
+                                        <span className='map'>0.7 km</span>
+                                        <span className='dot' />
+                                        <span className='location'>
+                                            {place.location.district},{' '}
+                                            {place.location.province}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

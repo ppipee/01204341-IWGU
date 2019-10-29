@@ -115,7 +115,7 @@ const SearchPlaces = [
             longitude: '',
         },
         rate: 5,
-        time: '7.00 AM - 7.00 PM',
+        time: '09:00 - 18:00',
         location: {
             district: 'Laksi',
             province: 'Bangkok',
@@ -131,7 +131,7 @@ const SearchPlaces = [
             longitude: '',
         },
         rate: 4,
-        time: '7.00 AM - 9.00 PM',
+        time: '09:00 - 18:00',
         location: {
             district: 'Laksi',
             province: 'Bangkok',
@@ -147,7 +147,7 @@ const SearchPlaces = [
             longitude: '',
         },
         rate: 2,
-        time: '7.00 AM - 7.00 PM',
+        time: '09:00 - 18:00',
         location: {
             district: 'Laksi',
             province: 'Bangkok',
@@ -163,7 +163,7 @@ const SearchPlaces = [
             longitude: '',
         },
         rate: 1,
-        time: '7.00 AM - 9.00 PM',
+        time: '09:00 - 18:00',
         location: {
             district: 'Laksi',
             province: 'Bangkok',
@@ -179,7 +179,7 @@ const SearchPlaces = [
             longitude: '',
         },
         rate: 5,
-        time: '7.00 AM - 7.00 PM',
+        time: '09:00 - 18:00',
         location: {
             district: 'Laksi',
             province: 'Bangkok',
