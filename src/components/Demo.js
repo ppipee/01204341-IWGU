@@ -274,9 +274,10 @@ const Reviews = [
     },
 ]
 
-const Coverage = [
-    {
-        type: 'Standard',
+const Coverage = {
+    standard: {
+        type: 'standard',
+        name: 'Standard',
         price: '$15',
         img: standard,
         cover: [
@@ -285,8 +286,8 @@ const Coverage = [
             'Flight Delay and Trip Cancellation',
         ],
     },
-    {
-        type: 'Snow Activities',
+    snow: {
+        name: 'Snow Activities',
         price: '$17',
         img: snow,
         cover: [
@@ -295,8 +296,8 @@ const Coverage = [
             'Flight Delay and Trip Cancellation',
         ],
     },
-    {
-        type: 'Water Activities',
+    water: {
+        name: 'Water Activities',
         price: '$18',
         img: water,
         cover: [
@@ -305,7 +306,37 @@ const Coverage = [
             'Flight Delay and Trip Cancellation',
         ],
     },
-]
+    air: {
+        name: 'Air Activities',
+        price: '$18',
+        img: water,
+        cover: [
+            'Medical, Travel and Activities Accident Benefits',
+            'Lost Luggage & Personal Effects',
+            'Flight Delay and Trip Cancellation',
+        ],
+    },
+    land: {
+        name: 'Land Activities',
+        price: '$18',
+        img: water,
+        cover: [
+            'Medical, Travel and Activities Accident Benefits',
+            'Lost Luggage & Personal Effects',
+            'Flight Delay and Trip Cancellation',
+        ],
+    },
+    sport: {
+        name: 'Sport Activities',
+        price: '$18',
+        img: water,
+        cover: [
+            'Medical, Travel and Activities Accident Benefits',
+            'Lost Luggage & Personal Effects',
+            'Flight Delay and Trip Cancellation',
+        ],
+    },
+}
 
 export {
     Places,

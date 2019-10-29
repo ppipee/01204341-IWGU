@@ -58,6 +58,7 @@ import Ferry from '../assets/icon/ferry.svg'
 import Bts from '../assets/icon/bts.svg'
 import Mrt from '../assets/icon/mrt.svg'
 import Shield from '../assets/icon/shield.svg'
+import Check from '../assets/icon/check.svg'
 
 // const Hotel = (props) => (
 //     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40">
@@ -294,4 +295,5 @@ export {
     Air,
     Land,
     Sport,
+    Check,
 }

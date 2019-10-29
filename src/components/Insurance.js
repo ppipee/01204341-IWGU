@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '../assets/scss/insurance.scss'
-import { Shield, Standard, Snow, Water, Air, Land, Sport } from './Icon'
+import { Shield, Standard, Snow, Water, Air, Land, Sport, Check } from './Icon'
 import { Coverage } from './Demo'
 
 const tabs = [
@@ -24,6 +24,7 @@ class Insurance extends Component {
                 land: false,
                 sport: false,
             },
+            card: 'standard',
         }
     }
 
@@ -36,6 +37,7 @@ class Insurance extends Component {
         new_state[target_state] = true
         this.setState({
             tab_state: new_state,
+            card: name,
         })
     }
 
@@ -62,6 +64,33 @@ class Insurance extends Component {
         return <div className='tabbar-container'>{tab_bar}</div>
     }
 
+    genCard() {
+        const type = Coverage[this.state.card]
+        const covered = []
+        type.cover.forEach((cover, i) => {
+            covered.push(
+                <div className='covered' key={`cover-${i + 1}`}>
+                    <img alt='check-bullet' src={Check} />
+                    <p>{cover}</p>
+                </div>
+            )
+        })
+        return (
+            <div className='card'>
+                <div className='title'>
+                    <p>
+                        {type.name} {type.price} / days
+                    </p>
+                </div>
+                <img alt={type} src={type.img} />
+                <div>
+                    <p>What is covered ?</p>
+                    {covered}
+                </div>
+            </div>
+        )
+    }
+
     render() {
         return (
             <div className='insurance'>
@@ -71,6 +100,7 @@ class Insurance extends Component {
                     <p>Available soon</p>
                 </div>
                 {this.genTabs()}
+                {this.genCard()}
             </div>
         )
     }
