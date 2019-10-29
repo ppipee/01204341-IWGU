@@ -12,14 +12,14 @@ class PlannersBoard extends Component {
         }
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        if (this.props.planners !== nextProps.planners) {
-            this.setState({ planners: nextProps.planners })
+    componentDidUpdate(prevProps) {
+        console.log('prev,this: ', prevProps.planners, this.props.planners)
+        if (this.props.planners !== prevProps.planners) {
+            this.setState({ planners: this.props.planners })
         }
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.planners !== this.props.planners
+        // else {
+        //     window.scrollTo(0, document.body.scrollHeight)
+        // }
     }
 
     formatDate = date => {
@@ -66,6 +66,7 @@ class PlannersBoard extends Component {
     }
 
     render() {
+        console.log('planner')
         return (
             <div className='planners-board'>
                 <div className='title'>
