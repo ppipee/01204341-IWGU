@@ -1,4 +1,50 @@
 .opening-hour {
-    border: 1px solid rgb(116, 115, 115);
+    //border: 1px solid rgb(116, 115, 115);
     height: 80px;
-}
+    .row{
+        display: flex;
+    }
+        .clock{
+            position: relative;
+            margin-left: 23px;
+        }
+        .column{
+            margin-left: 19px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .open-close{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 70px;
+                height: 15px;
+                margin-top: 0px;
+                font-size: 9px;
+                color: white;
+                background-color: #fcbba4;
+                border: none;
+                border-radius: 5px;
+            }
+            .time{
+                //margin-left: 20px;
+                font-size: 15px;
+                margin-bottom: 0px;
+            }
+            .days{
+                margin-top: -2px;
+                display: flex;
+                font-size: 10px;
+                margin-bottom: 0px;
+                .active{
+                    color: #fcbba4;
+                    margin-left: 11px;
+                }
+                .inactive{
+                    margin-left: 11px;
+                    color: #cfcfcf;
+                }
+            }
+        }
+    }

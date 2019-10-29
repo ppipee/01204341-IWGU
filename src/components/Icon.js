@@ -53,6 +53,7 @@ import Train from '../assets/icon/train.svg'
 import Ferry from '../assets/icon/ferry.svg'
 import Bts from '../assets/icon/bts.svg'
 import Mrt from '../assets/icon/mrt.svg'
+import Clock from '../assets/icon/clock.svg'
 
 export {
     SearchIcon,
@@ -110,4 +111,5 @@ export {
     Ferry,
     Bts,
     Mrt,
+    Clock,
 }
