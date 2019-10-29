@@ -13,7 +13,6 @@ class PlannersBoard extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        console.log('prev,this: ', prevProps.planners, this.props.planners)
         if (this.props.planners !== prevProps.planners) {
             this.setState({ planners: this.props.planners })
         }
@@ -66,7 +65,6 @@ class PlannersBoard extends Component {
     }
 
     render() {
-        console.log('planner')
         return (
             <div className='planners-board'>
                 <div className='title'>
