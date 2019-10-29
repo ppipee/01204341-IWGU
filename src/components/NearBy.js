@@ -72,7 +72,12 @@ class NearBy extends Component {
                 tabInActive = tabActive
             }
             tabbar.push(
-                <div className={`icon${active}`} key={`tab-${name}`}>
+                <div
+                    className={`icon${active}`}
+                    key={`tab-${name}`}
+                    onClick={this.openContents}
+                    tabname={name}
+                >
                     <img
                         className='tab-links'
                         tabname={name}
