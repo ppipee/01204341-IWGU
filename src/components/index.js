@@ -11,6 +11,9 @@ import InfoPlace from './InfoPlace'
 import RoutePlace from './RoutePlace'
 import Facilities from './Facilities'
 import Contact from './Contact'
+import Insurance from './Insurance'
+import SignIn from './SignIn'
+import SignUp from './SignUp'
 
 export {
     CountDown,
@@ -26,4 +29,7 @@ export {
     RoutePlace,
     Facilities,
     Contact,
+    Insurance,
+    SignIn,
+    SignUp,
 }

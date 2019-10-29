@@ -1,7 +1,15 @@
 import React from 'react'
 // import { hot } from 'react-hot-loader'
 import { Route, Switch } from 'react-router-dom'
-import { Home, Search, MyTrips, Detail, Planner, NotFoundPage } from '../pages'
+import {
+    Home,
+    Search,
+    MyTrips,
+    Detail,
+    Planner,
+    NotFoundPage,
+    Auth,
+} from '../pages'
 
 const Routes = () => (
     <Switch>
@@ -10,6 +18,7 @@ const Routes = () => (
         <Route path='/mytrips' component={MyTrips} />
         <Route path='/detail' component={Detail} />
         <Route path='/planner' component={Planner} />
+        <Route path='/auth' component={Auth} />
         <Route component={NotFoundPage} />
     </Switch>
 )
