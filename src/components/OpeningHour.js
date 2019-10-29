@@ -112,7 +112,6 @@ class OpeningHour extends Component {
                         <div className='days'>{this.genDays()}</div>
                     </span>
                 </div>
-                {/* {this.statusNow()} */}
             </div>
         )
     }
