@@ -79,7 +79,7 @@ class OpeningHour extends Component {
         let ts = time24
         const H = +ts.substr(0, 2)
         let h = H % 12 || 12
-        h = h < 10 ? `0${h}` : h // leading 0 at the left for 1 digit hours
+        h = h < 10 ? `0${h}` : h
         const ampm = H < 12 ? ' AM' : ' PM'
         ts = `${h}.${ts.substr(3, 2)}${ampm}`
         return ts
