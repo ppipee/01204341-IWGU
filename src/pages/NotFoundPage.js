@@ -1,6 +1,10 @@
 import React from 'react'
+import { NavBar } from '../components'
 
-const NotFoundPage = () => {
-    return <div>404 Not Found</div>
-}
+const NotFoundPage = () => (
+    <div>
+        <NavBar back />
+        <h1>404 Not Found</h1>
+    </div>
+)
 export default NotFoundPage
