@@ -55,7 +55,7 @@ class OpeningHour extends Component {
                     this.setState({ status: 'OPEN' })
                 }
             }
-        }, 1000)
+        }, 30000)
     }
 
     componentWillUnmount() {

@@ -1,3 +1,4 @@
+import faker from 'faker'
 import Burger from '../assets/demo/burger.jpg'
 import Coffee from '../assets/demo/coffee_cake.jpg'
 import Salad from '../assets/demo/thai_salad.jpg'
@@ -141,11 +142,11 @@ const Trip = [
     {
         days: [
             {
-                date: new Date(2019, 9, 24),
+                date: new Date(2019, 10, 24),
                 places: [
                     {
                         time: {
-                            start: new Date(2019, 9, 23, 14, 4, 0),
+                            start: new Date(2019, 10, 5, 14, 4, 0),
                             end: new Date(2019, 9, 25, 13, 0, 0),
                         },
                     },
@@ -172,7 +173,6 @@ const Trip = [
 
 const Images = [Burger, Coffee, Salad, Sashimi, Burger, Coffee, Salad, Sashimi]
 
-const Planners = []
 const Detail = {
     loading: false,
     placeDetail: {
@@ -242,4 +242,42 @@ const Routes = {
 const id = 'P08000001'
 const code = 'restaurant'
 
-export { Places, TopAttractions, Planners, Detail, Images, Trip, Routes }
+const Reviews = [
+    {
+        id: 0,
+        author: 'pon',
+        rate: 3,
+        timestamp: '2019-10-18',
+        review: faker.lorem.sentence(),
+    },
+    {
+        id: 1,
+        author: 'asmb',
+        rate: 4,
+        timestamp: '2019-10-20',
+        review: faker.lorem.sentence(),
+    },
+    {
+        id: 2,
+        author: 'pipe',
+        rate: 5,
+        timestamp: '2019-10-21',
+        review: faker.lorem.sentence(),
+    },
+    {
+        id: 3,
+        author: 'chut',
+        rate: 3,
+        timestamp: '2019-11-08',
+        review: faker.lorem.sentence(),
+    },
+    {
+        id: 4,
+        author: 'earn',
+        rate: 2,
+        timestamp: '2019-11-30',
+        review: faker.lorem.sentence(),
+    },
+]
+
+export { Places, TopAttractions, Detail, Images, Trip, Reviews, Routes }
