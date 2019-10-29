@@ -10,6 +10,9 @@ import img0 from '../assets/img/bangkok2.jpg'
 import img1 from '../assets/img/bangkok3.jpg'
 import img2 from '../assets/img/bangkok4.jpg'
 import img3 from '../assets/img/yaowarach.jpg'
+import standard from '../assets/img/standard.jpg'
+import snow from '../assets/img/snow.jpg'
+import water from '../assets/img/water.jpg'
 
 const Places = {
     res: [
@@ -271,4 +274,46 @@ const Reviews = [
     },
 ]
 
-export { Places, TopAttractions, Detail, Images, Trip, Reviews, Routes }
+const Coverage = [
+    {
+        type: 'Standard',
+        price: '$15',
+        img: standard,
+        cover: [
+            'Medical & Travel Accident Benefits',
+            'Lost Luggage & Personal Effects',
+            'Flight Delay and Trip Cancellation',
+        ],
+    },
+    {
+        type: 'Snow Activities',
+        price: '$17',
+        img: snow,
+        cover: [
+            'Medical, Travel and Activities Accident Benefits',
+            'Lost Luggage & Personal Effects',
+            'Flight Delay and Trip Cancellation',
+        ],
+    },
+    {
+        type: 'Water Activities',
+        price: '$18',
+        img: water,
+        cover: [
+            'Medical, Travel and Activities Accident Benefits',
+            'Lost Luggage & Personal Effects',
+            'Flight Delay and Trip Cancellation',
+        ],
+    },
+]
+
+export {
+    Places,
+    TopAttractions,
+    Detail,
+    Images,
+    Trip,
+    Reviews,
+    Routes,
+    Coverage,
+}
