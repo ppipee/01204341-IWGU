@@ -82,6 +82,7 @@ class SearchResult extends Component {
                 <div
                     id={`${name}`}
                     className={`${check ? 'active' : ''}`}
+                    key={`${name}`}
                     onClick={this.toggle}
                     name={name}
                     place_id={id}
@@ -102,7 +103,7 @@ class SearchResult extends Component {
         const box = []
         places.map(place =>
             box.push(
-                <div className='card'>
+                <div className='card' key={`${place.placeID}`}>
                     <Link
                         to={`/detail?place=${place.placeID}, ?code=${place.categoryCode}`}
                     >

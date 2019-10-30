@@ -104,6 +104,7 @@
                     &.active {
                         background: #f2b099;
                         border: solid 0.5px #f2b099;
+                        border-top-right-radius: 3px;
                     }
                 }
                 #fav {
@@ -119,6 +120,8 @@
                     &.active {
                         background: #fedec4;
                         border: solid 0.5px #fedec4;
+                        border-bottom-right-radius: 3px
+                        
                     }
                 }
             }
