@@ -1,0 +1,154 @@
+@mixin padding($top: 0px, $right: 0px, $bottom: 0px, $left: 0px) {
+    padding: $top $right $bottom $left;
+    -webkit-padding-before: $top;
+    -webkit-padding-end: $right;
+    -webkit-padding-after: $bottom;
+    -webkit-padding-start: $left;
+}
+
+.sidebar {
+    min-width: 298px;
+    font-size: 16px;
+    .head-sidebar {
+        @include padding(18px, 27px, 16px, 16px);
+        display: flex;
+        justify-content: space-between;
+        .hello-user {
+            display: flex;
+            .img-profile {
+                width: 26px;
+                height: 26px;
+                margin-right: 11.5px;
+                background: #fcbba4;
+                border-radius: 50%;
+            }
+            .user-sidebar {
+                color: #f2b099;
+            }
+        }
+        .close-navbar {
+            display: flex;
+            align-items: center;
+        }
+    }
+    .add-to-draft {
+        .head-add-to-draft {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            .head-title {
+                flex-grow: 1;
+                line-height: 25px;
+            }
+            .line {
+                flex-grow: 2;
+                height: 3px;
+                background: linear-gradient(
+                    270deg,
+                    #f2b19a 0.98%,
+                    #fee8cf 100%
+                );
+                border-radius: 0px 10px 10px 0px;
+                &.right {
+                    transform: rotate(-180deg);
+                    -webkit-transform: rotate(-180deg);
+                }
+            }
+        }
+        .add-draft {
+            @include padding(0, 18px, 0, 17px);
+            margin: 17px 0 31px 0;
+            &.blank {
+                position: relative;
+                height: 262px;
+                margin-top: 0;
+                text-align: center;
+                .signin-sidebar {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 153px;
+                    transform: translate(-50%, -50%);
+                    -webkit-transform: translate(-50%, -50%);
+                    color: #c0c0c0;
+                    a {
+                        color: #f2b099;
+                        text-decoration: underline #f2b099;
+                    }
+                }
+            }
+            div {
+                overflow: hidden;
+                .draft {
+                    width: 398px;
+                    display: flex;
+                    .draft-fav {
+                        pointer-events: none;
+                        text-transform: capitalize;
+                        width: 298px;
+                        .name-fav {
+                            display: flex;
+                            align-items: center;
+                            font-size: 14px;
+                            height: 44px;
+                        }
+                        .draft-line {
+                            width: 100%;
+                            height: 1px;
+                            background: #e8e8e8;
+                            border-radius: 2px;
+                        }
+                        &.hide {
+                            padding-right: 18px;
+                            -webkit-padding-end: 18px;
+                        }
+                    }
+                    .manage-fav {
+                        display: flex;
+                        div {
+                            height: 44px;
+                            width: 50px;
+                            display: flex;
+                            justify-content: center;
+                        }
+                        .rm-fav {
+                            background: #dedede;
+                        }
+                        .info-fav {
+                            background: #f2b099;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .manage-sidebar {
+        position: fixed;
+        bottom: 0;
+        @include padding(0, 0, 25px, 28px);
+        div {
+            pointer-events: none;
+            font-size: 18px;
+            color: #f2b099;
+            margin: 0px 0px 34px 0px;
+            display: flex;
+            align-items: center;
+            span {
+                margin: 0 0 0 14px;
+            }
+        }
+        .search-sidebar {
+            margin-bottom: 9px;
+        }
+        span.signout {
+            display: block;
+            font-size: 15px;
+            margin: 25.5px 0 0 0;
+            color: #c0c0c0;
+            &.hide {
+                display: none;
+            }
+        }
+    }
+}

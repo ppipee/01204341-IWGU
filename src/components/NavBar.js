@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, Airplane, Back } from './Icon'
+import SideBar from './SideBar'
 import '../assets/scss/navbar.scss'
 
 class NavBar extends Component {
@@ -37,7 +38,12 @@ class NavBar extends Component {
             return (
                 <div className='back-home'>
                     <Link to='/'>
-                        <img src={Back} alt='icon-back' />
+                        <Back
+                            width='11'
+                            height='18'
+                            stroke='white'
+                            fill='white'
+                        />
                     </Link>
                 </div>
             )
@@ -60,7 +66,13 @@ class NavBar extends Component {
                     ref={node => {
                         this.node = node
                     }}
-                />
+                >
+                    {this.state.side_nav && (
+                        <SideBar
+                            close={() => this.setState({ side_nav: false })}
+                        />
+                    )}
+                </div>
             </>
         )
     }
@@ -75,7 +87,11 @@ class NavBar extends Component {
                     {this.goBack(this.props.back)}
                     <Link to='/mytrips'>
                         <button className={`button-mytrips${design}`}>
-                            <img src={Airplane} alt='icon-mytrips' />
+                            <Airplane
+                                fill='#FCB8A0'
+                                size='10'
+                                alt='icon-mytrips'
+                            />
                             My trips
                         </button>
                     </Link>
