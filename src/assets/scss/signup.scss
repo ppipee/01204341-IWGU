@@ -1,16 +1,19 @@
 .signup {
-    height: 185px;
+    height: 500px;
     background-image: linear-gradient(to bottom, #ffebd1, #fcb7a0);
-    .head{
+    .head {
         display: flex;
         flex-direction: column;
-        .Rectangle{
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        .Rectangle {
             width: 100px;
             height: 100px;
             border-radius: 50px;
             background-color: white;
         }
-        .welcome{
+        .welcome {
             font-size: 20px;
             color: white;
         }

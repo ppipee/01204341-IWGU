@@ -26,7 +26,7 @@
             font-size: 9px;
             color: white;
             &.close {
-                background-color: #cfcfcf;
+                background-color: #d0d0d0;
             }
             &.open {
                 background-color: #fcbba4;
@@ -35,7 +35,7 @@
             border-radius: 5px;
         }
         .time {
-            //margin-left: 20px;
+            color: #707070;
             align-self: center;
             font-size: 15px;
             margin-bottom: 0px;
@@ -50,7 +50,7 @@
                 color: #fcbba4;
             }
             .p-inactive {
-                color: #cfcfcf;
+                color: #cfcfcf
             }
         }
     }

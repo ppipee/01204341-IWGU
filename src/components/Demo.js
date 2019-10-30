@@ -205,7 +205,7 @@ const Detail = {
         days: {
             day1: true,
             day2: true,
-            day3: true,
+            day3: false,
             day4: false,
             day5: true,
             day6: false,
