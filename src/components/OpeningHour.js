@@ -66,7 +66,9 @@ class OpeningHour extends Component {
         Object.keys(this.state.days).map(day => (
             <p
                 key={`getOpen${day}`}
-                className={Detail.placeDetail.days[day] ? 'active' : 'inactive'}
+                className={
+                    Detail.placeDetail.days[day] ? 'p-active' : 'p-inactive'
+                }
             >
                 {' '}
                 {this.state.days[day]}{' '}

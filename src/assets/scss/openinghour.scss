@@ -9,12 +9,14 @@
         position: relative;
     }
     .column {
+        width: 164.8px;
         margin-left: 19px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        //align-items: center;
         .open-close {
+            align-self: center;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,10 +25,10 @@
             margin-top: 0px;
             font-size: 9px;
             color: white;
-            &.close{
+            &.close {
                 background-color: #cfcfcf;
             }
-            &.open{
+            &.open {
                 background-color: #fcbba4;
             }
             border: none;
@@ -34,6 +36,7 @@
         }
         .time {
             //margin-left: 20px;
+            align-self: center;
             font-size: 15px;
             margin-bottom: 0px;
         }
@@ -42,12 +45,11 @@
             display: flex;
             font-size: 10px;
             margin-bottom: 0px;
-            .active {
+            justify-content: space-between;
+            .p-active {
                 color: #fcbba4;
-                margin-left: 11px;
             }
-            .inactive {
-                margin-left: 11px;
+            .p-inactive {
                 color: #cfcfcf;
             }
         }

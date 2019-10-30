@@ -11,13 +11,22 @@ class SignUp extends Component {
     render() {
         return (
             <div className='signup'>
-                <h2>SignUp</h2>
-                <button>Sign up</button>
-                <Link to='/auth'>
-                    <button>Sign in</button>
-                </Link>
+                <div className='head'>
+                    <div className='Rectangle' />
+                    <p className='welcome'>WELCOME TO []</p>
+                </div>
             </div>
         )
     }
 }
+
+// eslint-disable-next-line no-lone-blocks
+{
+    /* <h2>SignUp</h2>
+<button>Sign up</button>
+<Link to='/auth'>
+    <button>Sign in</button>
+</Link> */
+}
+
 export default SignUp
