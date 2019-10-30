@@ -50,7 +50,7 @@ const getUser = gql`
 `
 
 const userUpdate = gql`
-    mutation($id: ID!, $password: String!, $favourite: [String]!) {
+    mutation($id: ID!, $password: String, $favourite: [InputFav]) {
         updateUser(id: $id, password: $password, favourite: $favourite) {
             username
             password
@@ -67,6 +67,14 @@ const userUpdate = gql`
     }
 `
 
+const updateFavourite = gql`
+    mutation($id: ID!, $favourite: [InputFav]) {
+        updateUser(id: $id, favourite: $favourite) {
+            username
+        }
+    }
+`
+
 const getUsers = gql`
     {
         users {
@@ -77,4 +85,12 @@ const getUsers = gql`
     }
 `
 
-export { userRegister, userData, getUser, getUsers, userUpdate, userFavourite }
+export {
+    userRegister,
+    userData,
+    getUser,
+    getUsers,
+    userUpdate,
+    userFavourite,
+    updateFavourite,
+}

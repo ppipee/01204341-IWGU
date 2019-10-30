@@ -111,6 +111,9 @@
                             width: 50px;
                             display: flex;
                             justify-content: center;
+                            img {
+                                pointer-events: none;
+                            }
                         }
                         .rm-fav {
                             background: #dedede;

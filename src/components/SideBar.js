@@ -6,37 +6,37 @@ import { Link } from 'react-router-dom'
 import Swipe from 'react-easy-swipe'
 import { Skeleton } from 'antd'
 import '../assets/scss/sidebar.scss'
-import { userFavourite } from '../queries/user'
+import { userFavourite, updateFavourite } from '../queries/user'
 import { UserAuthAction } from '../action'
 import { Airplane, Search, Fav, Back, Trash, Info } from './Icon'
 
-const Places = [
-    {
-        placeID: '001',
-        categoryCode: 'shop',
-        name: 'Bangkok',
-    },
-    {
-        placeID: '002',
-        categoryCode: 'shop2',
-        name: 'Bangkok2',
-    },
-    {
-        placeID: '003',
-        categoryCode: 'shop3',
-        name: 'Bangkok3',
-    },
-    {
-        placeID: '004',
-        categoryCode: 'shop3',
-        name: 'Bangkok3',
-    },
-    {
-        placeID: '005',
-        categoryCode: 'shop3',
-        name: 'Bangkok3',
-    },
-]
+// const Places = [
+//     {
+//         placeID: '001',
+//         categoryCode: 'shop',
+//         name: 'Bangkok',
+//     },
+//     {
+//         placeID: '002',
+//         categoryCode: 'shop2',
+//         name: 'Bangkok2',
+//     },
+//     {
+//         placeID: '003',
+//         categoryCode: 'shop3',
+//         name: 'Bangkok3',
+//     },
+//     {
+//         placeID: '004',
+//         categoryCode: 'shop3',
+//         name: 'Bangkok3',
+//     },
+//     {
+//         placeID: '005',
+//         categoryCode: 'shop3',
+//         name: 'Bangkok3',
+//     },
+// ]
 
 class SideBar extends Component {
     constructor() {
@@ -78,6 +78,31 @@ class SideBar extends Component {
         }
     }
 
+    removeFav = e => {
+        const pointer = e.target.getAttribute('index')
+        // const new_fav = this.state.fav_place
+        const new_fav = this.props.userFavourite.user.favourite
+        new_fav.splice(pointer, 1)
+        console.log(new_fav)
+        this.props.updateFavourite({
+            variables: {
+                id: this.props.id,
+                favourite: new_fav.map(place => {
+                    return {
+                        placeID: place.placeID,
+                        categoryCode: place.categoryCode,
+                    }
+                }),
+            },
+            refetchQueries: [
+                {
+                    query: userFavourite,
+                },
+            ],
+        })
+        this.setState({ block_swipe: false })
+    }
+
     genAddToDraft = () => {
         let container = []
         if (this.props.username === '')
@@ -101,44 +126,58 @@ class SideBar extends Component {
         } else {
             const places = this.props.userFavourite.user.favourite
             if (places.length > 0) {
-                container = places.map((place, index) => (
-                    <div key={place.placeID}>
-                        <Swipe
-                            className='draft'
-                            index={index}
-                            onSwipeStart={() =>
-                                this.setState({ block_swipe: true })
-                            }
-                            onSwipeMove={this.onSwipeMove}
-                            onSwipeEnd={() =>
-                                this.setState({ block_swipe: false })
-                            }
-                        >
-                            <div
-                                className={`draft-fav ${
-                                    !this.state.index.includes(index)
-                                        ? ''
-                                        : 'hide'
-                                }`}
-                            >
-                                <div className='name-fav'>{place.name}</div>
-                                <div className='draft-line' />
-                            </div>
-                            <div className='manage-fav'>
-                                <div className='rm-fav'>
-                                    <img src={Trash} alt='trash-icon' />
-                                </div>
-                                <div
-                                    className='info-fav'
-                                    placeid={place.placeID}
-                                    code={place.categoryCode}
+                places.forEach((place, index) => {
+                    if (places.length <= 5 || +index >= places.length - 5) {
+                        container = [
+                            ...container,
+                            <div key={place.placeID}>
+                                <Swipe
+                                    className='draft'
+                                    index={index}
+                                    onSwipeStart={() =>
+                                        this.setState({ block_swipe: true })
+                                    }
+                                    onSwipeMove={this.onSwipeMove}
+                                    onSwipeEnd={() =>
+                                        this.setState({ block_swipe: false })
+                                    }
                                 >
-                                    <img src={Info} alt='info-icon' />
-                                </div>
-                            </div>
-                        </Swipe>
-                    </div>
-                ))
+                                    <div
+                                        className={`draft-fav ${
+                                            !this.state.index.includes(index)
+                                                ? ''
+                                                : 'hide'
+                                        }`}
+                                    >
+                                        <div className='name-fav'>
+                                            {place.name}
+                                        </div>
+                                        <div className='draft-line' />
+                                    </div>
+                                    <div className='manage-fav'>
+                                        <div
+                                            className='rm-fav'
+                                            index={index}
+                                            onClick={this.removeFav}
+                                        >
+                                            <img src={Trash} alt='trash-icon' />
+                                        </div>
+                                        <Link
+                                            to={`/detail?place=${place.placeID}&code=${place.categoryCode}`}
+                                        >
+                                            <div className='info-fav'>
+                                                <img
+                                                    src={Info}
+                                                    alt='info-icon'
+                                                />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </Swipe>
+                            </div>,
+                        ]
+                    }
+                })
             }
         }
         return (
@@ -228,6 +267,7 @@ const mapDispatchToProps = dispatch => {
 }
 export default compose(
     graphql(userFavourite, { name: 'userFavourite' }),
+    graphql(updateFavourite, { name: 'updateFavourite' }),
     connect(
         mapStateToProps,
         mapDispatchToProps
