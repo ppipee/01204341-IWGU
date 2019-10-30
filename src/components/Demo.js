@@ -13,6 +13,9 @@ import img3 from '../assets/img/yaowarach.jpg'
 import standard from '../assets/img/standard.jpg'
 import snow from '../assets/img/snow.jpg'
 import water from '../assets/img/water.jpg'
+import air from '../assets/img/air.jpeg'
+import land from '../assets/img/land.jpeg'
+import sport from '../assets/img/sport.jpg'
 
 const Places = {
     res: [
@@ -309,7 +312,7 @@ const Coverage = {
     air: {
         name: 'Air Activities',
         price: '$18',
-        img: water,
+        img: air,
         cover: [
             'Medical, Travel and Activities Accident Benefits',
             'Lost Luggage & Personal Effects',
@@ -319,7 +322,7 @@ const Coverage = {
     land: {
         name: 'Land Activities',
         price: '$18',
-        img: water,
+        img: land,
         cover: [
             'Medical, Travel and Activities Accident Benefits',
             'Lost Luggage & Personal Effects',
@@ -329,7 +332,7 @@ const Coverage = {
     sport: {
         name: 'Sport Activities',
         price: '$18',
-        img: water,
+        img: sport,
         cover: [
             'Medical, Travel and Activities Accident Benefits',
             'Lost Luggage & Personal Effects',
