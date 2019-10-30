@@ -55,6 +55,7 @@ import Bts from '../assets/icon/bts.svg'
 import Mrt from '../assets/icon/mrt.svg'
 import Info from '../assets/icon/info.svg'
 import Trash from '../assets/icon/trash.svg'
+import Clock from '../assets/icon/clock.svg'
 
 // const Hotel = (props) => (
 //     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40">
@@ -191,4 +192,5 @@ export {
     Fav,
     Info,
     Trash,
+    Clock,
 }
