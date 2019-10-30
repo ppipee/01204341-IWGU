@@ -8,8 +8,9 @@ const userRegister = gql`
         }
     }
 `
+
 const userData = gql`
-    query($id: ID!) {
+    query($id: ID) {
         user(id: $id) {
             username
             password
@@ -26,9 +27,21 @@ const userData = gql`
     }
 `
 
+const userFavourite = gql`
+    query($id: ID) {
+        user(id: $id) {
+            favourite {
+                placeID
+                name
+                categoryCode
+            }
+        }
+    }
+`
+
 const getUser = gql`
-    query($name: ID!) {
-        user(name: $name) {
+    query($id: ID) {
+        user(id: $id) {
             id
             username
             password
@@ -64,4 +77,4 @@ const getUsers = gql`
     }
 `
 
-export { userRegister, userData, getUser, getUsers, userUpdate }
+export { userRegister, userData, getUser, getUsers, userUpdate, userFavourite }
