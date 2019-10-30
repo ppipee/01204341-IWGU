@@ -3,7 +3,6 @@
     padding: 20px 30px 79.4px 27px;
     box-sizing: border-box;
     .title {
-        display: flex;
         margin-bottom: 17px;
         span {
             font-size: 20px;
@@ -102,7 +101,6 @@
             }
             &::after {
                 position: absolute;
-                z-index: 1;
                 transform: translateX(-300%);
                 -webkit-transform: translateX(-300%);
                 content: '';

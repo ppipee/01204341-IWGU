@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Slider from 'react-slick'
 import {
-    SearchIcon,
+    Search,
     PinkClose,
     LandmarkCategoryInActive,
     CafeInActive,
@@ -167,11 +167,13 @@ class Category extends Component {
                     <div>
                         <div className='category-modal'>
                             <div className='search-bar'>
-                                <img
-                                    className='search-icon'
-                                    alt='search-icon'
-                                    src={SearchIcon}
-                                />
+                                <span className='search-icon'>
+                                    <Search
+                                        fill='#B0B0B0'
+                                        size='16'
+                                        alt='search-icon'
+                                    />
+                                </span>
                                 <input width='22px' placeholder='Search' />
                                 <img
                                     className='close-icon'
@@ -204,11 +206,9 @@ class Category extends Component {
                     href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css'
                 />
                 {this.categoryPopup()}
-                <img
-                    src={SearchIcon}
-                    alt='search-icon'
-                    onClick={() => this.handleClick(true)}
-                />
+                <span onClick={() => this.handleClick(true)}>
+                    <Search fill='#B0B0B0' size='16' alt='search-icon' />
+                </span>
             </div>
         )
     }
