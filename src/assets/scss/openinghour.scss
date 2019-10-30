@@ -7,7 +7,6 @@
     }
     .clock {
         position: relative;
-        margin-left: 23px;
     }
     .column {
         margin-left: 19px;
@@ -24,7 +23,12 @@
             margin-top: 0px;
             font-size: 9px;
             color: white;
-            background-color: #fcbba4;
+            &.close{
+                background-color: #cfcfcf;
+            }
+            &.open{
+                background-color: #fcbba4;
+            }
             border: none;
             border-radius: 5px;
         }

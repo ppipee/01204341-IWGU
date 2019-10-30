@@ -21,41 +21,39 @@ class OpeningHour extends Component {
     }
 
     componentDidMount() {
-        this.timer = setInterval(() => {
-            const date = new Date()
-            const weekday = date.getDay()
-            const currentTime = date.getHours() * 60 + date.getMinutes()
-            const hourOpen = +this.sliceTime(
-                Detail.placeDetail.time.split(' ')[0].split(':')[0]
-            )
-            const minOpen = +this.sliceTime(
-                Detail.placeDetail.time.split(' ')[0].split(':')[1]
-            )
-            const hourClose = +this.sliceTime(
-                Detail.placeDetail.time.split(' ')[2].split(':')[0]
-            )
-            const minClose = +this.sliceTime(
-                Detail.placeDetail.time.split(' ')[2].split(':')[1]
-            )
-            let box = []
-            Object.keys(this.state.days).map((day, i) => {
-                i += 1
-                if (Detail.placeDetail.days[day] === false) {
-                    if (i === weekday) {
-                        box = [...box, i]
-                    }
-                }
-                return box
-            })
-            if (box.length === 0) {
-                if (
-                    hourOpen * 60 + minOpen <= currentTime &&
-                    currentTime <= hourClose * 60 + minClose
-                ) {
-                    this.setState({ status: 'OPEN' })
+        const date = new Date()
+        const weekday = date.getDay()
+        const currentTime = date.getHours() * 60 + date.getMinutes()
+        const hourOpen = +this.sliceTime(
+            Detail.placeDetail.time.split(' ')[0].split(':')[0]
+        )
+        const minOpen = +this.sliceTime(
+            Detail.placeDetail.time.split(' ')[0].split(':')[1]
+        )
+        const hourClose = +this.sliceTime(
+            Detail.placeDetail.time.split(' ')[2].split(':')[0]
+        )
+        const minClose = +this.sliceTime(
+            Detail.placeDetail.time.split(' ')[2].split(':')[1]
+        )
+        let box = []
+        Object.keys(this.state.days).map((day, i) => {
+            i += 1
+            if (Detail.placeDetail.days[day] === false) {
+                if (i === weekday) {
+                    box = [...box, i]
                 }
             }
-        }, 30000)
+            return box
+        })
+        if (box.length === 0) {
+            if (
+                hourOpen * 60 + minOpen <= currentTime &&
+                currentTime <= hourClose * 60 + minClose
+            ) {
+                this.setState({ status: 'OPEN' })
+            }
+        }
     }
 
     componentWillUnmount() {
@@ -99,7 +97,14 @@ class OpeningHour extends Component {
                 <div className='row'>
                     <img className='clock' src={Clock} alt='icon-clock' />
                     <span className='column'>
-                        <div className='open-close'> {status} NOW</div>
+                        <div
+                            className={`open-close ${
+                                this.state.status === 'CLOSE' ? 'close' : 'open'
+                            }`}
+                        >
+                            {' '}
+                            {status} NOW
+                        </div>
                         <p className='time'>
                             {this.tConv24(
                                 Detail.placeDetail.time.split(' ')[0]

@@ -211,7 +211,7 @@ const Detail = {
             day6: false,
             day7: false,
         },
-        time: '09:00 - 16:00',
+        time: '09:00 - 22:00',
         contact: {
             mobiles: '02222222',
             urls: [
