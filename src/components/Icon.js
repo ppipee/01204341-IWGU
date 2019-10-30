@@ -45,6 +45,28 @@ import HotelInActive from '../assets/icon/hotel-inactive.svg'
 import HotelActive from '../assets/icon/hotel-active.svg'
 import SpaInActive from '../assets/icon/spa-inactive.svg'
 import SpaActive from '../assets/icon/spa-active.svg'
+import CoinInactive from '../assets/icon/coin-inactive.svg'
+import CoinActive from '../assets/icon/coin-active.svg'
+import CreditcardInactive from '../assets/icon/credit-card-inactive.svg'
+import CreditcardActive from '../assets/icon/credit-card-active.svg'
+import GroupInactive from '../assets/icon/group-inactive.svg'
+import GroupActive from '../assets/icon/group-active.svg'
+import HandicapInactive from '../assets/icon/handicap-inactive.svg'
+import HandicapActive from '../assets/icon/handicap-active.svg'
+import KidInactive from '../assets/icon/kids-inactive.svg'
+import KidActive from '../assets/icon/kids-active.svg'
+import ParkingInactive from '../assets/icon/parking-inactive.svg'
+import ParkingActive from '../assets/icon/parking-active.svg'
+import PetInactive from '../assets/icon/pet-inactive.svg'
+import PetActive from '../assets/icon/pet-active.svg'
+import PlugInactive from '../assets/icon/plug-inactive.svg'
+import PlugActive from '../assets/icon/plug-active.svg'
+import SmokingInactive from '../assets/icon/smoking-inactive.svg'
+import SmokingActive from '../assets/icon/smoking-active.svg'
+import WifiInactive from '../assets/icon/wifi-inactive.svg'
+import WifiActive from '../assets/icon/wifi-active.svg'
+import ArrowDown from '../assets/icon/show-more.svg'
+import ArrowUp from '../assets/icon/show-less.svg'
 
 export {
     SearchIcon,
@@ -94,4 +116,26 @@ export {
     HotelActive,
     SpaInActive,
     SpaActive,
+    CoinInactive,
+    CoinActive,
+    CreditcardInactive,
+    CreditcardActive,
+    GroupInactive,
+    GroupActive,
+    HandicapInactive,
+    HandicapActive,
+    KidInactive,
+    KidActive,
+    ParkingInactive,
+    ParkingActive,
+    PetInactive,
+    PetActive,
+    PlugInactive,
+    PlugActive,
+    SmokingInactive,
+    SmokingActive,
+    WifiInactive,
+    WifiActive,
+    ArrowDown,
+    ArrowUp,
 }
