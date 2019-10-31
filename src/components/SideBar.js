@@ -10,34 +10,6 @@ import { userFavourite, updateFavourite } from '../queries/user'
 import { UserAuthAction } from '../action'
 import { Airplane, Search, Fav, Back, Trash, Info } from './Icon'
 
-// const Places = [
-//     {
-//         placeID: '001',
-//         categoryCode: 'shop',
-//         name: 'Bangkok',
-//     },
-//     {
-//         placeID: '002',
-//         categoryCode: 'shop2',
-//         name: 'Bangkok2',
-//     },
-//     {
-//         placeID: '003',
-//         categoryCode: 'shop3',
-//         name: 'Bangkok3',
-//     },
-//     {
-//         placeID: '004',
-//         categoryCode: 'shop3',
-//         name: 'Bangkok3',
-//     },
-//     {
-//         placeID: '005',
-//         categoryCode: 'shop3',
-//         name: 'Bangkok3',
-//     },
-// ]
-
 class SideBar extends Component {
     constructor() {
         super()
@@ -80,7 +52,6 @@ class SideBar extends Component {
 
     removeFav = e => {
         const pointer = e.target.getAttribute('index')
-        // const new_fav = this.state.fav_place
         const new_fav = this.props.userFavourite.user.favourite
         new_fav.splice(pointer, 1)
         console.log(new_fav)

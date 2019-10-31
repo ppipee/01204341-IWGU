@@ -23,7 +23,7 @@
                 border-radius: 50%;
             }
             .user-sidebar {
-                color: #f2b099;
+                color: #4f4f4f;
             }
         }
         .close-navbar {
@@ -40,6 +40,7 @@
             .head-title {
                 flex-grow: 1;
                 line-height: 25px;
+                color: #4f4f4f;
             }
             .line {
                 flex-grow: 2;
@@ -88,10 +89,27 @@
                         text-transform: capitalize;
                         width: 298px;
                         .name-fav {
+                            position: relative;
                             display: flex;
                             align-items: center;
                             font-size: 14px;
                             height: 44px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            @include padding(0, 20px, 0, 0);
+                            &:after {
+                                position: absolute;
+                                content: '';
+                                height: 45px;
+                                width: 25px;
+                                top: 0;
+                                right: 0;
+                                background: linear-gradient(
+                                    to left,
+                                    #fff 8px,
+                                    transparent
+                                );
+                            }
                         }
                         .draft-line {
                             width: 100%;
