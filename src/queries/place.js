@@ -28,10 +28,7 @@ const nearBy = gql`
             placeID
             categoryCode
             name
-            thumbnail {
-                district
-                province
-            }
+            thumbnail
             map {
                 latitude
                 longitude

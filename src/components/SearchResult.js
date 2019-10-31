@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+// import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { Link, withRouter } from 'react-router-dom'
+import { graphql } from 'react-apollo'
+import { GoogleApiWrapper } from 'google-maps-react'
 import '../assets/scss/searchresult.scss'
-import { SearchPlaces } from './Demo'
-import { Time, PinkLocationIcon, Star, BlankStar } from './Icon'
-
 import { SearchResultTab } from './Initial'
+import { Time, PinkLocationIcon, Star, BlankStar } from './Icon'
+import { searchPlace } from '../queries/place'
 
 class SearchResult extends Component {
     constructor(props) {
@@ -12,6 +15,48 @@ class SearchResult extends Component {
         this.state = {
             add: [],
             fav: [],
+            userLocation: {
+                latitude: 32,
+                longitude: 32,
+            },
+            loading: true,
+        }
+    }
+
+    componentDidMount() {
+        const search = new URLSearchParams(this.props.location.search)
+        const keyword = search.get('q')
+        this.props.search.refetch({ keyword })
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                const { latitude, longitude } = position.coords
+
+                this.setState({
+                    userLocation: { latitude, longitude },
+                    loading: false,
+                })
+            },
+            () => {
+                this.setState({ loading: false })
+            }
+        )
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.location.search !== this.props.location.search) {
+            const search = new URLSearchParams(this.props.location.search)
+            const keyword = search.get('q')
+            let filters
+            if (search.has('time')) {
+                filters = {
+                    time: search.get('time').split(' '),
+                    sortby: search.get('sortby'),
+                    rate: search.get('rate').split(' '),
+                }
+                if (search.has('tag'))
+                    filters.tags = search.get('tags').split(' ')
+            }
+            this.props.search.refetch({ keyword })
         }
     }
 
@@ -110,7 +155,7 @@ class SearchResult extends Component {
                                 </div>
                                 <div className='line3'>
                                     <img alt='time' src={Time} />
-                                    <span className='time'>{place.time}</span>
+                                    <span className='time'>9.00-22.00</span>
                                 </div>
                                 <div className='line4'>
                                     <img
@@ -137,7 +182,28 @@ class SearchResult extends Component {
     }
 
     render() {
-        return <div className='SearchResult'>{this.genCards(SearchPlaces)}</div>
+        // console.log(
+        //     'loading: ',
+        //     this.state.loading,
+        //     ' location: ',
+        //     this.state.userLocation
+        //     )
+        // console.log(this.props.search.places)
+        if (this.props.search.loading) {
+            return <div className='search-result'>Loading</div>
+        }
+        return (
+            <div className='search-result'>
+                {this.genCards(this.props.search.places)}
+            </div>
+        )
     }
 }
-export default SearchResult
+
+export default compose(
+    withRouter,
+    GoogleApiWrapper({
+        apiKey: process.env.MAP_KEY,
+    }),
+    graphql(searchPlace, { name: 'search' })
+)(SearchResult)

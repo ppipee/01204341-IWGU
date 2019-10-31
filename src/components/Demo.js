@@ -1,3 +1,4 @@
+import faker from 'faker'
 import Burger from '../assets/demo/burger.jpg'
 import Coffee from '../assets/demo/coffee_cake.jpg'
 import Salad from '../assets/demo/thai_salad.jpg'
@@ -213,26 +214,17 @@ const TopAttractions = [
         subtitle: 'The Beautiful temple near Chao Phraya River',
     },
 ]
-// const TimePlanner = [
-//     new Date(2019,11,18),
-//     new Date(2019,10,19),
-//     new Date(2019,9,28),
-//     new Date(2019,10,7),
-//     new Date(2019,11,5),
-//     new Date(2019,10,20),
-//     new Date(2019,9,22),
-// ]
 
 const Trip = [
     {
         days: [
             {
-                date: new Date(2019, 9, 20),
+                date: new Date(2019, 9, 25),
                 places: [
                     {
                         time: {
-                            start: new Date(2019, 9, 21, 2, 0, 0),
-                            end: new Date(2019, 9, 22, 17, 0, 0),
+                            start: new Date(2019, 9, 29, 0, 0, 0),
+                            end: new Date(2019, 9, 26, 17, 0, 0),
                         },
                     },
                 ],
@@ -240,13 +232,39 @@ const Trip = [
         ],
     },
     {
-        days: [],
+        days: [
+            {
+                date: new Date(2019, 10, 24),
+                places: [
+                    {
+                        time: {
+                            start: new Date(2019, 10, 5, 14, 4, 0),
+                            end: new Date(2019, 9, 25, 13, 0, 0),
+                        },
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        days: [
+            {
+                date: new Date(2019, 9, 24),
+                places: [
+                    {
+                        time: {
+                            start: new Date(2019, 9, 25, 18, 0, 0),
+                            end: new Date(2019, 9, 25, 13, 0, 0),
+                        },
+                    },
+                ],
+            },
+        ],
     },
 ]
 
 const Images = [Burger, Coffee, Salad, Sashimi, Burger, Coffee, Salad, Sashimi]
 
-const Planners = []
 const Detail = {
     loading: false,
     placeDetail: {
@@ -276,7 +294,16 @@ const Detail = {
             facilities: null,
         },
         rate: 5,
-        time: '09:00 - 18:00',
+        days: {
+            day1: true,
+            day2: true,
+            day3: false,
+            day4: false,
+            day5: true,
+            day6: false,
+            day7: false,
+        },
+        time: '09:00 - 22:00',
         contact: {
             mobiles: '02222222',
             urls: [
@@ -289,7 +316,60 @@ const Detail = {
     },
 }
 
+const Routes = {
+    bus: ['25', '77', '204', '505', '511'],
+    train: [
+        {
+            name: 'bts',
+            station: 'Chitlom',
+        },
+        {
+            name: 'mrt',
+            station: 'Samyan',
+        },
+    ],
+    ferry: ['Pratu Nam'],
+}
+
 const id = 'P08000001'
 const code = 'restaurant'
 
-export { Places, TopAttractions, Planners, Detail, Images, Trip, SearchPlaces }
+const Reviews = [
+    {
+        id: 0,
+        author: 'pon',
+        rate: 3,
+        timestamp: '2019-10-18',
+        review: faker.lorem.sentence(),
+    },
+    {
+        id: 1,
+        author: 'asmb',
+        rate: 4,
+        timestamp: '2019-10-20',
+        review: faker.lorem.sentence(),
+    },
+    {
+        id: 2,
+        author: 'pipe',
+        rate: 5,
+        timestamp: '2019-10-21',
+        review: faker.lorem.sentence(),
+    },
+    {
+        id: 3,
+        author: 'chut',
+        rate: 3,
+        timestamp: '2019-11-08',
+        review: faker.lorem.sentence(),
+    },
+    {
+        id: 4,
+        author: 'earn',
+        rate: 2,
+        timestamp: '2019-11-30',
+        review: faker.lorem.sentence(),
+    },
+]
+
+export { Places, TopAttractions, Detail, Images, Trip, Reviews, Routes }

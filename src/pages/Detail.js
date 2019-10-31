@@ -44,6 +44,7 @@ class DetailPage extends Component {
                     info={{
                         name: data.name,
                         category: data.category,
+                        description: data.description,
                         time: data.time,
                         days: data.days,
                         rate: data.rate,
