@@ -17,6 +17,12 @@ import TreeActive from '../assets/icon/tree2.svg'
 import SleepInActive from '../assets/icon/sleep.svg'
 import SleepActive from '../assets/icon/sleep2.svg'
 import PaperAirplane from '../assets/icon/paper-airplane.svg'
+import AddActive from '../assets/icon/add-white.svg'
+import AddInActive from '../assets/icon/add-grey.svg'
+import FavActive from '../assets/icon/heart-white.svg'
+import FavInActive from '../assets/icon/heart-grey.svg'
+import Time from '../assets/icon/time.svg'
+import PinkLocationIcon from '../assets/icon/location.svg'
 import BlackAirplane from '../assets/icon/black-airplane.svg'
 import Calendar from '../assets/icon/calendar.svg'
 import RightArrow from '../assets/icon/right-arrow.svg'
@@ -272,6 +278,12 @@ export {
     SleepActive,
     SleepInActive,
     PaperAirplane,
+    AddActive,
+    AddInActive,
+    FavActive,
+    FavInActive,
+    Time,
+    PinkLocationIcon,
     BlackAirplane,
     Calendar,
     RightArrow,
