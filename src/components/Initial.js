@@ -1,22 +1,14 @@
+import React from 'react'
 import {
-    LandmarkCategoryInActive,
-    CafeInActive,
-    ParkInActive,
-    StreetFoodInActive,
-    ArtInActive,
-    MuseumInActive,
-    BarInActive,
-    HotelInActive,
-    SpaInActive,
-    LandmarkCategoryActive,
-    CafeActive,
-    ParkActive,
-    StreetFoodActive,
-    ArtActive,
-    MuseumActive,
-    BarActive,
-    HotelActive,
-    SpaActive,
+    LandmarkCategory,
+    Cafe,
+    Park,
+    StreetFood,
+    Art,
+    Museum,
+    Spa,
+    Bar,
+    Hotel,
 } from './Icon'
 
 const DefaultFilter = {
@@ -38,54 +30,49 @@ const DefaultFilter = {
 
 const PhotoCategory = [
     {
-        icon_inactive: LandmarkCategoryInActive,
-        icon_active: LandmarkCategoryActive,
+        icon_inactive: <LandmarkCategory fill='#565656' />,
+        icon_active: <LandmarkCategory fill='#fff' />,
         title: 'Landmark',
     },
     {
-        icon_inactive: CafeInActive,
-        icon_active: CafeActive,
+        icon_inactive: <Cafe fill='#565656' />,
+        icon_active: <Cafe fill='#fff' />,
         title: 'Café',
     },
     {
-        icon_inactive: ParkInActive,
-        icon_active: ParkActive,
+        icon_inactive: <Park fill='#565656' />,
+        icon_active: <Park fill='#fff' />,
         title: 'Park',
     },
     {
-        icon_inactive: StreetFoodInActive,
-        icon_active: StreetFoodActive,
+        icon_inactive: <StreetFood fill='#565656' />,
+        icon_active: <StreetFood fill='#fff' />,
         title: 'Street Food',
     },
     {
-        icon_inactive: ArtInActive,
-        icon_active: ArtActive,
+        icon_inactive: <Art fill='#565656' />,
+        icon_active: <Art fill='#fff' />,
         title: 'Arts',
     },
     {
-        icon_inactive: MuseumInActive,
-        icon_active: MuseumActive,
+        icon_inactive: <Museum fill='#565656' />,
+        icon_active: <Museum fill='#fff' />,
         title: 'Museum',
     },
     {
-        icon_inactive: BarInActive,
-        icon_active: BarActive,
+        icon_inactive: <Bar fill='#565656' />,
+        icon_active: <Bar fill='#fff' />,
         title: 'Bar',
     },
     {
-        icon_inactive: HotelInActive,
-        icon_active: HotelActive,
+        icon_inactive: <Hotel fill='#565656' />,
+        icon_active: <Hotel fill='#fff' />,
         title: 'Hotel',
     },
     {
-        icon_inactive: SpaInActive,
-        icon_active: SpaActive,
+        icon_inactive: <Spa fill='#565656' />,
+        icon_active: <Spa fill='#fff' />,
         title: 'Spa',
-    },
-    {
-        icon_inactive: SpaInActive,
-        icon_active: SpaActive,
-        title: 'Spā',
     },
 ]
 

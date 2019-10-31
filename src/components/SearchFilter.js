@@ -5,7 +5,7 @@ import { DefaultFilter, PhotoCategory } from './Initial'
 import TimeFilter from './TimeFilter'
 import Category from './Category'
 import '../assets/scss/searchfilter.scss'
-import { Filter, FilterActive, Clear, Star, BlankStar, Close } from './Icon'
+import { Filter, Clear, Star, BlankStar, Close } from './Icon'
 
 class SearchFilter extends Component {
     constructor(props) {
@@ -201,16 +201,13 @@ class SearchFilter extends Component {
     }
 
     actionFilter() {
-        const [source, name, click] = this.state.show
-            ? [FilterActive, '-active', this.clearFilters]
-            : [Filter, '', this.clickFilter]
+        const [status, name, click] = this.state.show
+            ? ['inactive', 'active', this.clearFilters]
+            : ['active', '', this.clickFilter]
         return (
-            <img
-                className={`img-filter${name}`}
-                src={source}
-                alt='filter'
-                onClick={click}
-            />
+            <span className={`img-filters ${name}`} onClick={click}>
+                <Filter status={status} />
+            </span>
         )
     }
 

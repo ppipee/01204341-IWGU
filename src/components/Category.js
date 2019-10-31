@@ -56,14 +56,7 @@ class Category extends Component {
                     onClick={this.toggleCard}
                 >
                     <div>
-                        <img
-                            src={
-                                check
-                                    ? category.icon_active
-                                    : category.icon_inactive
-                            }
-                            alt='category-icon-inactive'
-                        />
+                        {check ? category.icon_active : category.icon_inactive}
                     </div>
                     <div>
                         <p
