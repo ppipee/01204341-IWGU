@@ -1,3 +1,18 @@
+import { AddActive, AddInActive, FavActive, FavInActive } from './Icon'
+
+const SearchResultTab = [
+    {
+        name: 'add',
+        icon_active: AddActive,
+        icon_inactive: AddInActive,
+    },
+    {
+        name: 'fav',
+        icon_active: FavActive,
+        icon_inactive: FavInActive,
+    },
+]
+
 const DefaultFilter = {
     tags: [],
     sortby: {
@@ -15,4 +30,4 @@ const DefaultFilter = {
     },
 }
 
-export { DefaultFilter }
+export { DefaultFilter, SearchResultTab }

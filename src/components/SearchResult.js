@@ -2,29 +2,10 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import '../assets/scss/searchresult.scss'
 import { SearchPlaces } from './Demo'
-import {
-    AddActive,
-    AddInActive,
-    FavActive,
-    FavInActive,
-    Time,
-    PinkLocationIcon,
-    Star,
-    BlankStar,
-} from './Icon'
+import { Time, PinkLocationIcon, Star, BlankStar } from './Icon'
 
-const tabs = [
-    {
-        name: 'add',
-        icon_active: AddActive,
-        icon_inactive: AddInActive,
-    },
-    {
-        name: 'fav',
-        icon_active: FavActive,
-        icon_inactive: FavInActive,
-    },
-]
+import { SearchResultTab } from './Initial'
+
 class SearchResult extends Component {
     constructor(props) {
         super(props)
@@ -71,7 +52,7 @@ class SearchResult extends Component {
 
     genTabs(id, code) {
         const tabbar = []
-        tabs.forEach(tab => {
+        SearchResultTab.forEach(tab => {
             const { name, icon_active, icon_inactive } = tab
             const object = { placeID: id, category: name }
             let check
@@ -115,7 +96,7 @@ class SearchResult extends Component {
                     </Link>
                     <Link
                         className='go-to-detail'
-                        to={`/detail?place=${place.placeID}, ?code=${place.categoryCode}`}
+                        to={`/detail?place=${place.placeID}&code=${place.categoryCode}`}
                     >
                         <div className='content'>
                             <div className='line1'>{place.name}</div>
