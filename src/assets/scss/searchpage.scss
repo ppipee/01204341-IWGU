@@ -1,12 +1,8 @@
 .search-page {
     .search-background {
-        height: calc(100vh - 51px);
-        background-image: url('../img/fixed-background.svg');
-        background-attachment: scroll;
-        background-repeat: no-repeat;
-        background-size: auto;
-        object-fit: contain;
+        background: url('../img/fixed-background.svg') no-repeat;
+        background-size: 87.7% auto;
         background-position: bottom left;
-        min-height: 502px;
+        background-attachment: fixed;
     }
 }

@@ -1,0 +1,15 @@
+.search-result {
+    .none-result {
+        margin-top: 48px;
+        text-align: center;
+        .msg-title {
+            margin: 16px 0 10px;
+            color: #4f4f4f;
+            font-size: 20px;
+        }
+        .msg-alert {
+            color: #b0b0b0;
+            font-size: 12px;
+        }
+    }
+}

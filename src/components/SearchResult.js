@@ -5,6 +5,8 @@ import { withRouter } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import { GoogleApiWrapper } from 'google-maps-react'
 import { searchPlace } from '../queries/place'
+import { NoResult } from './Icon'
+import '../assets/scss/searchresult.scss'
 
 class SearchResult extends Component {
     constructor(props) {
@@ -55,6 +57,20 @@ class SearchResult extends Component {
         }
     }
 
+    noneResult = () => {
+        return (
+            <div className='none-result'>
+                <img src={NoResult} alt='none-result' />
+                <div className='msg-title'>No result found</div>
+                <div className='msg-alert'>
+                    We can&rsquo;t find any items
+                    <br />
+                    matching your search
+                </div>
+            </div>
+        )
+    }
+
     render() {
         console.log(
             'loading: ',
@@ -62,11 +78,11 @@ class SearchResult extends Component {
             ' location: ',
             this.state.userLocation
         )
-        if (this.props.search.loading) {
+        if (this.props.search.loading)
             return <div className='search-result'>Loading</div>
-        }
-        console.log('place', this.props.search.places)
-        return <div className='search-result'>Result</div>
+        if (this.props.search.error !== undefined)
+            return <div className='search-result'>{this.noneResult()}</div>
+        return <div className='search-result'>Search Result</div>
     }
 }
 
