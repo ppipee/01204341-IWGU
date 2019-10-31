@@ -55,9 +55,9 @@ class Category extends Component {
                     index={i}
                     onClick={this.toggleCard}
                 >
-                    <div>
+                    <span className='icon-tag'>
                         {check ? category.icon_active : category.icon_inactive}
-                    </div>
+                    </span>
                     <div>
                         <p
                             className={`category-title ${
