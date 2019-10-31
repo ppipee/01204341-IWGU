@@ -10,10 +10,11 @@ $map-size: 146px;
         justify-self: flex-end;
         margin-right: 10.5px;
         .map {
-            height: $map-size;
-            width: $map-size;
-            background-color: grey;
-            border-radius: 15px;
+            div {
+                height: $map-size;
+                width: $map-size;
+                border-radius: 15px;
+            }
         }
 
         .address {
@@ -82,4 +83,17 @@ $map-size: 146px;
             }
         }
     }
+}
+
+a[href^="http://maps.google.com/maps"], a[href^="https://maps.google.com/maps"] {
+    display: none !important;
+}
+
+.gmnoprint a,
+.gmnoprint span,
+.gm-style-cc {
+    display: none;
+}
+.gmnoprint div {
+    background: none !important;
 }

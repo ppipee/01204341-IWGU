@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import SearchBar from './SearchBar'
-import { FilterAction } from '../action'
 import { DefaultFilter } from './Initial'
 import TimeFilter from './TimeFilter'
 import Category from './Category'
 import '../assets/scss/searchfilter.scss'
 import { Filter, FilterActive, Clear, Star, BlankStar, Close } from './Icon'
 
-const Action = FilterAction
 class SearchFilter extends Component {
     constructor(props) {
         super(props)
@@ -19,11 +17,40 @@ class SearchFilter extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.show !== this.state.show) {
-            const { state } = this
+        const { state } = this
+        const search = new URLSearchParams(this.props.location.search)
+        if (prevState.show !== state.show && search.has('time')) {
+            const tags = search.has('tags') ? search.get('tags').split(' ') : []
+            const rating = {
+                star1: true,
+                star2: true,
+                star3: true,
+                star4: true,
+                star5: true,
+            }
+            search
+                .get('rate')
+                .split(' ')
+                .forEach(star => {
+                    rating[`star${star}`] = false
+                })
+            const time = search
+                .get('time')
+                .split(' ')
+                .map(t => +t)
+            const sortby = {
+                nearby: false,
+                rating: false,
+                price: false,
+            }
+            sortby[search.get('sortby')] = true
+            console.log(this.state)
             this.setState({
                 ...state,
-                ...JSON.parse(JSON.stringify(this.props.load_filters)),
+                time,
+                tags,
+                sortby,
+                rating,
             })
         }
     }
@@ -126,7 +153,28 @@ class SearchFilter extends Component {
     applyFilters = () => {
         const filter = JSON.parse(JSON.stringify(this.state))
         delete filter.show
-        this.props.setFilter(filter)
+        const word = new URLSearchParams(this.props.location.search).get('q')
+        let path = [word]
+        if (filter.tags.length !== 0) {
+            const tag = filter.tags.join(' ')
+            path = [...path, `tags=${tag}`]
+        }
+        const sortby = Object.keys(filter.sortby).filter(
+            sort => filter.sortby[sort] === true
+        )
+        const time = filter.time.join(' ')
+        const rate = Object.keys(
+            Object.values(filter.rating).filter(star => star === false)
+        )
+            .map(index => +index + 1)
+            .join(' ')
+        path = [
+            ...path,
+            `sortby=${sortby[0]}`,
+            `time=${time}`,
+            `rate=${rate}`,
+        ].join('&')
+        this.props.history.push(`/search?q=${path}`)
         this.setState({ show: false })
     }
 
@@ -198,7 +246,11 @@ class SearchFilter extends Component {
         return (
             <div className='search-filter'>
                 <div className='search-bar'>
-                    <SearchBar val={this.props.word} />
+                    <SearchBar
+                        val={new URLSearchParams(
+                            this.props.location.search
+                        ).get('q')}
+                    />
                     {this.actionFilter()}
                 </div>
                 {this.showFilter()}
@@ -206,20 +258,5 @@ class SearchFilter extends Component {
         )
     }
 }
-const mapStateToProps = state => {
-    return {
-        word: state.searching.word,
-        load_filters: state.filters,
-    }
-}
-const mapDispatchToProps = dispatch => {
-    return {
-        setFilter: filters =>
-            dispatch({ type: Action.SAVEFILTERS, newState: filters }),
-    }
-}
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SearchFilter)
+export default withRouter(SearchFilter)
