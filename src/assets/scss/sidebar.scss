@@ -81,66 +81,90 @@
                 }
             }
             div {
-                overflow: hidden;
-                .draft {
-                    width: 398px;
+                display: flex;
+                position: relative;
+                .draft-container {
+                    overflow: hidden;
                     display: flex;
-                    .draft-fav {
-                        pointer-events: none;
-                        text-transform: capitalize;
-                        width: 298px;
-                        .name-fav {
-                            position: relative;
-                            display: flex;
-                            align-items: center;
-                            font-size: 14px;
-                            height: 44px;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            @include padding(0, 20px, 0, 0);
-                            &:after {
-                                position: absolute;
-                                content: '';
-                                height: 45px;
-                                width: 25px;
-                                top: 0;
-                                right: 0;
-                                background: linear-gradient(
-                                    to left,
-                                    #fff 8px,
-                                    transparent
-                                );
-                            }
+                    flex-direction: column;
+                    .draft {
+                        position: relative;
+                        width: 398px;
+                        .ant-skeleton-title {
+                            margin: 15px 0;
+                            height: 15px;
                         }
-                        .draft-line {
+                        .draft-fav {
+                            pointer-events: none;
+                            text-transform: capitalize;
                             width: 100%;
-                            height: 1px;
-                            background: #e8e8e8;
-                            border-radius: 2px;
-                        }
-                        &.hide {
-                            padding-right: 18px;
-                            -webkit-padding-end: 18px;
-                        }
-                    }
-                    .manage-fav {
-                        display: flex;
-                        div {
-                            height: 44px;
-                            width: 50px;
-                            display: flex;
-                            justify-content: center;
-                            img {
-                                pointer-events: none;
+                            .name-fav {
+                                position: relative;
+                                display: flex;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                align-items: center;
+                                font-size: 14px;
+                                height: 44px;
+                                @include padding(0, 18px, 0, 0);
+                                &.overflow:after {
+                                    position: absolute;
+                                    content: '';
+                                    height: 45px;
+                                    width: 65px;
+                                    right: 0px;
+                                    background: linear-gradient(
+                                        to left,
+                                        #fff 18px,
+                                        transparent
+                                    );
+                                }
                             }
                         }
-                        .rm-fav {
-                            background: #dedede;
-                        }
-                        .info-fav {
-                            background: #f2b099;
+                        .manage-fav {
+                            display: flex;
+                            position: relative;
+                            top: 0px;
+                            z-index: 1;
+                            div {
+                                height: 45px;
+                                width: 50px;
+                                display: flex;
+                                justify-content: center;
+                                img {
+                                    pointer-events: none;
+                                }
+                            }
+                            .rm-fav {
+                                background: #dedede;
+                            }
+                            .info-fav {
+                                background: #f2b099;
+                            }
                         }
                     }
+                    .draft-line {
+                        position: absolute;
+                        height: 1px;
+                        border-radius: 2px;
+                        bottom: 0;
+                        width: 398px;
+                        background: #e8e8e8;
+                    }
+                }
+                .overflow.active {
+                    position: absolute;
+                    pointer-events: none;
+                    content: '';
+                    height: 45px;
+                    width: 70px;
+                    top: 0;
+                    right: 0px;
+                    background: linear-gradient(
+                        to left,
+                        #fff 10px,
+                        transparent
+                    );
                 }
             }
         }

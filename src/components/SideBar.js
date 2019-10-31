@@ -84,13 +84,14 @@ class SideBar extends Component {
                 </div>
             )
         else if (this.props.userFavourite.loading) {
+            console.log('loading')
             container = [...Array(5).keys()].map(index => (
                 <div key={`skeleton-fav-${index}`}>
-                    <div className='draft'>
-                        <div className='draft-fav hide'>
+                    <div className='draft-container'>
+                        <div className='draft'>
                             <Skeleton active paragraph={false} />
-                            <div className='draft-line' />
                         </div>
+                        <div className='draft-line' />
                     </div>
                 </div>
             ))
@@ -102,49 +103,61 @@ class SideBar extends Component {
                         container = [
                             ...container,
                             <div key={place.placeID}>
-                                <Swipe
-                                    className='draft'
-                                    index={index}
-                                    onSwipeStart={() =>
-                                        this.setState({ block_swipe: true })
-                                    }
-                                    onSwipeMove={this.onSwipeMove}
-                                    onSwipeEnd={() =>
-                                        this.setState({ block_swipe: false })
-                                    }
-                                >
-                                    <div
-                                        className={`draft-fav ${
-                                            !this.state.index.includes(index)
-                                                ? ''
-                                                : 'hide'
-                                        }`}
+                                <div className='draft-container'>
+                                    <Swipe
+                                        className='draft'
+                                        index={index}
+                                        onSwipeStart={() =>
+                                            this.setState({ block_swipe: true })
+                                        }
+                                        onSwipeMove={this.onSwipeMove}
+                                        onSwipeEnd={() =>
+                                            this.setState({
+                                                block_swipe: false,
+                                            })
+                                        }
                                     >
-                                        <div className='name-fav'>
-                                            {place.name}
+                                        <div className='draft-fav'>
+                                            <div
+                                                className={`name-fav ${
+                                                    place.name.length > 43
+                                                        ? 'overflow'
+                                                        : ''
+                                                }`}
+                                            >
+                                                {place.name}
+                                            </div>
                                         </div>
-                                        <div className='draft-line' />
-                                    </div>
-                                    <div className='manage-fav'>
-                                        <div
-                                            className='rm-fav'
-                                            index={index}
-                                            onClick={this.removeFav}
-                                        >
-                                            <img src={Trash} alt='trash-icon' />
-                                        </div>
-                                        <Link
-                                            to={`/detail?place=${place.placeID}&code=${place.categoryCode}`}
-                                        >
-                                            <div className='info-fav'>
+                                        <div className='manage-fav'>
+                                            <div
+                                                className='rm-fav'
+                                                index={index}
+                                                onClick={this.removeFav}
+                                            >
                                                 <img
-                                                    src={Info}
-                                                    alt='info-icon'
+                                                    src={Trash}
+                                                    alt='trash-icon'
                                                 />
                                             </div>
-                                        </Link>
-                                    </div>
-                                </Swipe>
+                                            <Link
+                                                to={`/detail?place=${place.placeID}&code=${place.categoryCode}`}
+                                            >
+                                                <div className='info-fav'>
+                                                    <img
+                                                        src={Info}
+                                                        alt='info-icon'
+                                                    />
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    </Swipe>
+                                    <div className='draft-line' />
+                                </div>
+                                <div
+                                    className={`overflow ${
+                                        place.name.length > 35 ? 'active' : ''
+                                    }`}
+                                />
                             </div>,
                         ]
                     }
