@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import SearchBar from './SearchBar'
-import { DefaultFilter } from './Initial'
+import { DefaultFilter, PhotoCategory } from './Initial'
 import TimeFilter from './TimeFilter'
 import Category from './Category'
 import '../assets/scss/searchfilter.scss'
-import { Filter, FilterActive, Clear, Star, BlankStar, Close } from './Icon'
+import { Filter, Clear, Star, BlankStar, Close } from './Icon'
 
 class SearchFilter extends Component {
     constructor(props) {
         super(props)
         this.state = {
             show: false,
+            tags_index: [],
             ...JSON.parse(JSON.stringify(DefaultFilter)),
         }
     }
@@ -105,13 +106,26 @@ class SearchFilter extends Component {
         return fav
     }
 
+    removeTag = event => {
+        const new_index = this.state.tags_index
+        new_index.splice(event.target.getAttribute('index'), 1)
+        this.setTag(new_index)
+    }
+
     genTag = () =>
-        this.state.tags.map(tag => (
-            <div className='tag' key={tag.id}>
-                <div>{tag}</div>
-                <img src={Close} alt='icon-close' />
-            </div>
-        ))
+        this.state.tags_index.map((tag_index, i) => {
+            return (
+                <div className='tag' key={`tag-${tag_index}`}>
+                    <div>{PhotoCategory[tag_index].title}</div>
+                    <img
+                        src={Close}
+                        index={i}
+                        alt='icon-close'
+                        onClick={this.removeTag}
+                    />
+                </div>
+            )
+        })
 
     handleTime = time => this.setState({ time })
 
@@ -146,6 +160,7 @@ class SearchFilter extends Component {
     clearFilters = (event, show = false) => {
         this.setState({
             show,
+            tags_index: [],
             ...JSON.parse(JSON.stringify(DefaultFilter)),
         })
     }
@@ -178,17 +193,21 @@ class SearchFilter extends Component {
         this.setState({ show: false })
     }
 
+    setTag = tags_index => {
+        this.setState({
+            tags: tags_index.map(index => PhotoCategory[index].title),
+            tags_index,
+        })
+    }
+
     actionFilter() {
-        const [source, name, click] = this.state.show
-            ? [FilterActive, '-active', this.clearFilters]
-            : [Filter, '', this.clickFilter]
+        const [status, name, click] = this.state.show
+            ? ['inactive', 'active', this.clearFilters]
+            : ['active', '', this.clickFilter]
         return (
-            <img
-                className={`img-filter${name}`}
-                src={source}
-                alt='filter'
-                onClick={click}
-            />
+            <span className={`img-filters ${name}`} onClick={click}>
+                <Filter status={status} />
+            </span>
         )
     }
 
@@ -211,11 +230,18 @@ class SearchFilter extends Component {
                             </div>
                             <div className='sortby'>{this.genSort()}</div>
                         </div>
-                        <div className='category'>
+                        <div className='category-tags'>
                             <div className='head'>Category :</div>
-                            <div className='tags'>
+                            <div
+                                className={`tags ${
+                                    this.state.tags.length === 0 ? '' : 'show'
+                                }`}
+                            >
                                 {this.genTag()}
-                                <Category />
+                                <Category
+                                    settag={this.setTag}
+                                    tags={this.state.tags_index}
+                                />
                             </div>
                         </div>
                         <div className='line' />
