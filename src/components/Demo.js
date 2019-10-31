@@ -142,11 +142,11 @@ const Trip = [
     {
         days: [
             {
-                date: new Date(2019, 9, 24),
+                date: new Date(2019, 10, 24),
                 places: [
                     {
                         time: {
-                            start: new Date(2019, 9, 23, 14, 4, 0),
+                            start: new Date(2019, 10, 5, 14, 4, 0),
                             end: new Date(2019, 9, 25, 13, 0, 0),
                         },
                     },
@@ -202,7 +202,16 @@ const Detail = {
             facilities: null,
         },
         rate: 5,
-        time: '09:00 - 18:00',
+        days: {
+            day1: true,
+            day2: true,
+            day3: false,
+            day4: false,
+            day5: true,
+            day6: false,
+            day7: false,
+        },
+        time: '09:00 - 22:00',
         contact: {
             mobiles: '02222222',
             urls: [

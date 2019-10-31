@@ -1,0 +1,13 @@
+@mixin padding($top: 0px, $right: 0px, $bottom: 0px, $left: 0px) {
+    padding: $top $right $bottom $left;
+    -webkit-padding-before: $top;
+    -webkit-padding-end: $right;
+    -webkit-padding-after: $bottom;
+    -webkit-padding-start: $left;
+}
+
+.insurance {
+    height: 258.5px;
+    border: 1px solid black;
+    @include padding(9px, 34px, 17.5px, 34px);
+}
