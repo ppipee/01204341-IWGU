@@ -156,7 +156,9 @@ class SearchResult extends Component {
                                 </div>
                                 <div className='line3'>
                                     <img alt='time' src={Time} />
-                                    <span className='time'>9.00-22.00</span>
+                                    <span className='time'>
+                                        8.00 AM - 4.00 PM
+                                    </span>
                                 </div>
                                 <div className='line4'>
                                     <img
