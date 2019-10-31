@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import SearchBar from './SearchBar'
 import { FilterAction } from '../action'
-import { DefaultFilter } from './Initial'
+import { DefaultFilter, PhotoCategory } from './Initial'
 import TimeFilter from './TimeFilter'
 import Category from './Category'
 import '../assets/scss/searchfilter.scss'
@@ -14,6 +14,7 @@ class SearchFilter extends Component {
         super(props)
         this.state = {
             show: false,
+            tags_index: [],
             ...JSON.parse(JSON.stringify(DefaultFilter)),
         }
     }
@@ -130,6 +131,13 @@ class SearchFilter extends Component {
         this.setState({ show: false })
     }
 
+    setTag = index_tags => {
+        this.setState({
+            tags: index_tags.map(index => PhotoCategory[index].title),
+            index_tags,
+        })
+    }
+
     actionFilter() {
         const [source, name, click] = this.state.show
             ? [FilterActive, '-active', this.clearFilters]
@@ -163,11 +171,18 @@ class SearchFilter extends Component {
                             </div>
                             <div className='sortby'>{this.genSort()}</div>
                         </div>
-                        <div className='category'>
+                        <div className='category-tags'>
                             <div className='head'>Category :</div>
-                            <div className='tags'>
+                            <div
+                                className={`tags ${
+                                    this.state.tags.length === 0 ? '' : 'show'
+                                }`}
+                            >
                                 {this.genTag()}
-                                <Category />
+                                <Category
+                                    settag={this.setTag}
+                                    tags={this.state.tags_index}
+                                />
                             </div>
                         </div>
                         <div className='line' />
