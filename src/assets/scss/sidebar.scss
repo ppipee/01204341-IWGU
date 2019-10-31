@@ -15,6 +15,7 @@
         justify-content: space-between;
         .hello-user {
             display: flex;
+            color: #4f4f4f;
             .img-profile {
                 width: 26px;
                 height: 26px;
@@ -22,8 +23,8 @@
                 background: #fcbba4;
                 border-radius: 50%;
             }
-            .user-sidebar {
-                color: #4f4f4f;
+            .user-sidebar.user {
+                color: #fcbba4;
             }
         }
         .close-navbar {

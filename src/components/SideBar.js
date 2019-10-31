@@ -176,7 +176,11 @@ class SideBar extends Component {
                     <div className='hello-user'>
                         <div className='img-profile' />
                         Hello,&nbsp;
-                        <div className='user-sidebar'>
+                        <div
+                            className={`user-sidebar ${
+                                this.props.username !== '' ? 'user' : ''
+                            }`}
+                        >
                             {this.props.username !== ''
                                 ? this.props.username
                                 : 'Traveler'}
