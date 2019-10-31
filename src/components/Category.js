@@ -13,6 +13,11 @@ class Category extends Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.tags !== this.props.tags)
+            this.setState({ card_state: this.props.tags })
+    }
+
     handleClick = state => {
         this.setState({ popup: state })
     }

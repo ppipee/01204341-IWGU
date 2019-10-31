@@ -79,13 +79,26 @@ class SearchFilter extends Component {
         return fav
     }
 
+    removeTag = event => {
+        const new_index = this.state.tags_index
+        new_index.splice(event.target.getAttribute('index'), 1)
+        this.setTag(new_index)
+    }
+
     genTag = () =>
-        this.state.tags.map(tag => (
-            <div className='tag' key={tag.id}>
-                <div>{tag}</div>
-                <img src={Close} alt='icon-close' />
-            </div>
-        ))
+        this.state.tags_index.map((tag_index, i) => {
+            return (
+                <div className='tag' key={`tag-${tag_index}`}>
+                    <div>{PhotoCategory[tag_index].title}</div>
+                    <img
+                        src={Close}
+                        index={i}
+                        alt='icon-close'
+                        onClick={this.removeTag}
+                    />
+                </div>
+            )
+        })
 
     handleTime = time => this.setState({ time })
 
@@ -120,6 +133,7 @@ class SearchFilter extends Component {
     clearFilters = (event, show = false) => {
         this.setState({
             show,
+            tags_index: [],
             ...JSON.parse(JSON.stringify(DefaultFilter)),
         })
     }
@@ -131,10 +145,10 @@ class SearchFilter extends Component {
         this.setState({ show: false })
     }
 
-    setTag = index_tags => {
+    setTag = tags_index => {
         this.setState({
-            tags: index_tags.map(index => PhotoCategory[index].title),
-            index_tags,
+            tags: tags_index.map(index => PhotoCategory[index].title),
+            tags_index,
         })
     }
 
