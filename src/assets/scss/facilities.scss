@@ -9,32 +9,45 @@ $fade-color: linear-gradient(
 
 .facilities {
     height: 127px;
-    .subject {
-        height: 18px;
-        margin-top: 14px;
-        margin-left: 39px;
-        color: #707070;
-    }
-    .facility-list {
-        height: 102px;
-        margin-top: 16px;
-        margin-left: 42.8px;
-        display: grid !important;
-        grid-template-columns: 129.9px 160px;
-        grid-template-rows: 15px 15px 15px 15px 15px;
-        grid-column-gap: 50px;
-        grid-row-gap: 11px;
-        .facility-box {
-            display: flex;
-            flex-direction: row;
-            .facility-title {
-                margin-left: 9px;
-                font-size: 11px;
-                color: #707070;
-                &.inactive {
-                    color: #b0b0b0;
-                    text-decoration: line-through;
-                    text-decoration-line: 1.36px;
+    .grid-facilities {
+        // display: flex;
+        // flex-direction: column;
+        // margin-left: 12.5%;
+        // width: 75%; 
+        grid-template-columns: 0px;
+        margin-left: 12.5%;    
+        .subject {
+            // position: relative;
+            // left: 4%;
+            height: 18px;
+            // margin-left: -55px;
+            margin-top: 14px;
+            font-size: 18px;
+            color: #707070;
+        }
+        .facility-list {
+            height: 102px;
+            margin-top: 16px;
+            // margin-left: 39px;
+            // margin-left: 42.8px;
+            justify-content: center; 
+            display: grid !important;
+            grid-template-columns: 129.9px 160px;
+            grid-template-rows: 15px 15px 15px 15px 15px;
+            grid-column-gap: 50px;
+            grid-row-gap: 11px;
+            .facility-box {
+                display: flex;
+                flex-direction: row;
+                .facility-title {
+                    margin-left: 9px;
+                    font-size: 11px;
+                    color: #707070;
+                    &.inactive {
+                        color: #b0b0b0;
+                        text-decoration: line-through;
+                        text-decoration-line: 1.36px;
+                    }
                 }
             }
         }
@@ -52,10 +65,8 @@ $fade-color: linear-gradient(
     .arrow-show {
         display: flex;
         flex-direction: column;
-        position: absolute;
         align-items: center;
         margin-top: -60px;
-        margin-left: 190px;
         p {
             margin-bottom: 0px;
             font-size: 9px;

@@ -206,8 +206,10 @@ export default class Facilities extends Component {
         const { show_more } = this.state
         return (
             <div className='facilities'>
-                <div className='subject'>More details</div>
-                <div className='facility-list'>{this.facilityDetail()}</div>
+                <div className='grid-facilities'>
+                    <div className='subject'>More details</div>
+                    <div className='facility-list'>{this.facilityDetail()}</div>
+                </div>
                 <div className={`background ${show_more ? 'show' : ''}`} />
                 {this.genButton()}
             </div>
