@@ -8,28 +8,20 @@ $fade-color: linear-gradient(
 );
 
 .facilities {
-    height: 127px;
     .grid-facilities {
-        // display: flex;
-        // flex-direction: column;
-        // margin-left: 12.5%;
-        // width: 75%;
-        grid-template-columns: 0px;
-        margin-left: 12.5%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
         .subject {
-            // position: relative;
-            // left: 4%;
             height: 18px;
-            // margin-left: -55px;
             margin-top: 14px;
             font-size: 18px;
             color: #707070;
+            grid-column-start: 2;
         }
         .facility-list {
             height: 102px;
-            margin-top: 16px;
-            // margin-left: 39px;
-            // margin-left: 42.8px;
+            margin-top: 18px;
+            grid-column-start: 2;
             justify-content: center;
             display: grid !important;
             grid-template-columns: 129.9px 160px;
