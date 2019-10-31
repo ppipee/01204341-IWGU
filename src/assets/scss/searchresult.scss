@@ -1,0 +1,132 @@
+.SearchResult {
+    .card-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: auto;
+        .card {
+            width: 304px;
+            height: 95px;
+            border-radius: 3px;
+            box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.2);
+            border: solid 0.5px #e8e8e8;
+            background-color: white;
+            margin-bottom: 20px;
+            display: flex;
+            .picture {
+                width: 71px;
+                height: 71px;
+                border-radius: 7px;
+                margin-top: 12px;
+                margin-left: 11px;
+            }
+            .go-to-detail {
+                width: 186px;
+                .content {
+                    margin-top: 12px;
+                    margin-left: 8px;
+                    position: relative;
+                    .line1 {
+                        font-size: 15px;
+                        color: #4f4f4f;
+                    }
+                    .line-group {
+                        position: absolute;
+                        margin-top: -2.5px;
+                        .line2 {
+                            font-size: 10px;
+                            color: #989898;
+                            margin-bottom: 3.5px;
+                            .rating {
+                                .star {
+                                    margin-right: 5px;
+                                }
+                            }
+                            .dot {
+                                height: 2px;
+                                width: 2px;
+                                background-color: #989898;
+                                border-radius: 50%;
+                                display: inline-block;
+                                margin-bottom: 1.5px;
+                                margin-left: 4.1px;
+                            }
+                            .category {
+                                margin-left: 9px;
+                            }
+                        }
+                        .line3 {
+                            font-size: 10px;
+                            color: #989898;
+                            margin-bottom: 3.5px;
+                            .time {
+                                margin-left: 4px;
+                            }
+                        }
+                        .line4 {
+                            font-size: 10px;
+                            color: #989898;
+                            display: flex;
+                            .information {
+                                margin-top: 2px;
+                                .map {
+                                    margin-left: 7px;
+                                }
+                                .dot {
+                                    height: 2px;
+                                    width: 2px;
+                                    background-color: #989898;
+                                    border-radius: 50%;
+                                    display: inline-block;
+                                    margin-left: 5px;
+                                    margin-bottom: 2px;
+                                }
+                                .location {
+                                    margin-left: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .add-fav {
+                #add {
+                    width: 36px;
+                    height: 47px;
+                    border-left: solid 0.5px #e8e8e8;
+                    border-bottom: solid 0.5px #e8e8e8;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .icon {
+                        pointer-events: none;
+                    }
+                    &.active {
+                        background: #f2b099;
+                        border: solid 0.5px #f2b099;
+                        border-top-right-radius: 3px;
+                    }
+                }
+                #fav {
+                    width: 36px;
+                    height: 47px;
+                    border-left: solid 0.5px #e8e8e8;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .icon {
+                        pointer-events: none;
+                    }
+                    &.active {
+                        background: #fedec4;
+                        border: solid 0.5px #fedec4;
+                        border-bottom-right-radius: 3px;
+                    }
+                }
+            }
+        }
+    }
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}

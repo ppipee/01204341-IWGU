@@ -211,6 +211,8 @@ const Detail = {
             ],
             emails: 'pon@ponponponnn',
             phone: '09222222',
+            facebook: '',
+            instagram: '',
         },
     },
 }
