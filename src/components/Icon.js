@@ -38,6 +38,9 @@ import Ferry from '../assets/icon/ferry.svg'
 import Bts from '../assets/icon/bts.svg'
 import Mrt from '../assets/icon/mrt.svg'
 import Clock from '../assets/icon/clock.svg'
+import SettingButton from '../assets/icon/setting-button.svg'
+import ShareButton from '../assets/icon/share-button.svg'
+import SummaryButton from '../assets/icon/summary-button.svg'
 
 const Filter = props => (
     <svg
@@ -301,4 +304,7 @@ export {
     Bts,
     Mrt,
     Clock,
+    SettingButton,
+    SummaryButton,
+    ShareButton,
 }

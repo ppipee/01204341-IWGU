@@ -1,7 +1,14 @@
 /* eslint-disable react/no-typos */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, Airplane, Back } from './Icon'
+import {
+    Menu,
+    Airplane,
+    Back,
+    SettingButton,
+    ShareButton,
+    SummaryButton,
+} from './Icon'
 import '../assets/scss/navbar.scss'
 
 class NavBar extends Component {
@@ -66,13 +73,20 @@ class NavBar extends Component {
     }
 
     render() {
-        const design =
-            this.props.design === 'planners' ? ' planners' : ' default'
+        let design = ' default'
+        if (this.props.design !== undefined) design = ` ${this.props.design}`
         return (
             <>
                 <div className={`nav-bar${design}`}>
                     {this.genSideBar()}
                     {this.goBack(this.props.back)}
+                    {this.props.design === 'planners-page' && (
+                        <div className='tools-navbar'>
+                            <img alt='summary' src={SummaryButton} />
+                            <img alt='share' src={ShareButton} />
+                            <img alt='setting' src={SettingButton} />
+                        </div>
+                    )}
                     <Link to='/mytrips'>
                         <button className={`button-mytrips${design}`}>
                             <img src={Airplane} alt='icon-mytrips' />
