@@ -131,6 +131,7 @@ class SearchResult extends Component {
             box.push(
                 <div className='card' key={`${place.placeID}`}>
                     <Link
+                        className='link'
                         to={`/detail?place=${place.placeID}, ?code=${place.categoryCode}`}
                     >
                         <img
