@@ -1,8 +1,9 @@
 .search-page {
     .search-background {
-        background: url('../img/fixed-background.svg') no-repeat;
-        background-size: 87.7% auto;
-        background-position: bottom left;
-        background-attachment: fixed;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
     }
 }
