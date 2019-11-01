@@ -1,0 +1,113 @@
+$fade-color: linear-gradient(
+    to right,
+    rgb(176, 176, 176),
+    rgb(176, 176, 176),
+    rgb(176, 176, 176),
+    rgb(176, 176, 176),
+    rgb(176, 176, 176),
+    rgb(176, 176, 176),
+    rgb(176, 176, 176),
+    rgb(176, 176, 176),
+    rgb(176, 176, 176),
+    rgb(176, 176, 176),
+    rgba(176, 176, 176, 0.5),
+    rgba(176, 176, 176, 0.5),
+    rgba(246, 246, 246, 1),
+    rgba(246, 246, 246, 1)
+);
+
+.share-planner {
+    background-color: rgba(45, 32, 27, 0.73);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+
+    &.active {
+        display: block;
+    }
+
+    .share-modal {
+        width: 250px;
+        height: 161px;
+        border-radius: 10px;
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow-x: hidden;
+
+        > div {
+            display: flex;
+            align-items: center;
+
+            &:first-child {
+                padding: 14px 18px 19px 18px;
+
+                img {
+                    height: 17px;
+                    width: 17px;
+                }
+
+                p {
+                    font-size: 16px;
+                    color: #4f4f4f;
+                    margin: 0 0 0 9px;
+                }
+
+                svg {
+                    margin-left: 59px;
+                    height: 12px;
+                    width: 12px;
+                }
+            }
+        }
+
+        .url-container {
+            margin-top: 5px;
+            justify-content: center;
+            width: fit-content;
+            background-color: #f6f6f6;
+            border-radius: 5px;
+            margin: auto;
+
+            textarea {
+                width: 180px;
+                height: 29px;
+                resize: none;
+                border: none;
+                outline: none;
+                border-radius: 5px 0px 0px 5px;
+                font-size: 16px;
+                color: #b0b0b0;
+                padding-left: 9px;
+                background-image: $fade-color;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                overflow: hidden;
+            }
+
+            .copy {
+                display: flex;
+                justify-content: center;
+                height: 29px;
+                width: 31px;
+                background-color: #fcb69f;
+                border-radius: 0px 5px 5px 0px;
+            }
+        }
+
+        .via {
+            display: flex;
+            justify-content: center;
+            padding: 22px 0px;
+
+            a:not(:first-child) {
+                margin-left: 26px;
+            }
+        }
+    }
+}

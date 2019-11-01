@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, Airplane, Back } from './Icon'
 import '../assets/scss/navbar.scss'
+import SharePlanner from './SharePlanner'
 
 class NavBar extends Component {
     constructor(props) {
@@ -73,6 +74,7 @@ class NavBar extends Component {
                 <div className={`nav-bar${design}`}>
                     {this.genSideBar()}
                     {this.goBack(this.props.back)}
+                    <SharePlanner />
                     <Link to='/mytrips'>
                         <button className={`button-mytrips${design}`}>
                             <img src={Airplane} alt='icon-mytrips' />
