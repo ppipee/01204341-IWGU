@@ -30,14 +30,14 @@
                 color: #4f4f4f;
             }
             .sub-detail {
-                display:flex;
-                flex-direction:column;
+                display: flex;
+                flex-direction: column;
                 span {
                     display: block;
                     color: #d0d0d0;
                     font-size: 12px;
-                    line-height:15px;
-                    text-transform:capitalize;
+                    line-height: 15px;
+                    text-transform: capitalize;
                 }
                 .rate-card {
                     margin-top: 4px;
@@ -52,12 +52,12 @@
         .remove-card {
             pointer-events: none;
             display: flex;
-            justify-content:center;
-            align-items:center;
-            width:20px;
-            height:20px;
-            background: #D0D0D0;
-            opacity:0.7;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+            background: #d0d0d0;
+            opacity: 0.7;
             position: absolute;
             border-radius: 5px 0 5px;
         }

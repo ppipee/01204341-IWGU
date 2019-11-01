@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import CreateTrip from './CreateTrip'
-import { BlackAirplane, Calendar, CurveArrow, RightArrow } from './Icon'
+import { Airplane, Calendar, CurveArrow, RightArrow } from './Icon'
 import '../assets/scss/plannersboard.scss'
 
 class PlannersBoard extends Component {
@@ -68,7 +68,11 @@ class PlannersBoard extends Component {
         return (
             <div className='planners-board'>
                 <div className='title'>
-                    <img src={BlackAirplane} alt='black-airplane-icon' />
+                    <Airplane
+                        fill='#4F4F4F'
+                        size='16'
+                        alt='black-airplane-icon'
+                    />
                     <span>Manage your trip</span>
                 </div>
                 <div className='planners'>{this.plannersBoard()}</div>

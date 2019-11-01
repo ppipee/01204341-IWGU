@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import '../assets/scss/searchbar.scss'
-import { SearchIcon } from './Icon'
+import { Search } from './Icon'
 
 const tags = [
     'coffee shop',
@@ -87,7 +87,7 @@ class SearchBar extends Component {
         return (
             <div className='search'>
                 <div className='input'>
-                    <img src={SearchIcon} alt='search-icon' />
+                    <Search fill='#B0B0B0' size='16' alt='search-icon' />
                     <input
                         placeholder='Search'
                         onChange={this.handleChange}

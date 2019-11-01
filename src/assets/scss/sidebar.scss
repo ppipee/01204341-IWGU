@@ -1,0 +1,219 @@
+@mixin padding($top: 0px, $right: 0px, $bottom: 0px, $left: 0px) {
+    padding: $top $right $bottom $left;
+    -webkit-padding-before: $top;
+    -webkit-padding-end: $right;
+    -webkit-padding-after: $bottom;
+    -webkit-padding-start: $left;
+}
+
+.sidebar {
+    min-width: 298px;
+    font-size: 16px;
+    .head-sidebar {
+        @include padding(18px, 27px, 16px, 16px);
+        display: flex;
+        justify-content: space-between;
+        .hello-user {
+            display: flex;
+            color: #4f4f4f;
+            .img-profile {
+                width: 26px;
+                height: 26px;
+                margin-right: 11.5px;
+                background: #fcbba4;
+                border-radius: 50%;
+            }
+            .user-sidebar.user {
+                color: #fcbba4;
+            }
+        }
+        .close-navbar {
+            display: flex;
+            align-items: center;
+        }
+    }
+    .add-to-draft {
+        .head-add-to-draft {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            .head-title {
+                flex-grow: 1;
+                line-height: 25px;
+                color: #4f4f4f;
+            }
+            .line {
+                flex-grow: 2;
+                height: 3px;
+                background: linear-gradient(
+                    270deg,
+                    #f2b19a 0.98%,
+                    #fee8cf 100%
+                );
+                border-radius: 0px 10px 10px 0px;
+                &.right {
+                    transform: rotate(-180deg);
+                    -webkit-transform: rotate(-180deg);
+                }
+            }
+        }
+        .add-draft {
+            @include padding(0, 0, 0, 17px);
+            margin: 17px 0 31px 0;
+            &.blank {
+                position: relative;
+                height: 262px;
+                margin-top: 0;
+                text-align: center;
+                .signin-sidebar {
+                    display: block;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 153px;
+                    transform: translate(-50%, -50%);
+                    -webkit-transform: translate(-50%, -50%);
+                    color: #c0c0c0;
+                    a {
+                        color: #f2b099;
+                        text-decoration: underline #f2b099;
+                    }
+                }
+            }
+            .loading {
+                padding-right: 18px;
+            }
+            div {
+                display: flex;
+                position: relative;
+                .draft-container {
+                    overflow: hidden;
+                    display: flex;
+                    flex-direction: column;
+                    .draft {
+                        position: relative;
+                        min-width: 398px;
+                        .ant-skeleton-title {
+                            margin: 15px 0;
+                            height: 15px;
+                        }
+                        .draft-fav {
+                            pointer-events: none;
+                            text-transform: capitalize;
+                            position: relative;
+                            width: 100%;
+                            .name-fav {
+                                position: relative;
+                                display: flex;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                align-items: center;
+                                font-size: 14px;
+                                height: 44px;
+                                @include padding(0, 18px, 0, 0);
+                                &.overflow:after {
+                                    position: relative;
+                                    content: '';
+                                    height: 45px;
+                                    width: 80px;
+                                    top: 0px;
+                                    right: 75px;
+                                    background: linear-gradient(
+                                        to left,
+                                        #fff 18px,
+                                        transparent
+                                    );
+                                }
+                            }
+                        }
+                        .manage-fav {
+                            display: flex;
+                            position: absolute;
+                            top: 0px;
+                            right: 0px;
+                            z-index: 1;
+                            div {
+                                height: 45px;
+                                width: 50px;
+                                display: flex;
+                                justify-content: center;
+                                img {
+                                    pointer-events: none;
+                                }
+                            }
+                            .rm-fav {
+                                background: #dedede;
+                            }
+                            .info-fav {
+                                background: #f2b099;
+                            }
+                        }
+                    }
+                    .draft-line {
+                        position: absolute;
+                        height: 1px;
+                        border-radius: 2px;
+                        bottom: 0;
+                        width: 398px;
+                        background: #e8e8e8;
+                    }
+                }
+                .overflow {
+                    position: absolute;
+                    pointer-events: none;
+                    // content: '';
+                    height: 45px;
+                    right: 0px;
+                    background-color: #fff;
+                    &.inactive {
+                        width: 18px;
+                    }
+                    &.active {
+                        width: 70px;
+                        background: linear-gradient(
+                            to left,
+                            #fff 10px,
+                            transparent
+                        );
+                    }
+                }
+                // .overflow.active {
+                //     position: absolute;
+                //     pointer-events: none;
+                //     content: '';
+                //     height: 45px;
+                //     right: 0px;
+                // }
+            }
+        }
+    }
+    .manage-sidebar {
+        position: fixed;
+        bottom: 0;
+        @include padding(0, 0, 25px, 28px);
+        div {
+            pointer-events: none;
+            font-size: 18px;
+            color: #f2b099;
+            margin: 0px 0px 34px 0px;
+            display: flex;
+            align-items: center;
+            span {
+                margin: 0 0 0 14px;
+            }
+        }
+        .search-sidebar {
+            margin-bottom: 9px;
+        }
+        span.signout {
+            display: block;
+            font-size: 15px;
+            margin: 25.5px 0 0 0;
+            color: #c0c0c0;
+            &.hide {
+                display: none;
+            }
+        }
+    }
+}
