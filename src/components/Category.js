@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Slider from 'react-slick'
-import { SearchIcon, PinkClose } from './Icon'
+import { SearchIcon, Close } from './Icon'
 import { PhotoCategory } from './Initial'
 import '../assets/scss/category.scss'
 
@@ -99,12 +99,12 @@ class Category extends Component {
                                     src={SearchIcon}
                                 />
                                 <input width='22px' placeholder='Search' />
-                                <img
+                                <span
                                     className='close-icon'
-                                    src={PinkClose}
-                                    alt='close-icon'
                                     onClick={() => this.handleClick(false)}
-                                />
+                                >
+                                    <Close fill='#F2B099' size='14' />
+                                </span>
                             </div>
                             <hr />
                             <Slider {...settings}>{this.categoryCard()}</Slider>

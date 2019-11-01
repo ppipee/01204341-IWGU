@@ -3,7 +3,6 @@ import SearchIcon from '../assets/icon/search-icon.svg'
 import Clear from '../assets/icon/refresh.svg'
 import Star from '../assets/icon/full-star.svg'
 import BlankStar from '../assets/icon/empty-star.svg'
-import Close from '../assets/icon/close.svg'
 import Menu from '../assets/icon/featured-menu.svg'
 import Airplane from '../assets/icon/airplane.svg'
 import Back from '../assets/icon/back.svg'
@@ -30,11 +29,10 @@ import CurveArrow from '../assets/icon/curve-arrow.svg'
 import Plus from '../assets/icon/plus.svg'
 import LeftArrowColor from '../assets/icon/left-arrow-color.svg'
 import RightArrowColor from '../assets/icon/right-arrow-color.svg'
-import CloseColor from '../assets/icon/close-color.svg'
 import Dollar from '../assets/icon/dollar.svg'
 import DownArrow from '../assets/icon/down-arrow.svg'
 import UpArrow from '../assets/icon/up-arrow.svg'
-import PinkClose from '../assets/icon/pink-close.svg'
+// import PinkClose from '../assets/icon/pink-close.svg'
 import RateStar from '../assets/icon/rate-star.svg'
 import CircleArrow from '../assets/icon/up-circle-arrow.svg'
 import DoubleQuotes from '../assets/icon/doublequotes-left.svg'
@@ -257,6 +255,21 @@ const Spa = props => (
     </svg>
 )
 
+const Close = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width={props.size}
+        height={props.size}
+        fill='none'
+        viewBox='0 0 6 6'
+    >
+        <path
+            fill={props.fill === 'undefine' ? '#fff' : props.fill}
+            d='M3.748 3L5.843.905a.53.53 0 1 0-.748-.75L3 2.25.905.155a.53.53 0 1 0-.75.75L2.25 3 .155 5.095a.53.53 0 1 0 .75.75L3 3.75l2.095 2.095a.53.53 0 0 0 .75-.75L3.748 3z'
+        />
+    </svg>
+)
+
 export {
     SearchIcon,
     Filter,
@@ -290,11 +303,10 @@ export {
     CurveArrow,
     LeftArrowColor,
     RightArrowColor,
-    CloseColor,
     Dollar,
     DownArrow,
     UpArrow,
-    PinkClose,
+    // PinkClose,
     LandmarkCategory,
     Cafe,
     Park,
