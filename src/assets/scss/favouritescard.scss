@@ -1,0 +1,51 @@
+.favourites-card {
+    position: relative;
+    .fav-card {
+        position: relative;
+        display: flex;
+        height: 97px;
+        width: 320px;
+        margin: 20px auto;
+        .thumbnail-card {
+            img {
+                width: 115px;
+                height: 100%;
+                border-radius: 5px 0 0 5px;
+            }
+        }
+        .detail-card {
+            width: 100%;
+            background-color: #fff;
+            padding: 9px 9px 7px 13px;
+            border-radius: 0 5px 5px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .title-card {
+                font-size: 15px;
+                color: #4f4f4f;
+            }
+            .sub-detail {
+                span {
+                    display: block;
+                    color: #d0d0d0;
+                    font-size: 12px;
+                }
+                .rate-card {
+                    margin-top: 4px;
+                    display: flex;
+                }
+            }
+        }
+        .remove-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .add-card {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+    }
+}

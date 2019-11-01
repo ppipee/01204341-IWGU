@@ -51,7 +51,7 @@ class MyTrips extends Component {
     render() {
         return (
             <div className='my-trips'>
-                <NavBar back design='planners' />
+                <NavBar back design='planners' mytrips={false} />
                 <CountDown />
                 <PlannerBoard
                     planners={this.props.getPlanners.userPlanner}

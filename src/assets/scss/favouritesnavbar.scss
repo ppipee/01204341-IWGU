@@ -1,0 +1,29 @@
+.fav-bg {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+}
+.sub-fav-bg {
+    position: fixed;
+    z-index: -2;
+    top: 0;
+}
+.sub-sec-fav-bg {
+    position: fixed;
+    z-index: -2;
+    top: 0;
+}
+.favourites-navbar {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 27.9px;
+    position: relative;
+    top: -2.5px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    span {
+        font-size: 24px;
+        color: #fff;
+    }
+}

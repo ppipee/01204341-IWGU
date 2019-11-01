@@ -5,7 +5,7 @@ import '../assets/scss/searchpage.scss'
 const Search = () => {
     return (
         <div className='search-page'>
-            <NavBar back />
+            <NavBar back design='default' />
             <div className='search-background'>
                 <SearchFilter />
                 <SearchResult />

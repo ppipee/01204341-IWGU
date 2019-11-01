@@ -67,14 +67,18 @@ class NavBar extends Component {
 
     render() {
         const design =
-            this.props.design === 'planners' ? ' planners' : ' default'
+            this.props.design === 'default' ? 'default' : this.props.design
         return (
             <>
-                <div className={`nav-bar${design}`}>
+                <div className={`nav-bar ${design}`}>
                     {this.genSideBar()}
                     {this.goBack(this.props.back)}
                     <Link to='/mytrips'>
-                        <button className={`button-mytrips${design}`}>
+                        <button
+                            className={`button-mytrips ${
+                                this.props.mytrips === false ? 'inactive' : ''
+                            }`}
+                        >
                             <img src={Airplane} alt='icon-mytrips' />
                             My trips
                         </button>
