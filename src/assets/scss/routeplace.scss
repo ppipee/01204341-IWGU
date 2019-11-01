@@ -2,6 +2,7 @@ $map-size: 146px;
 
 .route-place {
     display: grid;
+    height: $map-size + 74px;
     grid-template-columns: 1fr 1fr;
     padding: 16px 35px 14px;
 
@@ -11,13 +12,15 @@ $map-size: 146px;
         margin-right: 10.5px;
         .map {
             div {
-                height: $map-size;
-                width: $map-size;
+                height: $map-size !important;
+                width: $map-size !important;
                 border-radius: 15px;
             }
         }
 
         .address {
+            position: relative;
+            top: $map-size;
             text-align: center;
             margin-top: 8px;
             width: 146px;

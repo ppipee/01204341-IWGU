@@ -9,7 +9,24 @@ import {
     Spa,
     Bar,
     Hotel,
+    AddActive,
+    AddInActive,
+    FavActive,
+    FavInActive,
 } from './Icon'
+
+const SearchResultTab = [
+    {
+        name: 'add',
+        icon_active: AddActive,
+        icon_inactive: AddInActive,
+    },
+    {
+        name: 'fav',
+        icon_active: FavActive,
+        icon_inactive: FavInActive,
+    },
+]
 
 const DefaultFilter = {
     tags: [],
@@ -76,4 +93,4 @@ const PhotoCategory = [
     },
 ]
 
-export { DefaultFilter, PhotoCategory }
+export { DefaultFilter, PhotoCategory, SearchResultTab }
