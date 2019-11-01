@@ -21,6 +21,10 @@
 
     span {
         margin-left: 24px;
+        img {
+            display: block;
+            margin: auto;
+        }
     }
 
     .button-mytrips {
@@ -38,8 +42,7 @@
         }
         justify-content: space-around;
         align-items: center;
-
-        img {
+        svg {
             margin-right: 4px;
         }
         &.planners {
@@ -51,20 +54,19 @@
         height: 100%;
         width: 0px;
         position: fixed;
-        z-index: 2;
+        z-index: 1;
         top: 0;
         right: 0;
         background-color: white;
         overflow-x: hidden;
-        transition: 0.5s;
-        padding-top: 60px;
+        transition: 0.7s;
         &.active {
             width: 298px;
         }
     }
 
     .container-sidenav {
-        transition: 1s background;
+        transition: 1s;
         display: none;
         position: fixed;
         background: #000;
@@ -81,11 +83,15 @@
 
     .back-home {
         margin-right: auto;
-        img {
+        width: 20px;
+        height: 20px;
+        svg {
             display: table;
             height: 18px;
             margin: auto;
-            filter: drop-shadow(2px 2px 2.5px rgba(114, 114, 114, 0.37));
+            filter: drop-shadow(-2px -2px 2.5px rgba(114, 114, 114, 0.37));
+            transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
         }
     }
 }
