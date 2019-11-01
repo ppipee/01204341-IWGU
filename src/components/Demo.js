@@ -16,6 +16,7 @@ const Places = {
         {
             src: Burger,
             name: 'Burger',
+            rating: '',
         },
         {
             src: Coffee,
@@ -24,6 +25,14 @@ const Places = {
         {
             src: Salad,
             name: 'Coffee',
+        },
+        {
+            src: Sashimi,
+            name: 'Sashimi',
+        },
+        {
+            src: Sashimi,
+            name: 'Sashimi',
         },
         {
             src: Sashimi,
@@ -95,6 +104,89 @@ const Places = {
         },
     ],
 }
+
+const SearchPlaces = [
+    {
+        placeID: '1',
+        name: 'Kasetsart University',
+        categoryCode: 'shop',
+        thumbnail: Burger,
+        map: {
+            latitude: '',
+            longitude: '',
+        },
+        rate: 5,
+        time: '09:00 - 18:00',
+        location: {
+            district: 'Laksi',
+            province: 'Bangkok',
+        },
+    },
+    {
+        placeID: '2',
+        name: 'Read Cafe',
+        categoryCode: 'shop',
+        thumbnail: Salad,
+        map: {
+            latitude: '',
+            longitude: '',
+        },
+        rate: 4,
+        time: '09:00 - 18:00',
+        location: {
+            district: 'Laksi',
+            province: 'Bangkok',
+        },
+    },
+    {
+        placeID: '3',
+        name: 'Lhong Tou',
+        categoryCode: 'shop',
+        thumbnail: Burger,
+        map: {
+            latitude: '',
+            longitude: '',
+        },
+        rate: 2,
+        time: '09:00 - 18:00',
+        location: {
+            district: 'Laksi',
+            province: 'Bangkok',
+        },
+    },
+    {
+        placeID: '4',
+        name: 'B',
+        categoryCode: 'shop',
+        thumbnail: Salad,
+        map: {
+            latitude: '',
+            longitude: '',
+        },
+        rate: 1,
+        time: '09:00 - 18:00',
+        location: {
+            district: 'Laksi',
+            province: 'Bangkok',
+        },
+    },
+    {
+        placeID: '5',
+        name: 'Kasetsart University',
+        categoryCode: 'shop',
+        thumbnail: Burger,
+        map: {
+            latitude: '',
+            longitude: '',
+        },
+        rate: 5,
+        time: '09:00 - 18:00',
+        location: {
+            district: 'Laksi',
+            province: 'Bangkok',
+        },
+    },
+]
 
 const TopAttractions = [
     {
@@ -202,7 +294,16 @@ const Detail = {
             facilities: null,
         },
         rate: 5,
-        time: '09:00 - 18:00',
+        days: {
+            day1: true,
+            day2: true,
+            day3: false,
+            day4: false,
+            day5: true,
+            day6: false,
+            day7: false,
+        },
+        time: '09:00 - 22:00',
         contact: {
             mobiles: '02222222',
             urls: [

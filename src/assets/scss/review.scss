@@ -12,6 +12,7 @@
 
     div {
         display: flex;
+        justify-content: center;
         margin: auto 0;
         .rate {
             margin-left: 12px;
@@ -47,9 +48,9 @@
         }
         .best-review {
             @include padding(2px, 23px, 0, 23px);
-            width: 100%;
+            width: 199px;
             min-height: 50px;
-            margin: 0 14px 0 15px;
+            margin: 0 0 0 15px;
             display: flex;
             justify-content: center;
             align-items: center;

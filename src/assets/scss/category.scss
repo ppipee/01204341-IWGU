@@ -88,8 +88,9 @@
                     background: #f3bca6;
                     border-color: #f3bca6;
                 }
-                img {
-                    justify-items: center;
+                .icon-tag {
+                    pointer-events: none;
+                    display: flex;
                 }
                 .category-title {
                     justify-content: center;
