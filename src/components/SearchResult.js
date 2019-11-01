@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-// import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { Link, withRouter } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import { GoogleApiWrapper } from 'google-maps-react'
 import '../assets/scss/searchresult.scss'
 import { SearchResultTab } from './Initial'
-import { Time, PinkLocationIcon, Star, BlankStar } from './Icon'
+import { Time, PinkLocationIcon, Star, NoResult } from './Icon'
 import { searchPlace } from '../queries/place'
 
 class SearchResult extends Component {
@@ -60,6 +59,20 @@ class SearchResult extends Component {
         }
     }
 
+    noneResult = () => {
+        return (
+            <div className='none-result'>
+                <img src={NoResult} alt='none-result' />
+                <div className='msg-title'>No result found</div>
+                <div className='msg-alert'>
+                    We can&rsquo;t find any items
+                    <br />
+                    matching your search
+                </div>
+            </div>
+        )
+    }
+
     toggle = event => {
         const id = event.target.getAttribute('place_id')
         const code = event.target.getAttribute('code')
@@ -85,11 +98,17 @@ class SearchResult extends Component {
         const container = []
         let i
         for (i = 0; i < ratting; i++) {
-            container.push(<img alt='star' className='star' src={Star} />)
+            container.push(
+                <span className='star'>
+                    <Star star='full' size='12' />
+                </span>
+            )
         }
         for (i = 0; i < 5 - ratting; i++) {
             container.push(
-                <img alt='blank-star' className='star' src={BlankStar} />
+                <span className='star'>
+                    <Star star='blank' size='12' />
+                </span>
             )
         }
         return <span className='rating'>{container}</span>
@@ -185,16 +204,10 @@ class SearchResult extends Component {
     }
 
     render() {
-        // console.log(
-        //     'loading: ',
-        //     this.state.loading,
-        //     ' location: ',
-        //     this.state.userLocation
-        //     )
-        // console.log(this.props.search.places)
-        if (this.props.search.loading) {
+        if (this.props.search.loading)
             return <div className='search-result'>Loading</div>
-        }
+        if (this.props.search.error !== undefined)
+            return <div className='search-result'>{this.noneResult()}</div>
         return (
             <div className='search-result'>
                 {this.genCards(this.props.search.places)}
