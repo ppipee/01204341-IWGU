@@ -1,3 +1,11 @@
+@mixin padding($top: 0px, $right: 0px, $bottom: 0px, $left: 0px) {
+    padding: $top $right $bottom $left;
+    -webkit-padding-before: $top;
+    -webkit-padding-end: $right;
+    -webkit-padding-after: $bottom;
+    -webkit-padding-start: $left;
+}
+
 .favourites-cards {
     position: relative;
     .fav-card {
@@ -8,19 +16,26 @@
         margin: 20px auto;
         border-radius: 5px;
         box-shadow: 0px 0px 2px 1px rgba(204, 204, 204, 0.616);
-        // -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
-        // -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 0px 0px 2px 1px rgba(204, 204, 204, 0.616);
+        -moz-box-shadow: 0px 0px 2px 1px rgba(204, 204, 204, 0.616);
         .thumbnail-card {
             img {
                 width: 115px;
                 height: 100%;
                 border-radius: 5px 0 0 5px;
+                object-fit: cover;
+            }
+            &.skeleton {
+                width: 187px;
+                height: 100%;
+                border-radius: 5px 0 0 5px;
+                background: #e0e0e0;
             }
         }
         .detail-card {
             width: 100%;
             background-color: #fff;
-            padding: 9px 9px 7px 13px;
+            @include padding(9px, 9px, 7px, 13px);
             border-radius: 0 5px 5px 0;
             display: flex;
             flex-direction: column;
@@ -32,12 +47,19 @@
             .sub-detail {
                 display: flex;
                 flex-direction: column;
+                .ant-skeleton-title {
+                    height: 10px;
+                    width: 140px;
+                }
                 span {
                     display: block;
                     color: #d0d0d0;
                     font-size: 12px;
                     line-height: 15px;
                     text-transform: capitalize;
+                }
+                .location-card .ant-skeleton-title {
+                    margin-bottom: 4px;
                 }
                 .rate-card {
                     margin-top: 4px;
@@ -50,23 +72,27 @@
             }
         }
         .remove-card {
-            pointer-events: none;
             display: flex;
             justify-content: center;
             align-items: center;
             width: 20px;
             height: 20px;
-            background: #d0d0d0;
-            opacity: 0.7;
+            background: #d0d0d0bd;
             position: absolute;
             border-radius: 5px 0 5px;
         }
         .add-card {
-            pointer-events: none;
             display: flex;
             position: absolute;
             bottom: 11.5px;
             right: 12.4px;
+        }
+        .add-card svg,
+        .remove-card svg {
+            pointer-events: none;
+        }
+        .ant-skeleton-title {
+            margin-top: 0;
         }
     }
 }
