@@ -66,6 +66,7 @@ import Ferry from '../assets/icon/ferry.svg'
 import Bts from '../assets/icon/bts.svg'
 import Mrt from '../assets/icon/mrt.svg'
 import Clock from '../assets/icon/clock.svg'
+import NoResult from '../assets/icon/no-result.svg'
 
 const Filter = props => (
     <svg
@@ -357,4 +358,5 @@ export {
     Bts,
     Mrt,
     Clock,
+    NoResult,
 }

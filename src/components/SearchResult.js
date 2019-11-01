@@ -6,7 +6,7 @@ import { graphql } from 'react-apollo'
 import { GoogleApiWrapper } from 'google-maps-react'
 import '../assets/scss/searchresult.scss'
 import { SearchResultTab } from './Initial'
-import { Time, PinkLocationIcon, Star, BlankStar } from './Icon'
+import { Time, PinkLocationIcon, Star, BlankStar, NoResult } from './Icon'
 import { searchPlace } from '../queries/place'
 
 class SearchResult extends Component {
@@ -58,6 +58,20 @@ class SearchResult extends Component {
             }
             this.props.search.refetch({ keyword })
         }
+    }
+
+    noneResult = () => {
+        return (
+            <div className='none-result'>
+                <img src={NoResult} alt='none-result' />
+                <div className='msg-title'>No result found</div>
+                <div className='msg-alert'>
+                    We can&rsquo;t find any items
+                    <br />
+                    matching your search
+                </div>
+            </div>
+        )
     }
 
     toggle = event => {
@@ -185,16 +199,10 @@ class SearchResult extends Component {
     }
 
     render() {
-        // console.log(
-        //     'loading: ',
-        //     this.state.loading,
-        //     ' location: ',
-        //     this.state.userLocation
-        //     )
-        // console.log(this.props.search.places)
-        if (this.props.search.loading) {
+        if (this.props.search.loading)
             return <div className='search-result'>Loading</div>
-        }
+        if (this.props.search.error !== undefined)
+            return <div className='search-result'>{this.noneResult()}</div>
         return (
             <div className='search-result'>
                 {this.genCards(this.props.search.places)}

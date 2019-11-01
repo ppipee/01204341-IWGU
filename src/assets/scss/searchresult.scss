@@ -1,4 +1,22 @@
 .search-result {
+    .none-result {
+        position: fixed;
+        z-index: -1;
+        top: 151px;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        text-align: center;
+        .msg-title {
+            margin: 16px 0 10px;
+            color: #4f4f4f;
+            font-size: 20px;
+        }
+        .msg-alert {
+            color: #b0b0b0;
+            font-size: 12px;
+        }
+    }
     .card-container {
         display: flex;
         flex-direction: column;
