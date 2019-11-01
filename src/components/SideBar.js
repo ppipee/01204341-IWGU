@@ -102,7 +102,6 @@ class SideBar extends Component {
             const places = this.props.userFavourite.user.favourite
             if (places.length > 0) {
                 places.forEach((place, index) => {
-                    place.name = 'asd;laskdsss;laskaasdkljasd;'
                     if (places.length <= 5 || +index >= places.length - 5) {
                         container = [
                             ...container,
