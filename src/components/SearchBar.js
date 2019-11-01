@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { compose } from 'redux'
-import { SearchAction } from '../action'
 import '../assets/scss/searchbar.scss'
 import { Search } from './Icon'
 
-const Action = SearchAction
 const tags = [
     'coffee shop',
     'street food',
@@ -66,7 +62,6 @@ class SearchBar extends Component {
         const { value } = e.target
         if (value !== '' && e.charCode === 13) {
             this.setState({ show: false })
-            this.props.setWord(value)
             this.props.history.push(`/search?q=${value}`)
         }
     }
@@ -107,16 +102,4 @@ class SearchBar extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        setWord: word => dispatch({ type: Action.WORDSEARCH, setWord: word }),
-    }
-}
-
-export default compose(
-    withRouter,
-    connect(
-        null,
-        mapDispatchToProps
-    )
-)(SearchBar)
+export default withRouter(SearchBar)

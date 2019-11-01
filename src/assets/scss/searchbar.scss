@@ -36,8 +36,10 @@ $transition-box: all 0.2s linear;
         box-sizing: border-box;
         position: absolute;
         cursor: pointer;
+        display: none;
         transition: $transition-box;
         &.open {
+            display: block;
             z-index: 1;
             margin: 17.1px auto;
             box-shadow: 1px 1px 7px rgb(151, 151, 151);

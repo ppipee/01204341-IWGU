@@ -2,6 +2,7 @@ $map-size: 146px;
 
 .route-place {
     display: grid;
+    height: $map-size + 74px;
     grid-template-columns: 1fr 1fr;
     padding: 16px 35px 14px;
 
@@ -10,13 +11,16 @@ $map-size: 146px;
         justify-self: flex-end;
         margin-right: 10.5px;
         .map {
-            height: $map-size;
-            width: $map-size;
-            background-color: grey;
-            border-radius: 15px;
+            div {
+                height: $map-size !important;
+                width: $map-size !important;
+                border-radius: 15px;
+            }
         }
 
         .address {
+            position: relative;
+            top: $map-size;
             text-align: center;
             margin-top: 8px;
             width: 146px;
@@ -82,4 +86,17 @@ $map-size: 146px;
             }
         }
     }
+}
+
+a[href^="http://maps.google.com/maps"], a[href^="https://maps.google.com/maps"] {
+    display: none !important;
+}
+
+.gmnoprint a,
+.gmnoprint span,
+.gm-style-cc {
+    display: none;
+}
+.gmnoprint div {
+    background: none !important;
 }
