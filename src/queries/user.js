@@ -8,8 +8,9 @@ const userRegister = gql`
         }
     }
 `
+
 const userData = gql`
-    query($id: ID!) {
+    query($id: ID) {
         user(id: $id) {
             username
             password
@@ -26,9 +27,21 @@ const userData = gql`
     }
 `
 
+const userFavourite = gql`
+    query($id: ID) {
+        user(id: $id) {
+            favourite {
+                placeID
+                name
+                categoryCode
+            }
+        }
+    }
+`
+
 const getUser = gql`
-    query($name: ID!) {
-        user(name: $name) {
+    query($id: ID) {
+        user(id: $id) {
             id
             username
             password
@@ -37,7 +50,7 @@ const getUser = gql`
 `
 
 const userUpdate = gql`
-    mutation($id: ID!, $password: String!, $favourite: [String]!) {
+    mutation($id: ID!, $password: String, $favourite: [InputFav]) {
         updateUser(id: $id, password: $password, favourite: $favourite) {
             username
             password
@@ -54,6 +67,14 @@ const userUpdate = gql`
     }
 `
 
+const updateFavourite = gql`
+    mutation($id: ID!, $favourite: [InputFav]) {
+        updateUser(id: $id, favourite: $favourite) {
+            username
+        }
+    }
+`
+
 const getUsers = gql`
     {
         users {
@@ -64,4 +85,12 @@ const getUsers = gql`
     }
 `
 
-export { userRegister, userData, getUser, getUsers, userUpdate }
+export {
+    userRegister,
+    userData,
+    getUser,
+    getUsers,
+    userUpdate,
+    userFavourite,
+    updateFavourite,
+}
