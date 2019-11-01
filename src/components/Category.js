@@ -85,7 +85,16 @@ class Category extends Component {
             slidesToShow: 1,
             swipeToSlide: true,
             speed: 500,
+            responsive: [
+                {
+                    breakpoint: 400,
+                    // settings: {
+                    //     centerPadding: '30px',
+                    // },
+                },
+            ],
         }
+
         if (this.state.popup)
             return (
                 <>
