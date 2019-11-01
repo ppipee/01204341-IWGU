@@ -1,6 +1,7 @@
 import { NewTripAction } from '../action'
 
 const InitialState = {
+    trip: null,
     name: '',
     date: {
         start: '',
@@ -27,8 +28,14 @@ const newtrip = (state = InitialState, action) => {
                 ...state,
                 auth: action.setAuth,
             }
-        case Action.CLEAR:
+        case Action.SETNEWTRIP:
             return {
+                ...state,
+                trip: action.setTrip,
+            }
+        case Action.CLEARNEWTRIP:
+            return {
+                trip: null,
                 name: '',
                 date: {
                     start: '',

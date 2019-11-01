@@ -1,6 +1,5 @@
 import React from 'react'
 import { NavBar, SearchFilter, SearchResult } from '../components'
-import Background from '../assets/img/fixed-background.svg'
 import '../assets/scss/searchpage.scss'
 
 const Search = () => {

@@ -1,3 +1,11 @@
+@mixin padding($top: 0px, $right: 0px, $bottom: 0px, $left: 0px) {
+    padding: $top $right $bottom $left;
+    -webkit-padding-before: $top;
+    -webkit-padding-end: $right;
+    -webkit-padding-after: $bottom;
+    -webkit-padding-start: $left;
+}
+
 .calendar-trip {
     color: #4f4f4f;
     height: 100%;
@@ -60,15 +68,17 @@
         bottom: 16.16px;
         left: 50%;
         transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
         .day {
             pointer-events: none;
             display: flex;
             font-size: 14px;
             line-height: 23px;
             transition: 1s;
+            -webkit-transition: 1s;
             margin-right: 36px;
             .days-count {
-                padding: 0 4.5px;
+                @include padding(0, 4.5px, 0, 4.5px);
                 display: inline-block;
                 text-align: center;
                 color: #fff;
@@ -92,6 +102,7 @@
             box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.26);
             color: #fff;
             transition: 0.5s background;
+            -webkit-transition: 0.5s background;
             &.active {
                 background: #f2b099;
             }
@@ -109,7 +120,7 @@ button.DayPickerKeyboardShortcuts_buttonReset {
     width: 69.5px;
     .DateInput_input {
         cursor: pointer;
-        padding: 0;
+        @include padding(0, 0, 0, 0);
         text-align: center;
         font-size: 12px;
         height: 21px;
@@ -163,7 +174,7 @@ button.DayPickerKeyboardShortcuts_buttonReset {
     height: 200px !important;
 }
 .CalendarDay {
-    padding: 0;
+    @include padding(0, 0, 0, 0);
     font-size: 12px;
     // line-height: 28px;
     // width: 32px !important;
@@ -192,7 +203,7 @@ button.DayPickerKeyboardShortcuts_buttonReset {
     color: #4f4f4f;
     text-transform: uppercase;
     font-size: 14px;
-    padding: 22px 0 25px 0;
+    @include padding(22px, 0, 25px, 0);
     strong {
         font-weight: normal;
     }

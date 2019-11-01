@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
-import { graphql } from 'react-apollo'
-import { connect } from 'react-redux'
-import { compose } from 'redux'
+import { Link } from 'react-router-dom'
 import CreateTrip from './CreateTrip'
 import { BlackAirplane, Calendar, CurveArrow, RightArrow } from './Icon'
 import '../assets/scss/plannersboard.scss'
-import { Planners } from './Demo'
-import { getUserPlanners } from '../queries/planner'
 
 class PlannersBoard extends Component {
     constructor(props) {
@@ -16,16 +12,13 @@ class PlannersBoard extends Component {
         }
     }
 
-    componentDidMount() {
-        const id = this.props.getUserID
-        this.props.data.refetch({ id })
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (this.props.data !== prevProps.data) {
-            console.log(this.props.data.userPlanner)
-            this.setState({ planners: this.props.data.userPlanner })
+    componentDidUpdate(prevProps) {
+        if (this.props.planners !== prevProps.planners) {
+            this.setState({ planners: this.props.planners })
         }
+        // else {
+        //     window.scrollTo(0, document.body.scrollHeight)
+        // }
     }
 
     formatDate = date => {
@@ -38,7 +31,7 @@ class PlannersBoard extends Component {
         const d_end = new Date(days[days.length - 1].date)
         if (days.length === 1) return this.formatDate(d_start.toString())
         return `${this.formatDate(d_start.toString())} - ${this.formatDate(
-            d_start.toString()
+            d_end.toString()
         )}`
     }
 
@@ -52,28 +45,23 @@ class PlannersBoard extends Component {
                         <span>{this.genDate(planner.days)}</span>
                     </div>
                 </div>
-                <div className='btn-detail' id={planner.id}>
+                <Link
+                    className='btn-detail'
+                    to={`/planner?id=${planner.id}&share=${planner.share}`}
+                >
                     <img src={RightArrow} alt='arrow-icon' />
-                </div>
+                </Link>
             </div>
         ))
 
-    blankBoard = () => (
-        <div className='blank-board'>
-            <div className='text'>Let’s start your new trips!</div>
-            <img src={CurveArrow} alt='curve-arrow' />
-        </div>
-    )
-
     plannersBoard = () => {
         if (this.state.planners[0]) return this.genPlanner()
-        return this.blankBoard()
-    }
-
-    newPlanner = new_planner => {
-        this.setState({
-            planners: [...this.state.planners, new_planner],
-        })
+        return (
+            <div className='blank-board'>
+                <div className='text'>Let’s start your new trips!</div>
+                <img src={CurveArrow} alt='curve-arrow' />
+            </div>
+        )
     }
 
     render() {
@@ -84,20 +72,9 @@ class PlannersBoard extends Component {
                     <span>Manage your trip</span>
                 </div>
                 <div className='planners'>{this.plannersBoard()}</div>
-                <CreateTrip planner={this.newPlanner} />
+                <CreateTrip />
             </div>
         )
     }
 }
-const mapStateToProps = state => {
-    return {
-        getUserID: state.userauth.userid,
-    }
-}
-export default compose(
-    connect(
-        mapStateToProps,
-        null
-    ),
-    graphql(getUserPlanners)
-)(PlannersBoard)
+export default PlannersBoard

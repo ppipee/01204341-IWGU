@@ -182,6 +182,7 @@ export default class Facilities extends Component {
 
     handleClick = () => {
         this.setState({ show_more: !this.state.show_more })
+        console.log('click')
     }
 
     genButton() {

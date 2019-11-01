@@ -11,6 +11,7 @@ class HeadCreateTrip extends Component {
         super(props)
         this.state = {
             value_inp: '',
+            prev_inp: '',
             line: '',
         }
     }
@@ -19,23 +20,18 @@ class HeadCreateTrip extends Component {
         document.addEventListener('mousedown', this.handleClickOutside)
     }
 
-    componentWillUpdate(nextProps, nextState) {
-        let input = nextState.value_inp
-        console.log('state: ', this.state.value_inp, 'next: ', input)
-        if (this.state.value_inp !== input) {
-            input = input.length <= 20 ? input : ''
-            console.log('inp:', input)
-            this.props.setName(input)
-        }
-    }
-
     handleChange = e => {
         this.setState({ value_inp: e.target.value })
     }
 
     handleClickOutside = event => {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            this.setState({ line: '' })
+            let input = this.state.value_inp
+            if (input !== this.state.prev_inp) {
+                input = input.length <= 20 ? input : ''
+                this.props.setName(input)
+            }
+            this.setState({ line: '', prev_inp: input })
         }
     }
 

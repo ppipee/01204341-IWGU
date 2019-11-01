@@ -1,89 +1,21 @@
 import React, { Component } from 'react'
 import Slider from 'react-slick'
-import {
-    SearchIcon,
-    PinkClose,
-    LandmarkCategoryInActive,
-    CafeInActive,
-    ParkInActive,
-    StreetFoodInActive,
-    ArtInActive,
-    MuseumInActive,
-    BarInActive,
-    HotelInActive,
-    SpaInActive,
-    LandmarkCategoryActive,
-    CafeActive,
-    ParkActive,
-    StreetFoodActive,
-    ArtActive,
-    MuseumActive,
-    BarActive,
-    HotelActive,
-    SpaActive,
-} from './Icon'
+import { SearchIcon, PinkClose } from './Icon'
+import { PhotoCategory } from './Initial'
 import '../assets/scss/category.scss'
-
-const PhotoCategory = [
-    {
-        icon_inactive: LandmarkCategoryInActive,
-        icon_active: LandmarkCategoryActive,
-        title: 'Landmark',
-    },
-    {
-        icon_inactive: CafeInActive,
-        icon_active: CafeActive,
-        title: 'Café',
-    },
-    {
-        icon_inactive: ParkInActive,
-        icon_active: ParkActive,
-        title: 'Park',
-    },
-    {
-        icon_inactive: StreetFoodInActive,
-        icon_active: StreetFoodActive,
-        title: 'Street Food',
-    },
-    {
-        icon_inactive: ArtInActive,
-        icon_active: ArtActive,
-        title: 'Arts',
-    },
-    {
-        icon_inactive: MuseumInActive,
-        icon_active: MuseumActive,
-        title: 'Museum',
-    },
-    {
-        icon_inactive: BarInActive,
-        icon_active: BarActive,
-        title: 'Bar',
-    },
-    {
-        icon_inactive: HotelInActive,
-        icon_active: HotelActive,
-        title: 'Hotel',
-    },
-    {
-        icon_inactive: SpaInActive,
-        icon_active: SpaActive,
-        title: 'Spa',
-    },
-    {
-        icon_inactive: SpaInActive,
-        icon_active: SpaActive,
-        title: 'Spā',
-    },
-]
 
 class Category extends Component {
     constructor(props) {
         super(props)
         this.state = {
             popup: false,
-            card_state: [],
+            card_state: this.props.tags,
         }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.tags !== this.props.tags)
+            this.setState({ card_state: this.props.tags })
     }
 
     handleClick = state => {
@@ -97,6 +29,7 @@ class Category extends Component {
         if (check) current_state.splice(current_state.indexOf(index), 1)
         else current_state = [...current_state, index]
         this.setState({ card_state: current_state })
+        this.props.settag(current_state)
     }
 
     categoryCard = () => {
@@ -122,16 +55,9 @@ class Category extends Component {
                     index={i}
                     onClick={this.toggleCard}
                 >
-                    <div>
-                        <img
-                            src={
-                                check
-                                    ? category.icon_active
-                                    : category.icon_inactive
-                            }
-                            alt='category-icon-inactive'
-                        />
-                    </div>
+                    <span className='icon-tag'>
+                        {check ? category.icon_active : category.icon_inactive}
+                    </span>
                     <div>
                         <p
                             className={`category-title ${
