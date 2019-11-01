@@ -59,7 +59,7 @@
             }
         }
         .add-draft {
-            @include padding(0, 18px, 0, 17px);
+            @include padding(0, 0, 0, 17px);
             margin: 17px 0 31px 0;
             &.blank {
                 position: relative;
@@ -67,6 +67,7 @@
                 margin-top: 0;
                 text-align: center;
                 .signin-sidebar {
+                    display: block;
                     position: absolute;
                     top: 50%;
                     left: 50%;
@@ -80,6 +81,9 @@
                     }
                 }
             }
+            .loading {
+                padding-right: 18px;
+            }
             div {
                 display: flex;
                 position: relative;
@@ -89,7 +93,7 @@
                     flex-direction: column;
                     .draft {
                         position: relative;
-                        width: 398px;
+                        min-width: 398px;
                         .ant-skeleton-title {
                             margin: 15px 0;
                             height: 15px;
@@ -97,6 +101,7 @@
                         .draft-fav {
                             pointer-events: none;
                             text-transform: capitalize;
+                            position: relative;
                             width: 100%;
                             .name-fav {
                                 position: relative;
@@ -108,11 +113,12 @@
                                 height: 44px;
                                 @include padding(0, 18px, 0, 0);
                                 &.overflow:after {
-                                    position: absolute;
+                                    position: relative;
                                     content: '';
                                     height: 45px;
-                                    width: 65px;
-                                    right: 0px;
+                                    width: 80px;
+                                    top: 0px;
+                                    right: 75px;
                                     background: linear-gradient(
                                         to left,
                                         #fff 18px,
@@ -123,8 +129,9 @@
                         }
                         .manage-fav {
                             display: flex;
-                            position: relative;
+                            position: absolute;
                             top: 0px;
+                            right: 0px;
                             z-index: 1;
                             div {
                                 height: 45px;
@@ -152,20 +159,32 @@
                         background: #e8e8e8;
                     }
                 }
-                .overflow.active {
+                .overflow {
                     position: absolute;
                     pointer-events: none;
-                    content: '';
+                    // content: '';
                     height: 45px;
-                    width: 70px;
-                    top: 0;
                     right: 0px;
-                    background: linear-gradient(
-                        to left,
-                        #fff 10px,
-                        transparent
-                    );
+                    background-color: #fff;
+                    &.inactive {
+                        width: 18px;
+                    }
+                    &.active {
+                        width: 70px;
+                        background: linear-gradient(
+                            to left,
+                            #fff 10px,
+                            transparent
+                        );
+                    }
                 }
+                // .overflow.active {
+                //     position: absolute;
+                //     pointer-events: none;
+                //     content: '';
+                //     height: 45px;
+                //     right: 0px;
+                // }
             }
         }
     }

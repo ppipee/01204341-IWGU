@@ -83,10 +83,13 @@ class SideBar extends Component {
                     new trip
                 </div>
             )
-        else if (this.props.userFavourite.loading) {
+        else if (
+            this.props.userFavourite.loading ||
+            this.props.userFavourite.error === 'undefine'
+        ) {
             console.log('loading')
             container = [...Array(5).keys()].map(index => (
-                <div key={`skeleton-fav-${index}`}>
+                <div className='loading' key={`skeleton-fav-${index}`}>
                     <div className='draft-container'>
                         <div className='draft'>
                             <Skeleton active paragraph={false} />
@@ -99,6 +102,7 @@ class SideBar extends Component {
             const places = this.props.userFavourite.user.favourite
             if (places.length > 0) {
                 places.forEach((place, index) => {
+                    place.name = 'asd;laskdsss;laskaasdkljasd;'
                     if (places.length <= 5 || +index >= places.length - 5) {
                         container = [
                             ...container,
@@ -120,7 +124,7 @@ class SideBar extends Component {
                                         <div className='draft-fav'>
                                             <div
                                                 className={`name-fav ${
-                                                    place.name.length > 43
+                                                    place.name.length > 40
                                                         ? 'overflow'
                                                         : ''
                                                 }`}
@@ -155,7 +159,9 @@ class SideBar extends Component {
                                 </div>
                                 <div
                                     className={`overflow ${
-                                        place.name.length > 35 ? 'active' : ''
+                                        place.name.length > 35
+                                            ? 'active'
+                                            : 'inactive'
                                     }`}
                                 />
                             </div>,
