@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Detail from './Demo'
 import '../assets/scss/contact.scss'
 import { Phone, Facebook, Instagram } from './Icon'
 
@@ -40,7 +39,7 @@ class Contact extends Component {
     }
 
     render() {
-        const { map, contact } = this.props
+        const { contact } = this.props
         return <div className='contact'>{this.genContact(contact)}</div>
     }
 }
