@@ -64,6 +64,9 @@ import Mrt from '../assets/icon/mrt.svg'
 import Info from '../assets/icon/info.svg'
 import Trash from '../assets/icon/trash.svg'
 import Clock from '../assets/icon/clock.svg'
+import SettingButton from '../assets/icon/setting-button.svg'
+import ShareButton from '../assets/icon/share-button.svg'
+import SummaryButton from '../assets/icon/summary-button.svg'
 import NoResult from '../assets/icon/no-result.svg'
 
 const Filter = props => (
@@ -419,5 +422,8 @@ export {
     Info,
     Trash,
     Clock,
+    SettingButton,
+    SummaryButton,
+    ShareButton,
     NoResult,
 }
