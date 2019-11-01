@@ -18,7 +18,7 @@
         background: transparent;
         height: 73px;
         display: grid;
-        grid-template-columns: 1fr 6fr 1fr;
+        grid-template-columns: 50px 6fr 70px;
         align-content: center;
         padding: 0;
 
@@ -28,7 +28,7 @@
 
         .tools-navbar {
             display: grid;
-            grid-template-columns: 1fr 1fr 10fr;
+            grid-template-columns: 60px 60px 10fr;
 
             img:first-child {
                 margin-right: 16px;
