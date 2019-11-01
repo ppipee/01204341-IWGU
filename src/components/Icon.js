@@ -57,6 +57,8 @@ import Train from '../assets/icon/train.svg'
 import Ferry from '../assets/icon/ferry.svg'
 import Bts from '../assets/icon/bts.svg'
 import Mrt from '../assets/icon/mrt.svg'
+import Lock from '../assets/icon/lock.svg'
+import User from '../assets/icon/user.svg'
 
 // const Hotel = (props) => (
 //     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 40 40">
@@ -130,4 +132,6 @@ export {
     Ferry,
     Bts,
     Mrt,
+    Lock,
+    User,
 }

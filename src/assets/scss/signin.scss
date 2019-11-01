@@ -1,2 +1,101 @@
 .signin {
+    background-image: linear-gradient(to bottom, #ffebd1, #fcb7a0);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .user-display {
+        width: 100px;
+        height: 100px;
+        margin-top: 26px;
+        border-radius: 50px;
+        background-color: #ffffff;
+    }
+    .title {
+        margin-top: 26px;
+        margin-bottom: 0px;
+        font-size: 30px;
+        color: #ffffff;
+    }
+    .signin-box {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        width: 290px;
+        height: 315px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+        background-color: white;
+        align-items: center;
+        .input-username {
+            margin-top: 46px;
+            margin-left: -10px;
+            display: flex;
+            flex-direction: row;
+            input {
+                margin-left: 12px;
+                margin-bottom: -5px;
+                outline: none;
+                border: none;
+            }
+            input::placeholder {
+                font-size: 16px;
+                color: #d8d8d8;
+            }
+        }
+        .input-password {
+            margin-top: 41px;
+            margin-left: 12px;
+            display: flex;
+            flex-direction: row;
+            input {
+                font-size: 16px;
+                margin-left: 12px;
+                margin-bottom: -5px;
+                outline: none;
+                border: none;
+            }
+            input::placeholder {
+                font-size: 16px;
+                color: #d8d8d8;
+            }
+        }
+        .line {
+            width: 210px;
+            height: 2px;
+            margin-top: 3px;
+            background-color: #e7e7e7;
+            &.active {
+                background-image: linear-gradient(to left, #ff6c38, #fcb7a0);
+            }
+        }
+        .signin-button {
+            width: 137px;
+            height: 33px;
+            margin-top: 57px;
+            font-size: 16px;
+            color: white;
+            border-radius: 7px;
+            background-color: #f2b099;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+            outline: none;
+            border: none;
+        }
+        p {
+            margin-top: 12px;
+            margin-bottom: 0px;
+            font-size: 14px;
+            color: #b0b0b0;
+        }
+        .signup-button {
+            width: 93px;
+            height: 29px;
+            margin-top: 4px;
+            font-size: 15px;
+            color: #f2b099;
+            border-radius: 7px;
+            border: solid 1px #f2b099;
+            background-color: transparent;
+        }
+    }
 }
