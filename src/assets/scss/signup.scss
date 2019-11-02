@@ -2,10 +2,11 @@
     height: 185px;
     background-image: linear-gradient(to bottom, #ffebd1, #fcb7a0);
     .head {
-        padding-top: 20px;
         display: flex;
         flex-direction: column;
+        padding-top: 20px;
         align-items: center;
+        justify-content: center;
         .Rectangle {
             width: 100px;
             height: 100px;

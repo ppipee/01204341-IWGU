@@ -1,5 +1,4 @@
 import { gql } from 'apollo-boost'
-import { GraphQLInputObjectType } from 'graphql'
 
 const createPlanner = gql`
     mutation($userID: ID!, $name: String!, $days: [InputDayDetail]) {
@@ -13,7 +12,7 @@ const updatePlanner = gql`
     mutation(
         $userID: ID!
         $name: String
-        $days: InputDayDetail
+        $days: [InputDayDetail]
         $share: Boolean
     ) {
         updatePlanner(
@@ -53,6 +52,7 @@ const getDetailPlanners = gql`
         }
     }
 `
+
 const getUserPlanners = gql`
     query($id: ID) {
         userPlanner(id: $id) {

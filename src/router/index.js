@@ -9,6 +9,7 @@ import {
     Planner,
     NotFoundPage,
     Auth,
+    Favourites,
 } from '../pages'
 
 const Routes = () => (
@@ -19,6 +20,8 @@ const Routes = () => (
         <Route path='/detail' component={Detail} />
         <Route path='/planner' component={Planner} />
         <Route path='/auth' component={Auth} />
+        <Route path='/:id/favourites' component={Favourites} />
+        <Route path='/favourites' component={Favourites} />
         <Route component={NotFoundPage} />
     </Switch>
 )

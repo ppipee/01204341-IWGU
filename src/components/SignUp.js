@@ -256,15 +256,6 @@ class SignUp extends Component {
     }
 }
 
-// eslint-disable-next-line no-lone-blocks
-{
-    /* <h2>SignUp</h2>
-<button>Sign up</button>
-<Link to='/auth'>
-    <button>Sign in</button>
-</Link> */
-}
-
 export default compose(
     withRouter,
     graphql(getUsers, { name: 'users' }),

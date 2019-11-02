@@ -1,6 +1,8 @@
 .category {
     margin: 0 8px 0 auto;
-
+    span {
+        display: flex;
+    }
     .category-container {
         background: transparent;
         transition: 1s linear;
@@ -88,8 +90,9 @@
                     background: #f3bca6;
                     border-color: #f3bca6;
                 }
-                img {
-                    justify-items: center;
+                .icon-tag {
+                    pointer-events: none;
+                    display: flex;
                 }
                 .category-title {
                     justify-content: center;

@@ -1,29 +1,57 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import SearchBar from './SearchBar'
-import { FilterAction } from '../action'
-import { DefaultFilter } from './Initial'
+import { DefaultFilter, PhotoCategory } from './Initial'
 import TimeFilter from './TimeFilter'
 import Category from './Category'
 import '../assets/scss/searchfilter.scss'
-import { Filter, FilterActive, Clear, Star, BlankStar, Close } from './Icon'
+import { Filter, Clear, Star, Close } from './Icon'
 
-const Action = FilterAction
 class SearchFilter extends Component {
     constructor(props) {
         super(props)
         this.state = {
             show: false,
+            tags_index: [],
             ...JSON.parse(JSON.stringify(DefaultFilter)),
         }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.show !== this.state.show) {
-            const { state } = this
+        const { state } = this
+        const search = new URLSearchParams(this.props.location.search)
+        if (prevState.show !== state.show && search.has('time')) {
+            const tags = search.has('tags') ? search.get('tags').split(' ') : []
+            const rating = {
+                star1: true,
+                star2: true,
+                star3: true,
+                star4: true,
+                star5: true,
+            }
+            search
+                .get('rate')
+                .split(' ')
+                .forEach(star => {
+                    rating[`star${star}`] = false
+                })
+            const time = search
+                .get('time')
+                .split(' ')
+                .map(t => +t)
+            const sortby = {
+                nearby: false,
+                rating: false,
+                price: false,
+            }
+            sortby[search.get('sortby')] = true
+            console.log(this.state)
             this.setState({
                 ...state,
-                ...JSON.parse(JSON.stringify(this.props.load_filters)),
+                time,
+                tags,
+                sortby,
+                rating,
             })
         }
     }
@@ -57,9 +85,9 @@ class SearchFilter extends Component {
     genFav = () => {
         let fav = []
         for (let i = 1; i <= 5; i++) {
-            const [name, src] = this.state.rating[`star${i}`]
-                ? ['active', BlankStar]
-                : ['', Star]
+            const [name, star] = this.state.rating[`star${i}`]
+                ? ['active', <Star star='blank' size='10' />]
+                : ['', <Star star='full' size='10' />]
             fav = [
                 ...fav,
                 <div
@@ -71,20 +99,30 @@ class SearchFilter extends Component {
                     }
                 >
                     <span>{i}</span>
-                    <img src={src} alt='icon-star' />
+                    <span>{star}</span>
                 </div>,
             ]
         }
         return fav
     }
 
+    removeTag = event => {
+        const new_index = this.state.tags_index
+        new_index.splice(event.target.getAttribute('index'), 1)
+        this.setTag(new_index)
+    }
+
     genTag = () =>
-        this.state.tags.map(tag => (
-            <div className='tag' key={tag.id}>
-                <div>{tag}</div>
-                <img src={Close} alt='icon-close' />
-            </div>
-        ))
+        this.state.tags_index.map((tag_index, i) => {
+            return (
+                <div className='tag' key={`tag-${tag_index}`}>
+                    <div>{PhotoCategory[tag_index].title}</div>
+                    <span onClick={this.removeTag} index={i}>
+                        <Close size='6' />
+                    </span>
+                </div>
+            )
+        })
 
     handleTime = time => this.setState({ time })
 
@@ -119,6 +157,7 @@ class SearchFilter extends Component {
     clearFilters = (event, show = false) => {
         this.setState({
             show,
+            tags_index: [],
             ...JSON.parse(JSON.stringify(DefaultFilter)),
         })
     }
@@ -126,21 +165,46 @@ class SearchFilter extends Component {
     applyFilters = () => {
         const filter = JSON.parse(JSON.stringify(this.state))
         delete filter.show
-        this.props.setFilter(filter)
+        const word = new URLSearchParams(this.props.location.search).get('q')
+        let path = [word]
+        if (filter.tags.length !== 0) {
+            const tag = filter.tags.join(' ')
+            path = [...path, `tags=${tag}`]
+        }
+        const sortby = Object.keys(filter.sortby).filter(
+            sort => filter.sortby[sort] === true
+        )
+        const time = filter.time.join(' ')
+        const rate = Object.keys(
+            Object.values(filter.rating).filter(star => star === false)
+        )
+            .map(index => +index + 1)
+            .join(' ')
+        path = [
+            ...path,
+            `sortby=${sortby[0]}`,
+            `time=${time}`,
+            `rate=${rate}`,
+        ].join('&')
+        this.props.history.push(`/search?q=${path}`)
         this.setState({ show: false })
     }
 
+    setTag = tags_index => {
+        this.setState({
+            tags: tags_index.map(index => PhotoCategory[index].title),
+            tags_index,
+        })
+    }
+
     actionFilter() {
-        const [source, name, click] = this.state.show
-            ? [FilterActive, '-active', this.clearFilters]
-            : [Filter, '', this.clickFilter]
+        const [status, name, click] = this.state.show
+            ? ['inactive', 'active', this.clearFilters]
+            : ['active', '', this.clickFilter]
         return (
-            <img
-                className={`img-filter${name}`}
-                src={source}
-                alt='filter'
-                onClick={click}
-            />
+            <span className={`img-filters ${name}`} onClick={click}>
+                <Filter status={status} />
+            </span>
         )
     }
 
@@ -163,11 +227,18 @@ class SearchFilter extends Component {
                             </div>
                             <div className='sortby'>{this.genSort()}</div>
                         </div>
-                        <div className='category'>
+                        <div className='category-tags'>
                             <div className='head'>Category :</div>
-                            <div className='tags'>
+                            <div
+                                className={`tags ${
+                                    this.state.tags.length === 0 ? '' : 'show'
+                                }`}
+                            >
                                 {this.genTag()}
-                                <Category />
+                                <Category
+                                    settag={this.setTag}
+                                    tags={this.state.tags_index}
+                                />
                             </div>
                         </div>
                         <div className='line' />
@@ -198,7 +269,11 @@ class SearchFilter extends Component {
         return (
             <div className='search-filter'>
                 <div className='search-bar'>
-                    <SearchBar val={this.props.word} />
+                    <SearchBar
+                        val={new URLSearchParams(
+                            this.props.location.search
+                        ).get('q')}
+                    />
                     {this.actionFilter()}
                 </div>
                 {this.showFilter()}
@@ -206,20 +281,5 @@ class SearchFilter extends Component {
         )
     }
 }
-const mapStateToProps = state => {
-    return {
-        word: state.searching.word,
-        load_filters: state.filters,
-    }
-}
-const mapDispatchToProps = dispatch => {
-    return {
-        setFilter: filters =>
-            dispatch({ type: Action.SAVEFILTERS, newState: filters }),
-    }
-}
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SearchFilter)
+export default withRouter(SearchFilter)
