@@ -141,7 +141,6 @@ class SearchResult extends Component {
 
     genCards(places) {
         const box = []
-        console.log(places)
         places.map(place =>
             box.push(
                 <div className='card' key={`${place.placeID}`}>
