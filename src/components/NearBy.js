@@ -92,8 +92,8 @@ class NearBy extends Component {
     }
 
     render() {
-        const { map } = this.props
-        console.log(map)
+        // const { map } = this.props
+        // console.log(map)
         return (
             <div className='nearby'>
                 <div className='head'>
