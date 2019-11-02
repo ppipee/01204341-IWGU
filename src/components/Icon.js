@@ -11,10 +11,6 @@ import TreeActive from '../assets/icon/tree2.svg'
 import SleepInActive from '../assets/icon/sleep.svg'
 import SleepActive from '../assets/icon/sleep2.svg'
 import PaperAirplane from '../assets/icon/paper-airplane.svg'
-import AddActive from '../assets/icon/add-white.svg'
-import AddInActive from '../assets/icon/add-grey.svg'
-import FavActive from '../assets/icon/heart-white.svg'
-import FavInActive from '../assets/icon/heart-grey.svg'
 import Time from '../assets/icon/time.svg'
 import PinkLocationIcon from '../assets/icon/location.svg'
 import Calendar from '../assets/icon/calendar.svg'
@@ -300,8 +296,8 @@ const Close = props => (
 
 const Fav = props => (
     <svg
-        width={props.width}
-        height={props.height}
+        width='15'
+        height='15'
         viewBox='0 0 15 15'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
@@ -434,10 +430,8 @@ export {
     SleepActive,
     SleepInActive,
     PaperAirplane,
-    AddActive,
-    AddInActive,
-    FavActive,
-    FavInActive,
+    Add,
+    Fav,
     Time,
     PinkLocationIcon,
     Calendar,
@@ -489,7 +483,6 @@ export {
     Mrt,
     Lock,
     User,
-    Fav,
     Info,
     Trash,
     Clock,
@@ -501,6 +494,5 @@ export {
     SummaryButton,
     ShareButton,
     NoResult,
-    Add,
     HeartWhite,
 }
