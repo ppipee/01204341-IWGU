@@ -45,7 +45,7 @@ class CreateTrip extends Component {
         let new_date = new Date(
             current_date.setDate(current_date.getDate() - 1)
         )
-        const days = Array.from(Array(day).keys()).map(i => {
+        const days = [...Array(day).keys()].map(i => {
             new_date = new Date(
                 current_date.setDate(current_date.getDate() + 1)
             )

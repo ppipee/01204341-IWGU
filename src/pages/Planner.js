@@ -12,7 +12,7 @@ class Planner extends Component {
     render() {
         return (
             <div className='planners-page'>
-                <NavBar back design='planners-page' />
+                <NavBar back design='planners-page' mytrips={false} />
                 <PlannerDayCard />
             </div>
         )

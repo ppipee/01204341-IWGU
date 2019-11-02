@@ -411,4 +411,13 @@ const Reviews = [
     },
 ]
 
-export { Places, TopAttractions, Detail, Images, Trip, Reviews, Routes }
+export {
+    Places,
+    TopAttractions,
+    Detail,
+    Images,
+    Trip,
+    Reviews,
+    Routes,
+    SearchPlaces,
+}
