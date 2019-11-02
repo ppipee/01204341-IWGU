@@ -65,10 +65,18 @@
         display: flex;
         position: fixed;
         align-items: center;
-        bottom: 16.16px;
+        bottom: 29.16px;
         left: 50%;
         transform: translateX(-50%);
         -webkit-transform: translateX(-50%);
+        &.disable::before {
+            content: 'maximum 7 days/trip';
+            position: absolute;
+            top: -19px;
+            right: 0;
+            color: #ff6c38;
+            font-size: 10.5px;
+        }
         .day {
             pointer-events: none;
             display: flex;

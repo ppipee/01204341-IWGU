@@ -20,7 +20,6 @@ import PinkLocationIcon from '../assets/icon/location.svg'
 import Calendar from '../assets/icon/calendar.svg'
 import RightArrow from '../assets/icon/right-arrow.svg'
 import CurveArrow from '../assets/icon/curve-arrow.svg'
-import Plus from '../assets/icon/plus.svg'
 import LeftArrowColor from '../assets/icon/left-arrow-color.svg'
 import RightArrowColor from '../assets/icon/right-arrow-color.svg'
 import Dollar from '../assets/icon/dollar.svg'
@@ -409,6 +408,56 @@ const Back = props => (
             stroke={props.stroke}
             d='M1.20224 19.6643C1.71266 20.1747 2.53557 20.1747 3.04599 19.6643L11.7022 11.0081C11.7988 10.9117 11.8754 10.7972 11.9277 10.6712C11.98 10.5452 12.0069 10.4101 12.0069 10.2737C12.0069 10.1373 11.98 10.0022 11.9277 9.87616C11.8754 9.75014 11.7988 9.63567 11.7022 9.53931L3.04599 0.883057C2.53557 0.37264 1.71266 0.37264 1.20224 0.883057C0.691823 1.39347 0.691823 2.21639 1.20224 2.72681L8.74391 10.2789L1.19182 17.831C0.691823 18.331 0.691823 19.1643 1.20224 19.6643Z'
         />
+    </svg>
+)
+
+const Plus = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='65'
+        height='65'
+        fill='none'
+        viewBox='0 0 65 65'
+    >
+        <g filter='url(#a)'>
+            <ellipse
+                cx='33.051'
+                cy='33.051'
+                fill='#fff'
+                rx='18.729'
+                ry='18.729'
+            />
+            <path
+                fill={props.fill}
+                d='M33.083 5C18.133 5 6 17.133 6 32.083s12.133 27.084 27.083 27.084 27.084-12.134 27.084-27.084S48.033 5 33.083 5zm10.834 29.792h-8.125v8.125a2.716 2.716 0 0 1-2.709 2.708 2.716 2.716 0 0 1-2.708-2.708v-8.125H22.25a2.716 2.716 0 0 1-2.708-2.709 2.716 2.716 0 0 1 2.708-2.708h8.125V21.25a2.716 2.716 0 0 1 2.708-2.708 2.716 2.716 0 0 1 2.709 2.708v8.125h8.125a2.716 2.716 0 0 1 2.708 2.708 2.716 2.716 0 0 1-2.708 2.709z'
+            />
+        </g>
+        <defs>
+            <filter
+                id='a'
+                width='73'
+                height='73'
+                x='-4'
+                y='-2'
+                colorInterpolationFilters='sRGB'
+                filterUnits='userSpaceOnUse'
+            >
+                <feFlood floodOpacity='0' result='BackgroundImageFix' />
+                <feColorMatrix
+                    in='SourceAlpha'
+                    values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+                />
+                <feOffset dy='2' />
+                <feGaussianBlur stdDeviation='2' />
+                <feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.18 0' />
+                <feBlend in2='BackgroundImageFix' result='effect1_dropShadow' />
+                <feBlend
+                    in='SourceGraphic'
+                    in2='effect1_dropShadow'
+                    result='shape'
+                />
+            </filter>
+        </defs>
     </svg>
 )
 

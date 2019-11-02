@@ -37,6 +37,30 @@ class CreateTrip extends Component {
         return `${year}-${month}-${day}`
     }
 
+    handleClick = () => {
+        this.setState({ plan_maker: !this.state.plan_maker })
+    }
+
+    showMaker = () => {
+        document.body.style.overflow = 'hidden'
+        if (this.state.plan_maker) {
+            return (
+                <div className='plan-maker popup'>
+                    <div className='create-trip popup'>
+                        <HeadCreateTrip click={this.handleClick} />
+                        <Calendar />
+                    </div>
+                </div>
+            )
+        }
+        document.body.style.overflow = 'unset'
+        return (
+            <div className='plan-maker'>
+                <div className='create-trip' />
+            </div>
+        )
+    }
+
     createTrip = () => {
         const userid = this.props.getUserID
         const { name, date } = this.props.getNewTrip
@@ -62,44 +86,30 @@ class CreateTrip extends Component {
             days,
         }
         this.props.setNewTrip(trip)
+
         this.setState({
             plan_maker: false,
         })
     }
 
-    handleClick = () => {
-        this.setState({ plan_maker: !this.state.plan_maker })
-    }
-
-    showMaker = () => {
-        document.body.style.overflow = 'hidden'
-        if (this.state.plan_maker) {
+    genPlusBtn = () => {
+        if (this.props.create || this.props.getStatus !== 'traveler')
             return (
-                <div className='plan-maker popup'>
-                    <div className='create-trip popup'>
-                        <HeadCreateTrip click={this.handleClick} />
-                        <Calendar />
-                    </div>
-                </div>
+                <span className='add-btn' onClick={this.handleClick}>
+                    <Plus fill='#FCB69F' />
+                </span>
             )
-        }
-        document.body.style.overflow = 'unset'
         return (
-            <div className='plan-maker'>
-                <div className='create-trip' />
-            </div>
+            <span className='add-btn'>
+                <Plus fill='#E0E0E0' />
+            </span>
         )
     }
 
     render() {
         return (
             <>
-                <img
-                    src={Plus}
-                    alt='plus-btn'
-                    className='add-btn'
-                    onClick={this.handleClick}
-                />
+                {this.genPlusBtn()}
                 {this.showMaker()}
             </>
         )
@@ -116,6 +126,7 @@ const mapStateToProps = state => {
         getNewTrip: state.newtrip,
         getCreateAuth: state.newtrip.auth,
         getUserID: state.userauth.userid,
+        getStatus: state.userauth.status,
     }
 }
 export default connect(
