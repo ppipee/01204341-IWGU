@@ -31,9 +31,20 @@ class Contact extends Component {
             if (contact[keepIntouch.name] === '') {
                 keepIntouch.active = keepIntouch.inactive
             }
-            commune.push(
-                <div id={`${keepIntouch.name}`}>{keepIntouch.active}</div>
-            )
+            if (keepIntouch.name === 'phone') {
+                const tel = contact[keepIntouch.name]
+                commune.push(
+                    <a href={`tell:${tel}`}>
+                        <div id={`${keepIntouch.name}`}>
+                            {keepIntouch.active}
+                        </div>
+                    </a>
+                )
+            } else {
+                commune.push(
+                    <div id={`${keepIntouch.name}`}>{keepIntouch.active}</div>
+                )
+            }
         })
         return <div className='container'> {commune} </div>
     }
