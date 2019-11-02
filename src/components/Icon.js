@@ -35,6 +35,9 @@ import Mrt from '../assets/icon/mrt.svg'
 import Info from '../assets/icon/info.svg'
 import Trash from '../assets/icon/trash.svg'
 import Clock from '../assets/icon/clock.svg'
+import user from '../assets/icon/user.svg'
+import vector from '../assets/icon/Vector.svg'
+import lock from '../assets/icon/lock.svg'
 import Twitter from '../assets/icon/twitter.svg'
 import Line from '../assets/icon/line.svg'
 import Facebook from '../assets/icon/facebook.svg'
@@ -620,6 +623,9 @@ export {
     Info,
     Trash,
     Clock,
+    user,
+    vector,
+    lock,
     Twitter,
     Facebook,
     Copy,
