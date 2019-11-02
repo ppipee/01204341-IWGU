@@ -56,7 +56,7 @@ class PlannerDayCard extends Component {
             focusOnSelect: true,
             speed: 500,
             centerMode: true,
-            centerPadding: '47px',
+            centerPadding: '45px',
             customPaging(i) {
                 if (i === 0) i = 'D'
                 return <span className='dot'>{i}</span>
