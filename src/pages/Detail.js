@@ -21,13 +21,14 @@ class DetailPage extends Component {
     componentDidMount() {
         const search = new URLSearchParams(this.props.location.search)
         const id = search.get('place')
-        const code = search.get('code')
-        // this.props.data.refetch({ id, code })
+        const code = search.get('code').toLowerCase()
+        this.props.data.refetch({ id, code })
     }
 
     render() {
-        const { placeDetail: data, loading } = Detail
-        // const { placeDetail: data, loading } = this.props.data
+        // const { placeDetail: data, loading } = Detail
+        const { placeDetail: data, loading } = this.props.data
+        // console.log(this.props.data)
         if (loading)
             return (
                 <div className='detail-page'>

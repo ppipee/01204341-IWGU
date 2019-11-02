@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { Link, withRouter } from 'react-router-dom'
 import { graphql } from 'react-apollo'
@@ -141,6 +140,7 @@ class SearchResult extends Component {
 
     genCards(places) {
         const box = []
+        console.log(places)
         places.map(place =>
             box.push(
                 <div className='card' key={`${place.placeID}`}>
