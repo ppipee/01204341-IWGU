@@ -10,13 +10,13 @@ $transition-box: all 0.2s linear;
         background: rgba(196, 196, 196, 0.22);
         display: flex;
         align-items: center;
-        img {
+        svg {
             margin-left: 12px;
         }
         input {
             width: 100%;
             border: none;
-            margin: auto 10px;
+            margin: auto 10px auto 6.5px;
             color: $font-color;
             font-size: 14px;
             background: transparent;
