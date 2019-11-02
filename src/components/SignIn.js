@@ -41,8 +41,10 @@ export default class SignIn extends Component {
     render() {
         return (
             <div className='signin'>
-                <div className='user-display' />
-                <p className='title'> Hello, Traveler </p>
+                <div className='anything'>
+                    <div className='user-display' />
+                    <p className='title'> Hello, Traveler </p>
+                </div>
                 <div className='signin-box'>
                     <div className='input-username' ref={this.setWrapperRef}>
                         <img alt='user-icon' src={User} />
