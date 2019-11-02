@@ -62,7 +62,11 @@
                         bottom: 0;
                         left: 0;
                         width: 20%;
-                        background: linear-gradient(90deg, rgba(255,255,255,0), #fff);
+                        background: linear-gradient(
+                            90deg,
+                            rgba(255, 255, 255, 0),
+                            #fff
+                        );
                         position: absolute;
                         pointer-events: none;
                     }
@@ -116,8 +120,8 @@
                                 width: 2px;
                                 background: linear-gradient(
                                     90deg,
-                                    rgba(255,255,255,0),
-                                     #fff
+                                    rgba(255, 255, 255, 0),
+                                    #fff
                                 );
                                 // position: absolute;
                                 pointer-events: none;
@@ -169,7 +173,7 @@
                                     width: 20%;
                                     background: linear-gradient(
                                         90deg,
-                                        rgba(255,255,255,0), 
+                                        rgba(255, 255, 255, 0),
                                         #fff
                                     );
                                     position: absolute;
@@ -181,7 +185,7 @@
                 }
             }
             .add-fav {
-                #add {
+                .add {
                     width: 36px;
                     height: 47px;
                     border-left: solid 0.5px #e8e8e8;
@@ -191,6 +195,7 @@
                     justify-content: center;
                     align-items: center;
                     .icon {
+                        display:flex;
                         pointer-events: none;
                     }
                     &.active {
@@ -198,7 +203,7 @@
                         border: solid 0.5px #f2b099;
                     }
                 }
-                #fav {
+                .fav {
                     width: 36px;
                     height: 47px;
                     border-left: solid 0.5px #e8e8e8;
@@ -207,6 +212,7 @@
                     align-items: center;
                     .icon {
                         pointer-events: none;
+                        display:flex;
                     }
                     &.active {
                         background: #fedec4;

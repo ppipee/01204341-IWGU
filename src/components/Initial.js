@@ -1,7 +1,5 @@
 import React from 'react'
 import {
-    Add,
-    Fav,
     LandmarkCategory,
     Cafe,
     Park,
@@ -12,19 +10,6 @@ import {
     Bar,
     Hotel,
 } from './Icon'
-
-const SearchResultTab = [
-    {
-        name: 'add',
-        icon_active: <Add stroke='#fff' />,
-        icon_inactive: <Add stroke='#B0B0B0' />,
-    },
-    {
-        name: 'fav',
-        icon_active: <Fav fill='#fff' />,
-        icon_inactive: <Fav fill='#B0B0B0' />,
-    },
-]
 
 const DefaultFilter = {
     tags: [],
@@ -91,4 +76,4 @@ const PhotoCategory = [
     },
 ]
 
-export { DefaultFilter, PhotoCategory, SearchResultTab }
+export { DefaultFilter, PhotoCategory }

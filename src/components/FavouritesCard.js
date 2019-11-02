@@ -5,6 +5,7 @@ import { compose } from 'redux'
 import { Skeleton } from 'antd'
 import { userAllFavourites, updateFavourites } from '../queries/user'
 import { Close, Star, Add } from './Icon'
+import { PlannersAction } from '../action'
 import '../assets/scss/favouritescard.scss'
 
 class FavouritesCard extends Component {
@@ -81,7 +82,12 @@ class FavouritesCard extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='add-card'>
+                <div
+                    className='add-card'
+                    onClick={() =>
+                        this.setDraft(place.placeID, place.categoryCode)
+                    }
+                >
                     <Add size='17.5' stroke='#FCB7A0' />
                 </div>
             </div>
@@ -108,8 +114,16 @@ class FavouritesCard extends Component {
             </div>
         ))
 
+    setDraft = (id, code) => {
+        const draft = {
+            placeID: id,
+            categoryCode: code,
+        }
+        const places = this.props.getDraft.map(place => place.placeID)
+        if (!places.includes(draft.placeID)) this.props.adddraft(draft)
+    }
+
     render() {
-        console.log(this.props.userFavourites)
         if (
             this.props.userFavourites.loading ||
             this.props.userFavourites.error !== undefined
@@ -124,8 +138,19 @@ export default compose(
     graphql(updateFavourites, { name: 'updateFavourites' }),
     connect(
         state => {
-            return { id: state.userauth.userid }
+            return {
+                id: state.userauth.userid,
+                getDraft: state.planner.drafts,
+            }
         },
-        null
+        dispatch => {
+            return {
+                adddraft: draft =>
+                    dispatch({
+                        type: PlannersAction.ADDDRAFT,
+                        add_draft: draft,
+                    }),
+            }
+        }
     )
 )(FavouritesCard)

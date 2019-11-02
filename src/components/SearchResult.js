@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { compose } from 'redux'
+import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import { GoogleApiWrapper } from 'google-maps-react'
 import '../assets/scss/searchresult.scss'
-import { SearchResultTab } from './Initial'
-import { Time, PinkLocationIcon, Star, NoResult } from './Icon'
+import { PlannersAction } from '../action'
+import { Time, PinkLocationIcon, Star, NoResult, Add, Fav } from './Icon'
 import { searchPlace } from '../queries/place'
+import { userAllFavourites, updateFavourites } from '../queries/user'
 import { Rate } from './Random'
 
 class SearchResult extends Component {
@@ -23,10 +25,11 @@ class SearchResult extends Component {
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const search = new URLSearchParams(this.props.location.search)
         const keyword = search.get('q')
-        this.props.search.refetch({ keyword })
+        await this.props.search.refetch({ keyword })
+        await this.props.userFavourites.refetch({ id: this.props.id })
         navigator.geolocation.getCurrentPosition(
             position => {
                 const { latitude, longitude } = position.coords
@@ -95,6 +98,22 @@ class SearchResult extends Component {
         })
     }
 
+    setDrafts = (id, code) => {
+        const draft = {
+            placeID: id,
+            categoryCode: code,
+        }
+        const places = this.props.getDrafts.map(place => place.placeID)
+        console.log(places)
+        if (!places.includes(draft.placeID)) this.props.adddraft(draft)
+        else {
+            const new_draft = this.props.getDrafts
+            console.log(places.indexOf(id))
+            new_draft.splice(places.indexOf(id), 1)
+            this.props.setdraft(new_draft)
+        }
+    }
+
     genStar(ratting) {
         const container = []
         let i
@@ -116,31 +135,39 @@ class SearchResult extends Component {
     }
 
     genTabs(id, code) {
-        const tabbar = []
-        SearchResultTab.forEach(tab => {
-            const { name, icon_active, icon_inactive } = tab
-            const object = { placeID: id, category: name }
-            let check
-            this.state[name].forEach(item => {
-                if (object.placeID === item.placeID) check = true
-            })
-            tabbar.push(
+        const add = this.props.getDrafts.map(key => key.placeID)
+        const fav = this.state.fav.map(key => key.placeID)
+        return (
+            <div className='add-fav'>
                 <div
-                    id={`${name}`}
-                    className={`${check ? 'active' : ''}`}
-                    key={`${name}`}
+                    className={`add ${add.includes(id) ? 'active' : ''}`}
+                    onClick={() => this.setDrafts(id, code)}
+                >
+                    <span className='icon'>
+                        {add.includes(id) ? (
+                            <Add stroke='#fff' />
+                        ) : (
+                            <Add stroke='#B0B0B0' />
+                        )}
+                    </span>
+                </div>
+                <div
+                    className={`fav ${fav.includes(id) ? 'active' : ''}`}
                     onClick={this.toggle}
-                    name={name}
+                    name='fav'
                     place_id={id}
                     code={code}
                 >
                     <span className='icon'>
-                        {check ? icon_active : icon_inactive}
+                        {fav.includes(id) ? (
+                            <Fav fill='#fff' />
+                        ) : (
+                            <Fav fill='#B0B0B0' />
+                        )}
                     </span>
                 </div>
-            )
-        })
-        return <div className='add-fav'>{tabbar}</div>
+            </div>
+        )
     }
 
     genCards(places) {
@@ -217,9 +244,32 @@ class SearchResult extends Component {
 }
 
 export default compose(
+    connect(
+        state => {
+            return {
+                getDrafts: state.planner.drafts,
+            }
+        },
+        dispatch => {
+            return {
+                adddraft: draft =>
+                    dispatch({
+                        type: PlannersAction.ADDDRAFT,
+                        add_draft: draft,
+                    }),
+                setdraft: drafts =>
+                    dispatch({
+                        type: PlannersAction.SETDRAFT,
+                        new_draft: drafts,
+                    }),
+            }
+        }
+    ),
     withRouter,
     GoogleApiWrapper({
         apiKey: process.env.MAP_KEY,
     }),
-    graphql(searchPlace, { name: 'search' })
+    graphql(searchPlace, { name: 'search' }),
+    graphql(userAllFavourites, { name: 'userFavourites' }),
+    graphql(updateFavourites, { name: 'updateFavourites' })
 )(SearchResult)
