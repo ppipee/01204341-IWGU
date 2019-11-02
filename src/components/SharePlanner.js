@@ -27,15 +27,12 @@ class SharePlanner extends Component {
     sharePlanner() {
         let modal = ''
         const url = window.location
-        const desc = "Let' see my trip planner"
-        const twitter = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-            desc
-        )}&url=${encodeURIComponent(url.href)}&via=${encodeURIComponent(
-            'IWGU'
-        )}`
-        const line = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(
-            url.href
-        )}`
+        const encodeURL = encodeURIComponent(url)
+        const desc = encodeURIComponent("Let' see my trip planner")
+        const provider = encodeURIComponent('IWGU')
+        const twitter = `https://twitter.com/intent/tweet?text=${desc}&url=${encodeURL}&via=${provider}`
+        const line = `https://social-plugins.line.me/lineit/share?url=${encodeURL}`
+        const facebook = `https://www.facebook.com/sharer/sharer.php?u=${encodeURL}`
         if (this.state.open_modal) {
             modal = ' active'
         }
@@ -58,13 +55,13 @@ class SharePlanner extends Component {
                         </CopyToClipboard>
                     </div>
                     <div className='via'>
-                        <a href='www.google.com'>
+                        <a href={facebook} rel='noopener'>
                             <img alt='facebook' src={Facebook} />
                         </a>
-                        <a href={twitter}>
+                        <a href={twitter} rel='noopener'>
                             <img alt='twitter' src={Twitter} />
                         </a>
-                        <a href={line}>
+                        <a href={line} rel='noopener'>
                             <img alt='line' src={Line} />
                         </a>
                     </div>
@@ -75,14 +72,14 @@ class SharePlanner extends Component {
 
     render() {
         return (
-            <span>
+            <>
                 <img
                     onClick={this.openModal}
                     src={ShareButton}
                     alt='share-button'
                 />
                 {this.sharePlanner()}
-            </span>
+            </>
         )
     }
 }

@@ -31,7 +31,7 @@ $fade-color: linear-gradient(
 
     .share-modal {
         width: 250px;
-        height: 161px;
+        height: auto;
         border-radius: 10px;
         background-color: white;
         position: absolute;
@@ -55,11 +55,10 @@ $fade-color: linear-gradient(
                 p {
                     font-size: 16px;
                     color: #4f4f4f;
-                    margin: 0 0 0 9px;
+                    margin: 0 59px 0 9px;
                 }
 
                 svg {
-                    margin-left: 59px;
                     height: 12px;
                     width: 12px;
                 }

@@ -24,16 +24,18 @@
 
         .back-home {
             margin: 0;
+            justify-self: center;
         }
 
         .tools-navbar {
             display: grid;
             grid-template-columns: 60px 60px 10fr;
 
-            img:first-child {
+            > img:first-child {
                 margin-right: 16px;
             }
-            img:last-child {
+
+            > img:last-child {
                 justify-self: self-end;
             }
         }
