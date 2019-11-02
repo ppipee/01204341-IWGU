@@ -19,7 +19,10 @@ class Category extends Component {
     }
 
     handleClick = state => {
+        let overflow = ''
         this.setState({ popup: state })
+        if (state) overflow = 'hidden'
+        document.body.style.overflow = overflow
     }
 
     toggleCard = e => {
