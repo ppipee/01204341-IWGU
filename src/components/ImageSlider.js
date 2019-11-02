@@ -18,8 +18,8 @@ class ImageSlider extends Component {
         this.setState({ image_show: index })
     }
 
-    focusImage = () =>
-        Images.map((img, i) => {
+    focusImage = images =>
+        images.map((img, i) => {
             const check = i === +this.state.image_show
             return (
                 <img
@@ -31,7 +31,7 @@ class ImageSlider extends Component {
             )
         })
 
-    genImages = () => {
+    genImages = images => {
         // let padding = 58
         // if (this.focusRef)
         //     padding = this.focusRef.offsetLeft
@@ -43,7 +43,7 @@ class ImageSlider extends Component {
                 }}
                 // style={{ paddingLeft: `${padding}px` }}
             >
-                {Images.map((img, index) => (
+                {images.map((img, index) => (
                     <div
                         className={`image-border ${
                             index === +this.state.image_show ? 'focus' : ''
@@ -73,6 +73,7 @@ class ImageSlider extends Component {
     }
 
     render() {
+        const images = this.props.img ? this.props.img : Images
         return (
             <div className='image-slider'>
                 <img
@@ -87,9 +88,9 @@ class ImageSlider extends Component {
                             this.focusRef = node
                         }}
                     >
-                        {this.focusImage()}
+                        {this.focusImage(images)}
                     </div>
-                    {this.genImages()}
+                    {this.genImages(images)}
                 </div>
             </div>
         )

@@ -14,6 +14,8 @@ const userData = gql`
         user(id: $id) {
             username
             password
+            name
+            status
             favourite {
                 name
             }
@@ -62,16 +64,29 @@ const getUser = gql`
         user(id: $id) {
             id
             username
-            password
         }
     }
 `
 
 const userUpdate = gql`
-    mutation($id: ID!, $password: String, $favourite: [InputFav]) {
-        updateUser(id: $id, password: $password, favourite: $favourite) {
+    mutation(
+        $id: ID!
+        $password: String
+        $name: String
+        $status: String
+        $favourite: [InputFav]
+    ) {
+        updateUser(
+            id: $id
+            password: $password
+            name: $name
+            status: $status
+            favourite: $favourite
+        ) {
             username
             password
+            name
+            status
             favourite {
                 name
             }

@@ -3,6 +3,7 @@ import '../assets/scss/infoplace.scss'
 import { Dollar, DownArrow, UpArrow } from './Icon'
 import OpeningHour from './OpeningHour'
 import Review from './Review'
+import { PriceLevel, Info } from './Random'
 
 const ShowMore = {
     text: 'more',
@@ -58,9 +59,9 @@ class InfoPlace extends Component {
         ))
 
     genPrice() {
-        const priceLevel = 4
+        // const priceLevel = 4
         const price = []
-        for (let i = 0; i < priceLevel; i++) {
+        for (let i = 0; i < PriceLevel; i++) {
             price.push(<img src={Dollar} key={i} alt='dollar' />)
         }
         return price
@@ -80,14 +81,19 @@ class InfoPlace extends Component {
     }
 
     render() {
-        const { name, category, description } = this.props.info
+        const { name, category, categoryCode } = this.props.info
+        const code = category[0] ? category[0] : categoryCode.toUpperCase()
+        const description =
+            this.props.info.description === ''
+                ? Info
+                : this.props.info.description
         return (
             <div className='info-place'>
                 <div className='info-border'>
                     <p className='title'>{name}</p>
                     <div className='description'>
                         <div className='subtitle'>
-                            <p>{category[0]}</p>
+                            <p>{code}</p>
                             <div className='dot' />
                             <div className='price'>{this.genPrice()}</div>
                         </div>

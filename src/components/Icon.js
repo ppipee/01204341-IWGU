@@ -59,6 +59,10 @@ import Mrt from '../assets/icon/mrt.svg'
 import Info from '../assets/icon/info.svg'
 import Trash from '../assets/icon/trash.svg'
 import Clock from '../assets/icon/clock.svg'
+import Twitter from '../assets/icon/twitter.svg'
+import Line from '../assets/icon/line.svg'
+import Facebook from '../assets/icon/facebook.svg'
+import Copy from '../assets/icon/copy.svg'
 import SettingButton from '../assets/icon/setting-button.svg'
 import ShareButton from '../assets/icon/share-button.svg'
 import SummaryButton from '../assets/icon/summary-button.svg'
@@ -485,6 +489,10 @@ export {
     Info,
     Trash,
     Clock,
+    Twitter,
+    Facebook,
+    Copy,
+    Line,
     SettingButton,
     SummaryButton,
     ShareButton,

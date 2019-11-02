@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { RateStar, CircleArrow, Star, DoubleQuotes } from './Icon'
-import { Reviews } from './Demo'
+import { Reviews } from './Random'
 import '../assets/scss/review.scss'
 
 class Review extends Component {
@@ -40,7 +40,7 @@ class Review extends Component {
             let box_review = []
             Reviews.forEach((item, i) => {
                 if (i !== 0) {
-                    const date = new Date(item.timestamp)
+                    const date = item.timestamp
                         .toString()
                         .split(' ')
                         .splice(1, 3)

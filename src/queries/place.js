@@ -4,9 +4,9 @@ const searchPlace = gql`
     query($keyword: String, $category: String) {
         places(keyword: $keyword, category: $category) {
             placeID
-            categoryCode
             name
             category
+            categoryCode
             rate
             thumbnail
             time
@@ -23,7 +23,7 @@ const searchPlace = gql`
 `
 
 const nearBy = gql`
-    query($radius: Int!, $geolocation: String!) {
+    query($radius: Int, $geolocation: String) {
         places(searchradius: $radius, geolocation: $geolocation) {
             placeID
             categoryCode
@@ -43,6 +43,7 @@ const placeDetail = gql`
             placeID
             name
             category
+            categoryCode
             description
             img
             rate

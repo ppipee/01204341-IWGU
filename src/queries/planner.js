@@ -12,7 +12,7 @@ const updatePlanner = gql`
     mutation(
         $userID: ID!
         $name: String
-        $days: InputDayDetail
+        $days: [InputDayDetail]
         $share: Boolean
     ) {
         updatePlanner(
@@ -54,7 +54,7 @@ const getDetailPlanners = gql`
 `
 
 const getUserPlanners = gql`
-    query($id: ID!) {
+    query($id: ID) {
         userPlanner(id: $id) {
             id
             name
