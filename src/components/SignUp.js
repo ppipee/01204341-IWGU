@@ -106,150 +106,162 @@ class SignUp extends Component {
             <div className='signup'>
                 <div className='head'>
                     <div className='Rectangle' />
-                    <p className='welcome'>WELCOME TO []</p>
+                    <p className='welcome'>Welcome to []</p>
                 </div>
-                <div className='body'>
-                    <div className='box'>
-                        <span className='box-user'>
-                            <img
-                                src={user}
-                                alt='icon-user'
-                                className='icon-user'
+                <div className='manage'>
+                    <div className='body'>
+                        <div className='box'>
+                            <span className='box-user'>
+                                <img
+                                    src={user}
+                                    alt='icon-user'
+                                    className='icon-user'
+                                />
+                                <input
+                                    onKeyPress={this.checkcrt}
+                                    ref={this.setWrapperRef}
+                                    className='input'
+                                    placeholder='Username'
+                                    value={this.state.username}
+                                    onChange={e =>
+                                        this.setState({
+                                            username: e.target.value,
+                                        })
+                                    }
+                                    onClick={() =>
+                                        this.getLine(
+                                            'lineUser',
+                                            'linePass',
+                                            'lineConfirm'
+                                        )
+                                    }
+                                />
+                            </span>
+                            <div
+                                className={`line ${
+                                    this.state.lineUser
+                                        ? 'select'
+                                        : 'not-select'
+                                }`}
                             />
-                            <input
-                                onKeyPress={this.checkcrt}
-                                ref={this.setWrapperRef}
-                                className='input'
-                                placeholder='Username'
-                                value={this.state.username}
-                                onChange={e =>
-                                    this.setState({ username: e.target.value })
-                                }
-                                onClick={() =>
-                                    this.getLine(
-                                        'lineUser',
-                                        'linePass',
-                                        'lineConfirm'
-                                    )
-                                }
+                            <div
+                                className={`dontMatch ${
+                                    this.state.crtuser ? 'match' : ''
+                                }`}
+                            >
+                                must be at least 5 characters
+                            </div>
+                        </div>
+                        <div className='box'>
+                            <span
+                                className={`box-vector ${
+                                    this.state.crtuser ? 'default' : 'down'
+                                }`}
+                            >
+                                <img
+                                    src={vector}
+                                    alt='icon-vector'
+                                    className='icon-vector'
+                                />
+                                <input
+                                    onKeyPress={this.checkcrt}
+                                    ref={this.setWrapperRef}
+                                    type='password'
+                                    className='input'
+                                    placeholder='Password'
+                                    value={this.state.password}
+                                    onChange={e =>
+                                        this.setState({
+                                            password: e.target.value,
+                                        })
+                                    }
+                                    onClick={() =>
+                                        this.getLine(
+                                            'linePass',
+                                            'lineUser',
+                                            'lineConfirm'
+                                        )
+                                    }
+                                />
+                            </span>
+                            <div
+                                className={`line ${
+                                    this.state.linePass
+                                        ? 'select'
+                                        : 'not-select'
+                                }`}
                             />
-                        </span>
-                        <div
-                            className={`line ${
-                                this.state.lineUser ? 'select' : 'not-select'
-                            }`}
-                        />
-                        <div
-                            className={`dontMatch ${
-                                this.state.crtuser ? 'match' : ''
-                            }`}
-                        >
-                            must be at least 5 characters
+                            <div
+                                className={`dontMatch ${
+                                    this.state.crtpass ? 'match' : ''
+                                }`}
+                            >
+                                must be at least 5 characters
+                            </div>
+                        </div>
+                        <div className='box'>
+                            <span
+                                className={`box-vector ${
+                                    this.state.crtpass ? 'default' : 'down'
+                                }`}
+                            >
+                                <img
+                                    src={lock}
+                                    alt='icon-vector'
+                                    className='icon-vector'
+                                />
+                                <input
+                                    onKeyPress={this.checkcrt}
+                                    ref={this.setWrapperRef}
+                                    type='password'
+                                    className='input'
+                                    placeholder='Confirm Password'
+                                    value={this.state.confirmPass}
+                                    onChange={e =>
+                                        this.setState({
+                                            confirmPass: e.target.value,
+                                        })
+                                    }
+                                    onClick={() =>
+                                        this.getLine(
+                                            'lineConfirm',
+                                            'linePass',
+                                            'lineUser'
+                                        )
+                                    }
+                                />
+                            </span>
+                            <div
+                                className={`line ${
+                                    this.state.lineConfirm
+                                        ? 'select'
+                                        : 'not-select'
+                                }`}
+                            />
+                            <div
+                                className={`dontMatch ${
+                                    this.state.passDontMacth ? 'match' : ''
+                                }`}
+                            >
+                                Password confirmation doesn’t match
+                            </div>
                         </div>
                     </div>
-                    <div className='box'>
-                        <span
-                            className={`box-vector ${
-                                this.state.crtuser ? 'default' : 'down'
-                            }`}
-                        >
-                            <img
-                                src={vector}
-                                alt='icon-vector'
-                                className='icon-vector'
-                            />
-                            <input
-                                onKeyPress={this.checkcrt}
-                                ref={this.setWrapperRef}
-                                type='password'
-                                className='input'
-                                placeholder='Password'
-                                value={this.state.password}
-                                onChange={e =>
-                                    this.setState({ password: e.target.value })
-                                }
-                                onClick={() =>
-                                    this.getLine(
-                                        'linePass',
-                                        'lineUser',
-                                        'lineConfirm'
-                                    )
-                                }
-                            />
-                        </span>
-                        <div
-                            className={`line ${
-                                this.state.linePass ? 'select' : 'not-select'
-                            }`}
-                        />
-                        <div
-                            className={`dontMatch ${
-                                this.state.crtpass ? 'match' : ''
-                            }`}
-                        >
-                            must be at least 5 characters
-                        </div>
+                    <div
+                        className={`bottom ${
+                            this.state.passDontMacth ? 'default' : 'down'
+                        }`}
+                    >
+                        <button className='submit' onClick={this.checkcrt}>
+                            Sign up
+                        </button>
+                        <p className='text-have-account'>
+                            Already have an account?
+                        </p>
+                        <Link to='/auth'>
+                            <button className='sing-in'>Sign in</button>
+                        </Link>
                     </div>
-                    <div className='box'>
-                        <span
-                            className={`box-vector ${
-                                this.state.crtpass ? 'default' : 'down'
-                            }`}
-                        >
-                            <img
-                                src={lock}
-                                alt='icon-vector'
-                                className='icon-vector'
-                            />
-                            <input
-                                onKeyPress={this.checkcrt}
-                                ref={this.setWrapperRef}
-                                type='password'
-                                className='input'
-                                placeholder='Confirm Password'
-                                value={this.state.confirmPass}
-                                onChange={e =>
-                                    this.setState({
-                                        confirmPass: e.target.value,
-                                    })
-                                }
-                                onClick={() =>
-                                    this.getLine(
-                                        'lineConfirm',
-                                        'linePass',
-                                        'lineUser'
-                                    )
-                                }
-                            />
-                        </span>
-                        <div
-                            className={`line ${
-                                this.state.lineConfirm ? 'select' : 'not-select'
-                            }`}
-                        />
-                        <div
-                            className={`dontMatch ${
-                                this.state.passDontMacth ? 'match' : ''
-                            }`}
-                        >
-                            Password confirmation doesn’t match
-                        </div>
-                    </div>
-                </div>
-                <div
-                    className={`bottom ${
-                        this.state.passDontMacth ? 'default' : 'down'
-                    }`}
-                >
-                    <button className='submit' onClick={this.checkcrt}>
-                        Sign up
-                    </button>
-                    <p className='text-have-account'>
-                        Already have an account?
-                    </p>
-                    <Link to='/auth'>
-                        <button className='sing-in'>Sign in</button>
-                    </Link>
                 </div>
             </div>
         )
