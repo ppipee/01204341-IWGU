@@ -6,12 +6,12 @@ import SearchBackground from '../assets/img/fixed-background.svg'
 const Search = () => {
     return (
         <div className='search-page'>
+            <NavBar back design='default' />
             <img
                 className='search-background'
                 alt='search-bg'
                 src={SearchBackground}
             />
-            <NavBar back />
             <SearchFilter />
             <SearchResult />
         </div>

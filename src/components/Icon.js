@@ -1,8 +1,5 @@
 import React from 'react'
 import Clear from '../assets/icon/refresh.svg'
-import Star from '../assets/icon/full-star.svg'
-import BlankStar from '../assets/icon/empty-star.svg'
-import Close from '../assets/icon/close.svg'
 import Menu from '../assets/icon/featured-menu.svg'
 import LocationIcon from '../assets/icon/location-icon.svg'
 import RestaurantInActive from '../assets/icon/restaurant.svg'
@@ -26,11 +23,9 @@ import CurveArrow from '../assets/icon/curve-arrow.svg'
 import Plus from '../assets/icon/plus.svg'
 import LeftArrowColor from '../assets/icon/left-arrow-color.svg'
 import RightArrowColor from '../assets/icon/right-arrow-color.svg'
-import CloseColor from '../assets/icon/close-color.svg'
 import Dollar from '../assets/icon/dollar.svg'
 import DownArrow from '../assets/icon/down-arrow.svg'
 import UpArrow from '../assets/icon/up-arrow.svg'
-import PinkClose from '../assets/icon/pink-close.svg'
 import CoinInactive from '../assets/icon/coin-inactive.svg'
 import CoinActive from '../assets/icon/coin-active.svg'
 import CreditcardInactive from '../assets/icon/credit-card-inactive.svg'
@@ -64,10 +59,15 @@ import Mrt from '../assets/icon/mrt.svg'
 import Info from '../assets/icon/info.svg'
 import Trash from '../assets/icon/trash.svg'
 import Clock from '../assets/icon/clock.svg'
+import Twitter from '../assets/icon/twitter.svg'
+import Line from '../assets/icon/line.svg'
+import Facebook from '../assets/icon/facebook.svg'
+import Copy from '../assets/icon/copy.svg'
 import SettingButton from '../assets/icon/setting-button.svg'
 import ShareButton from '../assets/icon/share-button.svg'
 import SummaryButton from '../assets/icon/summary-button.svg'
 import NoResult from '../assets/icon/no-result.svg'
+import HeartWhite from '../assets/icon/heart-border-white.svg'
 
 const Filter = props => (
     <svg
@@ -281,6 +281,54 @@ const Spa = props => (
     </svg>
 )
 
+const Close = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width={props.size}
+        height={props.size}
+        fill='none'
+        viewBox='0 0 6 6'
+    >
+        <path
+            fill={props.fill === undefined ? '#fff' : props.fill}
+            d='M3.748 3L5.843.905a.53.53 0 1 0-.748-.75L3 2.25.905.155a.53.53 0 1 0-.75.75L2.25 3 .155 5.095a.53.53 0 1 0 .75.75L3 3.75l2.095 2.095a.53.53 0 0 0 .75-.75L3.748 3z'
+        />
+    </svg>
+)
+
+const Fav = props => (
+    <svg
+        width={props.width}
+        height={props.height}
+        viewBox='0 0 15 15'
+        fill='none'
+        xmlns='http://www.w3.org/2000/svg'
+    >
+        <path
+            fill={props.fill}
+            d='M6.94023 1.41895L7.51206 2.085L8.08389 1.41989C8.45881 0.97996 8.90475 0.6305 9.3961 0.391571C9.88745 0.152641 10.4145 0.0289477 10.9471 0.0275913C11.4797 0.0262348 12.0072 0.147242 12.4995 0.383666C12.9917 0.620091 13.4389 0.967275 13.8155 1.40529C14.1921 1.8433 14.4906 2.36352 14.6939 2.93607C14.8971 3.50862 15.0012 4.12223 15 4.74167C14.9988 5.36111 14.8925 5.97419 14.6871 6.5457C14.4816 7.11721 14.1812 7.6359 13.803 8.07199L8.0847 14.7241C8.00958 14.8116 7.92038 14.8809 7.82219 14.9283C7.724 14.9756 7.61875 15 7.51247 15C7.40617 15 7.30093 14.9756 7.20274 14.9283C7.10455 14.8809 7.01535 14.8116 6.94023 14.7241L1.22115 8.07199C0.837778 7.6373 0.532433 7.1184 0.322824 6.54538C0.113215 5.97237 0.00351324 5.35664 8.30126e-05 4.73393C-0.00334722 4.11121 0.0995621 3.49391 0.302842 2.91781C0.506121 2.34172 0.805724 1.81831 1.18427 1.37794C1.56282 0.937578 2.01277 0.589024 2.50804 0.3525C3.0033 0.115976 3.53401 -0.00380943 4.06938 9.23396e-05C4.60476 0.00399411 5.13414 0.131505 5.62681 0.375229C6.11949 0.618953 6.56565 0.974039 6.93942 1.41989L6.94023 1.41895Z'
+        />
+    </svg>
+)
+
+const Add = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width={props.size === undefined ? '13' : props.size}
+        height={props.size === undefined ? '13' : props.size}
+        fill='none'
+        viewBox='0 0 13 13'
+    >
+        <path
+            stroke={props.stroke === undefined ? '#fff' : props.stroke}
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth='2'
+            d='M6.5 1v11M12 6.5H1'
+        />
+    </svg>
+)
+
 const Airplane = props => (
     <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -311,18 +359,40 @@ const Search = props => (
     </svg>
 )
 
-const Fav = props => (
+const Star = props => (
     <svg
-        width={props.width}
-        height={props.height}
-        viewBox='0 0 15 15'
-        fill='none'
         xmlns='http://www.w3.org/2000/svg'
+        width={props.size === undefined ? '10' : props.size}
+        height={props.size === undefined ? '10' : props.size}
+        fill='none'
+        viewBox='0 0 10 10'
     >
-        <path
-            fill={props.fill}
-            d='M6.94023 1.41895L7.51206 2.085L8.08389 1.41989C8.45881 0.97996 8.90475 0.6305 9.3961 0.391571C9.88745 0.152641 10.4145 0.0289477 10.9471 0.0275913C11.4797 0.0262348 12.0072 0.147242 12.4995 0.383666C12.9917 0.620091 13.4389 0.967275 13.8155 1.40529C14.1921 1.8433 14.4906 2.36352 14.6939 2.93607C14.8971 3.50862 15.0012 4.12223 15 4.74167C14.9988 5.36111 14.8925 5.97419 14.6871 6.5457C14.4816 7.11721 14.1812 7.6359 13.803 8.07199L8.0847 14.7241C8.00958 14.8116 7.92038 14.8809 7.82219 14.9283C7.724 14.9756 7.61875 15 7.51247 15C7.40617 15 7.30093 14.9756 7.20274 14.9283C7.10455 14.8809 7.01535 14.8116 6.94023 14.7241L1.22115 8.07199C0.837778 7.6373 0.532433 7.1184 0.322824 6.54538C0.113215 5.97237 0.00351324 5.35664 8.30126e-05 4.73393C-0.00334722 4.11121 0.0995621 3.49391 0.302842 2.91781C0.506121 2.34172 0.805724 1.81831 1.18427 1.37794C1.56282 0.937578 2.01277 0.589024 2.50804 0.3525C3.0033 0.115976 3.53401 -0.00380943 4.06938 9.23396e-05C4.60476 0.00399411 5.13414 0.131505 5.62681 0.375229C6.11949 0.618953 6.56565 0.974039 6.93942 1.41989L6.94023 1.41895Z'
-        />
+        {props.star === 'full' && (
+            <>
+                <path
+                    fill='url(#a)'
+                    d='M.235 4.601l1.942 1.83-.54 2.55c-.053.332.055.665.325.83.108.112.27.167.431.167.108 0 .216 0 .324-.055 0 0 .054 0 .054-.056l2.212-1.275 2.212 1.275s.054 0 .054.056c.27.11.593.11.809-.056.27-.166.377-.499.324-.831l-.54-2.55c.216-.166.54-.5.863-.832l1.025-.942.054-.056a.79.79 0 0 0 .162-.831c-.108-.277-.324-.499-.647-.554h-.054l-2.536-.278L5.684.61s0-.056-.054-.056C5.576.166 5.306 0 5.037 0c-.27 0-.54.166-.702.443 0 0 0 .056-.054.056L3.256 2.883.721 3.16H.667a.936.936 0 0 0-.648.554c-.053.333 0 .665.216.887z'
+                />
+                <defs>
+                    <linearGradient
+                        id='a'
+                        x1='5'
+                        x2='5'
+                        y2='10'
+                        gradientUnits='userSpaceOnUse'
+                    >
+                        <stop offset='.292' stopColor='#FEDFC6' />
+                        <stop offset='1' stopColor='#FCB69F' />
+                    </linearGradient>
+                </defs>
+            </>
+        )}
+        {props.star === 'blank' && (
+            <path
+                stroke='#E7E7E7'
+                d='M2.667 6.534l.058-.275-.205-.193-1.932-1.82C.532 4.186.483 4.06.505 3.856a.462.462 0 0 1 .227-.195h.016l.027-.003 2.536-.277.29-.032.115-.268.97-2.255a.554.554 0 0 0 .108-.172C4.878.536 4.98.5 5.037.5c.033 0 .05.01.057.015a.07.07 0 0 1 .017.023.26.26 0 0 1 .024.085l.06.431h.136l.919 2.137.115.268.29.031 2.535.278.027.003h.03c.1.027.18.1.233.235a.29.29 0 0 1-.054.302l.358.348-.358-.348-.044.045-1.015.933-.01.01-.01.01c-.337.346-.63.645-.81.784l-.25.192.066.307.537 2.537c.027.188-.046.285-.095.316l-.022.013-.02.016c-.021.016-.096.042-.206.022a.554.554 0 0 0-.156-.09L5.232 8.16l-.25-.144-.249.144-2.212 1.275-.076.044h-.052a.18.18 0 0 1-.06-.01.067.067 0 0 1-.014-.006l-.042-.043-.053-.033c-.049-.03-.121-.128-.094-.315l.537-2.537z'
+            />
+        )}
     </svg>
 )
 
@@ -347,7 +417,6 @@ export {
     Filter,
     Clear,
     Star,
-    BlankStar,
     Close,
     Menu,
     Airplane,
@@ -374,11 +443,9 @@ export {
     CurveArrow,
     LeftArrowColor,
     RightArrowColor,
-    CloseColor,
     Dollar,
     DownArrow,
     UpArrow,
-    PinkClose,
     CoinInactive,
     CoinActive,
     CreditcardInactive,
@@ -422,8 +489,14 @@ export {
     Info,
     Trash,
     Clock,
+    Twitter,
+    Facebook,
+    Copy,
+    Line,
     SettingButton,
     SummaryButton,
     ShareButton,
     NoResult,
+    Add,
+    HeartWhite,
 }

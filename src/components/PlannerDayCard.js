@@ -25,6 +25,14 @@ class PlannerDayCard extends Component {
         this.state = {}
     }
 
+    componentWillMount() {
+        document.body.style.overflow = 'hidden'
+    }
+
+    componentWillUnmount() {
+        document.body.style.overflow = ''
+    }
+
     genDayCard() {
         const day = TripPlan.days.length
         const card = []
