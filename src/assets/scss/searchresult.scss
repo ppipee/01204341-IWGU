@@ -72,13 +72,19 @@
                         width: 177px;
                         margin-top: 1.4px;
                         .line2 {
-                            // text-transform: lowercase;
+                            display: flex;
+                            align-items: center;
+                            position: relative;
+                            top: 1.7px;
                             height: 15px;
                             font-size: 10px;
                             color: #989898;
                             margin-bottom: 3.5px;
                             .rating {
+                                display: flex;
+                                align-items: center;
                                 .star {
+                                    display: flex;
                                     margin-right: 5px;
                                 }
                             }
@@ -96,7 +102,6 @@
                                 height: 15px;
                                 overflow: hidden;
                                 word-break: break-all;
-                                position: absolute;
                                 margin-left: 9px;
                                 top: 1.7px;
                             }
