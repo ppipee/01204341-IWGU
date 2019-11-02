@@ -134,11 +134,9 @@ class SearchResult extends Component {
                     place_id={id}
                     code={code}
                 >
-                    <img
-                        alt='icon'
-                        className='icon'
-                        src={check ? icon_active : icon_inactive}
-                    />
+                    <span className='icon'>
+                        {check ? icon_active : icon_inactive}
+                    </span>
                 </div>
             )
         })
