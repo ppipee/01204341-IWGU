@@ -19,10 +19,10 @@ import TreeActive from '../assets/icon/tree2.svg'
 import SleepInActive from '../assets/icon/sleep.svg'
 import SleepActive from '../assets/icon/sleep2.svg'
 import PaperAirplane from '../assets/icon/paper-airplane.svg'
-import AddActive from '../assets/icon/add-white.svg'
-import AddInActive from '../assets/icon/add-grey.svg'
-import FavActive from '../assets/icon/heart-white.svg'
-import FavInActive from '../assets/icon/heart-grey.svg'
+// import AddActive from '../assets/icon/add-white.svg'
+// import AddInActive from '../assets/icon/add-grey.svg'
+// import FavActive from '../assets/icon/heart-white.svg'
+// import FavInActive from '../assets/icon/heart-grey.svg'
 import Time from '../assets/icon/time.svg'
 import PinkLocationIcon from '../assets/icon/location.svg'
 import BlackAirplane from '../assets/icon/black-airplane.svg'
@@ -77,6 +77,38 @@ import Clock from '../assets/icon/clock.svg'
 //         </defs>
 //     </svg>
 // )
+const Add = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='13'
+        height='13'
+        fill='none'
+        viewBox='0 0 13 13'
+    >
+        <path
+            stroke={props.stroke}
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth='2'
+            d='M6.5 1v11M12 6.5H1'
+        />
+    </svg>
+)
+
+const Fav = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='14'
+        height='12'
+        fill='none'
+        viewBox='0 0 14 12'
+    >
+        <path
+            fill={props.fill}
+            d='M6.458 1.135l.532.533.532-.532a3.763 3.763 0 1 1 5.322 5.322l-5.321 5.321a.752.752 0 0 1-1.065 0L1.136 6.458a3.763 3.763 0 1 1 5.321-5.322h.001z'
+        />
+    </svg>
+)
 
 export {
     SearchIcon,
@@ -100,10 +132,8 @@ export {
     SleepActive,
     SleepInActive,
     PaperAirplane,
-    AddActive,
-    AddInActive,
-    FavActive,
-    FavInActive,
+    Add,
+    Fav,
     Time,
     PinkLocationIcon,
     BlackAirplane,
