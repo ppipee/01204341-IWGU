@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { RateStar, CircleArrow, Star, BlankStar, DoubleQuotes } from './Icon'
+import { RateStar, CircleArrow, Star, DoubleQuotes } from './Icon'
 import { Reviews } from './Random'
 import '../assets/scss/review.scss'
 
@@ -27,13 +27,13 @@ class Review extends Component {
     )
 
     genStar = rate =>
-        [...Array(5).keys()].map(star => (
-            <img
-                key={`rate-${star} `}
-                src={star < rate ? Star : BlankStar}
-                alt='rate-star'
-            />
-        ))
+        [...Array(5).keys()].map(star =>
+            star < rate ? (
+                <Star star='full' size='9' />
+            ) : (
+                <Star star='blank' size='9' />
+            )
+        )
 
     genReview = () => {
         if (this.state.show) {
@@ -85,7 +85,7 @@ class Review extends Component {
     render() {
         return (
             <div className='review-section'>
-                <div>
+                <div className='sub-review-section'>
                     {this.genRate()}
                     <div className='best-review'>
                         <img

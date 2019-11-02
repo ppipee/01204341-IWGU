@@ -52,7 +52,7 @@ class MyTrips extends Component {
         const { loading } = this.props.getPlanners
         return (
             <div className='my-trips'>
-                <NavBar back design='planners' />
+                <NavBar back design='planners' mytrips={false} />
                 <CountDown
                     trips={this.props.getPlanners.userPlanner}
                     loading={loading}

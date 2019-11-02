@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import Swipe from 'react-easy-swipe'
 import { Skeleton } from 'antd'
 import '../assets/scss/sidebar.scss'
-import { userFavourite, updateFavourite } from '../queries/user'
+import { userFavourites, updateFavourites } from '../queries/user'
 import { UserAuthAction } from '../action'
 import { Airplane, Search, Fav, Back, Trash, Info } from './Icon'
 
@@ -19,8 +19,8 @@ class SideBar extends Component {
         }
     }
 
-    componentDidMount() {
-        this.props.userFavourite.refetch({ id: this.props.id })
+    async componentDidMount() {
+        await this.props.userFavourites.refetch({ id: this.props.id })
     }
 
     sliceAnimation = (direction, target) => {
@@ -52,10 +52,10 @@ class SideBar extends Component {
 
     removeFav = e => {
         const pointer = e.target.getAttribute('index')
-        const new_fav = this.props.userFavourite.user.favourite
+        const new_fav = this.props.userFavourites.user.favourite
         new_fav.splice(pointer, 1)
         console.log(new_fav)
-        this.props.updateFavourite({
+        this.props.updateFavourites({
             variables: {
                 id: this.props.id,
                 favourite: new_fav.map(place => {
@@ -67,7 +67,7 @@ class SideBar extends Component {
             },
             refetchQueries: [
                 {
-                    query: userFavourite,
+                    query: userFavouritess,
                 },
             ],
         })
@@ -84,8 +84,8 @@ class SideBar extends Component {
                 </div>
             )
         else if (
-            this.props.userFavourite.loading ||
-            this.props.userFavourite.error === 'undefine'
+            this.props.userFavourites.loading ||
+            this.props.userFavourites.error !== undefined
         ) {
             console.log('loading')
             container = [...Array(5).keys()].map(index => (
@@ -99,7 +99,7 @@ class SideBar extends Component {
                 </div>
             ))
         } else {
-            const places = this.props.userFavourite.user.favourite
+            const places = this.props.userFavourites.user.favourite
             if (places.length > 0) {
                 places.forEach((place, index) => {
                     if (places.length <= 5 || +index >= places.length - 5) {
@@ -259,8 +259,8 @@ const mapDispatchToProps = dispatch => {
     }
 }
 export default compose(
-    graphql(userFavourite, { name: 'userFavourite' }),
-    graphql(updateFavourite, { name: 'updateFavourite' }),
+    graphql(userFavourites, { name: 'userFavourites' }),
+    graphql(updateFavourites, { name: 'updateFavourites' }),
     connect(
         mapStateToProps,
         mapDispatchToProps

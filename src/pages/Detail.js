@@ -33,14 +33,14 @@ class DetailPage extends Component {
         if (loading || this.props.data.error !== undefined)
             return (
                 <div className='detail-page'>
-                    <NavBar back />
+                    <NavBar back design='default' />
                     <div>Loading...</div>
                     <NearBy this />
                 </div>
             )
         return (
             <div className='detail-page'>
-                <NavBar back />
+                <NavBar back design='default' />
                 <ImageSlider img={data.img} />
                 <InfoPlace
                     info={{

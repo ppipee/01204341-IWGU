@@ -14,6 +14,10 @@
     &.planners {
         background-image: linear-gradient(346deg, #fcbfaa, #ffecd2);
     }
+    &.favourite {
+        background: transparent;
+    }
+
     &.planners-page {
         background: transparent;
         height: 73px;
@@ -75,16 +79,12 @@
             display: none;
         }
 
-        &.planners-page {
-            display: none;
-        }
-
         justify-content: space-around;
         align-items: center;
         svg {
             margin-right: 4px;
         }
-        &.planners {
+        &.inactive {
             display: none;
         }
     }

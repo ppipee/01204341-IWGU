@@ -86,11 +86,11 @@ class NavBar extends Component {
     }
 
     render() {
-        let design = ' default'
-        if (this.props.design !== undefined) design = ` ${this.props.design}`
+        const design =
+            this.props.design === undefined ? 'default' : this.props.design
         return (
             <>
-                <div className={`nav-bar${design}`}>
+                <div className={`nav-bar ${design}`}>
                     {this.genSideBar()}
                     {this.goBack(this.props.back)}
                     {this.props.design === 'planners-page' && (
@@ -101,7 +101,11 @@ class NavBar extends Component {
                         </div>
                     )}
                     <Link to='/mytrips'>
-                        <button className={`button-mytrips${design}`}>
+                        <button
+                            className={`button-mytrips ${
+                                this.props.mytrips === false ? 'inactive' : ''
+                            }`}
+                        >
                             <Airplane
                                 fill='#FCB8A0'
                                 size='10'

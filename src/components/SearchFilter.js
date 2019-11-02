@@ -5,7 +5,7 @@ import { DefaultFilter, PhotoCategory } from './Initial'
 import TimeFilter from './TimeFilter'
 import Category from './Category'
 import '../assets/scss/searchfilter.scss'
-import { Filter, Clear, Star, BlankStar, Close } from './Icon'
+import { Filter, Clear, Star, Close } from './Icon'
 
 class SearchFilter extends Component {
     constructor(props) {
@@ -85,9 +85,9 @@ class SearchFilter extends Component {
     genFav = () => {
         let fav = []
         for (let i = 1; i <= 5; i++) {
-            const [name, src] = this.state.rating[`star${i}`]
-                ? ['active', BlankStar]
-                : ['', Star]
+            const [name, star] = this.state.rating[`star${i}`]
+                ? ['active', <Star star='blank' size='10' />]
+                : ['', <Star star='full' size='10' />]
             fav = [
                 ...fav,
                 <div
@@ -99,7 +99,7 @@ class SearchFilter extends Component {
                     }
                 >
                     <span>{i}</span>
-                    <img src={src} alt='icon-star' />
+                    <span>{star}</span>
                 </div>,
             ]
         }
@@ -117,12 +117,9 @@ class SearchFilter extends Component {
             return (
                 <div className='tag' key={`tag-${tag_index}`}>
                     <div>{PhotoCategory[tag_index].title}</div>
-                    <Close
-                        color='#fff'
-                        index={i}
-                        alt='icon-close'
-                        onClick={this.removeTag}
-                    />
+                    <span onClick={this.removeTag} index={i}>
+                        <Close size='6' />
+                    </span>
                 </div>
             )
         })
