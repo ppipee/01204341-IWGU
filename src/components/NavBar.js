@@ -11,6 +11,7 @@ import {
 } from './Icon'
 import SideBar from './SideBar'
 import '../assets/scss/navbar.scss'
+import SharePlanner from './SharePlanner'
 
 class NavBar extends Component {
     constructor(props) {
@@ -95,7 +96,7 @@ class NavBar extends Component {
                     {this.props.design === 'planners-page' && (
                         <div className='tools-navbar'>
                             <img alt='summary' src={SummaryButton} />
-                            <img alt='share' src={ShareButton} />
+                            <SharePlanner />
                             <img alt='setting' src={SettingButton} />
                         </div>
                     )}

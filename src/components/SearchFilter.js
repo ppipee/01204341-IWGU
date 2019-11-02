@@ -117,8 +117,8 @@ class SearchFilter extends Component {
             return (
                 <div className='tag' key={`tag-${tag_index}`}>
                     <div>{PhotoCategory[tag_index].title}</div>
-                    <img
-                        src={Close}
+                    <Close
+                        color='#fff'
                         index={i}
                         alt='icon-close'
                         onClick={this.removeTag}

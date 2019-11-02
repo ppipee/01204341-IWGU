@@ -2,7 +2,6 @@ import React from 'react'
 import Clear from '../assets/icon/refresh.svg'
 import Star from '../assets/icon/full-star.svg'
 import BlankStar from '../assets/icon/empty-star.svg'
-import Close from '../assets/icon/close.svg'
 import Menu from '../assets/icon/featured-menu.svg'
 import LocationIcon from '../assets/icon/location-icon.svg'
 import RestaurantInActive from '../assets/icon/restaurant.svg'
@@ -64,10 +63,29 @@ import Mrt from '../assets/icon/mrt.svg'
 import Info from '../assets/icon/info.svg'
 import Trash from '../assets/icon/trash.svg'
 import Clock from '../assets/icon/clock.svg'
+import Twitter from '../assets/icon/twitter.svg'
+import Line from '../assets/icon/line.svg'
+import Facebook from '../assets/icon/facebook.svg'
+import Copy from '../assets/icon/copy.svg'
 import SettingButton from '../assets/icon/setting-button.svg'
 import ShareButton from '../assets/icon/share-button.svg'
 import SummaryButton from '../assets/icon/summary-button.svg'
 import NoResult from '../assets/icon/no-result.svg'
+
+const Close = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='6'
+        height='6'
+        fill='none'
+        viewBox='0 0 6 6'
+    >
+        <path
+            fill={props.color}
+            d='M3.748 3L5.843.905a.53.53 0 1 0-.748-.75L3 2.25.905.155a.53.53 0 1 0-.75.75L2.25 3 .155 5.095a.53.53 0 1 0 .75.75L3 3.75l2.095 2.095a.53.53 0 0 0 .75-.75L3.748 3z'
+        />
+    </svg>
+)
 
 const Filter = props => (
     <svg
@@ -422,6 +440,10 @@ export {
     Info,
     Trash,
     Clock,
+    Twitter,
+    Facebook,
+    Copy,
+    Line,
     SettingButton,
     SummaryButton,
     ShareButton,
