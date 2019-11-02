@@ -1,10 +1,10 @@
 $fade-color: linear-gradient(
     to bottom,
-    transparent,
-    #ffffff 36%,
-    white 50%,
-    white 70%,
-    white 100%
+    rgba(255, 255, 255, 0),
+    #fff 36%,
+    #fff 50%,
+    #fff 70%,
+    #fff 100%
 );
 
 .facilities {
@@ -49,7 +49,7 @@ $fade-color: linear-gradient(
         height: 80px;
         width: 100%;
         display: inline-table;
-        background-image: $fade-color;
+        background: $fade-color;
         &.show {
             background-image: none;
         }
