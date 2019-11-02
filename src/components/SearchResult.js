@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-// import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { Link, withRouter } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import { GoogleApiWrapper } from 'google-maps-react'
 import '../assets/scss/searchresult.scss'
 import { SearchResultTab } from './Initial'
-import { Time, PinkLocationIcon, Star, BlankStar, NoResult } from './Icon'
+import { Time, PinkLocationIcon, Star, NoResult } from './Icon'
 import { searchPlace } from '../queries/place'
+import { Rate } from './Random'
 
 class SearchResult extends Component {
     constructor(props) {
@@ -99,11 +99,17 @@ class SearchResult extends Component {
         const container = []
         let i
         for (i = 0; i < ratting; i++) {
-            container.push(<img alt='star' className='star' src={Star} />)
+            container.push(
+                <span className='star'>
+                    <Star star='full' size='12' />
+                </span>
+            )
         }
         for (i = 0; i < 5 - ratting; i++) {
             container.push(
-                <img alt='blank-star' className='star' src={BlankStar} />
+                <span className='star'>
+                    <Star star='blank' size='12' />
+                </span>
             )
         }
         return <span className='rating'>{container}</span>
@@ -128,11 +134,9 @@ class SearchResult extends Component {
                     place_id={id}
                     code={code}
                 >
-                    <img
-                        alt='icon'
-                        className='icon'
-                        src={check ? icon_active : icon_inactive}
-                    />
+                    <span className='icon'>
+                        {check ? icon_active : icon_inactive}
+                    </span>
                 </div>
             )
         })
@@ -162,7 +166,8 @@ class SearchResult extends Component {
                             <div className='line1'>{place.name}</div>
                             <div className='line-group'>
                                 <div className='line2'>
-                                    {this.genStar(place.rate)}
+                                    {/* {this.genStar(place.rate)} */}
+                                    {this.genStar(Rate())}
                                     <span className='dot' />
                                     <span className='category'>
                                         {place.categoryCode}

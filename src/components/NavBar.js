@@ -11,6 +11,7 @@ import {
 } from './Icon'
 import SideBar from './SideBar'
 import '../assets/scss/navbar.scss'
+import SharePlanner from './SharePlanner'
 
 class NavBar extends Component {
     constructor(props) {
@@ -85,22 +86,26 @@ class NavBar extends Component {
     }
 
     render() {
-        let design = ' default'
-        if (this.props.design !== undefined) design = ` ${this.props.design}`
+        const design =
+            this.props.design === undefined ? 'default' : this.props.design
         return (
             <>
-                <div className={`nav-bar${design}`}>
+                <div className={`nav-bar ${design}`}>
                     {this.genSideBar()}
                     {this.goBack(this.props.back)}
                     {this.props.design === 'planners-page' && (
                         <div className='tools-navbar'>
                             <img alt='summary' src={SummaryButton} />
-                            <img alt='share' src={ShareButton} />
+                            <SharePlanner />
                             <img alt='setting' src={SettingButton} />
                         </div>
                     )}
                     <Link to='/mytrips'>
-                        <button className={`button-mytrips${design}`}>
+                        <button
+                            className={`button-mytrips ${
+                                this.props.mytrips === false ? 'inactive' : ''
+                            }`}
+                        >
                             <Airplane
                                 fill='#FCB8A0'
                                 size='10'

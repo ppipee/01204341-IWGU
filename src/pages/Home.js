@@ -3,7 +3,7 @@ import { NavBar, SearchBar, Explore, NearBy, Insurance } from '../components'
 
 const Home = () => (
     <div className='home-page'>
-        <NavBar />
+        <NavBar design='default' />
         <SearchBar />
         <Explore />
         <NearBy />
