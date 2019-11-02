@@ -291,7 +291,20 @@ const Detail = {
         ],
         service: {
             payment: ['credit', 'cash'],
-            facilities: null,
+            facilities: [
+                'wifi',
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                'service_charge',
+                'pet_allow',
+                'smoking',
+            ],
+            // facilities: ['wifi', 'credit_card', 'parking', 'free_charge', 'allow_group', 'handicapped_allow', 'allow_kids', 'service_charge', 'pet_allow', 'smoking'],
+            // facilities: [null, 'credit_card', null, null, 'allow_group', null, null, 'service_charge', null, null],
         },
         rate: 5,
         days: {

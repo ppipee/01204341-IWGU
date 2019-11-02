@@ -11,10 +11,6 @@ import TreeActive from '../assets/icon/tree2.svg'
 import SleepInActive from '../assets/icon/sleep.svg'
 import SleepActive from '../assets/icon/sleep2.svg'
 import PaperAirplane from '../assets/icon/paper-airplane.svg'
-import AddActive from '../assets/icon/add-white.svg'
-import AddInActive from '../assets/icon/add-grey.svg'
-import FavActive from '../assets/icon/heart-white.svg'
-import FavInActive from '../assets/icon/heart-grey.svg'
 import Time from '../assets/icon/time.svg'
 import PinkLocationIcon from '../assets/icon/location.svg'
 import Calendar from '../assets/icon/calendar.svg'
@@ -26,26 +22,6 @@ import RightArrowColor from '../assets/icon/right-arrow-color.svg'
 import Dollar from '../assets/icon/dollar.svg'
 import DownArrow from '../assets/icon/down-arrow.svg'
 import UpArrow from '../assets/icon/up-arrow.svg'
-import CoinInactive from '../assets/icon/coin-inactive.svg'
-import CoinActive from '../assets/icon/coin-active.svg'
-import CreditcardInactive from '../assets/icon/credit-card-inactive.svg'
-import CreditcardActive from '../assets/icon/credit-card-active.svg'
-import GroupInactive from '../assets/icon/group-inactive.svg'
-import GroupActive from '../assets/icon/group-active.svg'
-import HandicapInactive from '../assets/icon/handicap-inactive.svg'
-import HandicapActive from '../assets/icon/handicap-active.svg'
-import KidInactive from '../assets/icon/kids-inactive.svg'
-import KidActive from '../assets/icon/kids-active.svg'
-import ParkingInactive from '../assets/icon/parking-inactive.svg'
-import ParkingActive from '../assets/icon/parking-active.svg'
-import PetInactive from '../assets/icon/pet-inactive.svg'
-import PetActive from '../assets/icon/pet-active.svg'
-import PlugInactive from '../assets/icon/plug-inactive.svg'
-import PlugActive from '../assets/icon/plug-active.svg'
-import SmokingInactive from '../assets/icon/smoking-inactive.svg'
-import SmokingActive from '../assets/icon/smoking-active.svg'
-import WifiInactive from '../assets/icon/wifi-inactive.svg'
-import WifiActive from '../assets/icon/wifi-active.svg'
 import ArrowDown from '../assets/icon/show-more.svg'
 import ArrowUp from '../assets/icon/show-less.svg'
 import RateStar from '../assets/icon/rate-star.svg'
@@ -284,6 +260,20 @@ const Spa = props => (
     </svg>
 )
 
+const Service = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <path
+            fill={props.fill}
+            d='M6.875 9.599h-.032a.593.593 0 0 1-.593-.593.625.625 0 0 0-1.25 0 1.843 1.843 0 0 0 1.843 1.843h.032v.625a.625.625 0 0 0 1.25 0v-.625a1.875 1.875 0 0 0 0-3.75v-1.25h.014c.337 0 .611.274.611.611a.625.625 0 0 0 1.25 0A1.861 1.861 0 0 0 8.139 4.6h-.014v-.625a.625.625 0 0 0-1.25 0v.625a1.875 1.875 0 0 0 0 3.75v1.25zm1.25 0v-1.25a.625.625 0 0 1 0 1.25zm-1.25-3.75v1.25a.625.625 0 0 1 0-1.25zm.625 8.125a6.25 6.25 0 1 1 0-12.5 6.25 6.25 0 0 1 0 12.5z'
+        />
+    </svg>
+)
 const Close = props => (
     <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -299,10 +289,39 @@ const Close = props => (
     </svg>
 )
 
+const Creditcard = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <path
+            fill={props.fill}
+            d='M0 12.455c0 .715.56 1.295 1.25 1.295h12.5c.69 0 1.25-.58 1.25-1.295V7.708H0v4.747zm5-1.834a.32.32 0 0 1 .313-.323h3.541a.32.32 0 0 1 .313.323v1.08a.32.32 0 0 1-.313.323H5.313A.32.32 0 0 1 5 11.7v-1.079zm-3.333 0a.32.32 0 0 1 .312-.323h1.875a.32.32 0 0 1 .313.323v1.08a.32.32 0 0 1-.313.323H1.98a.32.32 0 0 1-.312-.324v-1.079zM15 2.961v1.295H0V2.961c0-.714.56-1.294 1.25-1.294h12.5c.69 0 1.25.58 1.25 1.294z'
+        />
+    </svg>
+)
+
+const Group = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <path
+            fill={props.fill}
+            d='M10 6.875A1.867 1.867 0 0 0 11.869 5a1.872 1.872 0 0 0-3.744 0c0 1.037.838 1.875 1.875 1.875zm-5 0A1.867 1.867 0 0 0 6.869 5a1.872 1.872 0 0 0-3.744 0c0 1.037.837 1.875 1.875 1.875zm0 1.25c-1.456 0-4.375.731-4.375 2.188v1.562h8.75v-1.563c0-1.456-2.919-2.187-4.375-2.187zm5 0a7.3 7.3 0 0 0-.606.031c.725.525 1.231 1.231 1.231 2.156v1.563h3.75v-1.563c0-1.456-2.919-2.187-4.375-2.187z'
+        />
+    </svg>
+)
 const Fav = props => (
     <svg
-        width={props.width}
-        height={props.height}
+        width='15'
+        height='15'
         viewBox='0 0 15 15'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
@@ -314,6 +333,24 @@ const Fav = props => (
     </svg>
 )
 
+const Handicap = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <path
+            fill={props.fill}
+            d='M6.87 2.956A1.479 1.479 0 1 0 6.869 0a1.479 1.479 0 0 0 0 2.957zM9.154 11.332a3.272 3.272 0 0 1-3.139 2.366 3.272 3.272 0 0 1-3.269-3.268c0-1.334.805-2.483 1.954-2.99V6.054a4.577 4.577 0 0 0-3.255 4.376c0 2.52 2.05 4.57 4.57 4.57a4.573 4.573 0 0 0 4.146-2.658l-.516-1.014-.491.004z'
+        />
+        <path
+            fill={props.fill}
+            d='M13.46 13.087l-1.98-3.892a.867.867 0 0 0-.773-.475H8.171v-.578h2.183a.64.64 0 0 0 .52-.278.635.635 0 0 0 .13-.373.65.65 0 0 0-.65-.651H8.17V4.878c0-.539-.4-1.302-1.301-1.302-.72 0-1.302.583-1.302 1.302v4.25c0 .733.594 1.328 1.328 1.328h3.279l1.739 3.418a.867.867 0 1 0 1.546-.787z'
+        />
+    </svg>
+)
 const Add = props => (
     <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -332,6 +369,20 @@ const Add = props => (
     </svg>
 )
 
+const Kid = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <path
+            fill={props.fill}
+            d='M8.125 1.925V6.25h5A5 5 0 0 0 8.838 1.3a.628.628 0 0 0-.713.625zm3.95 8.006a4.967 4.967 0 0 0 1.05-3.056h-9.1L3.6 5.981a.62.62 0 0 0-.563-.356H1.876a.627.627 0 0 0-.625.625c0 .344.281.625.625.625h.763s1.18 2.544 1.325 2.763A2.19 2.19 0 0 0 2.874 12.1 2.175 2.175 0 0 0 4.5 13.694a2.182 2.182 0 0 0 2.656-1.819h1.3a2.186 2.186 0 0 0 4.282.244 2.178 2.178 0 0 0-.663-2.188zM5 12.5a.936.936 0 1 1 .938-.938A.936.936 0 0 1 5 12.5zm5.625 0a.936.936 0 0 1-.938-.938c0-.518.42-.937.938-.937.519 0 .938.419.938.938a.936.936 0 0 1-.938.937z'
+        />
+    </svg>
+)
 const Airplane = props => (
     <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -347,6 +398,20 @@ const Airplane = props => (
     </svg>
 )
 
+const Parking = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <path
+            fill={props.fill}
+            d='M13.393 0H1.607C.72 0 0 .72 0 1.607v11.786C0 14.28.72 15 1.607 15h11.786C14.28 15 15 14.28 15 13.393V1.607C15 .72 14.28 0 13.393 0zM8.036 9.643H6.429v1.607a.537.537 0 0 1-.536.536H4.82a.537.537 0 0 1-.535-.536v-7.5c0-.295.24-.536.535-.536h3.215A3.22 3.22 0 0 1 11.25 6.43a3.22 3.22 0 0 1-3.214 3.214zm0-4.286H6.429V7.5h1.607c.589 0 1.071-.482 1.071-1.071 0-.59-.482-1.072-1.071-1.072z'
+        />
+    </svg>
+)
 const Search = props => (
     <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -362,6 +427,64 @@ const Search = props => (
     </svg>
 )
 
+const Pet = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <g clipPath='url(#a)'>
+            <path
+                fill={props.fill}
+                d='M14.531 2.812h-1.875l-.21-.419a.938.938 0 0 0-.838-.518h-1.57l-.8-.8a.469.469 0 0 0-.8.332v4.39l3.75 1.34V6.093h.937c1.036 0 1.875-.84 1.875-1.875V3.28a.469.469 0 0 0-.469-.469zM11.25 4.22a.469.469 0 1 1 0-.938.469.469 0 0 1 0 .938zM2.812 6.562a.939.939 0 0 1-.937-.937.938.938 0 0 0-1.875 0c0 1.22.786 2.251 1.875 2.64v6.266c0 .26.21.469.469.469h1.875c.259 0 .468-.21.468-.469V11.25h4.688v3.281c0 .26.21.469.469.469h1.875c.259 0 .469-.21.469-.469v-6.4L7.793 6.562H2.813z'
+            />
+        </g>
+        <defs>
+            <clipPath id='a'>
+                <path fill='#fff' d='M0 0h15v15H0z' />
+            </clipPath>
+        </defs>
+    </svg>
+)
+
+const Plug = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <g clipPath='url(#a)'>
+            <path
+                fill={props.fill}
+                d='M12.803 2.657A7.451 7.451 0 0 0 7.5.461a7.45 7.45 0 0 0-5.303 2.196A7.45 7.45 0 0 0 0 7.961a7.495 7.495 0 0 0 3.74 6.49.648.648 0 0 0 .889-.236.65.65 0 0 0-.236-.889A6.224 6.224 0 0 1 1.3 7.961c0-3.419 2.78-6.2 6.199-6.2 3.418 0 6.2 2.781 6.2 6.2 0 1.445-.392 2.65-1.132 3.485-.603.68-1.412 1.07-2.22 1.07-.81 0-1.726-.425-2.064-1.554a2.875 2.875 0 0 0 2.29-2.81V6.256a.163.163 0 0 0-.163-.162h-.87V4.319a.65.65 0 1 0-1.301 0v1.775H6.76V4.319a.65.65 0 0 0-1.3 0v1.775h-.87a.163.163 0 0 0-.163.162v1.896A2.874 2.874 0 0 0 6.954 11c.153.717.471 1.334.943 1.816.633.645 1.504 1 2.451 1 1.18 0 2.344-.55 3.193-1.508.666-.751 1.459-2.115 1.459-4.348a7.45 7.45 0 0 0-2.197-5.304z'
+            />
+        </g>
+        <defs>
+            <clipPath id='a'>
+                <path fill='#fff' d='M0 0h15v15H0z' />
+            </clipPath>
+        </defs>
+    </svg>
+)
+
+const Smoking = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <path
+            fill={props.fill}
+            d='M9.688 10h-7.5a.936.936 0 1 0 0 1.875h7.5a.936.936 0 0 0 .937-.938.936.936 0 0 0-.938-.937zm2.093-5.169c.388-.381.625-.906.625-1.487 0-.944-.625-1.744-1.487-2.006a.474.474 0 0 0-.607.45c0 .206.132.387.325.443a1.16 1.16 0 1 1 .038 2.212c-.206.07-.362.245-.362.463V5c0 .231.168.431.4.469 1.206.194 2.1 1.25 2.1 2.512v.925c0 .257.212.469.468.469a.472.472 0 0 0 .469-.469v-.931c0-1.387-.8-2.587-1.969-3.144zM10.02 6.375h-.813c-.637 0-1.212-.456-1.293-1.094-.075-.593.287-1.062.812-1.206a.463.463 0 0 0 .338-.45c0-.306-.288-.537-.582-.45a2.094 2.094 0 0 0-1.512 2.05c.018 1.15 1.012 2.056 2.162 2.056h.888c.656 0 1.231.463 1.231 1.282v.343c0 .257.206.469.469.469h.006a.468.468 0 0 0 .469-.469V8.35c-.007-1.131-1.007-1.975-2.175-1.975zM11.25 10h.938v1.875h-.938V10zm1.563 0h.937v1.875h-.938V10z'
+        />
+    </svg>
+)
 const Star = props => (
     <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -415,6 +538,27 @@ const Back = props => (
     </svg>
 )
 
+const Wifi = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='16'
+        height='15'
+        fill='none'
+        viewBox='0 0 16 15'
+    >
+        <g fill={props.fill} clipPath='url(#a)'>
+            <path d='M7.737 13.144c.994 0 1.8-.784 1.8-1.752S8.73 9.64 7.737 9.64s-1.8.784-1.8 1.752.806 1.752 1.8 1.752z' />
+            <path d='M12.037 7.17c-.026-.027-.054-.05-.082-.075l-.08-.074c-.014-.014-.029-.024-.046-.037-2.327-2.059-5.887-1.977-8.108.185l-.26.255-.36.35a1.08 1.08 0 0 0 .002 1.554c.44.43 1.156.43 1.595.003l.621-.606c1.412-1.374 3.71-1.374 5.12 0l.45.423a1.14 1.14 0 0 0 1.58-.004 1.07 1.07 0 0 0 .003-1.538l-.434-.436z' />
+            <path d='M15.103 5.004l-.374-.364c-.001-.002-.002-.004-.005-.005l-.295-.289a1.06 1.06 0 0 0-.168-.13C10.47.973 4.701 1.073 1.03 4.512c-.017.016-.037.027-.055.045l-.675.658A.982.982 0 0 0 .303 6.63a1.046 1.046 0 0 0 1.453.003l.675-.656c.005-.006.008-.011.013-.015 2.969-2.793 7.678-2.81 10.671-.057l.531.518c.4.39 1.052.388 1.454-.004a.984.984 0 0 0 .003-1.415z' />
+        </g>
+        <defs>
+            <clipPath id='a'>
+                <path fill='#fff' d='M0 0h15.402v15H0z' />
+            </clipPath>
+        </defs>
+    </svg>
+)
+
 export {
     Search,
     Filter,
@@ -435,10 +579,8 @@ export {
     SleepActive,
     SleepInActive,
     PaperAirplane,
-    AddActive,
-    AddInActive,
-    FavActive,
-    FavInActive,
+    Add,
+    Fav,
     Time,
     PinkLocationIcon,
     Calendar,
@@ -449,26 +591,16 @@ export {
     Dollar,
     DownArrow,
     UpArrow,
-    CoinInactive,
-    CoinActive,
-    CreditcardInactive,
-    CreditcardActive,
-    GroupInactive,
-    GroupActive,
-    HandicapInactive,
-    HandicapActive,
-    KidInactive,
-    KidActive,
-    ParkingInactive,
-    ParkingActive,
-    PetInactive,
-    PetActive,
-    PlugInactive,
-    PlugActive,
-    SmokingInactive,
-    SmokingActive,
-    WifiInactive,
-    WifiActive,
+    Service,
+    Creditcard,
+    Group,
+    Handicap,
+    Kid,
+    Parking,
+    Pet,
+    Plug,
+    Smoking,
+    Wifi,
     ArrowDown,
     ArrowUp,
     LandmarkCategory,
@@ -488,7 +620,6 @@ export {
     Ferry,
     Bts,
     Mrt,
-    Fav,
     Info,
     Trash,
     Clock,
@@ -503,6 +634,5 @@ export {
     SummaryButton,
     ShareButton,
     NoResult,
-    Add,
     HeartWhite,
 }
