@@ -219,7 +219,44 @@ const Trip = [
     {
         days: [
             {
+                day: 0,
                 date: new Date(2019, 9, 25),
+                places: [
+                    {
+                        time: {
+                            start: new Date(2019, 9, 29, 0, 0, 0),
+                            end: new Date(2019, 9, 26, 17, 0, 0),
+                        },
+                    },
+                ],
+            },
+            {
+                day: 1,
+                date: new Date(2019, 9, 26),
+                places: [
+                    {
+                        time: {
+                            start: new Date(2019, 9, 29, 0, 0, 0),
+                            end: new Date(2019, 9, 26, 17, 0, 0),
+                        },
+                    },
+                ],
+            },
+            {
+                day: 2,
+                date: new Date(2019, 9, 27),
+                places: [
+                    {
+                        time: {
+                            start: new Date(2019, 9, 29, 0, 0, 0),
+                            end: new Date(2019, 9, 26, 17, 0, 0),
+                        },
+                    },
+                ],
+            },
+            {
+                day: 3,
+                date: new Date(2019, 9, 28),
                 places: [
                     {
                         time: {
@@ -234,6 +271,7 @@ const Trip = [
     {
         days: [
             {
+                day: 0,
                 date: new Date(2019, 10, 24),
                 places: [
                     {
@@ -249,6 +287,7 @@ const Trip = [
     {
         days: [
             {
+                day: 0,
                 date: new Date(2019, 9, 24),
                 places: [
                     {

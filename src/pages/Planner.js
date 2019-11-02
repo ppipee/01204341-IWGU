@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { NavBar } from '../components'
 import '../assets/scss/planner.scss'
+import PlannerDayCard from '../components/PlannerDayCard'
 
 class Planner extends Component {
     constructor() {
@@ -12,6 +13,7 @@ class Planner extends Component {
         return (
             <div className='planners-page'>
                 <NavBar back design='planners-page' />
+                <PlannerDayCard />
             </div>
         )
     }
