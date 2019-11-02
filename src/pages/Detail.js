@@ -28,8 +28,9 @@ class DetailPage extends Component {
     render() {
         // const { placeDetail: data, loading } = Detail
         const { placeDetail: data, loading } = this.props.data
+        console.log(this.props.data)
         // console.log(this.props.data)
-        if (loading)
+        if (loading || this.props.data.error !== undefined)
             return (
                 <div className='detail-page'>
                     <NavBar back />
@@ -45,6 +46,7 @@ class DetailPage extends Component {
                     info={{
                         name: data.name,
                         category: data.category,
+                        categoryCode: data.categoryCode,
                         description: data.description,
                         time: data.time,
                         days: data.days,

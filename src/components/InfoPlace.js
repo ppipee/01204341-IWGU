@@ -81,7 +81,8 @@ class InfoPlace extends Component {
     }
 
     render() {
-        const { name, category } = this.props.info
+        const { name, category, categoryCode } = this.props.info
+        const code = category[0] ? category[0] : categoryCode.toUpperCase()
         const description =
             this.props.info.description === ''
                 ? Info
@@ -92,7 +93,7 @@ class InfoPlace extends Component {
                     <p className='title'>{name}</p>
                     <div className='description'>
                         <div className='subtitle'>
-                            <p>{category[0]}</p>
+                            <p>{code}</p>
                             <div className='dot' />
                             <div className='price'>{this.genPrice()}</div>
                         </div>
