@@ -5,5 +5,15 @@ import Detail from './Detail'
 import Planner from './Planner'
 import NotFoundPage from './NotFoundPage'
 import Auth from './Auth'
+import Favourites from './Favourites'
 
-export { Home, Search, MyTrips, Detail, Planner, NotFoundPage, Auth }
+export {
+    Home,
+    Search,
+    MyTrips,
+    Detail,
+    Planner,
+    NotFoundPage,
+    Auth,
+    Favourites,
+}

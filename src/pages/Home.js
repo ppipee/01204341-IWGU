@@ -10,7 +10,7 @@ import {
 
 const Home = () => (
     <div className='home-page'>
-        <NavBar />
+        <NavBar design='default' />
         <SearchBar />
         <Explore />
         <NearBy />

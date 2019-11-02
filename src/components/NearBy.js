@@ -46,9 +46,9 @@ class NearBy extends Component {
 
     genPlace(places, id) {
         const box = []
-        places.map(place =>
+        places.map((place, i) =>
             box.push(
-                <div key={place.name}>
+                <div key={`${place.name}-${i + 1}`}>
                     <img className='picture' alt={place.name} src={place.src} />
                     <div className='name'>{place.name}</div>
                 </div>
@@ -72,7 +72,12 @@ class NearBy extends Component {
                 tabInActive = tabActive
             }
             tabbar.push(
-                <div className={`icon${active}`} key={`tab-${name}`}>
+                <div
+                    className={`icon${active}`}
+                    key={`tab-${name}`}
+                    onClick={this.openContents}
+                    tabname={name}
+                >
                     <img
                         className='tab-links'
                         tabname={name}

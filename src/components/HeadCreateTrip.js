@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { CloseColor } from './Icon'
+import { Close } from './Icon'
 import { NewTripAction } from '../action'
 import '../assets/scss/headcreatetrip.scss'
 
@@ -47,11 +47,9 @@ class HeadCreateTrip extends Component {
             <div className='head-create-trip'>
                 <div className='create-trip-title'>
                     <span>Create your new trip</span>
-                    <img
-                        src={CloseColor}
-                        onClick={this.props.click}
-                        alt='close-color-icon'
-                    />
+                    <span onClick={this.props.click}>
+                        <Close fill='#F2B099' size='14' />
+                    </span>
                 </div>
                 <div className='input'>
                     <div>
