@@ -49,13 +49,17 @@ class MyTrips extends Component {
     }
 
     render() {
+        const { loading } = this.props.getPlanners
         return (
             <div className='my-trips'>
                 <NavBar back design='planners' />
-                <CountDown />
+                <CountDown
+                    trips={this.props.getPlanners.userPlanner}
+                    loading={loading}
+                />
                 <PlannerBoard
                     planners={this.props.getPlanners.userPlanner}
-                    loading={this.props.getPlanners.loading}
+                    loading={loading}
                 />
             </div>
         )
