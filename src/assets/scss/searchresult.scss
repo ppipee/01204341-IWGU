@@ -44,7 +44,7 @@
                         bottom: 0;
                         right: 0;
                         width: 20%;
-                        background: linear-gradient(90deg, transparent, white);
+                        background: linear-gradient(90deg, rgba(255,255,255,0), #fff);
                         position: absolute;
                         pointer-events: none;
                     }
@@ -93,8 +93,8 @@
                                 width: 2px;
                                 background: linear-gradient(
                                     90deg,
-                                    transparent,
-                                    white
+                                    rgba(255,255,255,0),
+                                     #fff
                                 );
                                 // position: absolute;
                                 pointer-events: none;
@@ -146,8 +146,8 @@
                                     width: 20%;
                                     background: linear-gradient(
                                         90deg,
-                                        transparent,
-                                        white
+                                        rgba(255,255,255,0), 
+                                        #fff
                                     );
                                     position: absolute;
                                     pointer-events: none;
