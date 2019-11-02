@@ -7,6 +7,7 @@ import '../assets/scss/searchresult.scss'
 import { SearchResultTab } from './Initial'
 import { Time, PinkLocationIcon, Star, BlankStar, NoResult } from './Icon'
 import { searchPlace } from '../queries/place'
+import { Rate } from './Random'
 
 class SearchResult extends Component {
     constructor(props) {
@@ -162,7 +163,8 @@ class SearchResult extends Component {
                             <div className='line1'>{place.name}</div>
                             <div className='line-group'>
                                 <div className='line2'>
-                                    {this.genStar(place.rate)}
+                                    {/* {this.genStar(place.rate)} */}
+                                    {this.genStar(Rate())}
                                     <span className='dot' />
                                     <span className='category'>
                                         {place.categoryCode}
