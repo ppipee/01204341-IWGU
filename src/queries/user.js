@@ -3,8 +3,9 @@ import { gql } from 'apollo-boost'
 const userRegister = gql`
     mutation($username: ID!, $password: String!) {
         register(username: $username, password: $password) {
+            id
             username
-            password
+            status
         }
     }
 `

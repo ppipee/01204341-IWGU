@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import { compose } from 'redux'
-import '../assets/scss/signup.scss'
 import { user, vector, lock } from './Icon'
+import { UserAuthAction } from '../action'
 import { userRegister } from '../queries/user'
 import { authRegister } from '../queries/auth'
+import '../assets/scss/signup.scss'
 
 class SignUp extends Component {
     constructor(props) {
@@ -57,13 +59,18 @@ class SignUp extends Component {
 
     submit = () => {
         const { username, password } = this.state
-        this.props.userRegister({
-            variables: {
-                username,
-                password,
-            },
-        })
-        this.props.history.push('/')
+        this.props
+            .userRegister({
+                variables: {
+                    username,
+                    password,
+                },
+            })
+            .then(data => {
+                const { id, username, status } = data.data.register
+                this.props.signup(id, username, status)
+                this.props.history.push('/')
+            })
     }
 
     checkcrt = e => {
@@ -269,5 +276,19 @@ class SignUp extends Component {
 export default compose(
     withRouter,
     graphql(userRegister, { name: 'userRegister' }),
-    graphql(authRegister, { name: 'auth' })
+    graphql(authRegister, { name: 'auth' }),
+    connect(
+        null,
+        dispatch => {
+            return {
+                signup: (userid, username, status) =>
+                    dispatch({
+                        type: UserAuthAction.LOGIN,
+                        userid,
+                        username,
+                        status,
+                    }),
+            }
+        }
+    )
 )(SignUp)
