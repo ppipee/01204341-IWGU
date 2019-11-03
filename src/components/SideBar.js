@@ -146,10 +146,7 @@ class SideBar extends Component {
                                                 to={`/detail?place=${place.placeID}&code=${place.categoryCode}`}
                                             >
                                                 <div className='info-fav'>
-                                                    <img
-                                                        src={Info}
-                                                        alt='info-icon'
-                                                    />
+                                                    <Info fill='#fff' />
                                                 </div>
                                             </Link>
                                         </div>

@@ -32,7 +32,6 @@ import Train from '../assets/icon/train.svg'
 import Ferry from '../assets/icon/ferry.svg'
 import Bts from '../assets/icon/bts.svg'
 import Mrt from '../assets/icon/mrt.svg'
-import Info from '../assets/icon/info.svg'
 import Trash from '../assets/icon/trash.svg'
 import Clock from '../assets/icon/clock.svg'
 import Twitter from '../assets/icon/twitter.svg'
@@ -553,6 +552,21 @@ const Wifi = props => (
                 <path fill='#fff' d='M0 0h15.402v15H0z' />
             </clipPath>
         </defs>
+    </svg>
+)
+
+const Info = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='23'
+        height='23'
+        fill='none'
+        viewBox='0 0 23 23'
+    >
+        <path
+            fill={props.fill}
+            d='M11.5 21.083A9.583 9.583 0 0 1 1.917 11.5 9.583 9.583 0 0 1 11.5 1.917a9.583 9.583 0 0 1 9.583 9.583 9.583 9.583 0 0 1-9.583 9.583zm0-1.916a7.667 7.667 0 1 0 0-15.333 7.667 7.667 0 0 0 0 15.333zm0-9.584a.958.958 0 0 1 .958.959v4.791a.959.959 0 0 1-1.916 0v-4.791a.958.958 0 0 1 .958-.959zm0-.958a.958.958 0 1 1 0-1.917.958.958 0 0 1 0 1.917z'
+        />
     </svg>
 )
 

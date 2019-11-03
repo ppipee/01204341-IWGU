@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Slider from 'react-slick'
 import { Trip } from './Demo'
 import '../assets/scss/plannerdaycard.scss'
+import PlannerPlaceCard from './PlannerPlaceCard'
 
 const Months = [
     'JAN',
@@ -36,18 +37,27 @@ class PlannerDayCard extends Component {
     genDayCard() {
         const day = TripPlan.days.length
         const card = []
+        const dayRange = [TripPlan.days[0].date, TripPlan.days[day - 1].date]
         for (let i = 0; i < day + 1; i++) {
             let head = 'Draft'
+            let places = []
             if (i !== 0) {
                 const { date } = TripPlan.days[i - 1]
+                places = TripPlan.days[i - 1].places
                 head = `${date.getDate()} ${Months[date.getMonth()]}`
             }
             card.push(
-                <div className='day-card'>
+                <div key={`day-${i + 1}`} className='day-card'>
                     <div className='top'>
                         <p>{head}</p>
                     </div>
-                    <div className='content' />
+                    <div className='content'>
+                        <PlannerPlaceCard
+                            places={places}
+                            no={places.length}
+                            range={dayRange}
+                        />
+                    </div>
                 </div>
             )
         }
