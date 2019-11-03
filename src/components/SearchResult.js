@@ -10,40 +10,45 @@ import { Time, PinkLocationIcon, Star, NoResult, Add, Fav } from './Icon'
 import { searchPlace } from '../queries/place'
 import { userAllFavourites, updateFavourites } from '../queries/user'
 import { Rate } from './Random'
+import { removeItemFromList } from './main'
 
 class SearchResult extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            add: [],
-            fav: [],
-            userLocation: {
-                latitude: 32,
-                longitude: 32,
-            },
-            loading: true,
+            rate_random: [...Array(30).keys()].map(key => Rate()),
+            // userLocation: {
+            //     latitude: 32,
+            //     longitude: 32,
+            // },
+            // loading: true,
         }
     }
 
     async componentDidMount() {
         const search = new URLSearchParams(this.props.location.search)
         const keyword = search.get('q')
-        await this.props.search.refetch({ keyword })
-        await this.props.userFavourites.refetch({ id: this.props.id })
-        navigator.geolocation.getCurrentPosition(
-            position => {
-                const { latitude, longitude } = position.coords
+        this.props.search.refetch({ keyword })
+        if (!this.props.getLoadFavs)
+            await this.props.userFavourites.refetch({ id: this.props.userID })
+        // navigator.geolocation.getCurrentPosition(
+        //     position => {
+        //         const { latitude, longitude } = position.coords
 
-                this.setState({
-                    userLocation: { latitude, longitude },
-                    loading: false,
-                })
-            },
-            () => {
-                this.setState({ loading: false })
-            }
-        )
+        //         this.setState({
+        //             userLocation: { latitude, longitude },
+        //             loading: false,
+        //         })
+        //     },
+        //     () => {
+        //         this.setState({ loading: false })
+        //     }
+        // )
     }
+
+    // componentWillReceiveProps(nextProps) {
+
+    // }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.location.search !== this.props.location.search) {
@@ -61,6 +66,15 @@ class SearchResult extends Component {
             }
             this.props.search.refetch({ keyword })
         }
+        if (
+            prevProps.userFavourites.loading &&
+            !this.props.userFavourites.loading &&
+            !this.props.getLoadFavs
+        ) {
+            const fav_places = this.props.userFavourites.user.favourite
+            this.props.setfavs(fav_places)
+            this.props.setloadfavs(true)
+        }
     }
 
     noneResult = () => {
@@ -77,41 +91,52 @@ class SearchResult extends Component {
         )
     }
 
-    toggle = event => {
-        const id = event.target.getAttribute('place_id')
-        const code = event.target.getAttribute('code')
-        const name = event.target.getAttribute('name')
-        let target = this.state[name]
-        const object = { placeID: id, category: name }
-        let check = false
-        let index
-        this.state[name].forEach((item, i) => {
-            if (object.placeID === item.placeID) {
-                check = true
-                index = i
-            }
-        })
-        if (check) target.splice(index, 1)
-        else target = [...target, object]
-        this.setState({
-            [name]: target,
-        })
-    }
-
     setDrafts = (id, code) => {
         const draft = {
             placeID: id,
             categoryCode: code,
         }
         const places = this.props.getDrafts.map(place => place.placeID)
-        console.log(places)
-        if (!places.includes(draft.placeID)) this.props.adddraft(draft)
+        if (!places.includes(id)) this.props.adddraft(draft)
         else {
-            const new_draft = this.props.getDrafts
-            console.log(places.indexOf(id))
-            new_draft.splice(places.indexOf(id), 1)
-            this.props.setdraft(new_draft)
+            const new_drafts = removeItemFromList(places, id)
+            this.props.setdrafts(new_drafts)
         }
+    }
+
+    setFavs = (e, id, code, name, thumbnail, rate) => {
+        const draft = {
+            placeID: id,
+            categoryCode: code,
+            name,
+            thumbnail,
+            rate,
+        }
+        // console.log("draft:", draft)
+        const favs_id = this.props.getFavs.map(place => place.placeID)
+        let new_favs
+        // ADD
+        if (!favs_id.includes(id)) {
+            new_favs = [...this.props.getFavs, draft]
+            this.props.addfav(draft)
+        }
+        // REMOVE
+        else {
+            new_favs = removeItemFromList(this.props.getFavs, id, favs_id)
+            this.props.setfavs(new_favs)
+        }
+
+        this.props.updateFavourites({
+            variables: {
+                id: this.props.userID,
+                favourite: new_favs.map(place => {
+                    return {
+                        placeID: place.placeID,
+                        categoryCode: place.categoryCode,
+                    }
+                }),
+            },
+        })
     }
 
     genStar(ratting) {
@@ -134,9 +159,12 @@ class SearchResult extends Component {
         return <span className='rating'>{container}</span>
     }
 
-    genTabs(id, code) {
+    genTabs(id, code, name, thumbnail, rate) {
         const add = this.props.getDrafts.map(key => key.placeID)
-        const fav = this.state.fav.map(key => key.placeID)
+        let fav = !this.props.getLoadFavs
+            ? this.props.userFavourites.user.favourite
+            : this.props.getFavs
+        fav = fav.map(key => key.placeID)
         return (
             <div className='add-fav'>
                 <div
@@ -153,10 +181,9 @@ class SearchResult extends Component {
                 </div>
                 <div
                     className={`fav ${fav.includes(id) ? 'active' : ''}`}
-                    onClick={this.toggle}
-                    name='fav'
-                    place_id={id}
-                    code={code}
+                    onClick={e =>
+                        this.setFavs(e, id, code, name, thumbnail, rate)
+                    }
                 >
                     <span className='icon'>
                         {fav.includes(id) ? (
@@ -172,32 +199,31 @@ class SearchResult extends Component {
 
     genCards(places) {
         const box = []
-        places.map(place =>
+        places.forEach((place, i) => {
+            const { placeID, categoryCode, rate, thumbnail, name } = place
             box.push(
-                <div className='card' key={`${place.placeID}`}>
+                <div className='card' key={`${placeID}`}>
                     <Link
                         className='link'
-                        to={`/detail?place=${place.placeID}, ?code=${place.categoryCode}`}
+                        to={`/detail?place=${placeID}, ?code=${categoryCode}`}
                     >
-                        <img
-                            className='picture'
-                            alt={place.name}
-                            src={place.thumbnail}
-                        />
+                        <img className='picture' alt={name} src={thumbnail} />
                     </Link>
                     <Link
                         className='go-to-detail'
-                        to={`/detail?place=${place.placeID}&code=${place.categoryCode}`}
+                        to={`/detail?place=${placeID}&code=${categoryCode}`}
                     >
                         <div className='content'>
-                            <div className='line1'>{place.name}</div>
+                            <div className='line1'>{name}</div>
                             <div className='line-group'>
                                 <div className='line2'>
                                     {/* {this.genStar(place.rate)} */}
-                                    {this.genStar(Rate())}
+                                    {this.genStar(
+                                        this.state.rate_random[+i % 30]
+                                    )}
                                     <span className='dot' />
                                     <span className='category'>
-                                        {place.categoryCode}
+                                        {categoryCode}
                                     </span>
                                 </div>
                                 <div className='line3'>
@@ -223,15 +249,22 @@ class SearchResult extends Component {
                             </div>
                         </div>
                     </Link>
-                    {this.genTabs(place.placeID, place.categoryCode)}
+                    {this.genTabs(
+                        placeID,
+                        categoryCode.toLowerCase(),
+                        name,
+                        thumbnail,
+                        rate
+                    )}
                 </div>
             )
-        )
+        })
         return <div className='card-container'>{box}</div>
     }
 
     render() {
-        if (this.props.search.loading)
+        // console.log("loading", this.props.userFavourites)
+        if (this.props.search.loading || this.props.userFavourites.loading)
             return <div className='search-result'>Loading</div>
         if (this.props.search.error !== undefined)
             return <div className='search-result'>{this.noneResult()}</div>
@@ -243,33 +276,55 @@ class SearchResult extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        userID: state.userauth.userid,
+        getDrafts: state.planner.drafts,
+        getFavs: state.planner.favourites,
+        getLoadFavs: state.planner.load_favs,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        adddraft: draft =>
+            dispatch({
+                type: PlannersAction.ADDDRAFT,
+                add_draft: draft,
+            }),
+        setdrafts: drafts =>
+            dispatch({
+                type: PlannersAction.SETDRAFTS,
+                new_drafts: drafts,
+            }),
+        addfav: fav =>
+            dispatch({ type: PlannersAction.ADDFAV, add_favourites: fav }),
+        setfavs: favs =>
+            dispatch({ type: PlannersAction.SETFAVS, new_favourites: favs }),
+        setloadfavs: status =>
+            dispatch({ type: PlannersAction.LOADFAVS, load: status }),
+    }
+}
+
 export default compose(
     connect(
-        state => {
-            return {
-                getDrafts: state.planner.drafts,
-            }
-        },
-        dispatch => {
-            return {
-                adddraft: draft =>
-                    dispatch({
-                        type: PlannersAction.ADDDRAFT,
-                        add_draft: draft,
-                    }),
-                setdraft: drafts =>
-                    dispatch({
-                        type: PlannersAction.SETDRAFT,
-                        new_draft: drafts,
-                    }),
-            }
-        }
+        mapStateToProps,
+        mapDispatchToProps
     ),
     withRouter,
     GoogleApiWrapper({
         apiKey: process.env.MAP_KEY,
     }),
     graphql(searchPlace, { name: 'search' }),
-    graphql(userAllFavourites, { name: 'userFavourites' }),
+    graphql(userAllFavourites, {
+        name: 'userFavourites',
+        // options: props => {
+        //     return {
+        //         variables: {
+        //             id: props.userID
+        //         }
+        //     }
+        // }
+    }),
     graphql(updateFavourites, { name: 'updateFavourites' })
 )(SearchResult)

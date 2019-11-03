@@ -2,6 +2,8 @@ import { PlannersAction } from '../action'
 
 const InitialState = {
     drafts: [],
+    favourites: [],
+    load_favs: false,
 }
 
 const Action = PlannersAction
@@ -10,15 +12,38 @@ const planner = (state = InitialState, action) => {
     switch (action.type) {
         case Action.ADDDRAFT:
             return {
+                ...state,
                 drafts: [...state.drafts, action.add_draft],
             }
-        case Action.SETDRAFT:
+        case Action.SETDRAFTS:
             return {
-                drafts: [...action.new_draft],
+                ...state,
+                drafts: [...action.new_drafts],
             }
-        case Action.CLEARDRAFT:
+        case Action.ADDFAV:
             return {
+                ...state,
+                favourites: [...state.favourites, action.add_favourites],
+            }
+        case Action.SETFAVS:
+            return {
+                ...state,
+                favourites: [...action.new_favourites],
+            }
+        case Action.CLEARDRAFTS:
+            return {
+                ...state,
                 drafts: [],
+            }
+        case Action.CLEARFAVS:
+            return {
+                ...state,
+                favourites: [],
+            }
+        case Action.LOADFAVS:
+            return {
+                ...state,
+                load_favs: action.load,
             }
         default:
             return state

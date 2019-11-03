@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom'
 import Swipe from 'react-easy-swipe'
 import { Skeleton } from 'antd'
 import '../assets/scss/sidebar.scss'
-import { userFavourites, updateFavourites } from '../queries/user'
-import { UserAuthAction } from '../action'
+import { userAllFavourites, updateFavourites } from '../queries/user'
+import { UserAuthAction, PlannersAction } from '../action'
 import { Airplane, Search, Fav, Back, Trash, Info } from './Icon'
 
 class SideBar extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             block_swipe: false,
             index: [],
@@ -20,7 +20,20 @@ class SideBar extends Component {
     }
 
     async componentDidMount() {
-        await this.props.userFavourites.refetch({ id: this.props.id })
+        if (!this.props.getLoadFavs)
+            await this.props.userFavourites.refetch({ id: this.props.id })
+    }
+
+    componentDidUpdate(prevProps) {
+        if (
+            prevProps.userFavourites.loading &&
+            !this.props.userFavourites.loading &&
+            !this.props.getLoadFavs
+        ) {
+            const fav_places = this.props.userFavourites.user.favourite
+            this.props.setfavs(fav_places)
+            this.props.setloadfavs(true)
+        }
     }
 
     sliceAnimation = (direction, target) => {
@@ -52,25 +65,20 @@ class SideBar extends Component {
 
     removeFav = e => {
         const pointer = e.target.getAttribute('index')
-        const new_fav = this.props.userFavourites.user.favourite
-        new_fav.splice(pointer, 1)
-        console.log(new_fav)
+        const new_favs = this.props.getFavs
+        new_favs.splice(pointer, 1)
         this.props.updateFavourites({
             variables: {
                 id: this.props.id,
-                favourite: new_fav.map(place => {
+                favourite: new_favs.map(place => {
                     return {
                         placeID: place.placeID,
                         categoryCode: place.categoryCode,
                     }
                 }),
             },
-            refetchQueries: [
-                {
-                    query: userFavouritess,
-                },
-            ],
         })
+        this.props.setfavs(new_favs)
         this.setState({ block_swipe: false })
     }
 
@@ -99,7 +107,10 @@ class SideBar extends Component {
                 </div>
             ))
         } else {
-            const places = this.props.userFavourites.user.favourite
+            const places = !this.props.getLoadFavs
+                ? this.props.userFavourites.user.favourite
+                : this.props.getFavs
+            // console.log(places)
             if (places.length > 0) {
                 places.forEach((place, index) => {
                     if (places.length <= 5 || +index >= places.length - 5) {
@@ -251,18 +262,33 @@ const mapStateToProps = state => {
     return {
         id: state.userauth.userid,
         username: state.userauth.username,
+        getFavs: state.planner.favourites,
+        getLoadFavs: state.planner.load_favs,
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         signout: () => dispatch({ type: UserAuthAction.SIGNOUT }),
+        setfavs: favs =>
+            dispatch({ type: PlannersAction.SETFAVS, new_favourites: favs }),
+        setloadfavs: status =>
+            dispatch({ type: PlannersAction.LOADFAVS, load: status }),
     }
 }
 export default compose(
-    graphql(userFavourites, { name: 'userFavourites' }),
-    graphql(updateFavourites, { name: 'updateFavourites' }),
     connect(
         mapStateToProps,
         mapDispatchToProps
-    )
+    ),
+    graphql(userAllFavourites, {
+        name: 'userFavourites',
+        options: props => {
+            return {
+                variables: {
+                    id: props.id,
+                },
+            }
+        },
+    }),
+    graphql(updateFavourites, { name: 'updateFavourites' })
 )(SideBar)
