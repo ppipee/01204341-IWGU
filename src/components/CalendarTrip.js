@@ -41,8 +41,10 @@ class CalendarTrip extends Component {
     setAuth = () => {
         const { start_date: start, end_date: end } = this.state
         const name = this.props.getName
-        // const name = 'iwgu'
-        const auth = name !== '' && (start !== null && end !== null)
+        const auth =
+            name !== '' &&
+            (start !== null && end !== null) &&
+            (this.props.getStatus !== 'traveler' || this.calDay() <= 7)
         this.setState({ auth })
     }
 
@@ -104,7 +106,7 @@ class CalendarTrip extends Component {
                         readOnly
                     />
                 </div>
-                <div className='state'>
+                <div className={`state ${this.calDay() <= 7 ? '' : 'disable'}`}>
                     <div className={`day ${this.state.day}`}>
                         <div className='days-count'>{this.calDay()}</div>
                         <div>{`Day${day}`}</div>
@@ -131,6 +133,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     return {
         getName: state.newtrip.name,
+        getStatus: state.userauth.status,
     }
 }
 export default connect(

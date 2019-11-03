@@ -25,21 +25,14 @@ class MyTrips extends Component {
             nextProps.getNewTrip !== null
         ) {
             const { userID, name, days } = nextProps.getNewTrip
-            const { createPlanner, clear, getUserID, getPlanners } = this.props
-            await createPlanner({
+            await this.props.createPlanner({
                 variables: {
                     userID,
                     name,
                     days,
                 },
-                refetchQueries: [
-                    {
-                        query: getUserPlanners,
-                    },
-                ],
             })
-            // await getPlanners.refetch({ getUserID })
-            clear()
+            this.props.clear()
         }
     }
 

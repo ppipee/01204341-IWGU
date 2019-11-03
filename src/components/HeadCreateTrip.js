@@ -11,7 +11,6 @@ class HeadCreateTrip extends Component {
         super(props)
         this.state = {
             value_inp: '',
-            prev_inp: '',
             line: '',
         }
     }
@@ -21,17 +20,15 @@ class HeadCreateTrip extends Component {
     }
 
     handleChange = e => {
+        let input = e.target.value
+        input = input.length <= 20 ? input : ''
+        this.props.setName(e.target.value)
         this.setState({ value_inp: e.target.value })
     }
 
     handleClickOutside = event => {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            let input = this.state.value_inp
-            if (input !== this.state.prev_inp) {
-                input = input.length <= 20 ? input : ''
-                this.props.setName(input)
-            }
-            this.setState({ line: '', prev_inp: input })
+            this.setState({ line: '' })
         }
     }
 

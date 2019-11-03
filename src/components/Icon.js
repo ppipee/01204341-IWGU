@@ -16,7 +16,6 @@ import PinkLocationIcon from '../assets/icon/location.svg'
 import Calendar from '../assets/icon/calendar.svg'
 import RightArrow from '../assets/icon/right-arrow.svg'
 import CurveArrow from '../assets/icon/curve-arrow.svg'
-import Plus from '../assets/icon/plus.svg'
 import LeftArrowColor from '../assets/icon/left-arrow-color.svg'
 import RightArrowColor from '../assets/icon/right-arrow-color.svg'
 import Dollar from '../assets/icon/dollar.svg'
@@ -35,6 +34,9 @@ import Mrt from '../assets/icon/mrt.svg'
 import Info from '../assets/icon/info.svg'
 import Trash from '../assets/icon/trash.svg'
 import Clock from '../assets/icon/clock.svg'
+import user from '../assets/icon/user.svg'
+import vector from '../assets/icon/Vector.svg'
+import lock from '../assets/icon/lock.svg'
 import Twitter from '../assets/icon/twitter.svg'
 import Line from '../assets/icon/line.svg'
 import Facebook from '../assets/icon/facebook.svg'
@@ -535,6 +537,56 @@ const Back = props => (
     </svg>
 )
 
+const Plus = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='65'
+        height='65'
+        fill='none'
+        viewBox='0 0 65 65'
+    >
+        <g filter='url(#a)'>
+            <ellipse
+                cx='33.051'
+                cy='33.051'
+                fill='#fff'
+                rx='18.729'
+                ry='18.729'
+            />
+            <path
+                fill={props.fill}
+                d='M33.083 5C18.133 5 6 17.133 6 32.083s12.133 27.084 27.083 27.084 27.084-12.134 27.084-27.084S48.033 5 33.083 5zm10.834 29.792h-8.125v8.125a2.716 2.716 0 0 1-2.709 2.708 2.716 2.716 0 0 1-2.708-2.708v-8.125H22.25a2.716 2.716 0 0 1-2.708-2.709 2.716 2.716 0 0 1 2.708-2.708h8.125V21.25a2.716 2.716 0 0 1 2.708-2.708 2.716 2.716 0 0 1 2.709 2.708v8.125h8.125a2.716 2.716 0 0 1 2.708 2.708 2.716 2.716 0 0 1-2.708 2.709z'
+            />
+        </g>
+        <defs>
+            <filter
+                id='a'
+                width='73'
+                height='73'
+                x='-4'
+                y='-2'
+                colorInterpolationFilters='sRGB'
+                filterUnits='userSpaceOnUse'
+            >
+                <feFlood floodOpacity='0' result='BackgroundImageFix' />
+                <feColorMatrix
+                    in='SourceAlpha'
+                    values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+                />
+                <feOffset dy='2' />
+                <feGaussianBlur stdDeviation='2' />
+                <feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.18 0' />
+                <feBlend in2='BackgroundImageFix' result='effect1_dropShadow' />
+                <feBlend
+                    in='SourceGraphic'
+                    in2='effect1_dropShadow'
+                    result='shape'
+                />
+            </filter>
+        </defs>
+    </svg>
+)
+
 const Wifi = props => (
     <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -620,6 +672,9 @@ export {
     Info,
     Trash,
     Clock,
+    user,
+    vector,
+    lock,
     Twitter,
     Facebook,
     Copy,
