@@ -67,8 +67,9 @@ class SignUp extends Component {
                 },
             })
             .then(data => {
-                const { id, username, status } = data.data.register
-                this.props.signup(id, username, status)
+                const { name, status } = data.data.register
+                const key = Object.keys(data.data.register)[0]
+                this.props.signup(data.data.register[key], name, status)
                 this.props.history.push('/')
             })
     }
@@ -281,11 +282,11 @@ export default compose(
         null,
         dispatch => {
             return {
-                signup: (userid, username, status) =>
+                signup: (userid, name, status) =>
                     dispatch({
                         type: UserAuthAction.LOGIN,
                         userid,
-                        username,
+                        name,
                         status,
                     }),
             }

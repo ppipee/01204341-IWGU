@@ -22,8 +22,8 @@ const userauth = (state = InitialState, action) => {
         case Action.LOGIN:
             return {
                 ...state,
-                userid: action.id,
-                username: action.username,
+                userid: action.userid,
+                username: action.name,
                 status: action.status,
             }
         case Action.SIGNOUT:

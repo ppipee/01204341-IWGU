@@ -4,7 +4,7 @@ const userRegister = gql`
     mutation($username: ID!, $password: String!) {
         register(username: $username, password: $password) {
             id
-            username
+            name
             status
         }
     }
