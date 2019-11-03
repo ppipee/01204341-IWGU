@@ -42,7 +42,7 @@ class SharePlanner extends Component {
                         <img alt='paper-plane' src={PaperAirplane} />
                         <p>Share your trip</p>
                         <div onClick={this.openModal}>
-                            <Close color='#d0d0d0' />
+                            <Close fill='#d0d0d0' />
                         </div>
                     </div>
                     <div className='url-container'>
