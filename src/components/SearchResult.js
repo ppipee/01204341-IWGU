@@ -104,25 +104,27 @@ class SearchResult extends Component {
         }
     }
 
-    setFavs = (e, id, code, name, thumbnail, rate) => {
+    setFavs = place => {
+        const { placeID, categoryCode, rate, thumbnail, name, location } = place
         const draft = {
-            placeID: id,
-            categoryCode: code,
+            placeID,
+            categoryCode: categoryCode.toLowerCase(),
             name,
             thumbnail,
             rate,
+            location,
         }
         // console.log("draft:", draft)
         const favs_id = this.props.getFavs.map(place => place.placeID)
         let new_favs
         // ADD
-        if (!favs_id.includes(id)) {
+        if (!favs_id.includes(placeID)) {
             new_favs = [...this.props.getFavs, draft]
             this.props.addfav(draft)
         }
         // REMOVE
         else {
-            new_favs = removeItemFromList(this.props.getFavs, id, favs_id)
+            new_favs = removeItemFromList(this.props.getFavs, placeID, favs_id)
             this.props.setfavs(new_favs)
         }
 
@@ -159,7 +161,8 @@ class SearchResult extends Component {
         return <span className='rating'>{container}</span>
     }
 
-    genTabs(id, code, name, thumbnail, rate) {
+    genTabs(place) {
+        const { placeID: id, categoryCode: code } = place
         const add = this.props.getDrafts.map(key => key.placeID)
         let fav = !this.props.getLoadFavs
             ? this.props.userFavourites.user.favourite
@@ -181,9 +184,7 @@ class SearchResult extends Component {
                 </div>
                 <div
                     className={`fav ${fav.includes(id) ? 'active' : ''}`}
-                    onClick={e =>
-                        this.setFavs(e, id, code, name, thumbnail, rate)
-                    }
+                    onClick={e => this.setFavs(place)}
                 >
                     <span className='icon'>
                         {fav.includes(id) ? (
@@ -200,7 +201,14 @@ class SearchResult extends Component {
     genCards(places) {
         const box = []
         places.forEach((place, i) => {
-            const { placeID, categoryCode, rate, thumbnail, name } = place
+            const {
+                placeID,
+                categoryCode,
+                rate,
+                thumbnail,
+                name,
+                location,
+            } = place
             box.push(
                 <div className='card' key={`${placeID}`}>
                     <Link
@@ -241,21 +249,14 @@ class SearchResult extends Component {
                                         <span className='map'>0.7 km</span>
                                         <span className='dot' />
                                         <span className='location'>
-                                            {place.location.district},{' '}
-                                            {place.location.province}
+                                            {`${location.district}, ${location.province}`}
                                         </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </Link>
-                    {this.genTabs(
-                        placeID,
-                        categoryCode.toLowerCase(),
-                        name,
-                        thumbnail,
-                        rate
-                    )}
+                    {this.genTabs(place)}
                 </div>
             )
         })
