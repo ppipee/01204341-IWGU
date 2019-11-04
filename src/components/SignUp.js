@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
-import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import { compose } from 'redux'
 import { User, Lock } from './Icon'
-import { UserAuthAction } from '../action'
 import { userRegister } from '../queries/user'
 import { authRegister } from '../queries/auth'
 import '../assets/scss/signup.scss'
@@ -69,7 +67,7 @@ class SignUp extends Component {
             .then(data => {
                 const { name, status } = data.data.register
                 const key = Object.keys(data.data.register)[0]
-                this.props.signup(data.data.register[key], name, status)
+                this.props.login(data.data.register[key], name, status)
                 this.props.history.push('/')
             })
     }
@@ -276,19 +274,5 @@ class SignUp extends Component {
 export default compose(
     withRouter,
     graphql(userRegister, { name: 'userRegister' }),
-    graphql(authRegister, { name: 'auth' }),
-    connect(
-        null,
-        dispatch => {
-            return {
-                signup: (userid, name, status) =>
-                    dispatch({
-                        type: UserAuthAction.LOGIN,
-                        userid,
-                        name,
-                        status,
-                    }),
-            }
-        }
-    )
+    graphql(authRegister, { name: 'auth' })
 )(SignUp)

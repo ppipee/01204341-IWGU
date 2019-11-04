@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
-import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import { compose } from 'redux'
 import { authSignin } from '../queries/auth'
 import { getUser } from '../queries/user'
-import { UserAuthAction } from '../action'
 import { Lock, User } from './Icon'
 import '../assets/scss/signin.scss'
 
@@ -50,7 +48,7 @@ class SignIn extends Component {
             .refetch({ username: this.state.username })
             .then(data => console.log(data))
         const { id, name, status } = this.props.getUser.user
-        this.props.signup(id, name, status)
+        this.props.login(id, name, status)
         this.props.history.push('/')
     }
 
@@ -126,8 +124,7 @@ class SignIn extends Component {
                         className='signin-button'
                         onClick={this.checkCharacter}
                     >
-                         
-                        Sign in 
+                        Sign in
                     </button>
                     <p> Don’t have an account? </p>
                     <Link to='/auth?signup'>
@@ -142,19 +139,5 @@ class SignIn extends Component {
 export default compose(
     withRouter,
     graphql(authSignin, { name: 'auth' }),
-    graphql(getUser, { name: 'getUser' }),
-    connect(
-        null,
-        dispatch => {
-            return {
-                signup: (userid, name, status) =>
-                    dispatch({
-                        type: UserAuthAction.LOGIN,
-                        userid,
-                        name,
-                        status,
-                    }),
-            }
-        }
-    )
+    graphql(getUser, { name: 'getUser' })
 )(SignIn)
