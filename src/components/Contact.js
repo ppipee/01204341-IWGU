@@ -35,14 +35,19 @@ class Contact extends Component {
                 const tel = contact[keepIntouch.name]
                 commune.push(
                     <a href={`tell:${tel}`}>
-                        <div id={`${keepIntouch.name}`}>
+                        <div
+                            id={`${keepIntouch.name}`}
+                            key={`${keepIntouch.name}`}
+                        >
                             {keepIntouch.active}
                         </div>
                     </a>
                 )
             } else {
                 commune.push(
-                    <div id={`${keepIntouch.name}`}>{keepIntouch.active}</div>
+                    <div id={`${keepIntouch.name}`} key={`${keepIntouch.name}`}>
+                        {keepIntouch.active}
+                    </div>
                 )
             }
         })
