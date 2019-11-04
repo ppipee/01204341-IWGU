@@ -76,7 +76,7 @@ class PlannersBoard extends Component {
                     <span>Manage your trip</span>
                 </div>
                 <div className='planners'>{this.plannersBoard()}</div>
-                <CreateTrip />
+                <CreateTrip create={!(this.state.planners.length >= 5)} />
             </div>
         )
     }

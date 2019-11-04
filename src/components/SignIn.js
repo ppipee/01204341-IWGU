@@ -9,6 +9,9 @@ export default class SignIn extends Component {
         this.state = {
             username: '',
             password: '',
+            // crtuser: true,
+            // crtpass: true,
+            // passDontMacth: true,
             lineUser: false,
             linePass: false,
         }
@@ -38,6 +41,42 @@ export default class SignIn extends Component {
         this.setState({ [notuse]: false })
     }
 
+    // checkCharacter = e => {
+    //     if (
+    //         (e.charCode === 13 || e.target.nodeName === 'BUTTON') &&
+    //         this.state.password !== '' &&
+    //         this.state.confirmPass !== ''
+    //     ) {
+    //         if (this.state.username.length < 5) {
+    //             this.setState({ crtuser: false })
+    //         } else {
+    //             this.setState({ crtuser: true })
+    //         }
+    //         if (this.state.password.length < 5) {
+    //             this.setState({ crtpass: false })
+    //         } else {
+    //             this.setState({ crtpass: true })
+    //         }
+    //         if (this.state.password !== this.state.confirmPass) {
+    //             this.setState({ passDontMacth: false })
+    //         }
+    //         if (
+    //             this.state.username.length >= 5 &&
+    //             this.state.password.length >= 5
+    //         ) {
+    //             this.checkPass()
+    //         }
+    //     }
+    // }
+
+    // checkPass = () => {
+    //     if (this.state.password === this.state.confirmPass) {
+    //         this.submit()
+    //     } else {
+    //         this.setState({ passDontMacth: false })
+    //     }
+    // }
+
     render() {
         return (
             <div className='signin'>
@@ -49,6 +88,7 @@ export default class SignIn extends Component {
                     <div className='input-username' ref={this.setWrapperRef}>
                         <img alt='user-icon' src={User} />
                         <input
+                            onKeyPress={this.checkCharacter}
                             placeholder='Username'
                             value={this.state.username}
                             onChange={e =>
@@ -65,6 +105,7 @@ export default class SignIn extends Component {
                     <div className='input-password' ref={this.setWrapperRef}>
                         <img alt='lock-icon' src={Lock} />
                         <input
+                            onKeyPress={this.checkCharacter}
                             placeholder='Password'
                             value={this.state.password}
                             onChange={e =>
@@ -78,6 +119,13 @@ export default class SignIn extends Component {
                             this.state.linePass ? 'active' : ''
                         }`}
                     />
+                    {/* <div
+                        className={`dontMatch ${
+                            this.state.crtuser ? 'match' : ''
+                        }`}
+                    >
+                        must be at least 5 characters
+                    </div> */}
                     <Link to='/'>
                         <button className='signin-button'> Sign in </button>
                     </Link>

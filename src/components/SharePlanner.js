@@ -21,7 +21,6 @@ class SharePlanner extends Component {
 
     openModal = () => {
         this.setState({ open_modal: !this.state.open_modal })
-        console.log(this.state.openModal)
     }
 
     sharePlanner() {
