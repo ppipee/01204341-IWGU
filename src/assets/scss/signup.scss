@@ -133,18 +133,16 @@
         &.match {
             visibility: hidden;
         }
-        // &.show{
-        //     display: none;
-        // }
     }
-    // .character{
-    //     margin-top: 2px;
-    //         height: 10px;
-    //         font-size: 8px;
-    //         color: #ff6c38;
-    //         align-self: flex-end;
-    //         &.notshow{
-    //             display: none;
-    //     }
-    // }
+    .text-check {
+        margin-top: 2px;
+        height: 10px;
+        font-size: 8px;
+        display: static;
+        align-self: flex-end;
+        color: #ff6c38;
+        &.match {
+            display: none;
+        }
+    }
 }

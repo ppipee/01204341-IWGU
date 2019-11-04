@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { graphql } from 'react-apollo'
+import { compose } from 'redux'
 import { Lock, User } from './Icon'
 import '../assets/scss/signin.scss'
 
-export default class SignIn extends Component {
+class SignIn extends Component {
     constructor() {
         super()
         this.state = {
@@ -142,3 +145,23 @@ export default class SignIn extends Component {
         )
     }
 }
+
+export default compose(
+    withRouter,
+    // graphql(userRegister, { name: 'userRegister' }),
+    // graphql(authRegister, { name: 'auth' }),
+    connect(
+        null,
+        dispatch => {
+            return {
+                signup: (userid, name, status) =>
+                    dispatch({
+                        type: UserAuthAction.LOGIN,
+                        userid,
+                        name,
+                        status,
+                    }),
+            }
+        }
+    )
+)(SignIn)

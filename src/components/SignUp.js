@@ -82,18 +82,19 @@ class SignUp extends Component {
         ) {
             const crtpass = this.state.password.length >= 5
             const pass_match = this.state.password === this.state.confirmPass
-            this.setState({
-                crtpass,
-                passDontMacth: pass_match,
-                confirmPass: '',
-            })
             if (
                 this.state.username.length >= 5 &&
                 this.state.password.length >= 5 &&
                 this.state.confirmPass.length >= 5
-            ) {
+            )
                 this.checkData()
-            }
+            else
+                this.setState({
+                    crtpass,
+                    passDontMacth: pass_match,
+                    password: '',
+                    confirmPass: '',
+                })
         }
     }
 
@@ -104,7 +105,11 @@ class SignUp extends Component {
         ) {
             this.submit()
         } else {
-            this.setState({ passDontMacth: false, confirmPass: '' })
+            this.setState({
+                passDontMacth: false,
+                confirmPass: '',
+                password: '',
+            })
         }
     }
 
@@ -150,18 +155,18 @@ class SignUp extends Component {
                                 }`}
                             />
                             <div
+                                className={`text-check ${
+                                    this.state.user_duplicate ? 'match' : ''
+                                }`}
+                            >
+                                username already exists
+                            </div>
+                            <div
                                 className={`dontMatch ${
                                     this.state.crtuser ? 'match' : ''
                                 }`}
                             >
                                 must be at least 5 characters
-                            </div>
-                            <div
-                                className={`dontMatch ${
-                                    this.state.user_duplicate ? 'match' : ''
-                                }`}
-                            >
-                                username duplicated
                             </div>
                         </div>
                         <div className='box'>
