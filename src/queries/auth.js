@@ -10,13 +10,11 @@ const authRegister = gql`
         authRegister(username: $username)
     }
 `
-
 const authPlanner = gql`
     query($id: ID!) {
         userRegister(plannerID: $plannerID)
     }
 `
-
 const checkDays = gql`
     query($userID: ID!, $plannerID: ID!) {
         checkCreateDay(userID: $userID, plannerID: $plannerID)
