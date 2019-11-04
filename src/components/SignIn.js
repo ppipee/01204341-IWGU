@@ -3,6 +3,9 @@ import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import { compose } from 'redux'
+import { authSignin } from '../queries/auth'
+import { getUser } from '../queries/user'
+import { UserAuthAction } from '../action'
 import { Lock, User } from './Icon'
 import '../assets/scss/signin.scss'
 
@@ -12,9 +15,7 @@ class SignIn extends Component {
         this.state = {
             username: '',
             password: '',
-            // crtuser: true,
-            // crtpass: true,
-            // passDontMacth: true,
+            match: true,
             lineUser: false,
             linePass: false,
         }
@@ -44,41 +45,29 @@ class SignIn extends Component {
         this.setState({ [notuse]: false })
     }
 
-    // checkCharacter = e => {
-    //     if (
-    //         (e.charCode === 13 || e.target.nodeName === 'BUTTON') &&
-    //         this.state.password !== '' &&
-    //         this.state.confirmPass !== ''
-    //     ) {
-    //         if (this.state.username.length < 5) {
-    //             this.setState({ crtuser: false })
-    //         } else {
-    //             this.setState({ crtuser: true })
-    //         }
-    //         if (this.state.password.length < 5) {
-    //             this.setState({ crtpass: false })
-    //         } else {
-    //             this.setState({ crtpass: true })
-    //         }
-    //         if (this.state.password !== this.state.confirmPass) {
-    //             this.setState({ passDontMacth: false })
-    //         }
-    //         if (
-    //             this.state.username.length >= 5 &&
-    //             this.state.password.length >= 5
-    //         ) {
-    //             this.checkPass()
-    //         }
-    //     }
-    // }
+    submit = async () => {
+        await this.props.getUser
+            .refetch({ username: this.state.username })
+            .then(data => console.log(data))
+        const { id, name, status } = this.props.getUser.user
+        this.props.signup(id, name, status)
+        this.props.history.push('/')
+    }
 
-    // checkPass = () => {
-    //     if (this.state.password === this.state.confirmPass) {
-    //         this.submit()
-    //     } else {
-    //         this.setState({ passDontMacth: false })
-    //     }
-    // }
+    checkCharacter = async e => {
+        if (
+            (e.charCode === 13 || e.target.nodeName === 'BUTTON') &&
+            this.state.password !== ''
+        ) {
+            const { username, password } = this.state
+            await this.props.auth.refetch({ username, password })
+            const auth = this.props.auth.authSignin
+            console.log(auth)
+            if (!auth) {
+                this.setState({ match: false })
+            } else this.submit()
+        }
+    }
 
     render() {
         return (
@@ -126,16 +115,20 @@ class SignIn extends Component {
                             this.state.linePass ? 'active' : ''
                         }`}
                     />
-                    {/* <div
-                        className={`dontMatch ${
-                            this.state.crtuser ? 'match' : ''
+                    <div
+                        className={`match-signin ${
+                            this.state.match ? '' : 'inactive'
                         }`}
                     >
-                        must be at least 5 characters
-                    </div> */}
-                    <Link to='/'>
-                        <button className='signin-button'> Sign in </button>
-                    </Link>
+                        invalid username/password
+                    </div>
+                    <button
+                        className='signin-button'
+                        onClick={this.checkCharacter}
+                    >
+                         
+                        Sign in 
+                    </button>
                     <p> Don’t have an account? </p>
                     <Link to='/auth?signup'>
                         <button className='signup-button'>Sign up</button>
@@ -148,8 +141,8 @@ class SignIn extends Component {
 
 export default compose(
     withRouter,
-    // graphql(userRegister, { name: 'userRegister' }),
-    // graphql(authRegister, { name: 'auth' }),
+    graphql(authSignin, { name: 'auth' }),
+    graphql(getUser, { name: 'getUser' }),
     connect(
         null,
         dispatch => {

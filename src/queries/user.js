@@ -14,7 +14,6 @@ const userData = gql`
     query($id: ID) {
         user(id: $id) {
             username
-            password
             name
             status
             favourite {
@@ -61,10 +60,11 @@ const userFavourites = gql`
 `
 
 const getUser = gql`
-    query($id: ID) {
-        user(id: $id) {
+    query($username: ID) {
+        user(username: $username) {
             id
-            username
+            name
+            status
         }
     }
 `
@@ -122,7 +122,7 @@ const getUsers = gql`
         users {
             id
             username
-            password
+            status
         }
     }
 `
