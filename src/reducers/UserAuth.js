@@ -31,6 +31,7 @@ const userauth = (state = InitialState, action) => {
                 ...state,
                 userid: '',
                 username: '',
+                status: '',
             }
         default:
             return state

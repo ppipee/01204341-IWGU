@@ -3,7 +3,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
 import { compose } from 'redux'
-import { user, vector, lock } from './Icon'
+import { User, Lock } from './Icon'
 import { UserAuthAction } from '../action'
 import { userRegister } from '../queries/user'
 import { authRegister } from '../queries/auth'
@@ -119,11 +119,9 @@ class SignUp extends Component {
                     <div className='body'>
                         <div className='box'>
                             <span className='box-user'>
-                                <img
-                                    src={user}
-                                    alt='icon-user'
-                                    className='icon-user'
-                                />
+                                <span>
+                                    <User fill='#FDC1AA' />
+                                </span>
                                 <input
                                     onKeyPress={this.checkcrt}
                                     ref={this.setWrapperRef}
@@ -168,11 +166,9 @@ class SignUp extends Component {
                         </div>
                         <div className='box'>
                             <span className='box-vector password'>
-                                <img
-                                    src={vector}
-                                    alt='icon-vector'
-                                    className='icon-vector'
-                                />
+                                <span>
+                                    <Lock fill='#FDC1AA' />
+                                </span>
                                 <input
                                     onKeyPress={this.checkcrt}
                                     ref={this.setWrapperRef}
@@ -211,11 +207,9 @@ class SignUp extends Component {
                         </div>
                         <div className='box'>
                             <span className='box-vector'>
-                                <img
-                                    src={lock}
-                                    alt='icon-vector'
-                                    className='icon-vector'
-                                />
+                                <span>
+                                    <Lock fill='#FEDEC4' />
+                                </span>
                                 <input
                                     onKeyPress={this.checkcrt}
                                     ref={this.setWrapperRef}
