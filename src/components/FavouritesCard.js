@@ -3,45 +3,52 @@ import { graphql } from 'react-apollo'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { Skeleton } from 'antd'
-import { userAllFavourites, updateFavourites } from '../queries/user'
+import { userFavourites, updateFavourites } from '../queries/user'
 import { Close, Star, Add } from './Icon'
+import { PlannersAction } from '../action'
 import '../assets/scss/favouritescard.scss'
 
 class FavouritesCard extends Component {
-    constructor() {
-        super()
-        this.state = {
-            favourites: [],
-        }
+    constructor(props) {
+        super(props)
+        this.state = {}
     }
 
     async componentDidMount() {
-        await this.props.userFavourites.refetch({ id: this.props.id })
-        this.setState({ favourites: this.props.userFavourites.user.favourite })
+        if (!this.props.getLoadFavs)
+            await this.props.userFavourites.refetch({ id: this.props.id })
     }
 
-    removeFavs = e => {
+    componentDidUpdate(prevProps) {
+        if (
+            prevProps.userFavourites.loading &&
+            !this.props.userFavourites.loading &&
+            !this.props.getLoadFavs
+        ) {
+            const fav_places = this.props.userFavourites.user.favourite
+            this.props.setfavs(fav_places)
+            this.props.setloadfavs(true)
+        }
+    }
+
+    removeFav = e => {
+        console.log('click')
         const pointer = e.target.getAttribute('index')
-        const new_fav = this.props.userFavourites.user.favourite
-        new_fav.splice(pointer, 1)
-        console.log(new_fav)
+        const new_favs = this.props.getFavs
+        console.log(new_favs)
+        new_favs.splice(pointer, 1)
         this.props.updateFavourites({
             variables: {
                 id: this.props.id,
-                favourite: new_fav.map(place => {
+                favourite: new_favs.map(place => {
                     return {
                         placeID: place.placeID,
                         categoryCode: place.categoryCode,
                     }
                 }),
             },
-            refetchQueries: [
-                {
-                    query: userAllFavourites,
-                },
-            ],
         })
-        this.setState({ favourites: this.props.userFavourites.user.favourite })
+        this.props.setfavs(new_favs)
     }
 
     genStar = rate => {
@@ -54,8 +61,11 @@ class FavouritesCard extends Component {
         ))
     }
 
-    genCardFav = () =>
-        this.state.favourites.map((place, index) => (
+    genCardFav = () => {
+        const places = !this.props.getLoadFavs
+            ? this.props.userFavourites.user.favourite
+            : this.props.getFavs
+        return places.map((place, index) => (
             <div className='fav-card' key={place.placeID}>
                 <div className='thumbnail-card'>
                     <img src={place.thumbnail} alt='img-card' />
@@ -63,7 +73,7 @@ class FavouritesCard extends Component {
                 <div
                     className='remove-card'
                     index={+index}
-                    onClick={this.removeFavs}
+                    onClick={this.removeFav}
                 >
                     <Close fill='#fff' size='9' />
                 </div>
@@ -81,11 +91,17 @@ class FavouritesCard extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='add-card'>
+                <div
+                    className='add-card'
+                    onClick={() =>
+                        this.setDraft(place.placeID, place.categoryCode)
+                    }
+                >
                     <Add size='17.5' stroke='#FCB7A0' />
                 </div>
             </div>
         ))
+    }
 
     genSkeleton = num =>
         [...Array(num).keys()].map(key => (
@@ -108,24 +124,59 @@ class FavouritesCard extends Component {
             </div>
         ))
 
+    setDraft = (id, code) => {
+        const draft = {
+            placeID: id,
+            categoryCode: code,
+        }
+        const places = this.props.getDraft.map(place => place.placeID)
+        if (!places.includes(draft.placeID)) this.props.adddraft(draft)
+    }
+
     render() {
-        console.log(this.props.userFavourites)
         if (
             this.props.userFavourites.loading ||
-            this.props.userFavourites.error !== undefined
+            this.props.userFavourites.error !== undefined ||
+            !this.props.getLoadFavs
         )
             return <div className='favourites-cards'>{this.genSkeleton(4)}</div>
         return <div className='favourites-cards'>{this.genCardFav()}</div>
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        id: state.userauth.userid,
+        getDraft: state.planner.drafts,
+        getFavs: state.planner.favourites,
+        getLoadFavs: state.planner.load_favs,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        setfavs: favs =>
+            dispatch({ type: PlannersAction.SETFAVS, new_favourites: favs }),
+        setloadfavs: status =>
+            dispatch({ type: PlannersAction.LOADFAVS, load: status }),
+        adddraft: draft =>
+            dispatch({ type: PlannersAction.ADDDRAFT, add_draft: draft }),
+    }
+}
+
 export default compose(
-    graphql(userAllFavourites, { name: 'userFavourites' }),
-    graphql(updateFavourites, { name: 'updateFavourites' }),
     connect(
-        state => {
-            return { id: state.userauth.userid }
-        },
-        null
-    )
+        mapStateToProps,
+        mapDispatchToProps
+    ),
+    graphql(userFavourites, {
+        name: 'userFavourites',
+        // options: props => {
+        //     return {
+        //         variables: {
+        //             id: props.id
+        //         }
+        //     }
+        // }
+    }),
+    graphql(updateFavourites, { name: 'updateFavourites' })
 )(FavouritesCard)
