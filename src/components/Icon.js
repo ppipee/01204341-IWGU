@@ -31,12 +31,9 @@ import Train from '../assets/icon/train.svg'
 import Ferry from '../assets/icon/ferry.svg'
 import Bts from '../assets/icon/bts.svg'
 import Mrt from '../assets/icon/mrt.svg'
-import Lock from '../assets/icon/lock.svg'
-import User from '../assets/icon/user.svg'
 import Info from '../assets/icon/info.svg'
 import Trash from '../assets/icon/trash.svg'
 import Clock from '../assets/icon/clock.svg'
-import Vector from '../assets/icon/Vector.svg'
 import Twitter from '../assets/icon/twitter.svg'
 import Line from '../assets/icon/line.svg'
 import Facebook from '../assets/icon/facebook.svg'
@@ -608,6 +605,36 @@ const Wifi = props => (
     </svg>
 )
 
+const Lock = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='20'
+        height='20'
+        fill='none'
+        viewBox='0 0 20 20'
+    >
+        <path
+            fill={props.fill}
+            d='M15 6.667h-.833v-.834A4.171 4.171 0 0 0 10 1.667a4.171 4.171 0 0 0-4.167 4.166v.834H5a1.667 1.667 0 0 0-1.667 1.666v8.334A1.667 1.667 0 0 0 5 18.333h10a1.667 1.667 0 0 0 1.667-1.666V8.333A1.667 1.667 0 0 0 15 6.667zm-7.5-.834c0-1.378 1.122-2.5 2.5-2.5s2.5 1.122 2.5 2.5v.834h-5v-.834zm3.333 7.27V15H9.167v-1.898a1.66 1.66 0 0 1-.346-2.614 1.667 1.667 0 0 1 2.846 1.179c0 .615-.338 1.146-.834 1.435z'
+        />
+    </svg>
+)
+
+const User = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='14'
+        height='14'
+        fill='none'
+        viewBox='0 0 14 14'
+    >
+        <path
+            fill={props.fill}
+            d='M7 0c1.934 0 3.5 1.566 3.5 3.5S8.934 7 7 7a3.499 3.499 0 0 1-3.5-3.5C3.5 1.566 5.066 0 7 0zm0 14s7 0 7-1.75c0-2.1-3.412-4.375-7-4.375-3.587 0-7 2.275-7 4.375C0 14 7 14 7 14z'
+        />
+    </svg>
+)
+
 export {
     Search,
     Filter,
@@ -674,7 +701,6 @@ export {
     Info,
     Trash,
     Clock,
-    Vector,
     Twitter,
     Facebook,
     Copy,

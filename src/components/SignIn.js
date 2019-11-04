@@ -86,7 +86,7 @@ export default class SignIn extends Component {
                 </div>
                 <div className='signin-box'>
                     <div className='input-username' ref={this.setWrapperRef}>
-                        <img alt='user-icon' src={User} />
+                        <User fill='#FDC1AA' />
                         <input
                             onKeyPress={this.checkCharacter}
                             placeholder='Username'
@@ -103,7 +103,7 @@ export default class SignIn extends Component {
                         }`}
                     />
                     <div className='input-password' ref={this.setWrapperRef}>
-                        <img alt='lock-icon' src={Lock} />
+                        <Lock fill='#FDC1AA' />
                         <input
                             onKeyPress={this.checkCharacter}
                             placeholder='Password'
