@@ -8,7 +8,12 @@ import '../assets/scss/searchresult.scss'
 import { PlannersAction } from '../action'
 import { Time, PinkLocationIcon, Star, NoResult, Add, Fav } from './Icon'
 import { searchPlace } from '../queries/place'
-import { userAllFavourites, updateFavourites } from '../queries/user'
+import {
+    userFavourites,
+    updateFavourites,
+    userDrafts,
+    updateDrafts,
+} from '../queries/user'
 import { Rate } from './Random'
 import { removeItemFromList } from './main'
 
@@ -17,38 +22,37 @@ class SearchResult extends Component {
         super(props)
         this.state = {
             rate_random: [...Array(30).keys()].map(key => Rate()),
-            // userLocation: {
-            //     latitude: 32,
-            //     longitude: 32,
-            // },
-            // loading: true,
+            userLocation: {
+                latitude: 32,
+                longitude: 32,
+            },
+            loading: true,
         }
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         const search = new URLSearchParams(this.props.location.search)
         const keyword = search.get('q')
         this.props.search.refetch({ keyword })
         if (!this.props.getLoadFavs)
-            await this.props.userFavourites.refetch({ id: this.props.userID })
-        // navigator.geolocation.getCurrentPosition(
-        //     position => {
-        //         const { latitude, longitude } = position.coords
-
-        //         this.setState({
-        //             userLocation: { latitude, longitude },
-        //             loading: false,
-        //         })
-        //     },
-        //     () => {
-        //         this.setState({ loading: false })
-        //     }
-        // )
+            this.props.userFavourites.refetch({ id: this.props.userID })
+        if (!this.props.getLoadDrafts) {
+            console.log(this.props.getLoadDrafts)
+            this.props.userDrafts.refetch({ id: this.props.userID })
+        }
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                const { latitude, longitude } = position.coords
+                this.setState({
+                    userLocation: { latitude, longitude },
+                    loading: false,
+                })
+            },
+            () => {
+                this.setState({ loading: false })
+            }
+        )
     }
-
-    // componentWillReceiveProps(nextProps) {
-
-    // }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.location.search !== this.props.location.search) {
@@ -75,6 +79,15 @@ class SearchResult extends Component {
             this.props.setfavs(fav_places)
             this.props.setloadfavs(true)
         }
+        if (
+            prevProps.userDrafts.loading &&
+            !this.props.userDrafts.loading &&
+            !this.props.getLoadDrafts
+        ) {
+            const draft_places = this.props.userDrafts.user.draft
+            this.props.setdrafts(draft_places)
+            this.props.setloaddrafts(true)
+        }
     }
 
     noneResult = () => {
@@ -91,17 +104,41 @@ class SearchResult extends Component {
         )
     }
 
-    setDrafts = (id, code) => {
+    setDrafts = place => {
+        const { placeID, categoryCode, name } = place
         const draft = {
-            placeID: id,
-            categoryCode: code,
+            placeID,
+            categoryCode: categoryCode.toLowerCase(),
+            name,
         }
         const places = this.props.getDrafts.map(place => place.placeID)
-        if (!places.includes(id)) this.props.adddraft(draft)
+        let new_drafts
+        // ADD
+        if (!places.includes(placeID)) {
+            new_drafts = [...this.props.getDrafts, draft]
+            this.props.adddraft(draft)
+        }
+        // REMOVE
         else {
-            const new_drafts = removeItemFromList(places, id)
+            new_drafts = removeItemFromList(
+                this.props.getDrafts,
+                placeID,
+                places
+            )
             this.props.setdrafts(new_drafts)
         }
+
+        this.props.updateDrafts({
+            variables: {
+                id: this.props.userID,
+                draft: new_drafts.map(place => {
+                    return {
+                        placeID: place.placeID,
+                        categoryCode: place.categoryCode,
+                    }
+                }),
+            },
+        })
     }
 
     setFavs = place => {
@@ -172,7 +209,7 @@ class SearchResult extends Component {
             <div className='add-fav'>
                 <div
                     className={`add ${add.includes(id) ? 'active' : ''}`}
-                    onClick={() => this.setDrafts(id, code)}
+                    onClick={() => this.setDrafts(place)}
                 >
                     <span className='icon'>
                         {add.includes(id) ? (
@@ -264,8 +301,13 @@ class SearchResult extends Component {
     }
 
     render() {
-        // console.log("loading", this.props.userFavourites)
-        if (this.props.search.loading || this.props.userFavourites.loading)
+        console.log(this.state.userLocation)
+        if (
+            this.state.loading ||
+            this.props.search.loading ||
+            this.props.userFavourites.loading ||
+            this.props.userDrafts.loading
+        )
             return <div className='search-result'>Loading</div>
         if (this.props.search.error !== undefined)
             return <div className='search-result'>{this.noneResult()}</div>
@@ -283,6 +325,7 @@ const mapStateToProps = state => {
         getDrafts: state.planner.drafts,
         getFavs: state.planner.favourites,
         getLoadFavs: state.planner.load_favs,
+        getLoadDrafts: state.planner.load_drafts,
     }
 }
 
@@ -298,6 +341,8 @@ const mapDispatchToProps = dispatch => {
                 type: PlannersAction.SETDRAFTS,
                 new_drafts: drafts,
             }),
+        setloaddrafts: status =>
+            dispatch({ type: PlannersAction.LOADDRAFTS, load: status }),
         addfav: fav =>
             dispatch({ type: PlannersAction.ADDFAV, add_favourites: fav }),
         setfavs: favs =>
@@ -317,15 +362,8 @@ export default compose(
         apiKey: process.env.MAP_KEY,
     }),
     graphql(searchPlace, { name: 'search' }),
-    graphql(userAllFavourites, {
-        name: 'userFavourites',
-        // options: props => {
-        //     return {
-        //         variables: {
-        //             id: props.userID
-        //         }
-        //     }
-        // }
-    }),
-    graphql(updateFavourites, { name: 'updateFavourites' })
+    graphql(userFavourites, { name: 'userFavourites' }),
+    graphql(updateFavourites, { name: 'updateFavourites' }),
+    graphql(userDrafts, { name: 'userDrafts' }),
+    graphql(updateDrafts, { name: 'updateDrafts' })
 )(SearchResult)

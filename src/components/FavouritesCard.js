@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { Skeleton } from 'antd'
-import { userAllFavourites, updateFavourites } from '../queries/user'
+import { userFavourites, updateFavourites } from '../queries/user'
 import { Close, Star, Add } from './Icon'
 import { PlannersAction } from '../action'
 import '../assets/scss/favouritescard.scss'
@@ -168,7 +168,7 @@ export default compose(
         mapStateToProps,
         mapDispatchToProps
     ),
-    graphql(userAllFavourites, {
+    graphql(userFavourites, {
         name: 'userFavourites',
         // options: props => {
         //     return {

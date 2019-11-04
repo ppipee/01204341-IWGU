@@ -4,6 +4,7 @@ const InitialState = {
     drafts: [],
     favourites: [],
     load_favs: false,
+    load_drafts: false,
 }
 
 const Action = PlannersAction
@@ -44,6 +45,11 @@ const planner = (state = InitialState, action) => {
             return {
                 ...state,
                 load_favs: action.load,
+            }
+        case Action.LOADDRAFTS:
+            return {
+                ...state,
+                load_drafts: action.load,
             }
         default:
             return state

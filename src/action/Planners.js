@@ -6,5 +6,6 @@ const PlannersAction = {
     CLEARDRAFTS: 'CLEAR_DRAFTS',
     CLEARFAVS: 'CLEAR_FAVS',
     LOADFAVS: 'LOAD_FAVS',
+    LOADDRAFTS: 'LOAD_DRAFTS',
 }
 export default PlannersAction

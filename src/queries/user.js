@@ -29,10 +29,10 @@ const userData = gql`
     }
 `
 
-const userFavourites = gql`
+const userDrafts = gql`
     query($id: ID) {
         user(id: $id) {
-            favourite {
+            draft {
                 placeID
                 name
                 categoryCode
@@ -41,7 +41,7 @@ const userFavourites = gql`
     }
 `
 
-const userAllFavourites = gql`
+const userFavourites = gql`
     query($id: ID) {
         user(id: $id) {
             favourite {
@@ -108,6 +108,14 @@ const updateFavourites = gql`
     }
 `
 
+const updateDrafts = gql`
+    mutation($id: ID!, $draft: [InputFav]) {
+        updateUser(id: $id, draft: $draft) {
+            username
+        }
+    }
+`
+
 const getUsers = gql`
     {
         users {
@@ -126,5 +134,6 @@ export {
     userUpdate,
     userFavourites,
     updateFavourites,
-    userAllFavourites,
+    userDrafts,
+    updateDrafts,
 }
