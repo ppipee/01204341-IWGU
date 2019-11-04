@@ -60,7 +60,6 @@ class SignIn extends Component {
             const { username, password } = this.state
             await this.props.auth.refetch({ username, password })
             const auth = this.props.auth.authSignin
-            console.log(auth)
             if (!auth) {
                 this.setState({ match: false })
             } else this.submit()
@@ -101,6 +100,7 @@ class SignIn extends Component {
                         <input
                             onKeyPress={this.checkCharacter}
                             placeholder='Password'
+                            type='password'
                             value={this.state.password}
                             onChange={e =>
                                 this.setState({ password: e.target.value })
