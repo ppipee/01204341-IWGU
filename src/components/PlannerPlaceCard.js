@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import moment from 'moment'
-import { Info, DownArrow, Edit, Trash, Check } from './Icon'
+import { graphql } from 'react-apollo'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { Info, Edit, Trash, Check } from './Icon'
+import { userDrafts, updateDrafts } from '../queries/user'
+import { PlannersAction } from '../action'
 import '../assets/scss/plannerplacecard.scss'
 
 class PlannerPlaceCard extends Component {
@@ -8,6 +13,23 @@ class PlannerPlaceCard extends Component {
         super(props)
         this.state = {
             expandCard: null,
+        }
+    }
+
+    async componentDidMount() {
+        if (!this.props.getLoadDrafts)
+            await this.props.userDrafts.refetch({ id: this.props.id })
+    }
+
+    componentDidUpdate(prevProps) {
+        if (
+            prevProps.userDrafts.loading &&
+            !this.props.userDrafts.loading &&
+            !this.props.getLoadDrafts
+        ) {
+            const draft_places = this.props.userDrafts.user.draft
+            this.props.setdrafts(draft_places)
+            this.props.setloaddrafts(true)
         }
     }
 
@@ -39,8 +61,10 @@ class PlannerPlaceCard extends Component {
         return list
     }
 
-    genPlaceCard(places, len, dayRange) {
+    genPlaceCard(places, dayRange) {
+        console.log(places)
         const card = []
+        const len = places.length
         for (let i = 0; i < len; i++) {
             let expand = ''
             if (this.state.expandCard === i) expand = ' expand'
@@ -96,15 +120,49 @@ class PlannerPlaceCard extends Component {
     }
 
     render() {
+        const draft_places = !this.props.getLoadDrafts
+            ? this.props.userDrafts.user.draft
+            : this.props.getDrafts
+        const { day, range, places } = this.props
+        let places_list = places
+        if (day === 0) places_list = draft_places
         return (
             <div className='planner-place'>
-                {this.genPlaceCard(
-                    this.props.places,
-                    this.props.no,
-                    this.props.range
-                )}
+                {this.genPlaceCard(places_list, range)}
             </div>
         )
     }
 }
-export default PlannerPlaceCard
+const mapStateToProps = state => {
+    return {
+        getDrafts: state.planner.drafts,
+        getLoadDrafts: state.planner.load_drafts,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setdrafts: drafts =>
+            dispatch({ type: PlannersAction.SETDRAFTS, new_drafts: drafts }),
+        setloaddrafts: status =>
+            dispatch({ type: PlannersAction.LOADDRAFTS, load: status }),
+    }
+}
+
+export default compose(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    ),
+    graphql(userDrafts, {
+        name: 'userDrafts',
+        options: props => {
+            return {
+                variables: {
+                    id: props.id,
+                },
+            }
+        },
+    }),
+    graphql(updateDrafts, { name: 'updateDrafts' })
+)(PlannerPlaceCard)

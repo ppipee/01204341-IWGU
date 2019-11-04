@@ -1,24 +1,8 @@
 import React, { Component } from 'react'
 import Slider from 'react-slick'
-import { Trip } from './Demo'
-import '../assets/scss/plannerdaycard.scss'
+import moment from 'moment'
 import PlannerPlaceCard from './PlannerPlaceCard'
-
-const Months = [
-    'JAN',
-    'FEB',
-    'MAR',
-    'APR',
-    'MAY',
-    'JUN',
-    'JUL',
-    'AUG',
-    'SEP',
-    'OCT',
-    'NOV',
-    'DEC',
-]
-const TripPlan = Trip[0]
+import '../assets/scss/plannerdaycard.scss'
 
 class PlannerDayCard extends Component {
     constructor() {
@@ -34,17 +18,17 @@ class PlannerDayCard extends Component {
         document.body.style.overflow = ''
     }
 
-    genDayCard() {
-        const day = TripPlan.days.length
+    genDayCard(planner) {
+        const day = planner.days.length
         const card = []
-        const dayRange = TripPlan.days
+        const dayRange = planner.days
         for (let i = 0; i < day + 1; i++) {
             let head = 'Draft'
             let places = []
             if (i !== 0) {
-                const { date } = TripPlan.days[i - 1]
-                places = TripPlan.days[i - 1].places
-                head = `${date.getDate()} ${Months[date.getMonth()]}`
+                const { date } = planner.days[i - 1]
+                places = planner.days[i - 1].places
+                head = moment(date, 'YYYY-MM-DD').format('D MMM')
             }
             card.push(
                 <div key={`day-${i + 1}`} className='day-card'>
@@ -53,9 +37,9 @@ class PlannerDayCard extends Component {
                     </div>
                     <div className='content'>
                         <PlannerPlaceCard
-                            places={places}
-                            no={places.length}
+                            day={i}
                             range={dayRange}
+                            places={places}
                         />
                     </div>
                 </div>
@@ -80,6 +64,7 @@ class PlannerDayCard extends Component {
                 return <span className='dot'>{i}</span>
             },
         }
+        const planner = this.props
         return (
             <div className='planner-day'>
                 <link
@@ -94,7 +79,9 @@ class PlannerDayCard extends Component {
                     href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css'
                 />
                 <div>
-                    <Slider {...settings}>{this.genDayCard()}</Slider>
+                    <Slider {...settings}>
+                        {this.genDayCard(planner.planner)}
+                    </Slider>
                 </div>
             </div>
         )
