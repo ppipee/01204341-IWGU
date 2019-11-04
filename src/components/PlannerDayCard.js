@@ -37,7 +37,7 @@ class PlannerDayCard extends Component {
     genDayCard() {
         const day = TripPlan.days.length
         const card = []
-        const dayRange = [TripPlan.days[0].date, TripPlan.days[day - 1].date]
+        const dayRange = TripPlan.days
         for (let i = 0; i < day + 1; i++) {
             let head = 'Draft'
             let places = []

@@ -137,10 +137,7 @@ class SideBar extends Component {
                                                 index={index}
                                                 onClick={this.removeFav}
                                             >
-                                                <img
-                                                    src={Trash}
-                                                    alt='trash-icon'
-                                                />
+                                                <Trash fill='#fff' />
                                             </div>
                                             <Link
                                                 to={`/detail?place=${place.placeID}&code=${place.categoryCode}`}
