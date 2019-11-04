@@ -10,23 +10,18 @@ const createPlanner = gql`
 
 const updatePlanner = gql`
     mutation(
-        $userID: ID!
+        $plannerID: ID!
         $name: String
         $days: [InputDayDetail]
         $share: Boolean
     ) {
-        updatePlanner(
-            userID: $userID
-            name: $name
-            days: $days
-            share: $share
-        ) {
+        updatePlanner(id: $plannerID, name: $name, days: $days, share: $share) {
             name
         }
     }
 `
 
-const getDetailPlanners = gql`
+const getDetailPlanner = gql`
     query($id: ID!) {
         planner(id: $id) {
             author {
@@ -82,7 +77,7 @@ const removePlanner = gql`
 
 export {
     getUserPlanners,
-    getDetailPlanners,
+    getDetailPlanner,
     removePlanner,
     createPlanner,
     updatePlanner,
