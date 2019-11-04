@@ -294,8 +294,8 @@ const Close = props => (
 
 const Fav = props => (
     <svg
-        width='15'
-        height='15'
+        width='13.1'
+        height='11.3'
         viewBox='0 0 15 15'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
