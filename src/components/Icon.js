@@ -16,7 +16,6 @@ import PinkLocationIcon from '../assets/icon/location.svg'
 import Calendar from '../assets/icon/calendar.svg'
 import RightArrow from '../assets/icon/right-arrow.svg'
 import CurveArrow from '../assets/icon/curve-arrow.svg'
-import Plus from '../assets/icon/plus.svg'
 import LeftArrowColor from '../assets/icon/left-arrow-color.svg'
 import RightArrowColor from '../assets/icon/right-arrow-color.svg'
 import Dollar from '../assets/icon/dollar.svg'
@@ -35,9 +34,6 @@ import Mrt from '../assets/icon/mrt.svg'
 import Info from '../assets/icon/info.svg'
 import Trash from '../assets/icon/trash.svg'
 import Clock from '../assets/icon/clock.svg'
-import user from '../assets/icon/user.svg'
-import vector from '../assets/icon/Vector.svg'
-import lock from '../assets/icon/lock.svg'
 import Twitter from '../assets/icon/twitter.svg'
 import Line from '../assets/icon/line.svg'
 import Facebook from '../assets/icon/facebook.svg'
@@ -538,6 +534,56 @@ const Back = props => (
     </svg>
 )
 
+const Plus = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='65'
+        height='65'
+        fill='none'
+        viewBox='0 0 65 65'
+    >
+        <g filter='url(#a)'>
+            <ellipse
+                cx='33.051'
+                cy='33.051'
+                fill='#fff'
+                rx='18.729'
+                ry='18.729'
+            />
+            <path
+                fill={props.fill}
+                d='M33.083 5C18.133 5 6 17.133 6 32.083s12.133 27.084 27.083 27.084 27.084-12.134 27.084-27.084S48.033 5 33.083 5zm10.834 29.792h-8.125v8.125a2.716 2.716 0 0 1-2.709 2.708 2.716 2.716 0 0 1-2.708-2.708v-8.125H22.25a2.716 2.716 0 0 1-2.708-2.709 2.716 2.716 0 0 1 2.708-2.708h8.125V21.25a2.716 2.716 0 0 1 2.708-2.708 2.716 2.716 0 0 1 2.709 2.708v8.125h8.125a2.716 2.716 0 0 1 2.708 2.708 2.716 2.716 0 0 1-2.708 2.709z'
+            />
+        </g>
+        <defs>
+            <filter
+                id='a'
+                width='73'
+                height='73'
+                x='-4'
+                y='-2'
+                colorInterpolationFilters='sRGB'
+                filterUnits='userSpaceOnUse'
+            >
+                <feFlood floodOpacity='0' result='BackgroundImageFix' />
+                <feColorMatrix
+                    in='SourceAlpha'
+                    values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+                />
+                <feOffset dy='2' />
+                <feGaussianBlur stdDeviation='2' />
+                <feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.18 0' />
+                <feBlend in2='BackgroundImageFix' result='effect1_dropShadow' />
+                <feBlend
+                    in='SourceGraphic'
+                    in2='effect1_dropShadow'
+                    result='shape'
+                />
+            </filter>
+        </defs>
+    </svg>
+)
+
 const Wifi = props => (
     <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -556,6 +602,36 @@ const Wifi = props => (
                 <path fill='#fff' d='M0 0h15.402v15H0z' />
             </clipPath>
         </defs>
+    </svg>
+)
+
+const Lock = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='20'
+        height='20'
+        fill='none'
+        viewBox='0 0 20 20'
+    >
+        <path
+            fill={props.fill}
+            d='M15 6.667h-.833v-.834A4.171 4.171 0 0 0 10 1.667a4.171 4.171 0 0 0-4.167 4.166v.834H5a1.667 1.667 0 0 0-1.667 1.666v8.334A1.667 1.667 0 0 0 5 18.333h10a1.667 1.667 0 0 0 1.667-1.666V8.333A1.667 1.667 0 0 0 15 6.667zm-7.5-.834c0-1.378 1.122-2.5 2.5-2.5s2.5 1.122 2.5 2.5v.834h-5v-.834zm3.333 7.27V15H9.167v-1.898a1.66 1.66 0 0 1-.346-2.614 1.667 1.667 0 0 1 2.846 1.179c0 .615-.338 1.146-.834 1.435z'
+        />
+    </svg>
+)
+
+const User = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='14'
+        height='14'
+        fill='none'
+        viewBox='0 0 14 14'
+    >
+        <path
+            fill={props.fill}
+            d='M7 0c1.934 0 3.5 1.566 3.5 3.5S8.934 7 7 7a3.499 3.499 0 0 1-3.5-3.5C3.5 1.566 5.066 0 7 0zm0 14s7 0 7-1.75c0-2.1-3.412-4.375-7-4.375-3.587 0-7 2.275-7 4.375C0 14 7 14 7 14z'
+        />
     </svg>
 )
 
@@ -620,12 +696,11 @@ export {
     Ferry,
     Bts,
     Mrt,
+    Lock,
+    User,
     Info,
     Trash,
     Clock,
-    user,
-    vector,
-    lock,
     Twitter,
     Facebook,
     Copy,

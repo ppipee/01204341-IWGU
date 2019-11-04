@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom'
 import Swipe from 'react-easy-swipe'
 import { Skeleton } from 'antd'
 import '../assets/scss/sidebar.scss'
-import { userFavourites, updateFavourites } from '../queries/user'
-import { UserAuthAction } from '../action'
+import { userDrafts, updateDrafts } from '../queries/user'
+import { UserAuthAction, PlannersAction } from '../action'
 import { Airplane, Search, Fav, Back, Trash, Info } from './Icon'
 
 class SideBar extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             block_swipe: false,
             index: [],
@@ -20,7 +20,20 @@ class SideBar extends Component {
     }
 
     async componentDidMount() {
-        await this.props.userFavourites.refetch({ id: this.props.id })
+        if (!this.props.getLoadDrafts)
+            await this.props.userDrafts.refetch({ id: this.props.id })
+    }
+
+    componentDidUpdate(prevProps) {
+        if (
+            prevProps.userDrafts.loading &&
+            !this.props.userDrafts.loading &&
+            !this.props.getLoadDrafts
+        ) {
+            const fav_places = this.props.userDrafts.user.draft
+            this.props.setfavs(fav_places)
+            this.props.setloaddrafts(true)
+        }
     }
 
     sliceAnimation = (direction, target) => {
@@ -52,25 +65,20 @@ class SideBar extends Component {
 
     removeFav = e => {
         const pointer = e.target.getAttribute('index')
-        const new_fav = this.props.userFavourites.user.favourite
-        new_fav.splice(pointer, 1)
-        console.log(new_fav)
-        this.props.updateFavourites({
+        const new_drafts = this.props.getDrafts
+        new_drafts.splice(pointer, 1)
+        this.props.updateDrafts({
             variables: {
                 id: this.props.id,
-                favourite: new_fav.map(place => {
+                draft: new_drafts.map(place => {
                     return {
                         placeID: place.placeID,
                         categoryCode: place.categoryCode,
                     }
                 }),
             },
-            refetchQueries: [
-                {
-                    query: userFavouritess,
-                },
-            ],
         })
+        this.props.setfavs(new_favs)
         this.setState({ block_swipe: false })
     }
 
@@ -84,8 +92,8 @@ class SideBar extends Component {
                 </div>
             )
         else if (
-            this.props.userFavourites.loading ||
-            this.props.userFavourites.error !== undefined
+            this.props.userDrafts.loading ||
+            this.props.userDrafts.error !== undefined
         ) {
             console.log('loading')
             container = [...Array(5).keys()].map(index => (
@@ -99,7 +107,9 @@ class SideBar extends Component {
                 </div>
             ))
         } else {
-            const places = this.props.userFavourites.user.favourite
+            const places = !this.props.getLoadDrafts
+                ? this.props.userDrafts.user.draft
+                : this.props.getDrafts
             if (places.length > 0) {
                 places.forEach((place, index) => {
                     if (places.length <= 5 || +index >= places.length - 5) {
@@ -251,18 +261,33 @@ const mapStateToProps = state => {
     return {
         id: state.userauth.userid,
         username: state.userauth.username,
+        getDrafts: state.planner.drafts,
+        getLoadDrafts: state.planner.load_drafts,
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         signout: () => dispatch({ type: UserAuthAction.SIGNOUT }),
+        setfavs: drafts =>
+            dispatch({ type: PlannersAction.SETDRAFTS, new_drafts: drafts }),
+        setloaddrafts: status =>
+            dispatch({ type: PlannersAction.LOADDRAFTS, load: status }),
     }
 }
 export default compose(
-    graphql(userFavourites, { name: 'userFavourites' }),
-    graphql(updateFavourites, { name: 'updateFavourites' }),
     connect(
         mapStateToProps,
         mapDispatchToProps
-    )
+    ),
+    graphql(userDrafts, {
+        name: 'userDrafts',
+        options: props => {
+            return {
+                variables: {
+                    id: props.id,
+                },
+            }
+        },
+    }),
+    graphql(updateDrafts, { name: 'updateDrafts' })
 )(SideBar)

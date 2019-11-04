@@ -3,6 +3,7 @@ import { UserAuthAction } from '../action'
 const InitialState = {
     userid: '5d9ef72333c4410004eca446',
     username: 'iwgu',
+    status: 'traveler',
 }
 const Action = UserAuthAction
 
@@ -23,6 +24,7 @@ const userauth = (state = InitialState, action) => {
                 ...state,
                 userid: '',
                 username: '',
+                status: '',
             }
         default:
             return state
