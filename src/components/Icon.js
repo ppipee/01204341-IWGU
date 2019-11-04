@@ -296,7 +296,7 @@ const Fav = props => (
     <svg
         width='13.1'
         height='11.3'
-        viewBox='0 0 13.1 11.3'
+        viewBox='0 0 11.3 13.1'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
     >
