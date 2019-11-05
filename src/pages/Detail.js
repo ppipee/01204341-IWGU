@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
+import { Skeleton } from 'antd'
 import {
     NavBar,
     ImageSlider,
@@ -10,6 +11,7 @@ import {
     Contact,
 } from '../components'
 import { placeDetail } from '../queries/place'
+import '../assets/scss/detail.scss'
 
 class DetailPage extends Component {
     constructor(props) {
@@ -35,8 +37,41 @@ class DetailPage extends Component {
             return (
                 <div className='detail-page'>
                     <NavBar back design='default' />
-                    <div>Loading...</div>
-                    <NearBy this />
+                    <div>
+                        <div className='image-slider'>
+                            <div className='image-keleton' />
+                            <div className='group'>
+                                <div className='container1' />
+                                <div className='container2' />
+                            </div>
+                            <div className='info-place'>
+                                <div className='info-border'>
+                                    <span className='title'>
+                                        <Skeleton active paragraph={false} />
+                                    </span>
+                                    <div className='detail'>
+                                        <Skeleton active paragraph={false} />
+                                        <Skeleton active paragraph={false} />
+                                        <Skeleton active paragraph={false} />
+                                        <Skeleton active paragraph={false} />
+                                        <Skeleton active paragraph={false} />
+                                        <Skeleton active paragraph={false} />
+                                        <Skeleton active paragraph={false} />
+                                        <Skeleton active paragraph={false} />
+                                        <Skeleton active paragraph={false} />
+                                        <Skeleton active paragraph={false} />
+                                        <Skeleton active paragraph={false} />
+                                        <Skeleton active paragraph={false} />
+                                        <Skeleton active paragraph={false} />
+                                        <Skeleton active paragraph={false} />
+                                        <Skeleton active paragraph={false} />
+                                        <Skeleton active paragraph={false} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <NearBy this />
+                    </div>
                 </div>
             )
         }
