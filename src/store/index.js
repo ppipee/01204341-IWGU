@@ -7,7 +7,7 @@ import rootReducer from '../reducers'
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['newtrip'],
+    blacklist: ['newtrip', 'planner'],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

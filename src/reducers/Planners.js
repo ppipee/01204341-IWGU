@@ -5,7 +5,7 @@ const InitialState = {
     favourites: [],
     load_favs: false,
     load_drafts: false,
-    planner: {},
+    planner: null,
 }
 
 const Action = PlannersAction

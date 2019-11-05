@@ -64,7 +64,6 @@ class PlannerDayCard extends Component {
             },
         }
         const planner = this.props
-        // console.log(planner)
         return (
             <div className='planner-day'>
                 <link

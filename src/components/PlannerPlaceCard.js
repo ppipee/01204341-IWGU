@@ -7,6 +7,7 @@ import { Info, Edit, Trash, Check } from './Icon'
 import { userDrafts, updateDrafts } from '../queries/user'
 import { updatePlanner } from '../queries/planner'
 import { PlannersAction } from '../action'
+import { removeItemFromList } from './main'
 import '../assets/scss/plannerplacecard.scss'
 
 class PlannerPlaceCard extends Component {
@@ -22,7 +23,7 @@ class PlannerPlaceCard extends Component {
 
     async componentDidMount() {
         if (!this.props.getLoadDrafts)
-            await this.props.userDrafts.refetch({ id: this.props.id })
+            await this.props.userDrafts.refetch({ id: this.props.userID })
     }
 
     componentDidUpdate(prevProps) {
@@ -35,15 +36,25 @@ class PlannerPlaceCard extends Component {
             this.props.setdrafts(draft_places)
             this.props.setloaddrafts(true)
         }
+        return prevProps.planner !== this.props.planner
     }
 
-    setPlace(place) {
+    // shouldComponentUpdate(nextProps) {
+    //     return (
+    //         (this.props.getPlanner !== nextProps.getPlanner) ||
+    //     )
+    // }
+
+    setPlace(place, fromDay) {
         this.setState({ expandCard: null })
+        const planner =
+            this.props.getPlanner === null
+                ? this.props.planner
+                : this.props.getPlanner
         const { placeID, categoryCode, name: placeName } = place
-        const { name, share, author } = this.props.planner
-        const destDay =
-            this.state.date - 1 === -1 ? 'draft' : this.state.date - 1
-        const { date, day: dayPrev, note } = this.props.planner.days[destDay]
+        const { id, name, share, author } = planner
+        const destDay = this.state.date - 1 === -1 ? 0 : this.state.date - 1
+        const { date, day: dayPrev, note } = planner.days[destDay]
         const new_place = {
             place: {
                 placeID,
@@ -56,16 +67,81 @@ class PlannerPlaceCard extends Component {
             },
         }
 
-        const place_list = [
-            ...this.props.planner.days[destDay].places,
-            new_place,
-        ]
+        if (this.state.date - 1 === -1) {
+            const draft = {
+                placeID,
+                categoryCode,
+                name,
+            }
+
+            const new_drafts = [...this.props.getDrafts, draft]
+            this.props.adddraft(draft)
+
+            this.props.updateDrafts({
+                variables: {
+                    id: this.props.userID,
+                    draft: new_drafts.map(place => {
+                        return {
+                            placeID: place.placeID,
+                            categoryCode: place.categoryCode,
+                        }
+                    }),
+                },
+            })
+            this.deletePlace(place, fromDay)
+        }
+
+        if (fromDay === 0) {
+            const places = this.props.getDrafts.map(place => place.placeID)
+            const new_draft = removeItemFromList(
+                this.props.getDrafts,
+                placeID,
+                places
+            )
+            this.props.setdrafts(new_draft)
+
+            this.props.updateDrafts({
+                variables: {
+                    id: this.props.userID,
+                    draft: new_draft.map(place => {
+                        return {
+                            placeID: place.placeID,
+                            categoryCode: place.categoryCode,
+                        }
+                    }),
+                },
+            })
+        }
+
+        const place_list = [...planner.days[destDay].places, new_place]
 
         const new_planner = {
-            plannerID: this.props.planner.id,
+            plannerID: id,
             author,
             name,
-            days: this.props.planner.days.map(day => {
+            days: planner.days.map(day => {
+                if (day.day === fromDay) {
+                    return {
+                        day: day.day,
+                        date: day.date,
+                        places: day.places
+                            .filter(place => placeID !== place.place.placeID)
+                            .map(place => {
+                                return {
+                                    place: {
+                                        placeID: place.place.placeID,
+                                        categoryCode: place.place.categoryCode,
+                                        name: place.place.name,
+                                    },
+                                    time: {
+                                        start: place.time.start,
+                                        end: place.time.end,
+                                    },
+                                }
+                            }),
+                        note: day.note,
+                    }
+                }
                 if (day.day === destDay + 1) {
                     return {
                         day: dayPrev,
@@ -113,12 +189,11 @@ class PlannerPlaceCard extends Component {
             share,
         }
 
-        console.log(new_planner)
+        this.props.setplanner(new_planner)
 
         this.props.updatePlanner({
             variables: new_planner,
         })
-        this.props.setplanner(new_planner)
     }
 
     inputEnable = e => {
@@ -152,6 +227,92 @@ class PlannerPlaceCard extends Component {
         this.setState({ expandCard: cardNo })
     }
 
+    deletePlace(place, fromDay) {
+        this.setState({ expandCard: null })
+        const { placeID } = place
+        const planner =
+            this.props.getPlanner === null
+                ? this.props.planner
+                : this.props.getPlanner
+        const { id, name, share, author } = planner
+
+        if (fromDay === 0) {
+            const places = this.props.getDrafts.map(place => place.placeID)
+            const new_draft = removeItemFromList(
+                this.props.getDrafts,
+                placeID,
+                places
+            )
+            this.props.setdrafts(new_draft)
+
+            this.props.updateDrafts({
+                variables: {
+                    id: this.props.userID,
+                    draft: new_draft.map(place => {
+                        return {
+                            placeID: place.placeID,
+                            categoryCode: place.categoryCode,
+                        }
+                    }),
+                },
+            })
+        }
+
+        const new_planner = {
+            plannerID: id,
+            author,
+            name,
+            days: planner.days.map(day => {
+                if (day.day === fromDay) {
+                    return {
+                        day: day.day,
+                        date: day.date,
+                        places: day.places
+                            .filter(place => placeID !== place.place.placeID)
+                            .map(place => {
+                                return {
+                                    place: {
+                                        placeID: place.place.placeID,
+                                        categoryCode: place.place.categoryCode,
+                                        name: place.place.name,
+                                    },
+                                    time: {
+                                        start: place.time.start,
+                                        end: place.time.end,
+                                    },
+                                }
+                            }),
+                        note: day.note,
+                    }
+                }
+                return {
+                    day: day.day,
+                    date: day.date,
+                    places: day.places.map(place => {
+                        return {
+                            place: {
+                                placeID: place.place.placeID,
+                                categoryCode: place.place.categoryCode,
+                                name: place.place.name,
+                            },
+                            time: {
+                                start: place.time.start,
+                                end: place.time.end,
+                            },
+                        }
+                    }),
+                    note: day.note,
+                }
+            }),
+            share,
+        }
+        this.props.setplanner(new_planner)
+
+        this.props.updatePlanner({
+            variables: new_planner,
+        })
+    }
+
     dropdownList(dayRange) {
         const list = []
         for (let i = 0; i < dayRange.length + 1; i++) {
@@ -168,7 +329,11 @@ class PlannerPlaceCard extends Component {
     }
 
     genPlaceCard(day, places) {
-        const dayRange = this.props.planner.days
+        const planner =
+            this.props.getPlanner === null
+                ? this.props.planner
+                : this.props.getPlanner
+        const dayRange = planner.days
         const card = []
         const len = places.length
         // console.log(places)
@@ -215,11 +380,13 @@ class PlannerPlaceCard extends Component {
                             </div>
                         </div>
                         <div className='footer'>
-                            <Trash fill='#b0b0b0' />
+                            <span onClick={() => this.deletePlace(place, day)}>
+                                <Trash fill='#b0b0b0' />
+                            </span>
                             <img
                                 alt='check'
                                 src={Check}
-                                onClick={() => this.setPlace(place)}
+                                onClick={() => this.setPlace(place, day)}
                             />
                         </div>
                     </div>
@@ -230,6 +397,7 @@ class PlannerPlaceCard extends Component {
     }
 
     render() {
+        if (this.props.userDrafts.loading) return <div>loading</div>
         const draft_places = !this.props.getLoadDrafts
             ? this.props.userDrafts.user.draft
             : this.props.getDrafts
@@ -248,11 +416,17 @@ const mapStateToProps = state => {
         userID: state.userauth.userid,
         getDrafts: state.planner.drafts,
         getLoadDrafts: state.planner.load_drafts,
+        getPlanner: state.planner.planner,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
+        adddraft: draft =>
+            dispatch({
+                type: PlannersAction.ADDDRAFT,
+                add_draft: draft,
+            }),
         setdrafts: drafts =>
             dispatch({ type: PlannersAction.SETDRAFTS, new_drafts: drafts }),
         setloaddrafts: status =>
