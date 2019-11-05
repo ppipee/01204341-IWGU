@@ -1,0 +1,40 @@
+.add-btn-detail {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 19.9px;
+    right: 22.4px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: #b0b0b0;
+    svg {
+        pointer-events: none;
+        height: 23px;
+        width: 23px;
+    }
+    &.active {
+        background-color: #fcbba4;
+    }
+}
+.fav-btn-detail {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 19.9px;
+    right: 103px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: #b0b0b0;
+    svg {
+        pointer-events: none;
+        width: 26px;
+        height: 22px;
+    }
+    &.active {
+        background-color: #fcbba4;
+    }
+}

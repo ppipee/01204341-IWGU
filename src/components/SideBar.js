@@ -30,8 +30,8 @@ class SideBar extends Component {
             !this.props.userDrafts.loading &&
             !this.props.getLoadDrafts
         ) {
-            const fav_places = this.props.userDrafts.user.draft
-            this.props.setfavs(fav_places)
+            const draft_places = this.props.userDrafts.user.draft
+            this.props.setdrafts(draft_places)
             this.props.setloaddrafts(true)
         }
     }
