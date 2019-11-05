@@ -1,12 +1,6 @@
 import React from 'react'
-import SearchIcon from '../assets/icon/search-icon.svg'
 import Clear from '../assets/icon/refresh.svg'
-import Star from '../assets/icon/full-star.svg'
-import BlankStar from '../assets/icon/empty-star.svg'
-import Close from '../assets/icon/close.svg'
 import Menu from '../assets/icon/featured-menu.svg'
-import Airplane from '../assets/icon/airplane.svg'
-import Back from '../assets/icon/back.svg'
 import LocationIcon from '../assets/icon/location-icon.svg'
 import RestaurantInActive from '../assets/icon/restaurant.svg'
 import RestaurantActive from '../assets/icon/restaurant2.svg'
@@ -17,44 +11,16 @@ import TreeActive from '../assets/icon/tree2.svg'
 import SleepInActive from '../assets/icon/sleep.svg'
 import SleepActive from '../assets/icon/sleep2.svg'
 import PaperAirplane from '../assets/icon/paper-airplane.svg'
-import AddActive from '../assets/icon/add-white.svg'
-import AddInActive from '../assets/icon/add-grey.svg'
-import FavActive from '../assets/icon/heart-white.svg'
-import FavInActive from '../assets/icon/heart-grey.svg'
 import Time from '../assets/icon/time.svg'
 import PinkLocationIcon from '../assets/icon/location.svg'
-import BlackAirplane from '../assets/icon/black-airplane.svg'
 import Calendar from '../assets/icon/calendar.svg'
 import RightArrow from '../assets/icon/right-arrow.svg'
 import CurveArrow from '../assets/icon/curve-arrow.svg'
-import Plus from '../assets/icon/plus.svg'
 import LeftArrowColor from '../assets/icon/left-arrow-color.svg'
 import RightArrowColor from '../assets/icon/right-arrow-color.svg'
-import CloseColor from '../assets/icon/close-color.svg'
 import Dollar from '../assets/icon/dollar.svg'
 import DownArrow from '../assets/icon/down-arrow.svg'
 import UpArrow from '../assets/icon/up-arrow.svg'
-import PinkClose from '../assets/icon/pink-close.svg'
-import CoinInactive from '../assets/icon/coin-inactive.svg'
-import CoinActive from '../assets/icon/coin-active.svg'
-import CreditcardInactive from '../assets/icon/credit-card-inactive.svg'
-import CreditcardActive from '../assets/icon/credit-card-active.svg'
-import GroupInactive from '../assets/icon/group-inactive.svg'
-import GroupActive from '../assets/icon/group-active.svg'
-import HandicapInactive from '../assets/icon/handicap-inactive.svg'
-import HandicapActive from '../assets/icon/handicap-active.svg'
-import KidInactive from '../assets/icon/kids-inactive.svg'
-import KidActive from '../assets/icon/kids-active.svg'
-import ParkingInactive from '../assets/icon/parking-inactive.svg'
-import ParkingActive from '../assets/icon/parking-active.svg'
-import PetInactive from '../assets/icon/pet-inactive.svg'
-import PetActive from '../assets/icon/pet-active.svg'
-import PlugInactive from '../assets/icon/plug-inactive.svg'
-import PlugActive from '../assets/icon/plug-active.svg'
-import SmokingInactive from '../assets/icon/smoking-inactive.svg'
-import SmokingActive from '../assets/icon/smoking-active.svg'
-import WifiInactive from '../assets/icon/wifi-inactive.svg'
-import WifiActive from '../assets/icon/wifi-active.svg'
 import ArrowDown from '../assets/icon/show-more.svg'
 import ArrowUp from '../assets/icon/show-less.svg'
 import RateStar from '../assets/icon/rate-star.svg'
@@ -65,8 +31,18 @@ import Train from '../assets/icon/train.svg'
 import Ferry from '../assets/icon/ferry.svg'
 import Bts from '../assets/icon/bts.svg'
 import Mrt from '../assets/icon/mrt.svg'
+import Info from '../assets/icon/info.svg'
+import Trash from '../assets/icon/trash.svg'
 import Clock from '../assets/icon/clock.svg'
+import Twitter from '../assets/icon/twitter.svg'
+import Line from '../assets/icon/line.svg'
+import Facebook from '../assets/icon/facebook.svg'
+import Copy from '../assets/icon/copy.svg'
+import SettingButton from '../assets/icon/setting-button.svg'
+import ShareButton from '../assets/icon/share-button.svg'
+import SummaryButton from '../assets/icon/summary-button.svg'
 import NoResult from '../assets/icon/no-result.svg'
+import HeartWhite from '../assets/icon/heart-border-white.svg'
 
 const Filter = props => (
     <svg
@@ -294,8 +270,144 @@ const Phone = props => (
         />
     </svg>
 )
+const Service = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <path
+            fill={props.fill}
+            d='M6.875 9.599h-.032a.593.593 0 0 1-.593-.593.625.625 0 0 0-1.25 0 1.843 1.843 0 0 0 1.843 1.843h.032v.625a.625.625 0 0 0 1.25 0v-.625a1.875 1.875 0 0 0 0-3.75v-1.25h.014c.337 0 .611.274.611.611a.625.625 0 0 0 1.25 0A1.861 1.861 0 0 0 8.139 4.6h-.014v-.625a.625.625 0 0 0-1.25 0v.625a1.875 1.875 0 0 0 0 3.75v1.25zm1.25 0v-1.25a.625.625 0 0 1 0 1.25zm-1.25-3.75v1.25a.625.625 0 0 1 0-1.25zm.625 8.125a6.25 6.25 0 1 1 0-12.5 6.25 6.25 0 0 1 0 12.5z'
+        />
+    </svg>
+)
+const Close = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width={props.size}
+        height={props.size}
+        fill='none'
+        viewBox='0 0 6 6'
+    >
+        <path
+            fill={props.fill === undefined ? '#fff' : props.fill}
+            d='M3.748 3L5.843.905a.53.53 0 1 0-.748-.75L3 2.25.905.155a.53.53 0 1 0-.75.75L2.25 3 .155 5.095a.53.53 0 1 0 .75.75L3 3.75l2.095 2.095a.53.53 0 0 0 .75-.75L3.748 3z'
+        />
+    </svg>
+)
 
-const Facebook = props => (
+const Creditcard = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <path
+            fill={props.fill}
+            d='M0 12.455c0 .715.56 1.295 1.25 1.295h12.5c.69 0 1.25-.58 1.25-1.295V7.708H0v4.747zm5-1.834a.32.32 0 0 1 .313-.323h3.541a.32.32 0 0 1 .313.323v1.08a.32.32 0 0 1-.313.323H5.313A.32.32 0 0 1 5 11.7v-1.079zm-3.333 0a.32.32 0 0 1 .312-.323h1.875a.32.32 0 0 1 .313.323v1.08a.32.32 0 0 1-.313.323H1.98a.32.32 0 0 1-.312-.324v-1.079zM15 2.961v1.295H0V2.961c0-.714.56-1.294 1.25-1.294h12.5c.69 0 1.25.58 1.25 1.294z'
+        />
+    </svg>
+)
+
+const Group = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <path
+            fill={props.fill}
+            d='M10 6.875A1.867 1.867 0 0 0 11.869 5a1.872 1.872 0 0 0-3.744 0c0 1.037.838 1.875 1.875 1.875zm-5 0A1.867 1.867 0 0 0 6.869 5a1.872 1.872 0 0 0-3.744 0c0 1.037.837 1.875 1.875 1.875zm0 1.25c-1.456 0-4.375.731-4.375 2.188v1.562h8.75v-1.563c0-1.456-2.919-2.187-4.375-2.187zm5 0a7.3 7.3 0 0 0-.606.031c.725.525 1.231 1.231 1.231 2.156v1.563h3.75v-1.563c0-1.456-2.919-2.187-4.375-2.187z'
+        />
+    </svg>
+)
+const Fav = props => (
+    <svg
+        width='15'
+        height='15'
+        viewBox='0 0 15 15'
+        fill='none'
+        xmlns='http://www.w3.org/2000/svg'
+    >
+        <path
+            fill={props.fill}
+            d='M6.94023 1.41895L7.51206 2.085L8.08389 1.41989C8.45881 0.97996 8.90475 0.6305 9.3961 0.391571C9.88745 0.152641 10.4145 0.0289477 10.9471 0.0275913C11.4797 0.0262348 12.0072 0.147242 12.4995 0.383666C12.9917 0.620091 13.4389 0.967275 13.8155 1.40529C14.1921 1.8433 14.4906 2.36352 14.6939 2.93607C14.8971 3.50862 15.0012 4.12223 15 4.74167C14.9988 5.36111 14.8925 5.97419 14.6871 6.5457C14.4816 7.11721 14.1812 7.6359 13.803 8.07199L8.0847 14.7241C8.00958 14.8116 7.92038 14.8809 7.82219 14.9283C7.724 14.9756 7.61875 15 7.51247 15C7.40617 15 7.30093 14.9756 7.20274 14.9283C7.10455 14.8809 7.01535 14.8116 6.94023 14.7241L1.22115 8.07199C0.837778 7.6373 0.532433 7.1184 0.322824 6.54538C0.113215 5.97237 0.00351324 5.35664 8.30126e-05 4.73393C-0.00334722 4.11121 0.0995621 3.49391 0.302842 2.91781C0.506121 2.34172 0.805724 1.81831 1.18427 1.37794C1.56282 0.937578 2.01277 0.589024 2.50804 0.3525C3.0033 0.115976 3.53401 -0.00380943 4.06938 9.23396e-05C4.60476 0.00399411 5.13414 0.131505 5.62681 0.375229C6.11949 0.618953 6.56565 0.974039 6.93942 1.41989L6.94023 1.41895Z'
+        />
+    </svg>
+)
+
+const Handicap = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <path
+            fill={props.fill}
+            d='M6.87 2.956A1.479 1.479 0 1 0 6.869 0a1.479 1.479 0 0 0 0 2.957zM9.154 11.332a3.272 3.272 0 0 1-3.139 2.366 3.272 3.272 0 0 1-3.269-3.268c0-1.334.805-2.483 1.954-2.99V6.054a4.577 4.577 0 0 0-3.255 4.376c0 2.52 2.05 4.57 4.57 4.57a4.573 4.573 0 0 0 4.146-2.658l-.516-1.014-.491.004z'
+        />
+        <path
+            fill={props.fill}
+            d='M13.46 13.087l-1.98-3.892a.867.867 0 0 0-.773-.475H8.171v-.578h2.183a.64.64 0 0 0 .52-.278.635.635 0 0 0 .13-.373.65.65 0 0 0-.65-.651H8.17V4.878c0-.539-.4-1.302-1.301-1.302-.72 0-1.302.583-1.302 1.302v4.25c0 .733.594 1.328 1.328 1.328h3.279l1.739 3.418a.867.867 0 1 0 1.546-.787z'
+        />
+    </svg>
+)
+const Add = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width={props.size === undefined ? '13' : props.size}
+        height={props.size === undefined ? '13' : props.size}
+        fill='none'
+        viewBox='0 0 13 13'
+    >
+        <path
+            stroke={props.stroke === undefined ? '#fff' : props.stroke}
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth='2'
+            d='M6.5 1v11M12 6.5H1'
+        />
+    </svg>
+)
+
+const Kid = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <path
+            fill={props.fill}
+            d='M8.125 1.925V6.25h5A5 5 0 0 0 8.838 1.3a.628.628 0 0 0-.713.625zm3.95 8.006a4.967 4.967 0 0 0 1.05-3.056h-9.1L3.6 5.981a.62.62 0 0 0-.563-.356H1.876a.627.627 0 0 0-.625.625c0 .344.281.625.625.625h.763s1.18 2.544 1.325 2.763A2.19 2.19 0 0 0 2.874 12.1 2.175 2.175 0 0 0 4.5 13.694a2.182 2.182 0 0 0 2.656-1.819h1.3a2.186 2.186 0 0 0 4.282.244 2.178 2.178 0 0 0-.663-2.188zM5 12.5a.936.936 0 1 1 .938-.938A.936.936 0 0 1 5 12.5zm5.625 0a.936.936 0 0 1-.938-.938c0-.518.42-.937.938-.937.519 0 .938.419.938.938a.936.936 0 0 1-.938.937z'
+        />
+    </svg>
+)
+const Airplane = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width={props.size}
+        height={props.size}
+        fill='none'
+        viewBox='0 0 10 10'
+    >
+        <path
+            fill={props.fill}
+            d='M9.818.182c.21.247.238.6.086 1.056-.152.456-.41.866-.77 1.227l-1.15 1.149L9.127 8.58c.024.09-.005.169-.085.236l-.914.685a.201.201 0 0 1-.135.042.158.158 0 0 1-.05-.007.197.197 0 0 1-.15-.114l-1.99-3.625-1.849 1.848.379 1.385a.217.217 0 0 1-.058.22l-.685.686a.222.222 0 0 1-.164.064h-.014a.256.256 0 0 1-.171-.093L1.89 8.11.093 6.761C.041 6.727.01 6.673.001 6.596a.245.245 0 0 1 .064-.178l.685-.692a.222.222 0 0 1 .164-.064c.028 0 .047.002.057.007l1.384.378 1.848-1.848L.58 2.209a.239.239 0 0 1-.122-.172.22.22 0 0 1 .064-.193l.914-.913c.066-.062.138-.08.214-.057l4.745 1.134L7.535.867c.362-.362.77-.619 1.227-.77.457-.153.809-.125 1.056.085z'
+        />
+    </svg>
+)
+const FB = props => (
     <svg
         xmlns='http://www.w3.org/2000/svg'
         width='30'
@@ -306,6 +418,34 @@ const Facebook = props => (
         <path
             fill={props.fill}
             d='M29.997 15c0-8.285-6.715-15-14.998-15C6.715 0 0 6.715 0 15c0 7.485 5.485 13.69 12.655 14.815v-10.48H8.848v-4.336h3.807v-3.304c0-3.76 2.24-5.836 5.665-5.836 1.641 0 3.357.292 3.357.292v3.691h-1.89c-1.862 0-2.443 1.157-2.443 2.343V15h4.16l-.665 4.336h-3.495v10.48c7.17-1.125 12.655-7.33 12.655-14.816h-.002z'
+        />
+    </svg>
+)
+const Parking = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <path
+            fill={props.fill}
+            d='M13.393 0H1.607C.72 0 0 .72 0 1.607v11.786C0 14.28.72 15 1.607 15h11.786C14.28 15 15 14.28 15 13.393V1.607C15 .72 14.28 0 13.393 0zM8.036 9.643H6.429v1.607a.537.537 0 0 1-.536.536H4.82a.537.537 0 0 1-.535-.536v-7.5c0-.295.24-.536.535-.536h3.215A3.22 3.22 0 0 1 11.25 6.43a3.22 3.22 0 0 1-3.214 3.214zm0-4.286H6.429V7.5h1.607c.589 0 1.071-.482 1.071-1.071 0-.59-.482-1.072-1.071-1.072z'
+        />
+    </svg>
+)
+const Search = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width={props.size}
+        height={props.size}
+        fill='none'
+        viewBox='0 0 17 16'
+    >
+        <path
+            fill={props.fill}
+            d='M16.005 14.85l-5.211-5.194A5.933 5.933 0 0 0 12.04 6a5.954 5.954 0 0 0-1.764-4.242A5.986 5.986 0 0 0 6.02 0C4.413 0 2.9.626 1.764 1.758A5.942 5.942 0 0 0 0 6c0 1.602.628 3.11 1.764 4.242A5.982 5.982 0 0 0 6.02 12c1.344 0 2.62-.436 3.666-1.24l5.211 5.192a.164.164 0 0 0 .233 0l.875-.87a.164.164 0 0 0 0-.232zM9.2 9.168A4.478 4.478 0 0 1 6.02 10.48c-1.2 0-2.328-.466-3.179-1.312A4.448 4.448 0 0 1 1.525 6c0-1.196.468-2.322 1.316-3.168A4.478 4.478 0 0 1 6.02 1.52c1.2 0 2.33.464 3.179 1.312A4.448 4.448 0 0 1 10.515 6a4.445 4.445 0 0 1-1.316 3.168z'
         />
     </svg>
 )
@@ -332,13 +472,223 @@ const Instagram = props => (
         />
     </svg>
 )
+const Pet = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <g clipPath='url(#a)'>
+            <path
+                fill={props.fill}
+                d='M14.531 2.812h-1.875l-.21-.419a.938.938 0 0 0-.838-.518h-1.57l-.8-.8a.469.469 0 0 0-.8.332v4.39l3.75 1.34V6.093h.937c1.036 0 1.875-.84 1.875-1.875V3.28a.469.469 0 0 0-.469-.469zM11.25 4.22a.469.469 0 1 1 0-.938.469.469 0 0 1 0 .938zM2.812 6.562a.939.939 0 0 1-.937-.937.938.938 0 0 0-1.875 0c0 1.22.786 2.251 1.875 2.64v6.266c0 .26.21.469.469.469h1.875c.259 0 .468-.21.468-.469V11.25h4.688v3.281c0 .26.21.469.469.469h1.875c.259 0 .469-.21.469-.469v-6.4L7.793 6.562H2.813z'
+            />
+        </g>
+        <defs>
+            <clipPath id='a'>
+                <path fill='#fff' d='M0 0h15v15H0z' />
+            </clipPath>
+        </defs>
+    </svg>
+)
+
+const Plug = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <g clipPath='url(#a)'>
+            <path
+                fill={props.fill}
+                d='M12.803 2.657A7.451 7.451 0 0 0 7.5.461a7.45 7.45 0 0 0-5.303 2.196A7.45 7.45 0 0 0 0 7.961a7.495 7.495 0 0 0 3.74 6.49.648.648 0 0 0 .889-.236.65.65 0 0 0-.236-.889A6.224 6.224 0 0 1 1.3 7.961c0-3.419 2.78-6.2 6.199-6.2 3.418 0 6.2 2.781 6.2 6.2 0 1.445-.392 2.65-1.132 3.485-.603.68-1.412 1.07-2.22 1.07-.81 0-1.726-.425-2.064-1.554a2.875 2.875 0 0 0 2.29-2.81V6.256a.163.163 0 0 0-.163-.162h-.87V4.319a.65.65 0 1 0-1.301 0v1.775H6.76V4.319a.65.65 0 0 0-1.3 0v1.775h-.87a.163.163 0 0 0-.163.162v1.896A2.874 2.874 0 0 0 6.954 11c.153.717.471 1.334.943 1.816.633.645 1.504 1 2.451 1 1.18 0 2.344-.55 3.193-1.508.666-.751 1.459-2.115 1.459-4.348a7.45 7.45 0 0 0-2.197-5.304z'
+            />
+        </g>
+        <defs>
+            <clipPath id='a'>
+                <path fill='#fff' d='M0 0h15v15H0z' />
+            </clipPath>
+        </defs>
+    </svg>
+)
+
+const Smoking = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <path
+            fill={props.fill}
+            d='M9.688 10h-7.5a.936.936 0 1 0 0 1.875h7.5a.936.936 0 0 0 .937-.938.936.936 0 0 0-.938-.937zm2.093-5.169c.388-.381.625-.906.625-1.487 0-.944-.625-1.744-1.487-2.006a.474.474 0 0 0-.607.45c0 .206.132.387.325.443a1.16 1.16 0 1 1 .038 2.212c-.206.07-.362.245-.362.463V5c0 .231.168.431.4.469 1.206.194 2.1 1.25 2.1 2.512v.925c0 .257.212.469.468.469a.472.472 0 0 0 .469-.469v-.931c0-1.387-.8-2.587-1.969-3.144zM10.02 6.375h-.813c-.637 0-1.212-.456-1.293-1.094-.075-.593.287-1.062.812-1.206a.463.463 0 0 0 .338-.45c0-.306-.288-.537-.582-.45a2.094 2.094 0 0 0-1.512 2.05c.018 1.15 1.012 2.056 2.162 2.056h.888c.656 0 1.231.463 1.231 1.282v.343c0 .257.206.469.469.469h.006a.468.468 0 0 0 .469-.469V8.35c-.007-1.131-1.007-1.975-2.175-1.975zM11.25 10h.938v1.875h-.938V10zm1.563 0h.937v1.875h-.938V10z'
+        />
+    </svg>
+)
+const Star = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width={props.size === undefined ? '10' : props.size}
+        height={props.size === undefined ? '10' : props.size}
+        fill='none'
+        viewBox='0 0 10 10'
+    >
+        {props.star === 'full' && (
+            <>
+                <path
+                    fill='url(#a)'
+                    d='M.235 4.601l1.942 1.83-.54 2.55c-.053.332.055.665.325.83.108.112.27.167.431.167.108 0 .216 0 .324-.055 0 0 .054 0 .054-.056l2.212-1.275 2.212 1.275s.054 0 .054.056c.27.11.593.11.809-.056.27-.166.377-.499.324-.831l-.54-2.55c.216-.166.54-.5.863-.832l1.025-.942.054-.056a.79.79 0 0 0 .162-.831c-.108-.277-.324-.499-.647-.554h-.054l-2.536-.278L5.684.61s0-.056-.054-.056C5.576.166 5.306 0 5.037 0c-.27 0-.54.166-.702.443 0 0 0 .056-.054.056L3.256 2.883.721 3.16H.667a.936.936 0 0 0-.648.554c-.053.333 0 .665.216.887z'
+                />
+                <defs>
+                    <linearGradient
+                        id='a'
+                        x1='5'
+                        x2='5'
+                        y2='10'
+                        gradientUnits='userSpaceOnUse'
+                    >
+                        <stop offset='.292' stopColor='#FEDFC6' />
+                        <stop offset='1' stopColor='#FCB69F' />
+                    </linearGradient>
+                </defs>
+            </>
+        )}
+        {props.star === 'blank' && (
+            <path
+                stroke='#E7E7E7'
+                d='M2.667 6.534l.058-.275-.205-.193-1.932-1.82C.532 4.186.483 4.06.505 3.856a.462.462 0 0 1 .227-.195h.016l.027-.003 2.536-.277.29-.032.115-.268.97-2.255a.554.554 0 0 0 .108-.172C4.878.536 4.98.5 5.037.5c.033 0 .05.01.057.015a.07.07 0 0 1 .017.023.26.26 0 0 1 .024.085l.06.431h.136l.919 2.137.115.268.29.031 2.535.278.027.003h.03c.1.027.18.1.233.235a.29.29 0 0 1-.054.302l.358.348-.358-.348-.044.045-1.015.933-.01.01-.01.01c-.337.346-.63.645-.81.784l-.25.192.066.307.537 2.537c.027.188-.046.285-.095.316l-.022.013-.02.016c-.021.016-.096.042-.206.022a.554.554 0 0 0-.156-.09L5.232 8.16l-.25-.144-.249.144-2.212 1.275-.076.044h-.052a.18.18 0 0 1-.06-.01.067.067 0 0 1-.014-.006l-.042-.043-.053-.033c-.049-.03-.121-.128-.094-.315l.537-2.537z'
+            />
+        )}
+    </svg>
+)
+
+const Back = props => (
+    <svg
+        width={props.width}
+        height={props.height}
+        viewBox='0 0 13 21'
+        fill='none'
+        xmlns='http://www.w3.org/2000/svg'
+    >
+        <path
+            fill={props.fill}
+            stroke={props.stroke}
+            d='M1.20224 19.6643C1.71266 20.1747 2.53557 20.1747 3.04599 19.6643L11.7022 11.0081C11.7988 10.9117 11.8754 10.7972 11.9277 10.6712C11.98 10.5452 12.0069 10.4101 12.0069 10.2737C12.0069 10.1373 11.98 10.0022 11.9277 9.87616C11.8754 9.75014 11.7988 9.63567 11.7022 9.53931L3.04599 0.883057C2.53557 0.37264 1.71266 0.37264 1.20224 0.883057C0.691823 1.39347 0.691823 2.21639 1.20224 2.72681L8.74391 10.2789L1.19182 17.831C0.691823 18.331 0.691823 19.1643 1.20224 19.6643Z'
+        />
+    </svg>
+)
+
+const Plus = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='65'
+        height='65'
+        fill='none'
+        viewBox='0 0 65 65'
+    >
+        <g filter='url(#a)'>
+            <ellipse
+                cx='33.051'
+                cy='33.051'
+                fill='#fff'
+                rx='18.729'
+                ry='18.729'
+            />
+            <path
+                fill={props.fill}
+                d='M33.083 5C18.133 5 6 17.133 6 32.083s12.133 27.084 27.083 27.084 27.084-12.134 27.084-27.084S48.033 5 33.083 5zm10.834 29.792h-8.125v8.125a2.716 2.716 0 0 1-2.709 2.708 2.716 2.716 0 0 1-2.708-2.708v-8.125H22.25a2.716 2.716 0 0 1-2.708-2.709 2.716 2.716 0 0 1 2.708-2.708h8.125V21.25a2.716 2.716 0 0 1 2.708-2.708 2.716 2.716 0 0 1 2.709 2.708v8.125h8.125a2.716 2.716 0 0 1 2.708 2.708 2.716 2.716 0 0 1-2.708 2.709z'
+            />
+        </g>
+        <defs>
+            <filter
+                id='a'
+                width='73'
+                height='73'
+                x='-4'
+                y='-2'
+                colorInterpolationFilters='sRGB'
+                filterUnits='userSpaceOnUse'
+            >
+                <feFlood floodOpacity='0' result='BackgroundImageFix' />
+                <feColorMatrix
+                    in='SourceAlpha'
+                    values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+                />
+                <feOffset dy='2' />
+                <feGaussianBlur stdDeviation='2' />
+                <feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.18 0' />
+                <feBlend in2='BackgroundImageFix' result='effect1_dropShadow' />
+                <feBlend
+                    in='SourceGraphic'
+                    in2='effect1_dropShadow'
+                    result='shape'
+                />
+            </filter>
+        </defs>
+    </svg>
+)
+
+const Wifi = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='16'
+        height='15'
+        fill='none'
+        viewBox='0 0 16 15'
+    >
+        <g fill={props.fill} clipPath='url(#a)'>
+            <path d='M7.737 13.144c.994 0 1.8-.784 1.8-1.752S8.73 9.64 7.737 9.64s-1.8.784-1.8 1.752.806 1.752 1.8 1.752z' />
+            <path d='M12.037 7.17c-.026-.027-.054-.05-.082-.075l-.08-.074c-.014-.014-.029-.024-.046-.037-2.327-2.059-5.887-1.977-8.108.185l-.26.255-.36.35a1.08 1.08 0 0 0 .002 1.554c.44.43 1.156.43 1.595.003l.621-.606c1.412-1.374 3.71-1.374 5.12 0l.45.423a1.14 1.14 0 0 0 1.58-.004 1.07 1.07 0 0 0 .003-1.538l-.434-.436z' />
+            <path d='M15.103 5.004l-.374-.364c-.001-.002-.002-.004-.005-.005l-.295-.289a1.06 1.06 0 0 0-.168-.13C10.47.973 4.701 1.073 1.03 4.512c-.017.016-.037.027-.055.045l-.675.658A.982.982 0 0 0 .303 6.63a1.046 1.046 0 0 0 1.453.003l.675-.656c.005-.006.008-.011.013-.015 2.969-2.793 7.678-2.81 10.671-.057l.531.518c.4.39 1.052.388 1.454-.004a.984.984 0 0 0 .003-1.415z' />
+        </g>
+        <defs>
+            <clipPath id='a'>
+                <path fill='#fff' d='M0 0h15.402v15H0z' />
+            </clipPath>
+        </defs>
+    </svg>
+)
+
+const Lock = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='20'
+        height='20'
+        fill='none'
+        viewBox='0 0 20 20'
+    >
+        <path
+            fill={props.fill}
+            d='M15 6.667h-.833v-.834A4.171 4.171 0 0 0 10 1.667a4.171 4.171 0 0 0-4.167 4.166v.834H5a1.667 1.667 0 0 0-1.667 1.666v8.334A1.667 1.667 0 0 0 5 18.333h10a1.667 1.667 0 0 0 1.667-1.666V8.333A1.667 1.667 0 0 0 15 6.667zm-7.5-.834c0-1.378 1.122-2.5 2.5-2.5s2.5 1.122 2.5 2.5v.834h-5v-.834zm3.333 7.27V15H9.167v-1.898a1.66 1.66 0 0 1-.346-2.614 1.667 1.667 0 0 1 2.846 1.179c0 .615-.338 1.146-.834 1.435z'
+        />
+    </svg>
+)
+
+const User = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='14'
+        height='14'
+        fill='none'
+        viewBox='0 0 14 14'
+    >
+        <path
+            fill={props.fill}
+            d='M7 0c1.934 0 3.5 1.566 3.5 3.5S8.934 7 7 7a3.499 3.499 0 0 1-3.5-3.5C3.5 1.566 5.066 0 7 0zm0 14s7 0 7-1.75c0-2.1-3.412-4.375-7-4.375-3.587 0-7 2.275-7 4.375C0 14 7 14 7 14z'
+        />
+    </svg>
+)
 
 export {
-    SearchIcon,
+    Search,
     Filter,
     Clear,
     Star,
-    BlankStar,
     Close,
     Menu,
     Airplane,
@@ -354,43 +704,28 @@ export {
     SleepActive,
     SleepInActive,
     PaperAirplane,
-    AddActive,
-    AddInActive,
-    FavActive,
-    FavInActive,
+    Add,
+    Fav,
     Time,
     PinkLocationIcon,
-    BlackAirplane,
     Calendar,
     RightArrow,
     CurveArrow,
     LeftArrowColor,
     RightArrowColor,
-    CloseColor,
     Dollar,
     DownArrow,
     UpArrow,
-    PinkClose,
-    CoinInactive,
-    CoinActive,
-    CreditcardInactive,
-    CreditcardActive,
-    GroupInactive,
-    GroupActive,
-    HandicapInactive,
-    HandicapActive,
-    KidInactive,
-    KidActive,
-    ParkingInactive,
-    ParkingActive,
-    PetInactive,
-    PetActive,
-    PlugInactive,
-    PlugActive,
-    SmokingInactive,
-    SmokingActive,
-    WifiInactive,
-    WifiActive,
+    Service,
+    Creditcard,
+    Group,
+    Handicap,
+    Kid,
+    Parking,
+    Pet,
+    Plug,
+    Smoking,
+    Wifi,
     ArrowDown,
     ArrowUp,
     LandmarkCategory,
@@ -410,9 +745,21 @@ export {
     Ferry,
     Bts,
     Mrt,
+    Lock,
+    User,
+    Info,
+    Trash,
     Clock,
+    Twitter,
+    Facebook,
+    Copy,
+    Line,
+    SettingButton,
+    SummaryButton,
+    ShareButton,
     NoResult,
     Phone,
-    Facebook,
+    FB,
     Instagram,
+    HeartWhite,
 }

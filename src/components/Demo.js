@@ -298,7 +298,44 @@ const Trip = [
     {
         days: [
             {
+                day: 0,
                 date: new Date(2019, 9, 25),
+                places: [
+                    {
+                        time: {
+                            start: new Date(2019, 9, 29, 0, 0, 0),
+                            end: new Date(2019, 9, 26, 17, 0, 0),
+                        },
+                    },
+                ],
+            },
+            {
+                day: 1,
+                date: new Date(2019, 9, 26),
+                places: [
+                    {
+                        time: {
+                            start: new Date(2019, 9, 29, 0, 0, 0),
+                            end: new Date(2019, 9, 26, 17, 0, 0),
+                        },
+                    },
+                ],
+            },
+            {
+                day: 2,
+                date: new Date(2019, 9, 27),
+                places: [
+                    {
+                        time: {
+                            start: new Date(2019, 9, 29, 0, 0, 0),
+                            end: new Date(2019, 9, 26, 17, 0, 0),
+                        },
+                    },
+                ],
+            },
+            {
+                day: 3,
+                date: new Date(2019, 9, 28),
                 places: [
                     {
                         time: {
@@ -313,6 +350,7 @@ const Trip = [
     {
         days: [
             {
+                day: 0,
                 date: new Date(2019, 10, 24),
                 places: [
                     {
@@ -328,6 +366,7 @@ const Trip = [
     {
         days: [
             {
+                day: 0,
                 date: new Date(2019, 9, 24),
                 places: [
                     {
@@ -370,7 +409,20 @@ const Detail = {
         ],
         service: {
             payment: ['credit', 'cash'],
-            facilities: null,
+            facilities: [
+                'wifi',
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                'service_charge',
+                'pet_allow',
+                'smoking',
+            ],
+            // facilities: ['wifi', 'credit_card', 'parking', 'free_charge', 'allow_group', 'handicapped_allow', 'allow_kids', 'service_charge', 'pet_allow', 'smoking'],
+            // facilities: [null, 'credit_card', null, null, 'allow_group', null, null, 'service_charge', null, null],
         },
         rate: 5,
         days: {
@@ -453,4 +505,13 @@ const Reviews = [
     },
 ]
 
-export { Places, TopAttractions, Detail, Images, Trip, Reviews, Routes }
+export {
+    Places,
+    TopAttractions,
+    Detail,
+    Images,
+    Trip,
+    Reviews,
+    Routes,
+    SearchPlaces,
+}

@@ -25,21 +25,14 @@ class MyTrips extends Component {
             nextProps.getNewTrip !== null
         ) {
             const { userID, name, days } = nextProps.getNewTrip
-            const { createPlanner, clear, getUserID, getPlanners } = this.props
-            await createPlanner({
+            await this.props.createPlanner({
                 variables: {
                     userID,
                     name,
                     days,
                 },
-                refetchQueries: [
-                    {
-                        query: getUserPlanners,
-                    },
-                ],
             })
-            // await getPlanners.refetch({ getUserID })
-            clear()
+            this.props.clear()
         }
     }
 
@@ -49,13 +42,17 @@ class MyTrips extends Component {
     }
 
     render() {
+        const { loading } = this.props.getPlanners
         return (
             <div className='my-trips'>
-                <NavBar back design='planners' />
-                <CountDown />
+                <NavBar back design='planners' mytrips={false} />
+                <CountDown
+                    trips={this.props.getPlanners.userPlanner}
+                    loading={loading}
+                />
                 <PlannerBoard
                     planners={this.props.getPlanners.userPlanner}
-                    loading={this.props.getPlanners.loading}
+                    loading={loading}
                 />
             </div>
         )

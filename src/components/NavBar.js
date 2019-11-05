@@ -1,8 +1,17 @@
 /* eslint-disable react/no-typos */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, Airplane, Back } from './Icon'
+import {
+    Menu,
+    Airplane,
+    Back,
+    SettingButton,
+    ShareButton,
+    SummaryButton,
+} from './Icon'
+import SideBar from './SideBar'
 import '../assets/scss/navbar.scss'
+import SharePlanner from './SharePlanner'
 
 class NavBar extends Component {
     constructor(props) {
@@ -37,7 +46,12 @@ class NavBar extends Component {
             return (
                 <div className='back-home'>
                     <Link to='/'>
-                        <img src={Back} alt='icon-back' />
+                        <Back
+                            width='11'
+                            height='18'
+                            stroke='white'
+                            fill='white'
+                        />
                     </Link>
                 </div>
             )
@@ -60,22 +74,43 @@ class NavBar extends Component {
                     ref={node => {
                         this.node = node
                     }}
-                />
+                >
+                    {this.state.side_nav && (
+                        <SideBar
+                            close={() => this.setState({ side_nav: false })}
+                        />
+                    )}
+                </div>
             </>
         )
     }
 
     render() {
         const design =
-            this.props.design === 'planners' ? ' planners' : ' default'
+            this.props.design === undefined ? 'default' : this.props.design
         return (
             <>
-                <div className={`nav-bar${design}`}>
+                <div className={`nav-bar ${design}`}>
                     {this.genSideBar()}
                     {this.goBack(this.props.back)}
+                    {this.props.design === 'planners-page' && (
+                        <div className='tools-navbar'>
+                            <img alt='summary' src={SummaryButton} />
+                            <SharePlanner />
+                            <img alt='setting' src={SettingButton} />
+                        </div>
+                    )}
                     <Link to='/mytrips'>
-                        <button className={`button-mytrips${design}`}>
-                            <img src={Airplane} alt='icon-mytrips' />
+                        <button
+                            className={`button-mytrips ${
+                                this.props.mytrips === false ? 'inactive' : ''
+                            }`}
+                        >
+                            <Airplane
+                                fill='#FCB8A0'
+                                size='10'
+                                alt='icon-mytrips'
+                            />
                             My trips
                         </button>
                     </Link>

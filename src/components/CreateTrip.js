@@ -37,36 +37,6 @@ class CreateTrip extends Component {
         return `${year}-${month}-${day}`
     }
 
-    createTrip = () => {
-        const userid = this.props.getUserID
-        const { name, date } = this.props.getNewTrip
-        const day = this.calDay(date.start, date.end)
-        const current_date = date.start
-        let new_date = new Date(
-            current_date.setDate(current_date.getDate() - 1)
-        )
-        const days = Array.from(Array(day).keys()).map(i => {
-            new_date = new Date(
-                current_date.setDate(current_date.getDate() + 1)
-            )
-            return {
-                day: i + 1,
-                date: this.formatDate(new_date),
-                places: [],
-                note: '',
-            }
-        })
-        const trip = {
-            userID: userid,
-            name,
-            days,
-        }
-        this.props.setNewTrip(trip)
-        this.setState({
-            plan_maker: false,
-        })
-    }
-
     handleClick = () => {
         this.setState({ plan_maker: !this.state.plan_maker })
     }
@@ -91,15 +61,55 @@ class CreateTrip extends Component {
         )
     }
 
+    createTrip = () => {
+        const userid = this.props.getUserID
+        const { name, date } = this.props.getNewTrip
+        const day = this.calDay(date.start, date.end)
+        const current_date = date.start
+        let new_date = new Date(
+            current_date.setDate(current_date.getDate() - 1)
+        )
+        const days = [...Array(day).keys()].map(i => {
+            new_date = new Date(
+                current_date.setDate(current_date.getDate() + 1)
+            )
+            return {
+                day: i + 1,
+                date: this.formatDate(new_date),
+                places: [],
+                note: '',
+            }
+        })
+        const trip = {
+            userID: userid,
+            name,
+            days,
+        }
+        this.props.setNewTrip(trip)
+
+        this.setState({
+            plan_maker: false,
+        })
+    }
+
+    genPlusBtn = () => {
+        if (this.props.create || this.props.getStatus !== 'traveler')
+            return (
+                <span className='add-btn' onClick={this.handleClick}>
+                    <Plus fill='#FCB69F' />
+                </span>
+            )
+        return (
+            <span className='add-btn'>
+                <Plus fill='#E0E0E0' />
+            </span>
+        )
+    }
+
     render() {
         return (
             <>
-                <img
-                    src={Plus}
-                    alt='plus-btn'
-                    className='add-btn'
-                    onClick={this.handleClick}
-                />
+                {this.genPlusBtn()}
                 {this.showMaker()}
             </>
         )
@@ -116,6 +126,7 @@ const mapStateToProps = state => {
         getNewTrip: state.newtrip,
         getCreateAuth: state.newtrip.auth,
         getUserID: state.userauth.userid,
+        getStatus: state.userauth.status,
     }
 }
 export default connect(

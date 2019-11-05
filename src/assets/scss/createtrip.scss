@@ -1,9 +1,13 @@
 .add-btn {
+    display: flex;
     cursor: pointer;
     position: fixed;
-    bottom: 20.9px;
+    bottom: 18.9px;
     left: 50%;
     transform: translateX(-50%);
+    svg {
+        pointer-events: none;
+    }
 }
 .plan-maker {
     &.popup {
@@ -19,7 +23,7 @@
         .create-trip.popup {
             border-radius: 10px;
             width: 275px;
-            height: 375px;
+            height: 399px;
             background-color: #fff;
         }
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { CloseColor } from './Icon'
+import { Close } from './Icon'
 import { NewTripAction } from '../action'
 import '../assets/scss/headcreatetrip.scss'
 
@@ -11,7 +11,6 @@ class HeadCreateTrip extends Component {
         super(props)
         this.state = {
             value_inp: '',
-            prev_inp: '',
             line: '',
         }
     }
@@ -21,17 +20,15 @@ class HeadCreateTrip extends Component {
     }
 
     handleChange = e => {
+        let input = e.target.value
+        input = input.length <= 20 ? input : ''
+        this.props.setName(e.target.value)
         this.setState({ value_inp: e.target.value })
     }
 
     handleClickOutside = event => {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            let input = this.state.value_inp
-            if (input !== this.state.prev_inp) {
-                input = input.length <= 20 ? input : ''
-                this.props.setName(input)
-            }
-            this.setState({ line: '', prev_inp: input })
+            this.setState({ line: '' })
         }
     }
 
@@ -47,11 +44,9 @@ class HeadCreateTrip extends Component {
             <div className='head-create-trip'>
                 <div className='create-trip-title'>
                     <span>Create your new trip</span>
-                    <img
-                        src={CloseColor}
-                        onClick={this.props.click}
-                        alt='close-color-icon'
-                    />
+                    <span onClick={this.props.click}>
+                        <Close fill='#F2B099' size='14' />
+                    </span>
                 </div>
                 <div className='input'>
                     <div>

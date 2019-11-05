@@ -60,9 +60,13 @@
                         content: '';
                         top: 0;
                         bottom: 0;
-                        right: 0;
+                        left: 0;
                         width: 20%;
-                        background: linear-gradient(90deg, transparent, white);
+                        background: linear-gradient(
+                            90deg,
+                            rgba(255, 255, 255, 0),
+                            #fff
+                        );
                         position: absolute;
                         pointer-events: none;
                     }
@@ -72,13 +76,19 @@
                         width: 177px;
                         margin-top: 1.4px;
                         .line2 {
-                            // text-transform: lowercase;
+                            display: flex;
+                            align-items: center;
+                            position: relative;
+                            top: 1.7px;
                             height: 15px;
                             font-size: 10px;
                             color: #989898;
                             margin-bottom: 3.5px;
                             .rating {
+                                display: flex;
+                                align-items: center;
                                 .star {
+                                    display: flex;
                                     margin-right: 5px;
                                 }
                             }
@@ -96,7 +106,6 @@
                                 height: 15px;
                                 overflow: hidden;
                                 word-break: break-all;
-                                position: absolute;
                                 margin-left: 9px;
                                 top: 1.7px;
                             }
@@ -107,12 +116,12 @@
                                 content: '';
                                 top: 0;
                                 bottom: 0;
-                                right: 0;
+                                left: 0;
                                 width: 2px;
                                 background: linear-gradient(
                                     90deg,
-                                    transparent,
-                                    white
+                                    rgba(255, 255, 255, 0),
+                                    #fff
                                 );
                                 // position: absolute;
                                 pointer-events: none;
@@ -160,12 +169,12 @@
                                     content: '';
                                     top: 0;
                                     bottom: 0;
-                                    right: 0;
+                                    left: 0;
                                     width: 20%;
                                     background: linear-gradient(
                                         90deg,
-                                        transparent,
-                                        white
+                                        rgba(255, 255, 255, 0),
+                                        #fff
                                     );
                                     position: absolute;
                                     pointer-events: none;
@@ -176,7 +185,7 @@
                 }
             }
             .add-fav {
-                #add {
+                .add {
                     width: 36px;
                     height: 47px;
                     border-left: solid 0.5px #e8e8e8;
@@ -186,6 +195,7 @@
                     justify-content: center;
                     align-items: center;
                     .icon {
+                        display: flex;
                         pointer-events: none;
                     }
                     &.active {
@@ -193,7 +203,7 @@
                         border: solid 0.5px #f2b099;
                     }
                 }
-                #fav {
+                .fav {
                     width: 36px;
                     height: 47px;
                     border-left: solid 0.5px #e8e8e8;
@@ -202,6 +212,7 @@
                     align-items: center;
                     .icon {
                         pointer-events: none;
+                        display: flex;
                     }
                     &.active {
                         background: #fedec4;

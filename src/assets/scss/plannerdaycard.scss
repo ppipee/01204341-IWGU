@@ -1,0 +1,62 @@
+$card-height: 64vh;
+
+.planner-day {
+    margin: 17px 0px 54px 0px;
+
+    .day-card {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        height: $card-height + 7;
+
+        .top {
+            width: 90%;
+            height: 48px;
+            background-color: white;
+            border-radius: 15px 15px 0px 0px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            > p {
+                color: #4f4f4f;
+                font-size: 20px;
+                margin-bottom: 0;
+            }
+        }
+
+        .content {
+            width: 90%;
+            height: $card-height;
+            background-color: #e8e8e8;
+            border-radius: 0px 0px 15px 15px;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
+        }
+    }
+
+    .slick-dots {
+        bottom: -35px;
+
+        li {
+            margin: 0 6px;
+            width: 24px;
+            height: 24px;
+            border-radius: 100px;
+            border: solid 1.5px rgb(253, 194, 170);
+
+            &.slick-active {
+                background-color: rgb(253, 194, 170);
+
+                .dot {
+                    color: white;
+                }
+            }
+
+            .dot {
+                color: rgb(253, 194, 170);
+                font-size: 12px;
+            }
+        }
+    }
+}

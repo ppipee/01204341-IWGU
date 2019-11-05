@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '../assets/scss/contact.scss'
-import { Phone, Facebook, Instagram } from './Icon'
+import { Phone, FB, Instagram } from './Icon'
 
 class Contact extends Component {
     constructor(props) {
@@ -17,8 +17,8 @@ class Contact extends Component {
             },
             {
                 name: 'facebook',
-                active: <Facebook fill='#FCBBA4' />,
-                inactive: <Facebook fill='#d0d0d0' />,
+                active: <FB fill='#FCBBA4' />,
+                inactive: <FB fill='#d0d0d0' />,
             },
             {
                 name: 'instagram',
