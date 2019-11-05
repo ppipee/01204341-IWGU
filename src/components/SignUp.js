@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import { compose } from 'redux'
-import '../assets/scss/signup.scss'
 import { User, Lock } from './Icon'
-import { getUsers, userRegister, userData } from '../queries/user'
+import { userRegister } from '../queries/user'
+import { authRegister } from '../queries/auth'
+import '../assets/scss/signup.scss'
 
 class SignUp extends Component {
     constructor(props) {
@@ -19,6 +20,7 @@ class SignUp extends Component {
             lineUser: false,
             linePass: false,
             lineConfirm: false,
+            user_duplicate: true,
         }
     }
 
@@ -34,35 +36,40 @@ class SignUp extends Component {
         this.wrapperRef = node
     }
 
-    handleClickOutside = event => {
+    handleClickOutside = async event => {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            this.setState({ lineUser: false })
-            this.setState({ linePass: false })
-            this.setState({ lineConfirm: false })
+            if (event.target.placeholder !== 'Username') {
+                await this.props.auth.refetch({ username: this.state.username })
+                const auth = this.props.auth.authRegister
+                const crtuser = this.state.username.length >= 5
+                this.setState({ crtuser, user_duplicate: auth })
+            }
+            this.setState({
+                lineUser: false,
+                linePass: false,
+                lineConfirm: false,
+            })
         }
     }
 
-    getLine = (user, notuse1, notuse2) => {
-        this.setState({ [user]: true })
-        this.setState({ [notuse1]: false })
-        this.setState({ [notuse2]: false })
-    }
+    getLine = (user, notuse1, notuse2) =>
+        this.setState({ [user]: true, [notuse1]: false, [notuse2]: false })
 
     submit = () => {
         const { username, password } = this.state
-        this.props.userRegister({
-            variables: {
-                username,
-                password,
-            },
-        })
-        this.props.history.push('/')
-        this.setState({
-            username: '',
-            password: '',
-            confirmPass: '',
-            passDontMacth: true,
-        })
+        this.props
+            .userRegister({
+                variables: {
+                    username,
+                    password,
+                },
+            })
+            .then(data => {
+                const { name, status } = data.data.register
+                const key = Object.keys(data.data.register)[0]
+                this.props.login(data.data.register[key], name, status)
+                this.props.history.push('/')
+            })
     }
 
     checkcrt = e => {
@@ -71,33 +78,36 @@ class SignUp extends Component {
             this.state.password !== '' &&
             this.state.confirmPass !== ''
         ) {
-            if (this.state.username.length < 5) {
-                this.setState({ crtuser: false })
-            } else {
-                this.setState({ crtuser: true })
-            }
-            if (this.state.password.length < 5) {
-                this.setState({ crtpass: false })
-            } else {
-                this.setState({ crtpass: true })
-            }
-            if (this.state.password !== this.state.confirmPass) {
-                this.setState({ passDontMacth: false })
-            }
+            const crtpass = this.state.password.length >= 5
+            const pass_match = this.state.password === this.state.confirmPass
             if (
                 this.state.username.length >= 5 &&
-                this.state.password.length >= 5
-            ) {
-                this.checkPass()
-            }
+                this.state.password.length >= 5 &&
+                this.state.confirmPass.length >= 5
+            )
+                this.checkData()
+            else
+                this.setState({
+                    crtpass,
+                    passDontMacth: pass_match,
+                    password: '',
+                    confirmPass: '',
+                })
         }
     }
 
-    checkPass = () => {
-        if (this.state.password === this.state.confirmPass) {
+    checkData = () => {
+        if (
+            this.state.password === this.state.confirmPass &&
+            this.state.user_duplicate
+        ) {
             this.submit()
         } else {
-            this.setState({ passDontMacth: false })
+            this.setState({
+                passDontMacth: false,
+                confirmPass: '',
+                password: '',
+            })
         }
     }
 
@@ -143,6 +153,13 @@ class SignUp extends Component {
                                 }`}
                             />
                             <div
+                                className={`text-check ${
+                                    this.state.user_duplicate ? 'match' : ''
+                                }`}
+                            >
+                                username already exists
+                            </div>
+                            <div
                                 className={`dontMatch ${
                                     this.state.crtuser ? 'match' : ''
                                 }`}
@@ -151,11 +168,7 @@ class SignUp extends Component {
                             </div>
                         </div>
                         <div className='box'>
-                            <span
-                                className={`box-vector ${
-                                    this.state.crtuser ? 'default' : 'down'
-                                }`}
-                            >
+                            <span className='box-vector password'>
                                 <span>
                                     <Lock fill='#FDC1AA' />
                                 </span>
@@ -196,11 +209,7 @@ class SignUp extends Component {
                             </div>
                         </div>
                         <div className='box'>
-                            <span
-                                className={`box-vector ${
-                                    this.state.crtpass ? 'default' : 'down'
-                                }`}
-                            >
+                            <span className='box-vector'>
                                 <span>
                                     <Lock fill='#FEDEC4' />
                                 </span>
@@ -264,7 +273,6 @@ class SignUp extends Component {
 
 export default compose(
     withRouter,
-    graphql(getUsers, { name: 'users' }),
     graphql(userRegister, { name: 'userRegister' }),
-    graphql(userData, { name: 'userData' })
+    graphql(authRegister, { name: 'auth' })
 )(SignUp)

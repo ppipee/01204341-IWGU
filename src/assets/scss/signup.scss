@@ -2,8 +2,6 @@
     .head {
         height: 33vh;
         background-image: linear-gradient(to bottom, #ffebd1, #fcb7a0);
-        // height: 27.7vh;
-        // height: 200px;
         display: flex;
         flex-direction: column;
         padding-top: 28px;
@@ -48,11 +46,9 @@
             // }
         }
         .box-vector {
-            &.default {
-                margin-top: 47px;
-            }
-            &.down {
-                margin-top: 35px;
+            margin-top: 35px;
+            &.password {
+                margin-top: 23px;
             }
             display: flex;
             flex-direction: row;
@@ -133,21 +129,20 @@
         font-size: 8px;
         color: #ff6c38;
         align-self: flex-end;
+        visibility: visible;
+        &.match {
+            visibility: hidden;
+        }
+    }
+    .text-check {
+        margin-top: 2px;
+        height: 10px;
+        font-size: 8px;
+        display: static;
+        align-self: flex-end;
+        color: #ff6c38;
         &.match {
             display: none;
         }
-        // &.show{
-        //     display: none;
-        // }
     }
-    // .character{
-    //     margin-top: 2px;
-    //         height: 10px;
-    //         font-size: 8px;
-    //         color: #ff6c38;
-    //         align-self: flex-end;
-    //         &.notshow{
-    //             display: none;
-    //     }
-    // }
 }

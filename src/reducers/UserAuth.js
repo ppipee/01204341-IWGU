@@ -19,6 +19,13 @@ const userauth = (state = InitialState, action) => {
                 ...state,
                 username: action.setUserName,
             }
+        case Action.LOGIN:
+            return {
+                ...state,
+                userid: action.userid,
+                username: action.name,
+                status: action.status,
+            }
         case Action.SIGNOUT:
             return {
                 ...state,
