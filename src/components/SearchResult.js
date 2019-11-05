@@ -34,12 +34,10 @@ class SearchResult extends Component {
         const search = new URLSearchParams(this.props.location.search)
         const keyword = search.get('q')
         this.props.search.refetch({ keyword })
-        if (!this.props.getLoadFavs)
+        if (!this.props.getLoadFavs && this.props.userID !== '')
             this.props.userFavourites.refetch({ id: this.props.userID })
-        if (!this.props.getLoadDrafts) {
-            console.log(this.props.getLoadDrafts)
+        if (!this.props.getLoadDrafts && this.props.userID !== '')
             this.props.userDrafts.refetch({ id: this.props.userID })
-        }
         navigator.geolocation.getCurrentPosition(
             position => {
                 const { latitude, longitude } = position.coords
@@ -178,25 +176,24 @@ class SearchResult extends Component {
         })
     }
 
-    genStar(ratting) {
-        const container = []
-        let i
-        for (i = 0; i < ratting; i++) {
-            container.push(
-                <span className='star'>
-                    <Star star='full' size='12' />
-                </span>
-            )
-        }
-        for (i = 0; i < 5 - ratting; i++) {
-            container.push(
-                <span className='star'>
-                    <Star star='blank' size='12' />
-                </span>
-            )
-        }
-        return <span className='rating'>{container}</span>
-    }
+    genSigninTab = () => (
+        <div className='add-fav'>
+            <Link to='/auth'>
+                <div className='add'>
+                    <span className='icon'>
+                        <Add stroke='#B0B0B0' />
+                    </span>
+                </div>
+            </Link>
+            <Link to='/auth'>
+                <div className='fav'>
+                    <span className='icon'>
+                        <Fav fill='#B0B0B0' />
+                    </span>
+                </div>
+            </Link>
+        </div>
+    )
 
     genTabs(place) {
         const { placeID: id, categoryCode: code } = place
@@ -233,6 +230,26 @@ class SearchResult extends Component {
                 </div>
             </div>
         )
+    }
+
+    genStar(ratting) {
+        const container = []
+        let i
+        for (i = 0; i < ratting; i++) {
+            container.push(
+                <span className='star'>
+                    <Star star='full' size='12' />
+                </span>
+            )
+        }
+        for (i = 0; i < 5 - ratting; i++) {
+            container.push(
+                <span className='star'>
+                    <Star star='blank' size='12' />
+                </span>
+            )
+        }
+        return <span className='rating'>{container}</span>
     }
 
     genCards(places) {
@@ -293,7 +310,9 @@ class SearchResult extends Component {
                             </div>
                         </div>
                     </Link>
-                    {this.genTabs(place)}
+                    {this.props.userID !== ''
+                        ? this.genTabs(place)
+                        : this.genSigninTab()}
                 </div>
             )
         })

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
+import { withRouter } from 'react-router-dom'
 import { NavBar, CountDown, PlannerBoard } from '../components'
 import { NewTripAction } from '../action'
 import '../assets/scss/mytripspage.scss'
@@ -14,6 +15,7 @@ class MyTrips extends Component {
     }
 
     componentDidMount() {
+        if (this.props.getUserID === '') this.props.history.push('/auth')
         const { getUserID: id, getPlanners } = this.props
         getPlanners.refetch({ id })
     }
