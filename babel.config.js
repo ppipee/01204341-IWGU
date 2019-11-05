@@ -19,7 +19,7 @@ module.exports = {
         production: {
             presets: [
                 ['@babel/preset-env', { modules: false }],
-                '@babel/preset-flow',
+                // '@babel/preset-flow',
                 '@babel/preset-react',
             ],
             plugins: [
@@ -30,7 +30,7 @@ module.exports = {
         development: {
             presets: [
                 ['@babel/preset-env', { modules: false }],
-                '@babel/preset-flow',
+                // '@babel/preset-flow',
                 '@babel/preset-react',
             ],
             plugins: [

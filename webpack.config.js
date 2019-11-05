@@ -25,18 +25,18 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         presets: [
-                            '@babel/preset-env',
-                            '@babel/preset-react',
-                            [
-                                '@babel/preset-env',
-                                { targets: { node: 'current' } },
-                            ],
-                            '@babel/preset-typescript',
+                            // '@babel/preset-env',
+                            // '@babel/preset-react',
+                            // [
+                            //     '@babel/preset-env',
+                            //     { targets: { node: 'current' } },
+                            // ],
+                            // '@babel/preset-typescript',
                         ],
                         plugins: [
                             'react-hot-loader/babel',
-                            '@babel/plugin-proposal-class-properties',
-                            '@babel/plugin-syntax-dynamic-import',
+                            // '@babel/plugin-proposal-class-properties',
+                            // '@babel/plugin-syntax-dynamic-import',
                             '@babel/plugin-proposal-export-namespace-from',
                             '@babel/plugin-proposal-throw-expressions',
                             ['import', { libraryName: 'antd', style: 'true' }],
