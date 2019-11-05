@@ -1,0 +1,11 @@
+diff a/src/queries/place.js b/src/queries/place.js	(rejected hunks)
+@@ -26,2 +26,7 @@ const nearBy = gql`
+-    query($categoryCode:String, $radius: Int, $geolocation: String, $no:Int ) {
+-        places(category:$categoryCode ,searchradius: $radius, geolocation: $geolocation, no:$no) {
++    query($categoryCode: String, $radius: Int, $geolocation: String, $no: Int) {
++        places(
++            category: $categoryCode
++            searchradius: $radius
++            geolocation: $geolocation
++            no: $no
++        ) {

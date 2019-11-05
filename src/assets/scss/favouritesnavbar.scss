@@ -1,0 +1,28 @@
+.sub-sec-fav-bg,
+.sub-fav-bg,
+.fav-bg {
+    width: 100%;
+    position: fixed;
+    z-index: -2;
+    top: 0;
+}
+.fav-bg {
+    z-index: -1;
+}
+.favourites-navbar {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 27.9px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    span {
+        margin: auto 11px;
+        font-size: 24px;
+        color: #fff;
+    }
+    img {
+        vertical-align: text-bottom;
+    }
+}

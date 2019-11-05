@@ -14,6 +14,8 @@ import Contact from './Contact'
 import Insurance from './Insurance'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
+import FavouritesCard from './FavouritesCard'
+import FavouritesNavBar from './FavouritesNavBar'
 
 export {
     CountDown,
@@ -32,4 +34,6 @@ export {
     Insurance,
     SignIn,
     SignUp,
+    FavouritesCard,
+    FavouritesNavBar,
 }

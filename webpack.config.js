@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path')
+require('dotenv').config()
 
 module.exports = {
     entry: ['@babel/polyfill', './src/index.js'],
@@ -23,11 +24,23 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react'],
+                        presets: [
+                            // '@babel/preset-env',
+                            // '@babel/preset-react',
+                            // [
+                            //     '@babel/preset-env',
+                            //     { targets: { node: 'current' } },
+                            // ],
+                            // '@babel/preset-typescript',
+                        ],
                         plugins: [
                             'react-hot-loader/babel',
-                            '@babel/plugin-proposal-class-properties',
+                            // '@babel/plugin-proposal-class-properties',
+                            // '@babel/plugin-syntax-dynamic-import',
+                            '@babel/plugin-proposal-export-namespace-from',
+                            '@babel/plugin-proposal-throw-expressions',
                             ['import', { libraryName: 'antd', style: 'true' }],
+                            'transform-es2015-modules-commonjs',
                         ],
                     },
                 },
@@ -76,10 +89,16 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './public/index.html',
         }),
+        new webpack.DefinePlugin({
+            'process.env.MAP_KEY': JSON.stringify(process.env.MAP_KEY),
+        }),
     ],
     stats: { children: false },
     devServer: {
         historyApiFallback: true,
         hot: true,
+    },
+    node: {
+        fs: 'empty',
     },
 }

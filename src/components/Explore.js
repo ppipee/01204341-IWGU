@@ -57,7 +57,7 @@ export default class Explore extends Component {
                     href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css'
                 />
                 <div className='explore-title'>
-                    <img src={PaperAirplane} alt='paper-airplane' />
+                    <PaperAirplane fill='#4F4F4F' />
                     <p> Explore </p>
                 </div>
                 <div>

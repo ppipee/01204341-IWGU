@@ -4,9 +4,9 @@ const searchPlace = gql`
     query($keyword: String, $category: String) {
         places(keyword: $keyword, category: $category) {
             placeID
-            categoryCode
             name
             category
+            categoryCode
             rate
             thumbnail
             time
@@ -23,19 +23,17 @@ const searchPlace = gql`
 `
 
 const nearBy = gql`
-    query($radius: Int!, $geolocation: String!) {
-        places(searchradius: $radius, geolocation: $geolocation) {
+    query($categoryCode: String, $radius: Int, $geolocation: String, $no: Int) {
+        places(
+            category: $categoryCode
+            searchradius: $radius
+            geolocation: $geolocation
+            no: $no
+        ) {
             placeID
             categoryCode
             name
-            thumbnail {
-                district
-                province
-            }
-            map {
-                latitude
-                longitude
-            }
+            thumbnail
         }
     }
 `
@@ -46,6 +44,7 @@ const placeDetail = gql`
             placeID
             name
             category
+            categoryCode
             description
             img
             rate
@@ -110,4 +109,10 @@ const randomPlaces = gql`
     }
 `
 
-export { searchPlace, placeDetail, randomPlaces, nearBy }
+const distances = gql`
+    query($origin: MapInput, $destinations: [MapInput]) {
+        distances(origin: $origin, destinations: $destinations)
+    }
+`
+
+export { searchPlace, placeDetail, randomPlaces, nearBy, distances }

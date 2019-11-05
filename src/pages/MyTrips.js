@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
+import { withRouter } from 'react-router-dom'
 import { NavBar, CountDown, PlannerBoard } from '../components'
 import { NewTripAction } from '../action'
 import '../assets/scss/mytripspage.scss'
@@ -14,6 +15,7 @@ class MyTrips extends Component {
     }
 
     componentDidMount() {
+        if (this.props.getUserID === '') this.props.history.push('/auth')
         const { getUserID: id, getPlanners } = this.props
         getPlanners.refetch({ id })
     }
@@ -25,21 +27,14 @@ class MyTrips extends Component {
             nextProps.getNewTrip !== null
         ) {
             const { userID, name, days } = nextProps.getNewTrip
-            const { createPlanner, clear, getUserID, getPlanners } = this.props
-            await createPlanner({
+            await this.props.createPlanner({
                 variables: {
                     userID,
                     name,
                     days,
                 },
-                refetchQueries: [
-                    {
-                        query: getUserPlanners,
-                    },
-                ],
             })
-            // await getPlanners.refetch({ getUserID })
-            clear()
+            this.props.clear()
         }
     }
 
@@ -49,13 +44,17 @@ class MyTrips extends Component {
     }
 
     render() {
+        const { loading } = this.props.getPlanners
         return (
             <div className='my-trips'>
-                <NavBar back design='planners' />
-                <CountDown />
+                <NavBar back design='planners' mytrips={false} />
+                <CountDown
+                    trips={this.props.getPlanners.userPlanner}
+                    loading={loading}
+                />
                 <PlannerBoard
                     planners={this.props.getPlanners.userPlanner}
-                    loading={this.props.getPlanners.loading}
+                    loading={loading}
                 />
             </div>
         )

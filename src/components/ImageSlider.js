@@ -14,24 +14,24 @@ class ImageSlider extends Component {
     handleImage = async e => {
         const index = e.target.getAttribute('index')
         this.sliceAnimation(index)
-        console.log(this.focusRef.offsetLeft)
+        // console.log(this.focusRef.offsetLeft)
         this.setState({ image_show: index })
     }
 
-    focusImage = () =>
-        Images.map((img, i) => {
+    focusImage = images =>
+        images.map((img, i) => {
             const check = i === +this.state.image_show
             return (
                 <img
                     className={`img${check ? ' active' : ''}`}
-                    src={check ? Images[this.state.image_show] : ''}
+                    src={check ? images[this.state.image_show] : ''}
                     key={`img-foucus-${i + 1}`}
                     alt='img-focus'
                 />
             )
         })
 
-    genImages = () => {
+    genImages = images => {
         // let padding = 58
         // if (this.focusRef)
         //     padding = this.focusRef.offsetLeft
@@ -43,7 +43,7 @@ class ImageSlider extends Component {
                 }}
                 // style={{ paddingLeft: `${padding}px` }}
             >
-                {Images.map((img, index) => (
+                {images.map((img, index) => (
                     <div
                         className={`image-border ${
                             index === +this.state.image_show ? 'focus' : ''
@@ -73,6 +73,7 @@ class ImageSlider extends Component {
     }
 
     render() {
+        const images = this.props.img ? this.props.img : Images
         return (
             <div className='image-slider'>
                 <img
@@ -87,9 +88,9 @@ class ImageSlider extends Component {
                             this.focusRef = node
                         }}
                     >
-                        {this.focusImage()}
+                        {this.focusImage(images)}
                     </div>
-                    {this.genImages()}
+                    {this.genImages(images)}
                 </div>
             </div>
         )

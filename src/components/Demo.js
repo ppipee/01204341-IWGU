@@ -20,87 +20,258 @@ import sport from '../assets/img/sport.jpg'
 const Places = {
     res: [
         {
-            src: Burger,
+            thumbnail: Burger,
             name: 'Burger',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Coffee,
+            thumbnail: Coffee,
             name: 'Thai Salad',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Salad,
+            thumbnail: Salad,
             name: 'Coffee',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Sashimi,
+            thumbnail: Sashimi,
             name: 'Sashimi',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
+        },
+        {
+            thumbnail: Sashimi,
+            name: 'Sashimi',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
+        },
+        {
+            thumbnail: Sashimi,
+            name: 'Sashimi',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
     ],
     land: [
         {
-            src: Read,
+            thumbnail: Read,
             name: 'Chut',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Lhong_Tou,
+            thumbnail: Lhong_Tou,
             name: 'Earn',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Museum,
+            thumbnail: Museum,
             name: 'Eye',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Salad,
+            thumbnail: Salad,
             name: 'Pipe',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
     ],
 
     tree: [
         {
-            src: Read,
+            thumbnail: Read,
             name: 'Chut',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Lhong_Tou,
+            thumbnail: Lhong_Tou,
             name: 'Earn',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Museum,
+            thumbnail: Museum,
             name: 'Eye',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Salad,
+            thumbnail: Salad,
             name: 'Pipe',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Museum,
+            thumbnail: Museum,
             name: 'Pon',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
     ],
 
     sleep: [
         {
-            src: Read,
+            thumbnail: Read,
             name: 'Chut',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Lhong_Tou,
+            thumbnail: Lhong_Tou,
             name: 'Earn',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Museum,
+            thumbnail: Museum,
             name: 'Eye',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Salad,
+            thumbnail: Salad,
             name: 'Pipe',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Read,
+            thumbnail: Read,
             name: 'Pon',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
     ],
 }
+
+const SearchPlaces = [
+    {
+        placeID: '1',
+        name: 'Kasetsart University',
+        categoryCode: 'shop',
+        thumbnail: Burger,
+        map: {
+            latitude: '',
+            longitude: '',
+        },
+        rate: 5,
+        time: '09:00 - 18:00',
+        location: {
+            district: 'Laksi',
+            province: 'Bangkok',
+        },
+    },
+    {
+        placeID: '2',
+        name: 'Read Cafe',
+        categoryCode: 'shop',
+        thumbnail: Salad,
+        map: {
+            latitude: '',
+            longitude: '',
+        },
+        rate: 4,
+        time: '09:00 - 18:00',
+        location: {
+            district: 'Laksi',
+            province: 'Bangkok',
+        },
+    },
+    {
+        placeID: '3',
+        name: 'Lhong Tou',
+        categoryCode: 'shop',
+        thumbnail: Burger,
+        map: {
+            latitude: '',
+            longitude: '',
+        },
+        rate: 2,
+        time: '09:00 - 18:00',
+        location: {
+            district: 'Laksi',
+            province: 'Bangkok',
+        },
+    },
+    {
+        placeID: '4',
+        name: 'B',
+        categoryCode: 'shop',
+        thumbnail: Salad,
+        map: {
+            latitude: '',
+            longitude: '',
+        },
+        rate: 1,
+        time: '09:00 - 18:00',
+        location: {
+            district: 'Laksi',
+            province: 'Bangkok',
+        },
+    },
+    {
+        placeID: '5',
+        name: 'Kasetsart University',
+        categoryCode: 'shop',
+        thumbnail: Burger,
+        map: {
+            latitude: '',
+            longitude: '',
+        },
+        rate: 5,
+        time: '09:00 - 18:00',
+        location: {
+            district: 'Laksi',
+            province: 'Bangkok',
+        },
+    },
+]
 
 const TopAttractions = [
     {
@@ -133,7 +304,44 @@ const Trip = [
     {
         days: [
             {
+                day: 0,
                 date: new Date(2019, 9, 25),
+                places: [
+                    {
+                        time: {
+                            start: new Date(2019, 9, 29, 0, 0, 0),
+                            end: new Date(2019, 9, 26, 17, 0, 0),
+                        },
+                    },
+                ],
+            },
+            {
+                day: 1,
+                date: new Date(2019, 9, 26),
+                places: [
+                    {
+                        time: {
+                            start: new Date(2019, 9, 29, 0, 0, 0),
+                            end: new Date(2019, 9, 26, 17, 0, 0),
+                        },
+                    },
+                ],
+            },
+            {
+                day: 2,
+                date: new Date(2019, 9, 27),
+                places: [
+                    {
+                        time: {
+                            start: new Date(2019, 9, 29, 0, 0, 0),
+                            end: new Date(2019, 9, 26, 17, 0, 0),
+                        },
+                    },
+                ],
+            },
+            {
+                day: 3,
+                date: new Date(2019, 9, 28),
                 places: [
                     {
                         time: {
@@ -148,6 +356,7 @@ const Trip = [
     {
         days: [
             {
+                day: 0,
                 date: new Date(2019, 10, 24),
                 places: [
                     {
@@ -163,6 +372,7 @@ const Trip = [
     {
         days: [
             {
+                day: 0,
                 date: new Date(2019, 9, 24),
                 places: [
                     {
@@ -205,10 +415,32 @@ const Detail = {
         ],
         service: {
             payment: ['credit', 'cash'],
-            facilities: null,
+            facilities: [
+                'wifi',
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                'service_charge',
+                'pet_allow',
+                'smoking',
+            ],
+            // facilities: ['wifi', 'credit_card', 'parking', 'free_charge', 'allow_group', 'handicapped_allow', 'allow_kids', 'service_charge', 'pet_allow', 'smoking'],
+            // facilities: [null, 'credit_card', null, null, 'allow_group', null, null, 'service_charge', null, null],
         },
         rate: 5,
-        time: '09:00 - 18:00',
+        days: {
+            day1: true,
+            day2: true,
+            day3: false,
+            day4: false,
+            day5: true,
+            day6: false,
+            day7: false,
+        },
+        time: '09:00 - 22:00',
         contact: {
             mobiles: '02222222',
             urls: [
@@ -217,6 +449,8 @@ const Detail = {
             ],
             emails: 'pon@ponponponnn',
             phone: '09222222',
+            facebook: '',
+            instagram: '',
         },
     },
 }
@@ -350,4 +584,5 @@ export {
     Reviews,
     Routes,
     Coverage,
+    SearchPlaces,
 }

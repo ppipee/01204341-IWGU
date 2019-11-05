@@ -1,4 +1,17 @@
 .contact {
-    border: 1px solid black;
-    height: 94px;
+    // border: 1px solid black;
+    height: 63px;
+    .container {
+        display: flex;
+        justify-content: center;
+        margin-top: 14px;
+        #phone {
+            margin-right: 26px;
+        }
+        #facebook {
+            margin-right: 23px;
+        }
+        #instagrame {
+        }
+    }
 }
