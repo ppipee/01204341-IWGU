@@ -23,16 +23,17 @@ const searchPlace = gql`
 `
 
 const nearBy = gql`
-    query($radius: Int, $geolocation: String) {
-        places(searchradius: $radius, geolocation: $geolocation) {
+    query($categoryCode: String, $radius: Int, $geolocation: String, $no: Int) {
+        places(
+            category: $categoryCode
+            searchradius: $radius
+            geolocation: $geolocation
+            no: $no
+        ) {
             placeID
             categoryCode
             name
             thumbnail
-            map {
-                latitude
-                longitude
-            }
         }
     }
 `
