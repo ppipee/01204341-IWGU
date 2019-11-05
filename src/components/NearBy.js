@@ -16,6 +16,7 @@ import {
     SleepActive,
     SleepInActive,
 } from './Icon'
+import ImageNotFound from '../assets/img/image-not-found.svg'
 
 const tabs = [
     ['RESTAURANT', RestaurantActive, RestaurantInActive],
@@ -146,7 +147,11 @@ class NearBy extends Component {
                         <img
                             className='picture'
                             alt={place.name}
-                            src={place.thumbnail}
+                            src={
+                                place.thumbnail === ''
+                                    ? ImageNotFound
+                                    : place.thumbnail
+                            }
                         />
                         <div className='name'>{place.name}</div>
                     </Link>
