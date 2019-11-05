@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { compose } from 'redux'
 import { graphql } from 'react-apollo'
 import { NavBar } from '../components'
 import '../assets/scss/planner.scss'
@@ -20,12 +19,21 @@ class Planner extends Component {
     }
 
     render() {
-        console.log(this.props.getPlanner)
         if (this.props.getPlanner.loading)
             return (
                 <div className='planners-page'>
                     <NavBar back design='planners-page' mytrips={false} />
                     Loading
+                </div>
+            )
+        if (
+            this.props.getPlanner.error !== undefined ||
+            new URLSearchParams(this.props.location.search).get('id') === null
+        )
+            return (
+                <div className='planners-page'>
+                    <NavBar back design='planners-page' mytrips={false} />
+                    Not found
                 </div>
             )
         return (
