@@ -10,7 +10,6 @@ import TreeInActive from '../assets/icon/tree.svg'
 import TreeActive from '../assets/icon/tree2.svg'
 import SleepInActive from '../assets/icon/sleep.svg'
 import SleepActive from '../assets/icon/sleep2.svg'
-import PaperAirplane from '../assets/icon/paper-airplane.svg'
 import Time from '../assets/icon/time.svg'
 import PinkLocationIcon from '../assets/icon/location.svg'
 import Calendar from '../assets/icon/calendar.svg'
@@ -680,6 +679,21 @@ const User = props => (
         <path
             fill={props.fill}
             d='M7 0c1.934 0 3.5 1.566 3.5 3.5S8.934 7 7 7a3.499 3.499 0 0 1-3.5-3.5C3.5 1.566 5.066 0 7 0zm0 14s7 0 7-1.75c0-2.1-3.412-4.375-7-4.375-3.587 0-7 2.275-7 4.375C0 14 7 14 7 14z'
+        />
+    </svg>
+)
+
+const PaperAirplane = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='16'
+        height='16'
+        fill='none'
+        viewBox='0 0 16 16'
+    >
+        <path
+            fill={props.fill}
+            d='M13.718 3.4l-6.35 6.349c.188.27.349.56.477.87l1.584 3.813L13.718 3.4zM6.25 8.632l6.35-6.35L1.567 6.57l3.815 1.585c.306.127.597.287.869.477zm9.637-6.521l-5 12.86c-.315.813-1.225 1.23-2.03.933a1.52 1.52 0 0 1-.878-.844l-1.584-3.814a3.038 3.038 0 0 0-1.642-1.642L.938 8.02a1.539 1.539 0 0 1-.806-2.046 1.617 1.617 0 0 1 .896-.862l12.862-5a1.536 1.536 0 0 1 1.999 1.998l-.001.001z'
         />
     </svg>
 )
