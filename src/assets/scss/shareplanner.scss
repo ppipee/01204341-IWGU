@@ -30,8 +30,8 @@ $fade-color: linear-gradient(
     }
 
     .share-modal {
-        width: 250px;
-        height: auto;
+        width: 78vw;
+        height: 173px;
         border-radius: 10px;
         background-color: white;
         position: absolute;
@@ -43,6 +43,13 @@ $fade-color: linear-gradient(
         > div {
             display: flex;
             align-items: center;
+            place-content: space-between;
+
+            span {
+                display: inline-flex;
+                align-items: center;
+                margin-left: 0;
+            }
 
             &:first-child {
                 padding: 14px 18px 19px 18px;
@@ -74,7 +81,7 @@ $fade-color: linear-gradient(
             margin: auto;
 
             textarea {
-                width: 180px;
+                width: 51vw;
                 height: 29px;
                 resize: none;
                 border: none;
@@ -102,7 +109,7 @@ $fade-color: linear-gradient(
         .via {
             display: flex;
             justify-content: center;
-            padding: 22px 0px;
+            padding: 24px 0px;
 
             a:not(:first-child) {
                 margin-left: 26px;

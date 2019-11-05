@@ -39,8 +39,10 @@ class SharePlanner extends Component {
             <div className={`share-planner ${modal}`}>
                 <div className='share-modal'>
                     <div>
-                        <PaperAirplane fill='#4F4F4F' />
-                        <p>Share your trip</p>
+                        <span>
+                            <PaperAirplane fill='#4F4F4F' />
+                            <p>Share your trip</p>
+                        </span>
                         <div onClick={this.openModal}>
                             <Close fill='#d0d0d0' />
                         </div>
