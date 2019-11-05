@@ -8,6 +8,7 @@ import {
     Facilities,
     NearBy,
     Contact,
+    AddFavDetail,
 } from '../components'
 import { placeDetail } from '../queries/place'
 
@@ -71,6 +72,16 @@ class DetailPage extends Component {
                 <Facilities service={data.service} />
                 <Contact contact={data.contact} />
                 <NearBy this location={data.map} />
+                <AddFavDetail
+                    places={{
+                        placeID: data.placeID,
+                        categoryCode: data.categoryCode,
+                        name: data.name,
+                        rate: data.rate,
+                        thumbnail: data.thumbnail,
+                        location: data.location,
+                    }}
+                />
             </div>
         )
     }
