@@ -42,6 +42,20 @@
                     text-indent: -9999px;
                 }
             }
+            .picture {
+                width: 71px;
+                height: 71px;
+                border-radius: 7px;
+                margin-top: 12px;
+                margin-left: 11px;
+                text-indent: -9999px;
+                &.skeleton {
+                    width: 71px;
+                    height: 71px;
+                    border-radius: 5px 0 0 5px;
+                    background: #e0e0e0;
+                }
+            }
             .go-to-detail {
                 width: 186px;
                 .content {
@@ -55,6 +69,11 @@
                         height: 19px;
                         font-size: 15px;
                         color: #4f4f4f;
+                        .ant-skeleton-title {
+                            height: 14px;
+                            margin-top: 2px;
+                            width: 145px;
+                        }
                     }
                     .line1:after {
                         content: '';
@@ -132,6 +151,12 @@
                             font-size: 10px;
                             color: #989898;
                             margin-bottom: 3.5px;
+                            .ant-skeleton-title {
+                                height: 9px;
+                                margin-bottom: 2px;
+                                margin-top: 2px;
+                                width: 100px;
+                            }
                             .time {
                                 position: absolute;
                                 top: 1.7px;
@@ -145,6 +170,12 @@
                             word-break: break-all;
                             color: #989898;
                             display: flex;
+                            .ant-skeleton-title {
+                                height: 11px;
+                                margin-bottom: 2px;
+                                margin-top: -2px;
+                                width: 100px;
+                            }
                             .information {
                                 height: 15px;
                                 margin-top: 2px;

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import { GoogleApiWrapper } from 'google-maps-react'
+import { Skeleton } from 'antd'
 import '../assets/scss/searchresult.scss'
 import { PlannersAction } from '../action'
 import { Time, PinkLocationIcon, Star, NoResult, Add, Fav } from './Icon'
@@ -198,6 +199,54 @@ class SearchResult extends Component {
         })
     }
 
+    genSkeleton = num =>
+        [...Array(num).keys()].map(key => (
+            <div className='card' key={`skeleton- ${key}`}>
+                <div className='picture skeleton' />
+                <div className='go-to-detail'>
+                    <div className='content'>
+                        <div className='line1'>
+                            <Skeleton active paragraph={false} />
+                        </div>
+                        <div className='line-group'>
+                            <div className='line2'>
+                                {this.genStar2(-1)}
+                                {/* <Skeleton active paragraph={false} /> */}
+                            </div>
+                            <div className='line3'>
+                                <Skeleton active paragraph={false} />
+                            </div>
+                            <div className='line4'>
+                                <Skeleton active paragraph={false} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='add-fav'>
+                    <div className='add'>
+                        <span className='icon'>
+                            <Add stroke='#B0B0B0' />
+                        </span>
+                    </div>
+                    <div className='fav'>
+                        <span className='icon'>
+                            <Fav fill='#B0B0B0' />
+                        </span>
+                    </div>
+                </div>
+            </div>
+        ))
+
+    genStar2 = rate => {
+        const [rating, star] = rate === -1 ? [5, 'blank'] : [rate, 'full']
+
+        return [...Array(rating).keys()].map(index => (
+            <div className='rate-star' key={`rate-${index}`}>
+                <Star star={star} size='14' />
+            </div>
+        ))
+    }
+
     genSigninTab = () => (
         <div className='add-fav'>
             <Link to='/auth'>
@@ -354,7 +403,11 @@ class SearchResult extends Component {
             (this.state.userLocation.latitude === 32 &&
                 this.state.userLocation.longitude === 32)
         )
-            return <div className='search-result'>Loading</div>
+            return (
+                <div className='search-result'>
+                    <div className='card-container'>{this.genSkeleton(5)}</div>
+                </div>
+            )
         if (this.props.search.error !== undefined)
             return <div className='search-result'>{this.noneResult()}</div>
         return (
