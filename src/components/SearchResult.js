@@ -7,7 +7,7 @@ import { GoogleApiWrapper } from 'google-maps-react'
 import '../assets/scss/searchresult.scss'
 import { PlannersAction } from '../action'
 import { Time, PinkLocationIcon, Star, NoResult, Add, Fav } from './Icon'
-import { searchPlace } from '../queries/place'
+import { searchPlace, distances } from '../queries/place'
 import {
     userFavourites,
     updateFavourites,
@@ -52,7 +52,7 @@ class SearchResult extends Component {
         )
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps) {
         if (prevProps.location.search !== this.props.location.search) {
             const search = new URLSearchParams(this.props.location.search)
             const keyword = search.get('q')
@@ -86,6 +86,28 @@ class SearchResult extends Component {
             this.props.setdrafts(draft_places)
             this.props.setloaddrafts(true)
         }
+        if (prevProps.search.loading && !this.props.search.loading) {
+            this.getDistances(this.props.search.places)
+        }
+    }
+
+    formatDistances = distances =>
+        distances.map(position =>
+            (position.split(' ')[0] * 1.609344).toFixed(1)
+        )
+
+    getDistances = async places => {
+        const convert_places = places.map(place => {
+            const map_position = place.map
+            return {
+                latitude: place.map.latitude,
+                longitude: place.map.longitude,
+            }
+        })
+        this.props.distances.refetch({
+            origin: this.state.userLocation,
+            destinations: convert_places,
+        })
     }
 
     noneResult = () => {
@@ -254,15 +276,11 @@ class SearchResult extends Component {
 
     genCards(places) {
         const box = []
+        const places_distances = this.formatDistances(
+            this.props.distances.distances
+        )
         places.forEach((place, i) => {
-            const {
-                placeID,
-                categoryCode,
-                rate,
-                thumbnail,
-                name,
-                location,
-            } = place
+            const { placeID, categoryCode, thumbnail, name, location } = place
             box.push(
                 <div className='card' key={`${placeID}`}>
                     <Link
@@ -300,7 +318,9 @@ class SearchResult extends Component {
                                         src={PinkLocationIcon}
                                     />
                                     <div className='information'>
-                                        <span className='map'>0.7 km</span>
+                                        <span className='map'>{`${
+                                            places_distances[+i]
+                                        } km`}</span>
                                         <span className='dot' />
                                         <span className='location'>
                                             {`${location.district}, ${location.province}`}
@@ -320,12 +340,14 @@ class SearchResult extends Component {
     }
 
     render() {
-        console.log(this.state.userLocation)
         if (
             this.state.loading ||
             this.props.search.loading ||
             this.props.userFavourites.loading ||
-            this.props.userDrafts.loading
+            this.props.userDrafts.loading ||
+            this.props.distances.distances === undefined ||
+            (this.state.userLocation.latitude === 32 &&
+                this.state.userLocation.longitude === 32)
         )
             return <div className='search-result'>Loading</div>
         if (this.props.search.error !== undefined)
@@ -381,6 +403,7 @@ export default compose(
         apiKey: process.env.MAP_KEY,
     }),
     graphql(searchPlace, { name: 'search' }),
+    graphql(distances, { name: 'distances' }),
     graphql(userFavourites, { name: 'userFavourites' }),
     graphql(updateFavourites, { name: 'updateFavourites' }),
     graphql(userDrafts, { name: 'userDrafts' }),
