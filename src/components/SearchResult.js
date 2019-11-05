@@ -319,7 +319,6 @@ class SearchResult extends Component {
     }
 
     render() {
-        console.log(this.props, this.props.distances)
         if (
             this.state.loading ||
             this.props.search.loading ||
