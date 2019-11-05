@@ -78,7 +78,7 @@ class SideBar extends Component {
                 }),
             },
         })
-        this.props.setfavs(new_favs)
+        this.props.setfavs(new_drafts)
         this.setState({ block_swipe: false })
     }
 

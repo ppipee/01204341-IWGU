@@ -20,7 +20,7 @@ class Planner extends Component {
     }
 
     render() {
-        console.log(this.props.getPlanner)
+        // console.log(this.props.getPlanner)
         if (this.props.getPlanner.loading)
             return (
                 <div className='planners-page'>

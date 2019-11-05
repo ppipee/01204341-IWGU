@@ -29,6 +29,7 @@ $fade-color: linear-gradient(
         .header {
             display: grid;
             grid-template-columns: 1fr;
+            height: 32px;
 
             > p {
                 padding: 13px 0px 0px 14.2px;
@@ -36,7 +37,7 @@ $fade-color: linear-gradient(
                 font-size: 14px;
                 -webkit-text-fill-color: transparent;
                 -webkit-background-clip: text;
-                word-break: inherit;
+                word-break: break-all;
                 overflow: hidden;
             }
 

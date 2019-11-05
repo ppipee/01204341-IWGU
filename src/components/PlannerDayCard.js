@@ -21,7 +21,6 @@ class PlannerDayCard extends Component {
     genDayCard(planner) {
         const day = planner.days.length
         const card = []
-        const dayRange = planner.days
         for (let i = 0; i < day + 1; i++) {
             let head = 'Draft'
             let places = []
@@ -37,8 +36,8 @@ class PlannerDayCard extends Component {
                     </div>
                     <div className='content'>
                         <PlannerPlaceCard
+                            planner={planner}
                             day={i}
-                            range={dayRange}
                             places={places}
                         />
                     </div>
@@ -65,6 +64,7 @@ class PlannerDayCard extends Component {
             },
         }
         const planner = this.props
+        // console.log(planner)
         return (
             <div className='planner-day'>
                 <link
