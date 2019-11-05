@@ -108,4 +108,10 @@ const randomPlaces = gql`
     }
 `
 
-export { searchPlace, placeDetail, randomPlaces, nearBy }
+const distances = gql`
+    query($origin: MapInput, $destinations: [MapInput]) {
+        distances(origin: $origin, destinations: $destinations)
+    }
+`
+
+export { searchPlace, placeDetail, randomPlaces, nearBy, distances }

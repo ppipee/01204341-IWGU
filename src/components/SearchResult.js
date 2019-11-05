@@ -7,7 +7,7 @@ import { GoogleApiWrapper } from 'google-maps-react'
 import '../assets/scss/searchresult.scss'
 import { PlannersAction } from '../action'
 import { Time, PinkLocationIcon, Star, NoResult, Add, Fav } from './Icon'
-import { searchPlace } from '../queries/place'
+import { searchPlace, distances } from '../queries/place'
 import {
     userFavourites,
     updateFavourites,
@@ -36,10 +36,8 @@ class SearchResult extends Component {
         this.props.search.refetch({ keyword })
         if (!this.props.getLoadFavs)
             this.props.userFavourites.refetch({ id: this.props.userID })
-        if (!this.props.getLoadDrafts) {
-            console.log(this.props.getLoadDrafts)
+        if (!this.props.getLoadDrafts)
             this.props.userDrafts.refetch({ id: this.props.userID })
-        }
         navigator.geolocation.getCurrentPosition(
             position => {
                 const { latitude, longitude } = position.coords
@@ -54,7 +52,7 @@ class SearchResult extends Component {
         )
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps) {
         if (prevProps.location.search !== this.props.location.search) {
             const search = new URLSearchParams(this.props.location.search)
             const keyword = search.get('q')
@@ -88,6 +86,28 @@ class SearchResult extends Component {
             this.props.setdrafts(draft_places)
             this.props.setloaddrafts(true)
         }
+        if (prevProps.search.loading && !this.props.search.loading) {
+            this.getDistances(this.props.search.places)
+        }
+    }
+
+    formatDistances = distances =>
+        distances.map(position =>
+            (position.split(' ')[0] * 1.609344).toFixed(1)
+        )
+
+    getDistances = async places => {
+        const convert_places = places.map(place => {
+            const map_position = place.map
+            return {
+                latitude: place.map.latitude,
+                longitude: place.map.longitude,
+            }
+        })
+        this.props.distances.refetch({
+            origin: this.state.userLocation,
+            destinations: convert_places,
+        })
     }
 
     noneResult = () => {
@@ -178,24 +198,67 @@ class SearchResult extends Component {
         })
     }
 
-    genStar(ratting) {
-        const container = []
-        let i
-        for (i = 0; i < ratting; i++) {
-            container.push(
-                <span className='star'>
-                    <Star star='full' size='12' />
-                </span>
+    genCards = places => {
+        const box = []
+        const places_distances = this.formatDistances(
+            this.props.distances.distances
+        )
+        places.forEach((place, i) => {
+            const { placeID, categoryCode, thumbnail, name, location } = place
+            box.push(
+                <div className='card' key={`${placeID}`}>
+                    <Link
+                        className='link'
+                        to={`/detail?place=${placeID}, ?code=${categoryCode}`}
+                    >
+                        <img className='picture' alt={name} src={thumbnail} />
+                    </Link>
+                    <Link
+                        className='go-to-detail'
+                        to={`/detail?place=${placeID}&code=${categoryCode}`}
+                    >
+                        <div className='content'>
+                            <div className='line1'>{name}</div>
+                            <div className='line-group'>
+                                <div className='line2'>
+                                    {/* {this.genStar(place.rate)} */}
+                                    {this.genStar(
+                                        this.state.rate_random[+i % 30]
+                                    )}
+                                    <span className='dot' />
+                                    <span className='category'>
+                                        {categoryCode}
+                                    </span>
+                                </div>
+                                <div className='line3'>
+                                    <img alt='time' src={Time} />
+                                    <span className='time'>
+                                        8.00 AM - 4.00 PM
+                                    </span>
+                                </div>
+                                <div className='line4'>
+                                    <img
+                                        alt='location'
+                                        src={PinkLocationIcon}
+                                    />
+                                    <div className='information'>
+                                        <span className='map'>{`${
+                                            places_distances[+i]
+                                        } km`}</span>
+                                        <span className='dot' />
+                                        <span className='location'>
+                                            {`${location.district}, ${location.province}`}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+                    {this.genTabs(place)}
+                </div>
             )
-        }
-        for (i = 0; i < 5 - ratting; i++) {
-            container.push(
-                <span className='star'>
-                    <Star star='blank' size='12' />
-                </span>
-            )
-        }
-        return <span className='rating'>{container}</span>
+        })
+        return <div className='card-container'>{box}</div>
     }
 
     genTabs(place) {
@@ -235,78 +298,35 @@ class SearchResult extends Component {
         )
     }
 
-    genCards(places) {
-        const box = []
-        places.forEach((place, i) => {
-            const {
-                placeID,
-                categoryCode,
-                rate,
-                thumbnail,
-                name,
-                location,
-            } = place
-            box.push(
-                <div className='card' key={`${placeID}`}>
-                    <Link
-                        className='link'
-                        to={`/detail?place=${placeID}, ?code=${categoryCode}`}
-                    >
-                        <img className='picture' alt={name} src={thumbnail} />
-                    </Link>
-                    <Link
-                        className='go-to-detail'
-                        to={`/detail?place=${placeID}&code=${categoryCode}`}
-                    >
-                        <div className='content'>
-                            <div className='line1'>{name}</div>
-                            <div className='line-group'>
-                                <div className='line2'>
-                                    {/* {this.genStar(place.rate)} */}
-                                    {this.genStar(
-                                        this.state.rate_random[+i % 30]
-                                    )}
-                                    <span className='dot' />
-                                    <span className='category'>
-                                        {categoryCode}
-                                    </span>
-                                </div>
-                                <div className='line3'>
-                                    <img alt='time' src={Time} />
-                                    <span className='time'>
-                                        8.00 AM - 4.00 PM
-                                    </span>
-                                </div>
-                                <div className='line4'>
-                                    <img
-                                        alt='location'
-                                        src={PinkLocationIcon}
-                                    />
-                                    <div className='information'>
-                                        <span className='map'>0.7 km</span>
-                                        <span className='dot' />
-                                        <span className='location'>
-                                            {`${location.district}, ${location.province}`}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </Link>
-                    {this.genTabs(place)}
-                </div>
+    genStar(ratting) {
+        const container = []
+        let i
+        for (i = 0; i < ratting; i++) {
+            container.push(
+                <span className='star'>
+                    <Star star='full' size='12' />
+                </span>
             )
-        })
-        return <div className='card-container'>{box}</div>
+        }
+        for (i = 0; i < 5 - ratting; i++) {
+            container.push(
+                <span className='star'>
+                    <Star star='blank' size='12' />
+                </span>
+            )
+        }
+        return <span className='rating'>{container}</span>
     }
 
     render() {
-        console.log(this.state.userLocation)
         if (
             this.state.loading ||
             this.props.search.loading ||
             this.props.userFavourites.loading ||
-            this.props.userDrafts.loading
+            this.props.userDrafts.loading ||
+            this.props.distances.distances === undefined ||
+            (this.state.userLocation.latitude === 32 &&
+                this.state.userLocation.longitude === 32)
         )
             return <div className='search-result'>Loading</div>
         if (this.props.search.error !== undefined)
@@ -362,6 +382,7 @@ export default compose(
         apiKey: process.env.MAP_KEY,
     }),
     graphql(searchPlace, { name: 'search' }),
+    graphql(distances, { name: 'distances' }),
     graphql(userFavourites, { name: 'userFavourites' }),
     graphql(updateFavourites, { name: 'updateFavourites' }),
     graphql(userDrafts, { name: 'userDrafts' }),
