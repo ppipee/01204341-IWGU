@@ -219,10 +219,15 @@ class SearchResult extends Component {
 
     genTabs(place) {
         const { placeID: id, categoryCode: code } = place
-        const add = this.props.getDrafts.map(key => key.placeID)
-        let fav = !this.props.getLoadFavs
-            ? this.props.userFavourites.user.favourite
-            : this.props.getFavs
+        let add =
+            !this.props.getLoadDrafts && this.props.userDrafts.user
+                ? this.props.userDrafts.user.draft
+                : this.props.getDrafts
+        add = add.map(key => key.placeID)
+        let fav =
+            !this.props.getLoadFavs && this.props.userFavourites.user
+                ? this.props.userFavourites.user.favourite
+                : this.props.getFavs
         fav = fav.map(key => key.placeID)
         return (
             <div className='add-fav'>
