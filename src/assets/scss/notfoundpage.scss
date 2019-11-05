@@ -1,4 +1,5 @@
 .not-found-page {
+    margin-top: 5vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,18 +27,20 @@
         background-color: #fcb69f;
         color: #fff;
         .button {
+            padding: 8px;
             display: flex;
             flex-direction: row;
             justify-content: center;
-            margin-left: 6px;
+            // margin-left: 6px;
             .paperairplane-icon {
+                margin-right: 12px;
                 align-self: center;
             }
             .explore-title {
                 font-size: 20px;
                 margin-top: -4px;
                 margin-bottom: 0px;
-                padding: 8px;
+                // padding: 8px;
             }
         }
     }
