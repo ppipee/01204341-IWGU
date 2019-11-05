@@ -336,7 +336,6 @@ class PlannerPlaceCard extends Component {
         const dayRange = planner.days
         const card = []
         const len = places.length
-        // console.log(places)
         for (let i = 0; i < len; i++) {
             let expand = ''
             const place = day > 0 ? places[i].place : places[i]
@@ -348,30 +347,67 @@ class PlannerPlaceCard extends Component {
                         <Info fill='#fcb7a0' />
                     </div>
                     <div className='detail'>
-                        <div className='from'>
-                            <p>From</p>
-                            <input
-                                type='time'
-                                defaultValue='00:00'
-                                step='300'
-                                onChange={this.selectStart}
-                            />
-                            <p>To</p>
-                            <input
-                                type='time'
-                                defaultValue='00:00'
-                                step='300'
-                                onChange={this.selectEnd}
-                            />
-                        </div>
-                        <div className='date'>
-                            <p>Date</p>
-                            <div className='select'>
-                                <select onChange={this.selectDate}>
-                                    {this.dropdownList(dayRange)}
-                                </select>
-                            </div>
-                        </div>
+                        {day === 0 ? (
+                            <>
+                                <div className='from'>
+                                    <p>From</p>
+                                    <input
+                                        type='time'
+                                        defaultValue='00:00'
+                                        step='300'
+                                        onChange={this.selectStart}
+                                    />
+                                    <p>To</p>
+                                    <input
+                                        type='time'
+                                        defaultValue='00:00'
+                                        step='300'
+                                        onChange={this.selectEnd}
+                                    />
+                                </div>
+                                <div className='date'>
+                                    <p>Date</p>
+                                    <div className='select'>
+                                        <select onChange={this.selectDate}>
+                                            {this.dropdownList(dayRange)}
+                                        </select>
+                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div className='from'>
+                                    <p>From</p>
+                                    <input
+                                        type='time'
+                                        defaultValue={moment(
+                                            places[i].time.start,
+                                            'HH:mm:ssZ'
+                                        ).format('HH:mm')}
+                                        step='300'
+                                        onChange={this.selectStart}
+                                    />
+                                    <p>To</p>
+                                    <input
+                                        type='time'
+                                        defaultValue={moment(
+                                            places[i].time.end,
+                                            'HH:mm:ssZ'
+                                        ).format('HH:mm')}
+                                        step='300'
+                                        onChange={this.selectEnd}
+                                    />
+                                </div>
+                                <div className='date'>
+                                    <p>Date</p>
+                                    <div className='select'>
+                                        <select onChange={this.selectDate}>
+                                            {this.dropdownList(dayRange)}
+                                        </select>
+                                    </div>
+                                </div>
+                            </>
+                        )}
                         <div className='note'>
                             <p>Note</p>
                             <div className='add-note'>
@@ -397,7 +433,7 @@ class PlannerPlaceCard extends Component {
     }
 
     render() {
-        if (this.props.userDrafts.loading) return <div>loading</div>
+        if (this.props.userDrafts.loading) return <div />
         const draft_places = !this.props.getLoadDrafts
             ? this.props.userDrafts.user.draft
             : this.props.getDrafts

@@ -25,7 +25,6 @@ class Planner extends Component {
             return (
                 <div className='planners-page'>
                     <NavBar back design='planners-page' mytrips={false} />
-                    Loading
                 </div>
             )
         return (
