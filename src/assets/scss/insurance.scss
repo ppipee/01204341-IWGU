@@ -43,6 +43,7 @@
         grid-auto-flow: column;
         column-gap: 11px;
         margin-top: 13px;
+        margin-bottom: 12px;
 
         .tab-box {
             height: 28px;
@@ -65,7 +66,6 @@
 
     .card {
         align-self: center;
-        margin: 12px 0px 18px;
         width: 306px;
         height: 154px;
         display: grid;
