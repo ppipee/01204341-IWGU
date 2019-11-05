@@ -66,7 +66,7 @@ class DetailPage extends Component {
                 <RoutePlace map={data.map} location={data.location} />
                 <Facilities service={data.service} />
                 <Contact contact={data.contact} />
-                <NearBy this map={data.map} />
+                <NearBy this location={data.map} />
             </div>
         )
     }

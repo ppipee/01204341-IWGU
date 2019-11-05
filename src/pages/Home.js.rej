@@ -1,0 +1,10 @@
+diff a/src/pages/Home.js b/src/pages/Home.js	(rejected hunks)
+@@ -2,7 +2 @@ import React from 'react'
+-import {
+-    NavBar,
+-    SearchBar,
+-    Explore,
+-    NearBy,
+-    Insurance,
+-} from '../components'
++import { NavBar, SearchBar, Explore, NearBy, Insurance } from '../components'
