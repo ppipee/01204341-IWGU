@@ -14,93 +14,172 @@ import img3 from '../assets/img/yaowarach.jpg'
 const Places = {
     res: [
         {
-            src: Burger,
+            thumbnail: Burger,
             name: 'Burger',
-            rating: '',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Coffee,
+            thumbnail: Coffee,
             name: 'Thai Salad',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Salad,
+            thumbnail: Salad,
             name: 'Coffee',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Sashimi,
+            thumbnail: Sashimi,
             name: 'Sashimi',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Sashimi,
+            thumbnail: Sashimi,
             name: 'Sashimi',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Sashimi,
+            thumbnail: Sashimi,
             name: 'Sashimi',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
     ],
     land: [
         {
-            src: Read,
+            thumbnail: Read,
             name: 'Chut',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Lhong_Tou,
+            thumbnail: Lhong_Tou,
             name: 'Earn',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Museum,
+            thumbnail: Museum,
             name: 'Eye',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Salad,
+            thumbnail: Salad,
             name: 'Pipe',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
     ],
 
     tree: [
         {
-            src: Read,
+            thumbnail: Read,
             name: 'Chut',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Lhong_Tou,
+            thumbnail: Lhong_Tou,
             name: 'Earn',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Museum,
+            thumbnail: Museum,
             name: 'Eye',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Salad,
+            thumbnail: Salad,
             name: 'Pipe',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Museum,
+            thumbnail: Museum,
             name: 'Pon',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
     ],
 
     sleep: [
         {
-            src: Read,
+            thumbnail: Read,
             name: 'Chut',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Lhong_Tou,
+            thumbnail: Lhong_Tou,
             name: 'Earn',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Museum,
+            thumbnail: Museum,
             name: 'Eye',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Salad,
+            thumbnail: Salad,
             name: 'Pipe',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
         {
-            src: Read,
+            thumbnail: Read,
             name: 'Pon',
+            map: {
+                longitude: 100.528338,
+                latitude: 13.72042,
+            },
         },
     ],
 }
@@ -379,6 +458,8 @@ const Detail = {
             ],
             emails: 'pon@ponponponnn',
             phone: '09222222',
+            facebook: '',
+            instagram: '',
         },
     },
 }
