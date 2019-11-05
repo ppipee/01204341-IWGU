@@ -8,17 +8,22 @@
 
 .favourites-cards {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 7.5%;
     .fav-card {
         position: relative;
         display: flex;
         height: 97px;
-        width: 320px;
-        margin: 20px auto;
+        width: 100%;
+        margin: 20px 0;
         border-radius: 5px;
         box-shadow: 0px 0px 2px 1px rgba(204, 204, 204, 0.616);
         -webkit-box-shadow: 0px 0px 2px 1px rgba(204, 204, 204, 0.616);
         -moz-box-shadow: 0px 0px 2px 1px rgba(204, 204, 204, 0.616);
         .thumbnail-card {
+            width: 115px;
             img {
                 width: 115px;
                 height: 100%;
@@ -26,14 +31,14 @@
                 object-fit: cover;
             }
             &.skeleton {
-                width: 187px;
                 height: 100%;
                 border-radius: 5px 0 0 5px;
                 background: #e0e0e0;
             }
         }
         .detail-card {
-            width: 100%;
+            flex-grow: 1;
+            width: 49.1%;
             background-color: #fff;
             @include padding(9px, 9px, 7px, 13px);
             border-radius: 0 5px 5px 0;
@@ -41,8 +46,23 @@
             flex-direction: column;
             justify-content: space-between;
             .title-card {
+                width: 100%;
                 font-size: 15px;
                 color: #4f4f4f;
+                white-space: nowrap;
+                overflow: hidden;
+                &.fade::after {
+                    content: '';
+                    position: absolute;
+                    right: 0px;
+                    width: 35px;
+                    height: 22px;
+                    background: linear-gradient(
+                        to left,
+                        #fff 10px,
+                        transparent
+                    );
+                }
             }
             .sub-detail {
                 display: flex;

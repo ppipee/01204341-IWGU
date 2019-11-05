@@ -1,6 +1,8 @@
 /* eslint-disable react/no-typos */
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { Link, withRouter } from 'react-router-dom'
 import {
     Menu,
     Airplane,
@@ -44,15 +46,8 @@ class NavBar extends Component {
     goBack(back) {
         if (back) {
             return (
-                <div className='back-home'>
-                    <Link to='/'>
-                        <Back
-                            width='11'
-                            height='18'
-                            stroke='white'
-                            fill='white'
-                        />
-                    </Link>
+                <div className='back-home' onClick={this.props.history.goBack}>
+                    <Back width='11' height='18' stroke='white' fill='white' />
                 </div>
             )
         }
@@ -100,7 +95,7 @@ class NavBar extends Component {
                             <img alt='setting' src={SettingButton} />
                         </div>
                     )}
-                    <Link to='/mytrips'>
+                    <Link to={this.props.getUser !== '' ? '/mytrips' : '/auth'}>
                         <button
                             className={`button-mytrips ${
                                 this.props.mytrips === false ? 'inactive' : ''
@@ -125,4 +120,9 @@ class NavBar extends Component {
         )
     }
 }
-export default NavBar
+export default compose(
+    withRouter,
+    connect(state => {
+        return { getUser: state.userauth.username }
+    })
+)(NavBar)

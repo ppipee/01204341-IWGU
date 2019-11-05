@@ -78,7 +78,13 @@ class FavouritesCard extends Component {
                     <Close fill='#fff' size='9' />
                 </div>
                 <div className='detail-card'>
-                    <div className='title-card'>{place.name}</div>
+                    <div
+                        className={`title-card ${
+                            place.name.length > 18 ? 'fade' : ''
+                        }`}
+                    >
+                        {place.name}
+                    </div>
                     <div className='sub-detail'>
                         <span className='category-card'>
                             {place.categoryCode}
@@ -168,15 +174,6 @@ export default compose(
         mapStateToProps,
         mapDispatchToProps
     ),
-    graphql(userFavourites, {
-        name: 'userFavourites',
-        // options: props => {
-        //     return {
-        //         variables: {
-        //             id: props.id
-        //         }
-        //     }
-        // }
-    }),
+    graphql(userFavourites, { name: 'userFavourites' }),
     graphql(updateFavourites, { name: 'updateFavourites' })
 )(FavouritesCard)

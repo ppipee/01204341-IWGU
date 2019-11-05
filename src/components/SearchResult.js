@@ -34,9 +34,9 @@ class SearchResult extends Component {
         const search = new URLSearchParams(this.props.location.search)
         const keyword = search.get('q')
         this.props.search.refetch({ keyword })
-        if (!this.props.getLoadFavs)
+        if (!this.props.getLoadFavs && this.props.userID !== '')
             this.props.userFavourites.refetch({ id: this.props.userID })
-        if (!this.props.getLoadDrafts)
+        if (!this.props.getLoadDrafts && this.props.userID !== '')
             this.props.userDrafts.refetch({ id: this.props.userID })
         navigator.geolocation.getCurrentPosition(
             position => {
@@ -198,68 +198,24 @@ class SearchResult extends Component {
         })
     }
 
-    genCards = places => {
-        const box = []
-        const places_distances = this.formatDistances(
-            this.props.distances.distances
-        )
-        places.forEach((place, i) => {
-            const { placeID, categoryCode, thumbnail, name, location } = place
-            box.push(
-                <div className='card' key={`${placeID}`}>
-                    <Link
-                        className='link'
-                        to={`/detail?place=${placeID}, ?code=${categoryCode}`}
-                    >
-                        <img className='picture' alt={name} src={thumbnail} />
-                    </Link>
-                    <Link
-                        className='go-to-detail'
-                        to={`/detail?place=${placeID}&code=${categoryCode}`}
-                    >
-                        <div className='content'>
-                            <div className='line1'>{name}</div>
-                            <div className='line-group'>
-                                <div className='line2'>
-                                    {/* {this.genStar(place.rate)} */}
-                                    {this.genStar(
-                                        this.state.rate_random[+i % 30]
-                                    )}
-                                    <span className='dot' />
-                                    <span className='category'>
-                                        {categoryCode}
-                                    </span>
-                                </div>
-                                <div className='line3'>
-                                    <img alt='time' src={Time} />
-                                    <span className='time'>
-                                        8.00 AM - 4.00 PM
-                                    </span>
-                                </div>
-                                <div className='line4'>
-                                    <img
-                                        alt='location'
-                                        src={PinkLocationIcon}
-                                    />
-                                    <div className='information'>
-                                        <span className='map'>{`${
-                                            places_distances[+i]
-                                        } km`}</span>
-                                        <span className='dot' />
-                                        <span className='location'>
-                                            {`${location.district}, ${location.province}`}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </Link>
-                    {this.genTabs(place)}
+    genSigninTab = () => (
+        <div className='add-fav'>
+            <Link to='/auth'>
+                <div className='add'>
+                    <span className='icon'>
+                        <Add stroke='#B0B0B0' />
+                    </span>
                 </div>
-            )
-        })
-        return <div className='card-container'>{box}</div>
-    }
+            </Link>
+            <Link to='/auth'>
+                <div className='fav'>
+                    <span className='icon'>
+                        <Fav fill='#B0B0B0' />
+                    </span>
+                </div>
+            </Link>
+        </div>
+    )
 
     genTabs(place) {
         const { placeID: id, categoryCode: code } = place
@@ -316,6 +272,71 @@ class SearchResult extends Component {
             )
         }
         return <span className='rating'>{container}</span>
+    }
+
+    genCards(places) {
+        const box = []
+        const places_distances = this.formatDistances(
+            this.props.distances.distances
+        )
+        places.forEach((place, i) => {
+            const { placeID, categoryCode, thumbnail, name, location } = place
+            box.push(
+                <div className='card' key={`${placeID}`}>
+                    <Link
+                        className='link'
+                        to={`/detail?place=${placeID}, ?code=${categoryCode}`}
+                    >
+                        <img className='picture' alt={name} src={thumbnail} />
+                    </Link>
+                    <Link
+                        className='go-to-detail'
+                        to={`/detail?place=${placeID}&code=${categoryCode}`}
+                    >
+                        <div className='content'>
+                            <div className='line1'>{name}</div>
+                            <div className='line-group'>
+                                <div className='line2'>
+                                    {/* {this.genStar(place.rate)} */}
+                                    {this.genStar(
+                                        this.state.rate_random[+i % 30]
+                                    )}
+                                    <span className='dot' />
+                                    <span className='category'>
+                                        {categoryCode}
+                                    </span>
+                                </div>
+                                <div className='line3'>
+                                    <img alt='time' src={Time} />
+                                    <span className='time'>
+                                        8.00 AM - 4.00 PM
+                                    </span>
+                                </div>
+                                <div className='line4'>
+                                    <img
+                                        alt='location'
+                                        src={PinkLocationIcon}
+                                    />
+                                    <div className='information'>
+                                        <span className='map'>{`${
+                                            places_distances[+i]
+                                        } km`}</span>
+                                        <span className='dot' />
+                                        <span className='location'>
+                                            {`${location.district}, ${location.province}`}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+                    {this.props.userID !== ''
+                        ? this.genTabs(place)
+                        : this.genSigninTab()}
+                </div>
+            )
+        })
+        return <div className='card-container'>{box}</div>
     }
 
     render() {

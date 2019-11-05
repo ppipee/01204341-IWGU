@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import '../assets/scss/openinghour.scss'
 import { Clock } from './Icon'
-import { Detail } from './Demo'
+import { Time, Days } from './Random'
 
 class OpeningHour extends Component {
     constructor(prop) {
         super(prop)
         this.state = {
+            days: Days(),
+            time: Time,
             status: 'CLOSE',
-            days: {
+            days_draft: {
                 day1: 'mon',
                 day2: 'tue',
                 day3: 'wed',
@@ -18,28 +20,26 @@ class OpeningHour extends Component {
                 day7: 'sun',
             },
         }
+        // this.props.days = this.props.days !== null ? this.props.days : Days
+        // this.props.time = this.props.time !== null ? this.props.time : Time
     }
 
     componentDidMount() {
         const date = new Date()
         const weekday = date.getDay()
         const currentTime = date.getHours() * 60 + date.getMinutes()
-        const hourOpen = +this.sliceTime(
-            Detail.placeDetail.time.split(' ')[0].split(':')[0]
-        )
-        const minOpen = +this.sliceTime(
-            Detail.placeDetail.time.split(' ')[0].split(':')[1]
-        )
-        const hourClose = +this.sliceTime(
-            Detail.placeDetail.time.split(' ')[2].split(':')[0]
-        )
-        const minClose = +this.sliceTime(
-            Detail.placeDetail.time.split(' ')[2].split(':')[1]
-        )
+        const time =
+            this.props.time !== null ? this.props.time : this.state.time
+        const hourOpen = +this.sliceTime(time.split(' ')[0].split(':')[0])
+        const minOpen = +this.sliceTime(time.split(' ')[0].split(':')[1])
+        const hourClose = +this.sliceTime(time.split(' ')[2].split(':')[0])
+        const minClose = +this.sliceTime(time.split(' ')[2].split(':')[1])
         let box = []
-        Object.keys(this.state.days).map((day, i) => {
+        const days =
+            this.props.days.day1 !== null ? this.props.days : this.state.days
+        Object.keys(this.state.days_draft).map((day, i) => {
             i += 1
-            if (Detail.placeDetail.days[day] === false) {
+            if (days[day] === false) {
                 if (i === weekday) {
                     box = [...box, i]
                 }
@@ -62,18 +62,20 @@ class OpeningHour extends Component {
         }
     }
 
-    genDays = () =>
-        Object.keys(this.state.days).map(day => (
+    genDays = () => {
+        const days =
+            this.props.days.day1 !== null ? this.props.days : this.state.days
+
+        return Object.keys(this.state.days_draft).map(day => (
             <p
                 key={`getOpen${day}`}
-                className={
-                    Detail.placeDetail.days[day] ? 'p-active' : 'p-inactive'
-                }
+                className={days[day] ? 'p-active' : 'p-inactive'}
             >
                 {' '}
-                {this.state.days[day]}{' '}
+                {this.state.days_draft[day]}{' '}
             </p>
         ))
+    }
 
     tConv24 = time24 => {
         let ts = time24
@@ -94,6 +96,8 @@ class OpeningHour extends Component {
 
     render() {
         const { status } = this.state
+        const time =
+            this.props.time !== null ? this.props.time : this.state.time
         return (
             <div className='opening-hour'>
                 <div className='row'>
@@ -108,13 +112,8 @@ class OpeningHour extends Component {
                             {status} NOW
                         </div>
                         <p className='time'>
-                            {this.tConv24(
-                                Detail.placeDetail.time.split(' ')[0]
-                            )}{' '}
-                            -{' '}
-                            {this.tConv24(
-                                Detail.placeDetail.time.split(' ')[2]
-                            )}
+                            {this.tConv24(time.split(' ')[0])} -{' '}
+                            {this.tConv24(time.split(' ')[2])}
                         </p>
                         <div className='days'>{this.genDays()}</div>
                     </span>

@@ -9,7 +9,6 @@ import {
     NearBy,
     Contact,
 } from '../components'
-import { Detail } from '../components/Demo'
 import { placeDetail } from '../queries/place'
 
 class DetailPage extends Component {
@@ -21,16 +20,18 @@ class DetailPage extends Component {
     componentDidMount() {
         const search = new URLSearchParams(this.props.location.search)
         const id = search.get('place')
-        const code = search.get('code').toLowerCase()
+        let code
+        if (search.get('code')) code = search.get('code').toLowerCase()
         this.props.data.refetch({ id, code })
     }
 
     render() {
         // const { placeDetail: data, loading } = Detail
-        const { placeDetail: data, loading } = this.props.data
+        const { placeDetail: data, loading, error } = this.props.data
+        const search = new URLSearchParams(this.props.location.search)
         console.log(this.props.data)
         // console.log(this.props.data)
-        if (loading || this.props.data.error !== undefined)
+        if (loading) {
             return (
                 <div className='detail-page'>
                     <NavBar back design='default' />
@@ -38,6 +39,19 @@ class DetailPage extends Component {
                     <NearBy this />
                 </div>
             )
+        }
+        if (
+            error !== undefined ||
+            search.get('place') === null ||
+            search.get('code') === null
+        ) {
+            return (
+                <div className='detail-page'>
+                    <NavBar back design='default' />
+                    NotFound
+                </div>
+            )
+        }
         return (
             <div className='detail-page'>
                 <NavBar back design='default' />

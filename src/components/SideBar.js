@@ -63,7 +63,7 @@ class SideBar extends Component {
         }
     }
 
-    removeFav = e => {
+    removeDraft = e => {
         const pointer = e.target.getAttribute('index')
         const new_drafts = this.props.getDrafts
         new_drafts.splice(pointer, 1)
@@ -78,7 +78,7 @@ class SideBar extends Component {
                 }),
             },
         })
-        this.props.setfavs(new_favs)
+        this.props.setdrafts(new_drafts)
         this.setState({ block_swipe: false })
     }
 
@@ -145,7 +145,7 @@ class SideBar extends Component {
                                             <div
                                                 className='rm-fav'
                                                 index={index}
-                                                onClick={this.removeFav}
+                                                onClick={this.removeDraft}
                                             >
                                                 <img
                                                     src={Trash}
@@ -225,13 +225,19 @@ class SideBar extends Component {
                 </div>
                 {this.genAddToDraft()}
                 <div className='manage-sidebar'>
-                    <Link to='/mytrips'>
+                    <Link
+                        to={this.props.username !== '' ? '/mytrips' : '/auth'}
+                    >
                         <div>
                             <Airplane fill='#F2B099' size='15' />
                             <span>My trips</span>
                         </div>
                     </Link>
-                    <Link to='/favourites'>
+                    <Link
+                        to={
+                            this.props.username !== '' ? '/favourites' : '/auth'
+                        }
+                    >
                         <div>
                             <Fav fill='#F2B099' width='15' height='15' />
                             <span>Favourite</span>
@@ -268,7 +274,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         signout: () => dispatch({ type: UserAuthAction.SIGNOUT }),
-        setfavs: drafts =>
+        setdrafts: drafts =>
             dispatch({ type: PlannersAction.SETDRAFTS, new_drafts: drafts }),
         setloaddrafts: status =>
             dispatch({ type: PlannersAction.LOADDRAFTS, load: status }),
