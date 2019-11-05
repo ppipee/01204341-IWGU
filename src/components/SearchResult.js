@@ -7,6 +7,7 @@ import { GoogleApiWrapper } from 'google-maps-react'
 import '../assets/scss/searchresult.scss'
 import { PlannersAction } from '../action'
 import { Time, PinkLocationIcon, Star, NoResult, Add, Fav } from './Icon'
+import ImageNotFound from '../assets/img/image-not-found.svg'
 import { searchPlace, distances } from '../queries/place'
 import {
     userFavourites,
@@ -217,6 +218,11 @@ class SearchResult extends Component {
         </div>
     )
 
+    filters = places => {
+        const search = new URLSearchParams(this.props.location.search)
+        console.log(search)
+    }
+
     genTabs(place) {
         const { placeID: id, categoryCode: code } = place
         const add = this.props.getDrafts.map(key => key.placeID)
@@ -276,6 +282,7 @@ class SearchResult extends Component {
 
     genCards(places) {
         const box = []
+        this.filters()
         const places_distances = this.formatDistances(
             this.props.distances.distances
         )
@@ -287,7 +294,13 @@ class SearchResult extends Component {
                         className='link'
                         to={`/detail?place=${placeID}, ?code=${categoryCode}`}
                     >
-                        <img className='picture' alt={name} src={thumbnail} />
+                        <img
+                            className={`picture ${
+                                thumbnail === '' ? 'not-found' : ''
+                            } `}
+                            alt={name}
+                            src={thumbnail === '' ? ImageNotFound : thumbnail}
+                        />
                     </Link>
                     <Link
                         className='go-to-detail'
@@ -340,6 +353,7 @@ class SearchResult extends Component {
     }
 
     render() {
+        console.log(this.props.search.places)
         if (
             this.state.loading ||
             this.props.search.loading ||

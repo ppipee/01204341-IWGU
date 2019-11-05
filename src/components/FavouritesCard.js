@@ -5,6 +5,7 @@ import { compose } from 'redux'
 import { Skeleton } from 'antd'
 import { userFavourites, updateFavourites } from '../queries/user'
 import { Close, Star, Add } from './Icon'
+import ImageNotFound from '../assets/img/image-not-found.svg'
 import { PlannersAction } from '../action'
 import '../assets/scss/favouritescard.scss'
 
@@ -68,7 +69,14 @@ class FavouritesCard extends Component {
         return places.map((place, index) => (
             <div className='fav-card' key={place.placeID}>
                 <div className='thumbnail-card'>
-                    <img src={place.thumbnail} alt='img-card' />
+                    <img
+                        src={
+                            place.thumbnail === ''
+                                ? ImageNotFound
+                                : place.thumbnail
+                        }
+                        alt='img-card'
+                    />
                 </div>
                 <div
                     className='remove-card'

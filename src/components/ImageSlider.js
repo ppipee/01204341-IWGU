@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '../assets/scss/imageslider.scss'
-import { Images } from './Demo'
+import { Images } from './Initial'
 import Background from '../assets/img/img-slider-bg.svg'
 
 class ImageSlider extends Component {

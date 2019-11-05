@@ -10,6 +10,15 @@ import {
     Bar,
     Hotel,
 } from './Icon'
+import ImageNotFound from '../assets/img/image-not-found.svg'
+
+const Images = [
+    ImageNotFound,
+    ImageNotFound,
+    ImageNotFound,
+    ImageNotFound,
+    ImageNotFound,
+]
 
 const DefaultFilter = {
     tags: [],
@@ -76,4 +85,4 @@ const PhotoCategory = [
     },
 ]
 
-export { DefaultFilter, PhotoCategory }
+export { DefaultFilter, PhotoCategory, Images }

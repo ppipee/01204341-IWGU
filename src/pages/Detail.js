@@ -10,6 +10,7 @@ import {
     Contact,
 } from '../components'
 import { placeDetail } from '../queries/place'
+import NotFoundPage from './NotFoundPage'
 
 class DetailPage extends Component {
     constructor(props) {
@@ -31,24 +32,19 @@ class DetailPage extends Component {
         const search = new URLSearchParams(this.props.location.search)
         console.log(this.props.data)
         // console.log(this.props.data)
+        if (
+            error !== undefined ||
+            search.get('place') === null ||
+            search.get('code') === null
+        ) {
+            return <NotFoundPage />
+        }
         if (loading) {
             return (
                 <div className='detail-page'>
                     <NavBar back design='default' />
                     <div>Loading...</div>
                     <NearBy this />
-                </div>
-            )
-        }
-        if (
-            error !== undefined ||
-            search.get('place') === null ||
-            search.get('code') === null
-        ) {
-            return (
-                <div className='detail-page'>
-                    <NavBar back design='default' />
-                    NotFound
                 </div>
             )
         }
