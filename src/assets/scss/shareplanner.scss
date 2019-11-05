@@ -30,8 +30,8 @@ $fade-color: linear-gradient(
     }
 
     .share-modal {
-        width: 250px;
-        height: auto;
+        width: 42vh;
+        height: 30vh;
         border-radius: 10px;
         background-color: white;
         position: absolute;
@@ -45,7 +45,7 @@ $fade-color: linear-gradient(
             align-items: center;
 
             &:first-child {
-                padding: 14px 18px 19px 18px;
+                padding: 14px 18px 5vh 6vh;
 
                 img {
                     height: 17px;
@@ -55,7 +55,7 @@ $fade-color: linear-gradient(
                 p {
                     font-size: 16px;
                     color: #4f4f4f;
-                    margin: 0 59px 0 9px;
+                    margin: 0 10vh 0 9px;
                 }
 
                 svg {
@@ -102,7 +102,7 @@ $fade-color: linear-gradient(
         .via {
             display: flex;
             justify-content: center;
-            padding: 22px 0px;
+            padding: 4vh 0px;
 
             a:not(:first-child) {
                 margin-left: 26px;

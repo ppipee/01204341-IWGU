@@ -42,8 +42,10 @@
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18);
         background-color: white;
         align-items: center;
+        justify-content: center;
+        padding: 25px 40px;
         .input-username {
-            margin-top: 46px;
+            // margin-top: 46px;
             margin-left: -10px;
             display: flex;
             flex-direction: row;
@@ -97,7 +99,7 @@
         .signin-button {
             width: 137px;
             height: 33px;
-            margin-top: 57px;
+            margin-top: 45px;
             font-size: 16px;
             color: white;
             border-radius: 7px;
@@ -121,6 +123,17 @@
             border-radius: 7px;
             border: solid 1px #f2b099;
             background-color: transparent;
+        }
+        .match-signin {
+            margin-top: 2px;
+            height: 10px;
+            font-size: 8px;
+            color: #ff6c38;
+            align-self: flex-end;
+            visibility: hidden;
+            &.inactive {
+                visibility: visible;
+            }
         }
     }
 }
