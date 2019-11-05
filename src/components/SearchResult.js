@@ -35,9 +35,9 @@ class SearchResult extends Component {
         const search = new URLSearchParams(this.props.location.search)
         const keyword = search.get('q')
         this.props.search.refetch({ keyword })
-        if (!this.props.getLoadFavs)
+        if (!this.props.getLoadFavs && this.props.userID !== '')
             this.props.userFavourites.refetch({ id: this.props.userID })
-        if (!this.props.getLoadDrafts)
+        if (!this.props.getLoadDrafts && this.props.userID !== '')
             this.props.userDrafts.refetch({ id: this.props.userID })
         navigator.geolocation.getCurrentPosition(
             position => {
@@ -199,7 +199,131 @@ class SearchResult extends Component {
         })
     }
 
-    genCards = places => {
+    genSkeleton = num =>
+        [...Array(num).keys()].map(key => (
+            <div className='card' key={`skeleton- ${key}`}>
+                <div className='picture skeleton' />
+                <div className='go-to-detail'>
+                    <div className='content'>
+                        <div className='line1'>
+                            <Skeleton active paragraph={false} />
+                        </div>
+                        <div className='line-group'>
+                            <div className='line2'>
+                                {this.genStar2(-1)}
+                                {/* <Skeleton active paragraph={false} /> */}
+                            </div>
+                            <div className='line3'>
+                                <Skeleton active paragraph={false} />
+                            </div>
+                            <div className='line4'>
+                                <Skeleton active paragraph={false} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='add-fav'>
+                    <div className='add'>
+                        <span className='icon'>
+                            <Add stroke='#B0B0B0' />
+                        </span>
+                    </div>
+                    <div className='fav'>
+                        <span className='icon'>
+                            <Fav fill='#B0B0B0' />
+                        </span>
+                    </div>
+                </div>
+            </div>
+        ))
+
+    genStar2 = rate => {
+        const [rating, star] = rate === -1 ? [5, 'blank'] : [rate, 'full']
+
+        return [...Array(rating).keys()].map(index => (
+            <div className='rate-star' key={`rate-${index}`}>
+                <Star star={star} size='14' />
+            </div>
+        ))
+    }
+
+    genSigninTab = () => (
+        <div className='add-fav'>
+            <Link to='/auth'>
+                <div className='add'>
+                    <span className='icon'>
+                        <Add stroke='#B0B0B0' />
+                    </span>
+                </div>
+            </Link>
+            <Link to='/auth'>
+                <div className='fav'>
+                    <span className='icon'>
+                        <Fav fill='#B0B0B0' />
+                    </span>
+                </div>
+            </Link>
+        </div>
+    )
+
+    genTabs(place) {
+        const { placeID: id, categoryCode: code } = place
+        const add = this.props.getDrafts.map(key => key.placeID)
+        let fav = !this.props.getLoadFavs
+            ? this.props.userFavourites.user.favourite
+            : this.props.getFavs
+        fav = fav.map(key => key.placeID)
+        return (
+            <div className='add-fav'>
+                <div
+                    className={`add ${add.includes(id) ? 'active' : ''}`}
+                    onClick={() => this.setDrafts(place)}
+                >
+                    <span className='icon'>
+                        {add.includes(id) ? (
+                            <Add stroke='#fff' />
+                        ) : (
+                            <Add stroke='#B0B0B0' />
+                        )}
+                    </span>
+                </div>
+                <div
+                    className={`fav ${fav.includes(id) ? 'active' : ''}`}
+                    onClick={e => this.setFavs(place)}
+                >
+                    <span className='icon'>
+                        {fav.includes(id) ? (
+                            <Fav fill='#fff' />
+                        ) : (
+                            <Fav fill='#B0B0B0' />
+                        )}
+                    </span>
+                </div>
+            </div>
+        )
+    }
+
+    genStar(ratting) {
+        const container = []
+        let i
+        for (i = 0; i < ratting; i++) {
+            container.push(
+                <span className='star'>
+                    <Star star='full' size='12' />
+                </span>
+            )
+        }
+        for (i = 0; i < 5 - ratting; i++) {
+            container.push(
+                <span className='star'>
+                    <Star star='blank' size='12' />
+                </span>
+            )
+        }
+        return <span className='rating'>{container}</span>
+    }
+
+    genCards(places) {
         const box = []
         const places_distances = this.formatDistances(
             this.props.distances.distances
@@ -255,116 +379,13 @@ class SearchResult extends Component {
                             </div>
                         </div>
                     </Link>
-                    {this.genTabs(place)}
+                    {this.props.userID !== ''
+                        ? this.genTabs(place)
+                        : this.genSigninTab()}
                 </div>
             )
         })
         return <div className='card-container'>{box}</div>
-    }
-
-    genSkeleton = num =>
-        [...Array(num).keys()].map(key => (
-            <div className='card' key={`skeleton- ${key}`}>
-                <div className='picture skeleton' />
-                <div className='go-to-detail'>
-                    <div className='content'>
-                        <div className='line1'>
-                            <Skeleton active paragraph={false} />
-                        </div>
-                        <div className='line-group'>
-                            <div className='line2'>
-                                {this.genStar2(-1)}
-                                {/* <Skeleton active paragraph={false} /> */}
-                            </div>
-                            <div className='line3'>
-                                <Skeleton active paragraph={false} />
-                            </div>
-                            <div className='line4'>
-                                <Skeleton active paragraph={false} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className='add-fav'>
-                    <div className='add'>
-                        <span className='icon'>
-                            <Add stroke='#B0B0B0' />
-                        </span>
-                    </div>
-                    <div className='fav'>
-                        <span className='icon'>
-                            <Fav fill='#B0B0B0' />
-                        </span>
-                    </div>
-                </div>
-            </div>
-        ))
-
-    genStar2 = rate => {
-        const [rating, star] = rate === -1 ? [5, 'blank'] : [rate, 'full']
-
-        return [...Array(rating).keys()].map(index => (
-            <div className='rate-star' key={`rate-${index}`}>
-                <Star star={star} size='14' />
-            </div>
-        ))
-    }
-
-    genStar(ratting) {
-        const container = []
-        let i
-        for (i = 0; i < ratting; i++) {
-            container.push(
-                <span className='star'>
-                    <Star star='full' size='12' />
-                </span>
-            )
-        }
-        for (i = 0; i < 5 - ratting; i++) {
-            container.push(
-                <span className='star'>
-                    <Star star='blank' size='12' />
-                </span>
-            )
-        }
-        return <span className='rating'>{container}</span>
-    }
-
-    genTabs(place) {
-        const { placeID: id, categoryCode: code } = place
-        const add = this.props.getDrafts.map(key => key.placeID)
-        let fav = !this.props.getLoadFavs
-            ? this.props.userFavourites.user.favourite
-            : this.props.getFavs
-        fav = fav.map(key => key.placeID)
-        return (
-            <div className='add-fav'>
-                <div
-                    className={`add ${add.includes(id) ? 'active' : ''}`}
-                    onClick={() => this.setDrafts(place)}
-                >
-                    <span className='icon'>
-                        {add.includes(id) ? (
-                            <Add stroke='#fff' />
-                        ) : (
-                            <Add stroke='#B0B0B0' />
-                        )}
-                    </span>
-                </div>
-                <div
-                    className={`fav ${fav.includes(id) ? 'active' : ''}`}
-                    onClick={e => this.setFavs(place)}
-                >
-                    <span className='icon'>
-                        {fav.includes(id) ? (
-                            <Fav fill='#fff' />
-                        ) : (
-                            <Fav fill='#B0B0B0' />
-                        )}
-                    </span>
-                </div>
-            </div>
-        )
     }
 
     render() {
