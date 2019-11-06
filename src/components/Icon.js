@@ -2,14 +2,6 @@ import React from 'react'
 import Clear from '../assets/icon/refresh.svg'
 import Menu from '../assets/icon/featured-menu.svg'
 import LocationIcon from '../assets/icon/location-icon.svg'
-import RestaurantInActive from '../assets/icon/restaurant.svg'
-import RestaurantActive from '../assets/icon/restaurant2.svg'
-import LandmarkInActive from '../assets/icon/landmark.svg'
-import LandmarkActive from '../assets/icon/landmark2.svg'
-import TreeInActive from '../assets/icon/tree.svg'
-import TreeActive from '../assets/icon/tree2.svg'
-import SleepInActive from '../assets/icon/sleep.svg'
-import SleepActive from '../assets/icon/sleep2.svg'
 import Time from '../assets/icon/time.svg'
 import PinkLocationIcon from '../assets/icon/location.svg'
 import Calendar from '../assets/icon/calendar.svg'
@@ -44,6 +36,68 @@ import ShareButton from '../assets/icon/share-button.svg'
 import SummaryButton from '../assets/icon/summary-button.svg'
 import NoResult from '../assets/icon/no-result.svg'
 import HeartWhite from '../assets/icon/heart-border-white.svg'
+
+const Restaurant = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='18'
+        height='20'
+        fill='none'
+        viewBox='0 0 18 20'
+    >
+        <path
+            fill={props.fill}
+            d='M8 7H6V0H4v7H2V0H0v7c0 2.12 1.66 3.84 3.75 3.97V20h2.5v-9.03C8.34 10.84 10 9.12 10 7V0H8v7zm5-3v8h2.5v8H18V0c-2.76 0-5 2.24-5 4z'
+        />
+    </svg>
+)
+
+const Sleep = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='26'
+        height='16'
+        fill='none'
+        viewBox='0 0 26 16'
+    >
+        <path
+            fill={props.fill}
+            d='M7.15 8c1.792 0 3.25-1.495 3.25-3.333S8.942 1.333 7.15 1.333 3.9 2.83 3.9 4.667 5.358 8 7.15 8zm14.3-5.333h-9.1c-.36 0-.65.298-.65.666v6H2.6V.667A.658.658 0 0 0 1.95 0H.65C.29 0 0 .298 0 .667v14.666c0 .369.29.667.65.667h1.3c.36 0 .65-.298.65-.667v-2h20.8v2c0 .369.29.667.65.667h1.3c.36 0 .65-.298.65-.667v-8c0-2.577-2.037-4.666-4.55-4.666z'
+        />
+    </svg>
+)
+
+const Landmark = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='24'
+        height='18'
+        fill='none'
+        viewBox='0 0 24 18'
+    >
+        <path
+            fill={props.fill}
+            d='M9.23 0C8.209 0 7.843.909 7.386 1.8l-.923 1.8H2.769C1.235 3.6 0 4.804 0 6.3v9C0 16.796 1.235 18 2.77 18h18.46c1.535 0 2.77-1.204 2.77-2.7v-9c0-1.496-1.235-2.7-2.77-2.7h-3.692l-.923-1.8C16.154.9 15.792 0 14.77 0H9.231zM2.77 5.4c.244 0 .479.095.652.264.173.168.27.397.27.636a.889.889 0 0 1-.27.636.935.935 0 0 1-.653.264.935.935 0 0 1-.652-.264.889.889 0 0 1-.27-.636c0-.239.096-.468.27-.636a.935.935 0 0 1 .652-.264zm9.23 0c1.469 0 2.878.569 3.916 1.582a5.333 5.333 0 0 1 1.622 3.818 5.333 5.333 0 0 1-1.622 3.818A5.611 5.611 0 0 1 12 16.2a5.611 5.611 0 0 1-3.916-1.582A5.332 5.332 0 0 1 6.462 10.8c0-1.432.583-2.806 1.622-3.818A5.611 5.611 0 0 1 12 5.4zm0 2.7c-.734 0-1.439.284-1.958.79a2.666 2.666 0 0 0-.811 1.91c0 .716.292 1.403.81 1.91.52.505 1.225.79 1.959.79s1.439-.284 1.958-.79c.52-.507.811-1.194.811-1.91s-.292-1.403-.81-1.91A2.806 2.806 0 0 0 12 8.1z'
+        />
+    </svg>
+)
+
+const Tree = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='21'
+        height='21'
+        fill='none'
+        viewBox='0 0 21 21'
+    >
+        <path
+            fill={props.fill}
+            fillRule='evenodd'
+            d='M15.703 18.699v-3.01c1.995-.447 3.894-2.578 3.894-5.145C19.597 7.65 17.434 0 15.067 0c-2.366 0-4.534 7.65-4.534 10.544 0 2.51 1.986 4.608 3.916 5.117v2.92a81.122 81.122 0 0 0-3.952-.096c-1.346 0-2.69.087-4.025.26v-3.53c1.389-.41 2.586-1.872 2.586-3.632 0-2.074-1.438-7.636-3.206-7.636-1.771 0-3.205 5.562-3.205 7.636 0 1.789 1.188 3.276 2.616 3.658v3.69C2.12 19.475 0 20.4 0 21h21c-.001-.602-2.135-2.022-5.297-2.301z'
+            clipRule='evenodd'
+        />
+    </svg>
+)
 
 const Filter = props => (
     <svg
@@ -866,15 +920,7 @@ export {
     Airplane,
     Back,
     LocationIcon,
-    RestaurantActive,
-    RestaurantInActive,
-    LandmarkActive,
-    LandmarkInActive,
     Plus,
-    TreeActive,
-    TreeInActive,
-    SleepActive,
-    SleepInActive,
     PaperAirplane,
     Add,
     Fav,
@@ -942,4 +988,8 @@ export {
     FB,
     Instagram,
     HeartWhite,
+    Restaurant,
+    Landmark,
+    Tree,
+    Sleep,
 }

@@ -25,9 +25,14 @@
             .icon {
                 display: flex;
                 justify-content: center;
+                align-items:center;
                 margin-top: 20.5px;
                 height: 46.9px;
                 width: 25%;
+                svg{
+                    position: absolute;
+                    z-index:1;
+                }
                 &.active::before {
                     content: '';
                     position: absolute;
@@ -69,6 +74,7 @@
                     }
                     .name {
                         margin: 0;
+                        margin-top:10px;
                         color: #4f4f4f;
                         text-align: center;
                         font-size: 10px;
