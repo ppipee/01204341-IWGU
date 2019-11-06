@@ -25,21 +25,23 @@
             .icon {
                 display: flex;
                 justify-content: center;
-                align-items:center;
+                align-items: center;
                 margin-top: 20.5px;
                 height: 46.9px;
                 width: 25%;
-                svg{
-                    position: absolute;
-                    z-index:1;
-                }
-                &.active::before {
-                    content: '';
+                position: relative;
+                .bg-tab.active {
                     position: absolute;
                     width: 93.8px;
                     height: 46.9px;
                     border-radius: 76px 76px 0 0;
                     background-color: white;
+                }
+                div svg {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -65%);
                 }
             }
             .icon img {
@@ -74,7 +76,7 @@
                     }
                     .name {
                         margin: 0;
-                        margin-top:10px;
+                        margin-top: 10px;
                         color: #4f4f4f;
                         text-align: center;
                         font-size: 10px;

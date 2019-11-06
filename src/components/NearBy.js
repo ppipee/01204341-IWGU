@@ -157,20 +157,18 @@ class NearBy extends Component {
             const [category, tabActive, tabInActive] = tab
             let active = ''
             let img = tabInActive
-            console.log('img:', img)
             if (this.state.tab_state[category]) {
                 active = ' active'
                 img = tabActive
             }
-            console.log('img2:', img)
             tabbar.push(
                 <div
                     className={`icon${active}`}
                     key={`tab-${category}`}
                     onClick={() => this.openContents(category)}
                 >
-                    {img}
-                    {/* <img alt='icon-tab' src={tabInActive} /> */}
+                    <div className={`bg-tab ${active}`} />
+                    <div>{img}</div>
                 </div>
             )
         })
