@@ -16,6 +16,7 @@ import SignIn from './SignIn'
 import SignUp from './SignUp'
 import FavouritesCard from './FavouritesCard'
 import FavouritesNavBar from './FavouritesNavBar'
+import AddFavDetail from './AddFavDetail'
 
 export {
     CountDown,
@@ -36,4 +37,5 @@ export {
     SignUp,
     FavouritesCard,
     FavouritesNavBar,
+    AddFavDetail,
 }
