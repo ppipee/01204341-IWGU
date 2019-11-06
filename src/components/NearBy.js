@@ -168,7 +168,7 @@ class NearBy extends Component {
                     onClick={() => this.openContents(category)}
                 >
                     <div className={`bg-tab ${active}`} />
-                    <div>{img}</div>
+                    <div className='icon-tab'>{img}</div>
                 </div>
             )
         })
