@@ -23,9 +23,6 @@ import Ferry from '../assets/icon/ferry.svg'
 import Bts from '../assets/icon/bts.svg'
 import Mrt from '../assets/icon/mrt.svg'
 import Shield from '../assets/icon/shield.svg'
-import Check from '../assets/icon/check.svg'
-import Info from '../assets/icon/info.svg'
-import Trash from '../assets/icon/trash.svg'
 import Clock from '../assets/icon/clock.svg'
 import Twitter from '../assets/icon/twitter.svg'
 import Line from '../assets/icon/line.svg'
@@ -36,6 +33,29 @@ import ShareButton from '../assets/icon/share-button.svg'
 import SummaryButton from '../assets/icon/summary-button.svg'
 import NoResult from '../assets/icon/no-result.svg'
 import HeartWhite from '../assets/icon/heart-border-white.svg'
+import Edit from '../assets/icon/edit.svg'
+import Check from '../assets/icon/check.svg'
+
+const Trash = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='15'
+        height='15'
+        fill='none'
+        viewBox='0 0 15 15'
+    >
+        <g fill={props.fill} clipPath='url(#a)'>
+            <path d='M9.569 5.435a.351.351 0 0 0-.351.35v6.64a.351.351 0 0 0 .702 0v-6.64a.351.351 0 0 0-.351-.35zM5.424 5.435a.351.351 0 0 0-.351.35v6.64a.351.351 0 0 0 .702 0v-6.64a.351.351 0 0 0-.351-.35z' />
+            <path d='M2.403 4.466v8.655c0 .511.187.992.515 1.336.326.346.78.542 1.255.543h6.647c.475 0 .929-.197 1.255-.543.328-.345.515-.825.515-1.336V4.466a1.342 1.342 0 0 0-.344-2.64h-1.799v-.438A1.38 1.38 0 0 0 9.057 0h-3.12a1.38 1.38 0 0 0-1.391 1.388v.439H2.747a1.342 1.342 0 0 0-.344 2.639zm8.417 9.831H4.173c-.6 0-1.068-.516-1.068-1.176V4.496h8.783v8.625c0 .66-.468 1.176-1.068 1.176zM5.248 1.387a.676.676 0 0 1 .689-.684h3.12a.677.677 0 0 1 .688.685v.439H5.248v-.44zm-2.5 1.142h9.498a.632.632 0 1 1 0 1.265H2.747a.632.632 0 1 1 0-1.265z' />
+            <path d='M7.496 5.435a.351.351 0 0 0-.35.35v6.64a.351.351 0 0 0 .702 0v-6.64a.351.351 0 0 0-.352-.35z' />
+        </g>
+        <defs>
+            <clipPath id='a'>
+                <path fill='#fff' d='M0 0h15v15H0z' />
+            </clipPath>
+        </defs>
+    </svg>
+)
 
 const Restaurant = props => (
     <svg
@@ -709,6 +729,21 @@ const Wifi = props => (
     </svg>
 )
 
+const Info = props => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='23'
+        height='23'
+        fill='none'
+        viewBox='0 0 23 23'
+    >
+        <path
+            fill={props.fill}
+            d='M11.5 21.083A9.583 9.583 0 0 1 1.917 11.5 9.583 9.583 0 0 1 11.5 1.917a9.583 9.583 0 0 1 9.583 9.583 9.583 9.583 0 0 1-9.583 9.583zm0-1.916a7.667 7.667 0 1 0 0-15.333 7.667 7.667 0 0 0 0 15.333zm0-9.584a.958.958 0 0 1 .958.959v4.791a.959.959 0 0 1-1.916 0v-4.791a.958.958 0 0 1 .958-.959zm0-.958a.958.958 0 1 1 0-1.917.958.958 0 0 1 0 1.917z'
+        />
+    </svg>
+)
+
 const Lock = props => (
     <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -970,7 +1005,6 @@ export {
     Air,
     Land,
     Sport,
-    Check,
     Lock,
     User,
     Info,
@@ -988,8 +1022,10 @@ export {
     FB,
     Instagram,
     HeartWhite,
-    Restaurant,
-    Landmark,
+    Edit,
+    Check,
     Tree,
+    Landmark,
+    Restaurant,
     Sleep,
 }

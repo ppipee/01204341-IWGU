@@ -25,10 +25,13 @@ class SideBar extends Component {
     }
 
     componentDidUpdate(prevProps) {
+        console.log(prevProps.userDrafts, this.props.userDrafts)
         if (
             prevProps.userDrafts.loading &&
             !this.props.userDrafts.loading &&
-            !this.props.getLoadDrafts
+            !this.props.getLoadDrafts &&
+            this.props.userDrafts.variables.id !== '' &&
+            this.props.userDrafts.variables.id !== null
         ) {
             const draft_places = this.props.userDrafts.user.draft
             this.props.setdrafts(draft_places)
@@ -147,19 +150,13 @@ class SideBar extends Component {
                                                 index={index}
                                                 onClick={this.removeDraft}
                                             >
-                                                <img
-                                                    src={Trash}
-                                                    alt='trash-icon'
-                                                />
+                                                <Trash fill='#fff' />
                                             </div>
                                             <Link
                                                 to={`/detail?place=${place.placeID}&code=${place.categoryCode}`}
                                             >
                                                 <div className='info-fav'>
-                                                    <img
-                                                        src={Info}
-                                                        alt='info-icon'
-                                                    />
+                                                    <Info fill='#fff' />
                                                 </div>
                                             </Link>
                                         </div>
@@ -195,6 +192,11 @@ class SideBar extends Component {
                 </div>
             </div>
         )
+    }
+
+    signout = () => {
+        this.props.signout()
+        this.props.clear()
     }
 
     render() {
@@ -253,7 +255,7 @@ class SideBar extends Component {
                         className={`signout ${
                             this.props.username === '' ? 'hide' : ''
                         }`}
-                        onClick={this.props.signout}
+                        onClick={this.signout}
                     >
                         Sign out
                     </span>
@@ -273,6 +275,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
+        clear: () => dispatch({ type: PlannersAction.CLEARPLANNER }),
         signout: () => dispatch({ type: UserAuthAction.SIGNOUT }),
         setdrafts: drafts =>
             dispatch({ type: PlannersAction.SETDRAFTS, new_drafts: drafts }),
