@@ -9,6 +9,7 @@ import * as serviceWorker from './ServiceWorker'
 import './assets/css/index.css'
 import Routes from './router'
 import configureStore from './store'
+import App from './components/App'
 
 // const store = createStore(reducer, applyMiddleware(logger))
 const { store, persistor } = configureStore()

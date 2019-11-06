@@ -81,7 +81,7 @@ class InfoPlace extends Component {
     }
 
     render() {
-        const { name, category, categoryCode } = this.props.info
+        const { name, category, categoryCode, time, days } = this.props.info
         const code = category[0] ? category[0] : categoryCode.toUpperCase()
         const description =
             this.props.info.description === ''
@@ -107,7 +107,7 @@ class InfoPlace extends Component {
                         </div>
                     </div>
                     <hr />
-                    <OpeningHour />
+                    <OpeningHour time={time} days={days} />
                     <Review rate={this.props.info.rate} />
                 </div>
             </div>

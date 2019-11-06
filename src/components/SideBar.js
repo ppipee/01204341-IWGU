@@ -25,13 +25,16 @@ class SideBar extends Component {
     }
 
     componentDidUpdate(prevProps) {
+        console.log(prevProps.userDrafts, this.props.userDrafts)
         if (
             prevProps.userDrafts.loading &&
             !this.props.userDrafts.loading &&
-            !this.props.getLoadDrafts
+            !this.props.getLoadDrafts &&
+            this.props.userDrafts.variables.id !== '' &&
+            this.props.userDrafts.variables.id !== null
         ) {
-            const fav_places = this.props.userDrafts.user.draft
-            this.props.setfavs(fav_places)
+            const draft_places = this.props.userDrafts.user.draft
+            this.props.setdrafts(draft_places)
             this.props.setloaddrafts(true)
         }
     }
@@ -63,7 +66,7 @@ class SideBar extends Component {
         }
     }
 
-    removeFav = e => {
+    removeDraft = e => {
         const pointer = e.target.getAttribute('index')
         const new_drafts = this.props.getDrafts
         new_drafts.splice(pointer, 1)
@@ -78,7 +81,7 @@ class SideBar extends Component {
                 }),
             },
         })
-        this.props.setfavs(new_drafts)
+        this.props.setdrafts(new_drafts)
         this.setState({ block_swipe: false })
     }
 
@@ -145,7 +148,7 @@ class SideBar extends Component {
                                             <div
                                                 className='rm-fav'
                                                 index={index}
-                                                onClick={this.removeFav}
+                                                onClick={this.removeDraft}
                                             >
                                                 <Trash fill='#fff' />
                                             </div>
@@ -219,13 +222,19 @@ class SideBar extends Component {
                 </div>
                 {this.genAddToDraft()}
                 <div className='manage-sidebar'>
-                    <Link to='/mytrips'>
+                    <Link
+                        to={this.props.username !== '' ? '/mytrips' : '/auth'}
+                    >
                         <div>
                             <Airplane fill='#F2B099' size='15' />
                             <span>My trips</span>
                         </div>
                     </Link>
-                    <Link to='/favourites'>
+                    <Link
+                        to={
+                            this.props.username !== '' ? '/favourites' : '/auth'
+                        }
+                    >
                         <div>
                             <Fav fill='#F2B099' width='15' height='15' />
                             <span>Favourite</span>
@@ -262,7 +271,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         signout: () => dispatch({ type: UserAuthAction.SIGNOUT }),
-        setfavs: drafts =>
+        setdrafts: drafts =>
             dispatch({ type: PlannersAction.SETDRAFTS, new_drafts: drafts }),
         setloaddrafts: status =>
             dispatch({ type: PlannersAction.LOADDRAFTS, load: status }),

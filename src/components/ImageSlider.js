@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '../assets/scss/imageslider.scss'
-import { Images } from './Demo'
+import { Images } from './Initial'
 import Background from '../assets/img/img-slider-bg.svg'
 
 class ImageSlider extends Component {
@@ -14,7 +14,7 @@ class ImageSlider extends Component {
     handleImage = async e => {
         const index = e.target.getAttribute('index')
         this.sliceAnimation(index)
-        console.log(this.focusRef.offsetLeft)
+        // console.log(this.focusRef.offsetLeft)
         this.setState({ image_show: index })
     }
 
@@ -24,7 +24,7 @@ class ImageSlider extends Component {
             return (
                 <img
                     className={`img${check ? ' active' : ''}`}
-                    src={check ? Images[this.state.image_show] : ''}
+                    src={check ? images[this.state.image_show] : ''}
                     key={`img-foucus-${i + 1}`}
                     alt='img-focus'
                 />

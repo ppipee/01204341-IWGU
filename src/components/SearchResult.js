@@ -4,9 +4,11 @@ import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import { GoogleApiWrapper } from 'google-maps-react'
+import { Skeleton } from 'antd'
 import '../assets/scss/searchresult.scss'
 import { PlannersAction } from '../action'
 import { Time, PinkLocationIcon, Star, NoResult, Add, Fav } from './Icon'
+import ImageNotFound from '../assets/img/image-not-found.svg'
 import { searchPlace, distances } from '../queries/place'
 import {
     userFavourites,
@@ -21,12 +23,13 @@ class SearchResult extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            rate_random: [...Array(30).keys()].map(key => Rate()),
+            rate_random: [...Array(80).keys()].map(key => Rate()),
             userLocation: {
                 latitude: 32,
                 longitude: 32,
             },
             loading: true,
+            places: [],
         }
     }
 
@@ -34,9 +37,9 @@ class SearchResult extends Component {
         const search = new URLSearchParams(this.props.location.search)
         const keyword = search.get('q')
         this.props.search.refetch({ keyword })
-        if (!this.props.getLoadFavs)
+        if (!this.props.getLoadFavs && this.props.userID !== '')
             this.props.userFavourites.refetch({ id: this.props.userID })
-        if (!this.props.getLoadDrafts)
+        if (!this.props.getLoadDrafts && this.props.userID !== '')
             this.props.userDrafts.refetch({ id: this.props.userID })
         navigator.geolocation.getCurrentPosition(
             position => {
@@ -87,6 +90,7 @@ class SearchResult extends Component {
             this.props.setloaddrafts(true)
         }
         if (prevProps.search.loading && !this.props.search.loading) {
+            this.setState({ places: this.props.search.places })
             this.getDistances(this.props.search.places)
         }
     }
@@ -198,75 +202,104 @@ class SearchResult extends Component {
         })
     }
 
-    genCards = places => {
-        const box = []
-        const places_distances = this.formatDistances(
-            this.props.distances.distances
-        )
-        places.forEach((place, i) => {
-            const { placeID, categoryCode, thumbnail, name, location } = place
-            box.push(
-                <div className='card' key={`${placeID}`}>
-                    <Link
-                        className='link'
-                        to={`/detail?place=${placeID}, ?code=${categoryCode}`}
-                    >
-                        <img className='picture' alt={name} src={thumbnail} />
-                    </Link>
-                    <Link
-                        className='go-to-detail'
-                        to={`/detail?place=${placeID}&code=${categoryCode}`}
-                    >
-                        <div className='content'>
-                            <div className='line1'>{name}</div>
-                            <div className='line-group'>
-                                <div className='line2'>
-                                    {/* {this.genStar(place.rate)} */}
-                                    {this.genStar(
-                                        this.state.rate_random[+i % 30]
-                                    )}
-                                    <span className='dot' />
-                                    <span className='category'>
-                                        {categoryCode}
-                                    </span>
-                                </div>
-                                <div className='line3'>
-                                    <img alt='time' src={Time} />
-                                    <span className='time'>
-                                        8.00 AM - 4.00 PM
-                                    </span>
-                                </div>
-                                <div className='line4'>
-                                    <img
-                                        alt='location'
-                                        src={PinkLocationIcon}
-                                    />
-                                    <div className='information'>
-                                        <span className='map'>{`${
-                                            places_distances[+i]
-                                        } km`}</span>
-                                        <span className='dot' />
-                                        <span className='location'>
-                                            {`${location.district}, ${location.province}`}
-                                        </span>
-                                    </div>
-                                </div>
+    genSkeleton = num =>
+        [...Array(num).keys()].map(key => (
+            <div className='card' key={`skeleton- ${key}`}>
+                <div className='picture skeleton' />
+                <div className='go-to-detail'>
+                    <div className='content'>
+                        <div className='line1'>
+                            <Skeleton active paragraph={false} />
+                        </div>
+                        <div className='line-group'>
+                            <div className='line2'>
+                                {this.genStar2(-1)}
+                                {/* <Skeleton active paragraph={false} /> */}
+                            </div>
+                            <div className='line3'>
+                                <Skeleton active paragraph={false} />
+                            </div>
+                            <div className='line4'>
+                                <Skeleton active paragraph={false} />
                             </div>
                         </div>
-                    </Link>
-                    {this.genTabs(place)}
+                    </div>
                 </div>
-            )
+                <div className='add-fav'>
+                    <div className='add'>
+                        <span className='icon'>
+                            <Add stroke='#B0B0B0' />
+                        </span>
+                    </div>
+                    <div className='fav'>
+                        <span className='icon'>
+                            <Fav fill='#B0B0B0' />
+                        </span>
+                    </div>
+                </div>
+            </div>
+        ))
+
+    genStar2 = rate => {
+        const [rating, star] = rate === -1 ? [5, 'blank'] : [rate, 'full']
+
+        return [...Array(rating).keys()].map(index => (
+            <div className='rate-star' key={`rate-${index}`}>
+                <Star star={star} size='14' />
+            </div>
+        ))
+    }
+
+    genSigninTab = () => (
+        <div className='add-fav'>
+            <Link to='/auth'>
+                <div className='add'>
+                    <span className='icon'>
+                        <Add stroke='#B0B0B0' />
+                    </span>
+                </div>
+            </Link>
+            <Link to='/auth'>
+                <div className='fav'>
+                    <span className='icon'>
+                        <Fav fill='#B0B0B0' />
+                    </span>
+                </div>
+            </Link>
+        </div>
+    )
+
+    filters = places => {
+        const search = new URLSearchParams(this.props.location.search)
+        const sortby = search.get('sortby')
+        const rates = this.state.rate_random
+        const new_state = places.map((place, i) => {
+            return {
+                ...place,
+                rate: rates[i],
+            }
         })
-        return <div className='card-container'>{box}</div>
+        if (sortby !== null) {
+            // console.log(sortby)
+            if (sortby === 'rating') {
+                new_state.sort((a, b) => b.rate - a.rate)
+                return new_state
+            }
+        }
+        return new_state
     }
 
     genTabs(place) {
         const { placeID: id, categoryCode: code } = place
-        const add = this.props.getDrafts.map(key => key.placeID)
-        let fav = !this.props.getLoadFavs
-            ? this.props.userFavourites.user.favourite
-            : this.props.getFavs
+        let add =
+            !this.props.getLoadDrafts && this.props.userDrafts.user
+                ? this.props.userDrafts.user.draft
+                : this.props.getDrafts
+        add = add.map(key => key.placeID)
+        let fav =
+            !this.props.getLoadFavs && this.props.userFavourites.user
+                ? this.props.userFavourites.user.favourite
+                : this.props.getFavs
         fav = fav.map(key => key.placeID)
         return (
             <div className='add-fav'>
@@ -318,6 +351,79 @@ class SearchResult extends Component {
         return <span className='rating'>{container}</span>
     }
 
+    genCards(places) {
+        const box = []
+        const places_distances = this.formatDistances(
+            this.props.distances.distances
+        )
+        const new_places = this.filters(places)
+        console.log(new_places)
+        new_places.forEach((place, i) => {
+            const { placeID, categoryCode, thumbnail, name, location } = place
+            box.push(
+                <div className='card' key={`${placeID}`}>
+                    <Link
+                        className='link'
+                        to={`/detail?place=${placeID}, ?code=${categoryCode}`}
+                    >
+                        <img
+                            className={`picture ${
+                                thumbnail === '' ? 'not-found' : ''
+                            } `}
+                            alt={name}
+                            src={thumbnail === '' ? ImageNotFound : thumbnail}
+                        />
+                    </Link>
+                    <Link
+                        className='go-to-detail'
+                        to={`/detail?place=${placeID}&code=${categoryCode}`}
+                    >
+                        <div className='content'>
+                            <div className='line1'>{name}</div>
+                            <div className='line-group'>
+                                <div className='line2'>
+                                    {this.genStar(place.rate)}
+                                    {/* {this.genStar(
+                                        this.state.rate_random[+i % 30]
+                                    )} */}
+                                    <span className='dot' />
+                                    <span className='category'>
+                                        {categoryCode}
+                                    </span>
+                                </div>
+                                <div className='line3'>
+                                    <img alt='time' src={Time} />
+                                    <span className='time'>
+                                        8.00 AM - 4.00 PM
+                                    </span>
+                                </div>
+                                <div className='line4'>
+                                    <img
+                                        alt='location'
+                                        src={PinkLocationIcon}
+                                    />
+                                    <div className='information'>
+                                        <span className='map'>{`${
+                                            places_distances[+i]
+                                        } km`}</span>
+                                        <span className='dot' />
+                                        <span className='location'>
+                                            {`${location.district}, ${location.province}`}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+                    {this.props.userID !== ''
+                        ? this.genTabs(place)
+                        : this.genSigninTab()}
+                </div>
+            )
+        })
+        return <div className='card-container'>{box}</div>
+    }
+
     render() {
         if (
             this.state.loading ||
@@ -328,12 +434,16 @@ class SearchResult extends Component {
             (this.state.userLocation.latitude === 32 &&
                 this.state.userLocation.longitude === 32)
         )
-            return <div className='search-result'>Loading</div>
+            return (
+                <div className='search-result'>
+                    <div className='card-container'>{this.genSkeleton(5)}</div>
+                </div>
+            )
         if (this.props.search.error !== undefined)
             return <div className='search-result'>{this.noneResult()}</div>
         return (
             <div className='search-result'>
-                {this.genCards(this.props.search.places)}
+                {this.genCards(this.state.places)}
             </div>
         )
     }

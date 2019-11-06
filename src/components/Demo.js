@@ -10,6 +10,12 @@ import img0 from '../assets/img/bangkok2.jpg'
 import img1 from '../assets/img/bangkok3.jpg'
 import img2 from '../assets/img/bangkok4.jpg'
 import img3 from '../assets/img/yaowarach.jpg'
+import standard from '../assets/img/standard.jpg'
+import snow from '../assets/img/snow.jpg'
+import water from '../assets/img/water.jpg'
+import air from '../assets/img/air.jpeg'
+import land from '../assets/img/land.jpeg'
+import sport from '../assets/img/sport.jpg'
 
 const Places = {
     res: [
@@ -520,6 +526,70 @@ const Reviews = [
     },
 ]
 
+const Coverage = {
+    standard: {
+        type: 'standard',
+        name: 'Standard',
+        price: '$15',
+        img: standard,
+        cover: [
+            'Medical & Travel Accident Benefits',
+            'Lost Luggage & Personal Effects',
+            'Flight Delay and Trip Cancellation',
+        ],
+    },
+    snow: {
+        name: 'Snow Activities',
+        price: '$17',
+        img: snow,
+        cover: [
+            'Medical, Travel and Activities Accident Benefits',
+            'Lost Luggage & Personal Effects',
+            'Flight Delay and Trip Cancellation',
+        ],
+    },
+    water: {
+        name: 'Water Activities',
+        price: '$18',
+        img: water,
+        cover: [
+            'Medical, Travel and Activities Accident Benefits',
+            'Lost Luggage & Personal Effects',
+            'Flight Delay and Trip Cancellation',
+        ],
+    },
+    air: {
+        name: 'Air Activities',
+        price: '$18',
+        img: air,
+        cover: [
+            'Medical, Travel and Activities Accident Benefits',
+            'Lost Luggage & Personal Effects',
+            'Flight Delay and Trip Cancellation',
+        ],
+    },
+    land: {
+        name: 'Land Activities',
+        price: '$18',
+        img: land,
+        cover: [
+            'Medical, Travel and Activities Accident Benefits',
+            'Lost Luggage & Personal Effects',
+            'Flight Delay and Trip Cancellation',
+        ],
+    },
+    sport: {
+        name: 'Sport Activities',
+        price: '$18',
+        img: sport,
+        cover: [
+            'Medical, Travel and Activities Accident Benefits',
+            'Lost Luggage & Personal Effects',
+            'Flight Delay and Trip Cancellation',
+        ],
+    },
+}
+
 export {
     Places,
     TopAttractions,
@@ -528,5 +598,6 @@ export {
     Trip,
     Reviews,
     Routes,
+    Coverage,
     SearchPlaces,
 }

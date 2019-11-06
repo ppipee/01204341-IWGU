@@ -1,17 +1,13 @@
+.sub-sec-fav-bg,
+.sub-fav-bg,
 .fav-bg {
+    width: 100%;
     position: fixed;
+    z-index: -2;
+    top: 0;
+}
+.fav-bg {
     z-index: -1;
-    top: 0;
-}
-.sub-fav-bg {
-    position: fixed;
-    z-index: -2;
-    top: 0;
-}
-.sub-sec-fav-bg {
-    position: fixed;
-    z-index: -2;
-    top: 0;
 }
 .favourites-navbar {
     text-align: center;
