@@ -36,7 +36,7 @@ class PlannerPlaceCard extends Component {
             this.props.setdrafts(draft_places)
             this.props.setloaddrafts(true)
         }
-        return prevProps.planner !== this.props.planner
+        // return prevProps.planner !== this.props.planner
     }
 
     // shouldComponentUpdate(nextProps) {
@@ -329,11 +329,14 @@ class PlannerPlaceCard extends Component {
     }
 
     genPlaceCard(day, places) {
+        // console.log(this.props.getPlanner)
         const planner =
             this.props.getPlanner === null
                 ? this.props.planner
                 : this.props.getPlanner
         const dayRange = planner.days
+        // console.log("planner", planner.days[day - 1])
+        console.log('place', places, ' day:', day)
         const card = []
         const len = places.length
         for (let i = 0; i < len; i++) {

@@ -57,6 +57,14 @@ const planner = (state = InitialState, action) => {
                 ...state,
                 planner: { ...action.new_planner },
             }
+        case Action.CLEARPLANNER:
+            return {
+                drafts: [],
+                favourites: [],
+                load_favs: false,
+                load_drafts: false,
+                planner: null,
+            }
         default:
             return state
     }

@@ -8,5 +8,6 @@ const PlannersAction = {
     LOADFAVS: 'LOAD_FAVS',
     LOADDRAFTS: 'LOAD_DRAFTS',
     SETPLANNERS: 'SET_PLANNERS',
+    CLEARPLANNER: 'CLEAR_PLANNERS',
 }
 export default PlannersAction

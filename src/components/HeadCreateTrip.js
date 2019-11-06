@@ -22,7 +22,7 @@ class HeadCreateTrip extends Component {
     handleChange = e => {
         let input = e.target.value
         input = input.length <= 20 ? input : ''
-        this.props.setName(e.target.value)
+        this.props.setName(input)
         this.setState({ value_inp: e.target.value })
     }
 

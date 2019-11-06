@@ -194,6 +194,11 @@ class SideBar extends Component {
         )
     }
 
+    signout = () => {
+        this.props.signout()
+        this.props.clear()
+    }
+
     render() {
         return (
             <div className='sidebar'>
@@ -250,7 +255,7 @@ class SideBar extends Component {
                         className={`signout ${
                             this.props.username === '' ? 'hide' : ''
                         }`}
-                        onClick={this.props.signout}
+                        onClick={this.signout}
                     >
                         Sign out
                     </span>
@@ -270,6 +275,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
+        clear: () => dispatch({ type: PlannersAction.CLEARPLANNER }),
         signout: () => dispatch({ type: UserAuthAction.SIGNOUT }),
         setdrafts: drafts =>
             dispatch({ type: PlannersAction.SETDRAFTS, new_drafts: drafts }),
