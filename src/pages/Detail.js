@@ -12,6 +12,7 @@ import {
     AddFavDetail,
 } from '../components'
 import { placeDetail } from '../queries/place'
+import NotFoundPage from './NotFoundPage'
 import '../assets/scss/detail.scss'
 
 class DetailPage extends Component {
@@ -81,12 +82,7 @@ class DetailPage extends Component {
             search.get('place') === null ||
             search.get('code') === null
         ) {
-            return (
-                <div className='detail-page'>
-                    <NavBar back design='default' />
-                    NotFound
-                </div>
-            )
+            return <NotFoundPage />
         }
         return (
             <div className='detail-page'>

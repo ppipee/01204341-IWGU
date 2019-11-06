@@ -8,6 +8,7 @@ import { Skeleton } from 'antd'
 import '../assets/scss/searchresult.scss'
 import { PlannersAction } from '../action'
 import { Time, PinkLocationIcon, Star, NoResult, Add, Fav } from './Icon'
+import ImageNotFound from '../assets/img/image-not-found.svg'
 import { searchPlace, distances } from '../queries/place'
 import {
     userFavourites,
@@ -22,12 +23,13 @@ class SearchResult extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            rate_random: [...Array(30).keys()].map(key => Rate()),
+            rate_random: [...Array(80).keys()].map(key => Rate()),
             userLocation: {
                 latitude: 32,
                 longitude: 32,
             },
             loading: true,
+            places: [],
         }
     }
 
@@ -88,6 +90,7 @@ class SearchResult extends Component {
             this.props.setloaddrafts(true)
         }
         if (prevProps.search.loading && !this.props.search.loading) {
+            this.setState({ places: this.props.search.places })
             this.getDistances(this.props.search.places)
         }
     }
@@ -266,6 +269,26 @@ class SearchResult extends Component {
         </div>
     )
 
+    filters = places => {
+        const search = new URLSearchParams(this.props.location.search)
+        const sortby = search.get('sortby')
+        const rates = this.state.rate_random
+        const new_state = places.map((place, i) => {
+            return {
+                ...place,
+                rate: rates[i],
+            }
+        })
+        if (sortby !== null) {
+            // console.log(sortby)
+            if (sortby === 'rating') {
+                new_state.sort((a, b) => b.rate - a.rate)
+                return new_state
+            }
+        }
+        return new_state
+    }
+
     genTabs(place) {
         const { placeID: id, categoryCode: code } = place
         let add =
@@ -333,7 +356,9 @@ class SearchResult extends Component {
         const places_distances = this.formatDistances(
             this.props.distances.distances
         )
-        places.forEach((place, i) => {
+        const new_places = this.filters(places)
+        console.log(new_places)
+        new_places.forEach((place, i) => {
             const { placeID, categoryCode, thumbnail, name, location } = place
             box.push(
                 <div className='card' key={`${placeID}`}>
@@ -341,7 +366,13 @@ class SearchResult extends Component {
                         className='link'
                         to={`/detail?place=${placeID}, ?code=${categoryCode}`}
                     >
-                        <img className='picture' alt={name} src={thumbnail} />
+                        <img
+                            className={`picture ${
+                                thumbnail === '' ? 'not-found' : ''
+                            } `}
+                            alt={name}
+                            src={thumbnail === '' ? ImageNotFound : thumbnail}
+                        />
                     </Link>
                     <Link
                         className='go-to-detail'
@@ -351,10 +382,10 @@ class SearchResult extends Component {
                             <div className='line1'>{name}</div>
                             <div className='line-group'>
                                 <div className='line2'>
-                                    {/* {this.genStar(place.rate)} */}
-                                    {this.genStar(
+                                    {this.genStar(place.rate)}
+                                    {/* {this.genStar(
                                         this.state.rate_random[+i % 30]
-                                    )}
+                                    )} */}
                                     <span className='dot' />
                                     <span className='category'>
                                         {categoryCode}
@@ -412,7 +443,7 @@ class SearchResult extends Component {
             return <div className='search-result'>{this.noneResult()}</div>
         return (
             <div className='search-result'>
-                {this.genCards(this.props.search.places)}
+                {this.genCards(this.state.places)}
             </div>
         )
     }
