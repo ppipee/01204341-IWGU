@@ -24,6 +24,7 @@ const updatePlanner = gql`
 const getDetailPlanner = gql`
     query($id: ID!) {
         planner(id: $id) {
+            id
             author {
                 username
             }
@@ -35,6 +36,7 @@ const getDetailPlanner = gql`
                     place {
                         placeID
                         categoryCode
+                        name
                     }
                     time {
                         start
@@ -56,6 +58,11 @@ const getUserPlanners = gql`
             days {
                 date
                 places {
+                    place {
+                        placeID
+                        categoryCode
+                        name
+                    }
                     time {
                         start
                         end

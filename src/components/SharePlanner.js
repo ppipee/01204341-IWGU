@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import {
@@ -54,13 +55,13 @@ class SharePlanner extends Component {
                         </CopyToClipboard>
                     </div>
                     <div className='via'>
-                        <a href={facebook} rel='noopener'>
+                        <a href={facebook} rel='noopener' target='_blank'>
                             <img alt='facebook' src={Facebook} />
                         </a>
-                        <a href={twitter} rel='noopener'>
+                        <a href={twitter} target='_blank' rel='noopener'>
                             <img alt='twitter' src={Twitter} />
                         </a>
-                        <a href={line} rel='noopener'>
+                        <a href={line} rel='noopener' target='_blank'>
                             <img alt='line' src={Line} />
                         </a>
                     </div>
