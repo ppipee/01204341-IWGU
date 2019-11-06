@@ -5,24 +5,14 @@ import { Link } from 'react-router-dom'
 import { GoogleApiWrapper } from 'google-maps-react'
 import { nearBy } from '../queries/place'
 import '../assets/scss/nearby.scss'
-import {
-    LocationIcon,
-    RestaurantActive,
-    RestaurantInActive,
-    LandmarkActive,
-    LandmarkInActive,
-    TreeActive,
-    TreeInActive,
-    SleepActive,
-    SleepInActive,
-} from './Icon'
+import { LocationIcon, Restaurant, Landmark, Tree, Sleep } from './Icon'
 import ImageNotFound from '../assets/img/image-not-found.svg'
 
 const tabs = [
-    ['RESTAURANT', RestaurantActive, RestaurantInActive],
-    ['ATTRACTION', LandmarkActive, LandmarkInActive],
-    ['SHOP', TreeActive, TreeInActive],
-    ['ACCOMMODATION', SleepActive, SleepInActive],
+    ['RESTAURANT', <Restaurant fill='#FAC4AF' />, <Restaurant fill='#FFF' />],
+    ['ATTRACTION', <Landmark fill='#FAC4AF' />, <Landmark fill='#FFF' />],
+    ['SHOP', <Tree fill='#FAC4AF' />, <Tree fill='#FFF' />],
+    ['ACCOMMODATION', <Sleep fill='#FAC4AF' />, <Sleep fill='#FFF' />],
 ]
 class NearBy extends Component {
     constructor(props) {
@@ -164,12 +154,12 @@ class NearBy extends Component {
     genTabs() {
         const tabbar = []
         tabs.forEach(tab => {
-            let tabInActive = tab[2]
-            const [category, tabActive] = tab
+            const [category, tabActive, tabInActive] = tab
             let active = ''
+            let img = tabInActive
             if (this.state.tab_state[category]) {
                 active = ' active'
-                tabInActive = tabActive
+                img = tabActive
             }
             tabbar.push(
                 <div
@@ -177,7 +167,8 @@ class NearBy extends Component {
                     key={`tab-${category}`}
                     onClick={() => this.openContents(category)}
                 >
-                    <img alt='icon-tab' src={tabInActive} />
+                    <div className={`bg-tab ${active}`} />
+                    <div className='icon-tab'>{img}</div>
                 </div>
             )
         })

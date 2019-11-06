@@ -1,9 +1,9 @@
 import { UserAuthAction } from '../action'
 
 const InitialState = {
-    userid: '5d9ef72333c4410004eca446',
-    username: 'iwgu',
-    status: 'traveler',
+    userid: '',
+    username: '',
+    status: '',
 }
 const Action = UserAuthAction
 
