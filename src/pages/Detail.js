@@ -33,7 +33,6 @@ class DetailPage extends Component {
         // const { placeDetail: data, loading } = Detail
         const { placeDetail: data, loading, error } = this.props.data
         const search = new URLSearchParams(this.props.location.search)
-        console.log(this.props.data)
         // console.log(this.props.data)
         if (loading) {
             return (
