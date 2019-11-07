@@ -103,7 +103,7 @@ class SearchResult extends Component {
 
     formatDistances = distances =>
         distances.map(position =>
-            ((position.split(' ')[0] - 1.5) * 1.609344).toFixed(1)
+            ((position.split(' ')[0] - 1.2) * 1.609344).toFixed(1)
         )
 
     getDistances = async places => {
