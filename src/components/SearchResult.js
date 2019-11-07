@@ -444,9 +444,7 @@ class SearchResult extends Component {
             this.props.search.loading ||
             this.props.userFavourites.loading ||
             this.props.userDrafts.loading ||
-            this.props.distances.distances === undefined ||
-            (this.state.userLocation.latitude === 32 &&
-                this.state.userLocation.longitude === 32)
+            this.props.distances.distances === undefined
         )
             return (
                 <div className='search-result'>
