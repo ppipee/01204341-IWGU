@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { compose } from 'redux'
 import { graphql } from 'react-apollo'
 import { Link } from 'react-router-dom'
-import { GoogleApiWrapper } from 'google-maps-react'
 import { nearBy } from '../queries/place'
 import '../assets/scss/nearby.scss'
 import { LocationIcon, Restaurant, Landmark, Tree, Sleep } from './Icon'
@@ -18,7 +17,7 @@ class NearBy extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            radius: 7000,
+            radius: 5000,
             no: 15,
             cur_state: 'RESTAURANT',
             tab_state: {
@@ -220,9 +219,4 @@ class NearBy extends Component {
         )
     }
 }
-export default compose(
-    GoogleApiWrapper({
-        apiKey: process.env.MAP_KEY,
-    }),
-    graphql(nearBy, { name: 'nearby' })
-)(NearBy)
+export default graphql(nearBy, { name: 'nearby' })(NearBy)

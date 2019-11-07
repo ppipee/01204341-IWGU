@@ -74,7 +74,8 @@ class SearchResult extends Component {
         if (
             prevProps.userFavourites.loading &&
             !this.props.userFavourites.loading &&
-            !this.props.getLoadFavs
+            !this.props.getLoadFavs &&
+            this.props.userID !== ''
         ) {
             const fav_places = this.props.userFavourites.user.favourite
             this.props.setfavs(fav_places)
@@ -83,7 +84,8 @@ class SearchResult extends Component {
         if (
             prevProps.userDrafts.loading &&
             !this.props.userDrafts.loading &&
-            !this.props.getLoadDrafts
+            !this.props.getLoadDrafts &&
+            this.props.userID !== ''
         ) {
             const draft_places = this.props.userDrafts.user.draft
             this.props.setdrafts(draft_places)
@@ -91,13 +93,17 @@ class SearchResult extends Component {
         }
         if (prevProps.search.loading && !this.props.search.loading) {
             this.setState({ places: this.props.search.places })
-            this.getDistances(this.props.search.places)
+            if (
+                this.state.userLocation.latitude !== 32 &&
+                this.state.userLocation.longitude !== 32
+            )
+                this.getDistances(this.props.search.places)
         }
     }
 
     formatDistances = distances =>
         distances.map(position =>
-            (position.split(' ')[0] * 1.609344).toFixed(1)
+            ((position.split(' ')[0] - 1.2) * 1.609344).toFixed(1)
         )
 
     getDistances = async places => {
@@ -291,16 +297,23 @@ class SearchResult extends Component {
 
     genTabs(place) {
         const { placeID: id, categoryCode: code } = place
-        let add =
-            !this.props.getLoadDrafts && this.props.userDrafts.user
-                ? this.props.userDrafts.user.draft
-                : this.props.getDrafts
-        add = add.map(key => key.placeID)
-        let fav =
-            !this.props.getLoadFavs && this.props.userFavourites.user
-                ? this.props.userFavourites.user.favourite
-                : this.props.getFavs
-        fav = fav.map(key => key.placeID)
+        let add = []
+        let fav = []
+        if (this.props.userID !== '') {
+            add =
+                !this.props.getLoadDrafts && this.props.userDrafts.user
+                    ? this.props.userDrafts.user.draft
+                    : this.props.getDrafts
+            add = add.map(key => key.placeID)
+            fav =
+                !this.props.getLoadFavs && this.props.userFavourites.user
+                    ? this.props.userFavourites.user.favourite
+                    : this.props.getFavs
+            fav = fav.map(key => key.placeID)
+        } else {
+            add = this.props.getDrafts
+            fav = this.props.getFavs
+        }
         return (
             <div className='add-fav'>
                 <div
@@ -353,11 +366,13 @@ class SearchResult extends Component {
 
     genCards(places) {
         const box = []
-        const places_distances = this.formatDistances(
-            this.props.distances.distances
-        )
+        let places_distances = []
+        if (this.props.distances.distances !== undefined)
+            places_distances = this.formatDistances(
+                this.props.distances.distances
+            )
         const new_places = this.filters(places)
-        console.log(new_places)
+        // console.log(new_places)
         new_places.forEach((place, i) => {
             const { placeID, categoryCode, thumbnail, name, location } = place
             box.push(
@@ -404,7 +419,9 @@ class SearchResult extends Component {
                                     />
                                     <div className='information'>
                                         <span className='map'>{`${
-                                            places_distances[+i]
+                                            places_distances.length > 0
+                                                ? places_distances[+i]
+                                                : '-'
                                         } km`}</span>
                                         <span className='dot' />
                                         <span className='location'>
@@ -429,10 +446,7 @@ class SearchResult extends Component {
             this.state.loading ||
             this.props.search.loading ||
             this.props.userFavourites.loading ||
-            this.props.userDrafts.loading ||
-            this.props.distances.distances === undefined ||
-            (this.state.userLocation.latitude === 32 &&
-                this.state.userLocation.longitude === 32)
+            this.props.userDrafts.loading
         )
             return (
                 <div className='search-result'>

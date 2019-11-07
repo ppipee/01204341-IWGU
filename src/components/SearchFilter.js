@@ -45,7 +45,7 @@ class SearchFilter extends Component {
                 price: false,
             }
             sortby[search.get('sortby')] = true
-            console.log(this.state)
+            // console.log(this.state)
             this.setState({
                 ...state,
                 time,

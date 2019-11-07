@@ -336,7 +336,7 @@ class PlannerPlaceCard extends Component {
                 : this.props.getPlanner
         const dayRange = planner.days
         // console.log("planner", planner.days[day - 1])
-        console.log('place', places, ' day:', day)
+        // console.log('place', places, ' day:', day)
         const card = []
         const len = places.length
         for (let i = 0; i < len; i++) {

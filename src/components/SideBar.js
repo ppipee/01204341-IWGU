@@ -25,7 +25,7 @@ class SideBar extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        console.log(prevProps.userDrafts, this.props.userDrafts)
+        // console.log(prevProps.userDrafts, this.props.userDrafts)
         if (
             prevProps.userDrafts.loading &&
             !this.props.userDrafts.loading &&
