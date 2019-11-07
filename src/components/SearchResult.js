@@ -372,7 +372,7 @@ class SearchResult extends Component {
                 this.props.distances.distances
             )
         const new_places = this.filters(places)
-        console.log(new_places)
+        // console.log(new_places)
         new_places.forEach((place, i) => {
             const { placeID, categoryCode, thumbnail, name, location } = place
             box.push(
