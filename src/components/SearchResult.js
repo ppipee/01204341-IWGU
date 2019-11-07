@@ -367,7 +367,10 @@ class SearchResult extends Component {
     genCards(places) {
         const box = []
         let places_distances = []
-        places_distances = this.formatDistances(this.props.distances.distances)
+        if (this.props.distances.distances !== undefined)
+            places_distances = this.formatDistances(
+                this.props.distances.distances
+            )
         const new_places = this.filters(places)
         console.log(new_places)
         new_places.forEach((place, i) => {
@@ -443,8 +446,7 @@ class SearchResult extends Component {
             this.state.loading ||
             this.props.search.loading ||
             this.props.userFavourites.loading ||
-            this.props.userDrafts.loading ||
-            this.props.distances.distances === undefined
+            this.props.userDrafts.loading
         )
             return (
                 <div className='search-result'>
